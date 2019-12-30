@@ -3,5 +3,5 @@
 ## Algorithmes et structures de données disponibles
 - Graphes
     - Graphe transposé
-    - Kosaraju (calcule des CFC)
+    - Kosaraju (calcul des CFC)
 - Union-Find
