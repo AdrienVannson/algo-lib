@@ -5,4 +5,4 @@
     - Graphe transposé
     - Kosaraju (calcul des CFC)
 - Union-Find
-- 2SAT
+- 2-SAT
