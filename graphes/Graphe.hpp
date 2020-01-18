@@ -44,7 +44,7 @@ public:
         }
     }
 
-    // Lecture
+
     inline int nbNoeuds () const
     {
         return m_noeuds.size();
@@ -55,14 +55,37 @@ public:
         return m_noeuds[noeud].size();
     }
 
-    inline int voisin (const int noeud, const int voisin) const
+    inline int voisin (const int noeud, const int iVoisin) const
     {
-        return m_noeuds[noeud][voisin].first;
+        return m_noeuds[noeud][iVoisin].first;
     }
 
-    inline int ponderation (const int noeud, const int voisin) const
+    inline int idArc (const int noeud, const int iVoisin) const
     {
-        return m_ponderations[ m_noeuds[noeud][voisin].second ];
+        return m_noeuds[noeud][iVoisin].second;
+    }
+
+    inline int idArcVers (const int noeud, const int voisin)
+    {
+        for (int arc=0; arc<nbVoisins(noeud); arc++) {
+            if (m_noeuds[noeud][arc].first == voisin) {
+                return m_noeuds[noeud][arc].second;
+            }
+        }
+        return -1;
+    }
+
+    inline int ponderation (const int noeud, const int iVoisin) const
+    {
+        return m_ponderations[ m_noeuds[noeud][iVoisin].second ];
+    }
+    inline void setPonderation (const int arc, const int ponderation)
+    {
+        m_ponderations[arc] = ponderation;
+    }
+    inline void setPonderation (const int noeud, const int iVoisin, const int ponderation)
+    {
+        m_ponderations[ m_noeuds[noeud][iVoisin].second ] = ponderation;
     }
 
     inline const vector<pair<int,int>>& arcs (const int noeud) const
@@ -70,18 +93,18 @@ public:
         return m_noeuds[noeud];
     }
 
-    // Modification
+
     inline void ajouterArc (const int noeud1, const int noeud2, const int ponderation=1)
     {
         m_noeuds[noeud1].push_back(make_pair(noeud2, m_nbArcs++));
-        m_ponderations.push_back(ponderation);
+        if (m_proprietes & GRAPHE_PONDERE) m_ponderations.push_back(ponderation);
     }
 
     inline void ajouterArrete (const int noeud1, const int noeud2, const int ponderation=1)
     {
         m_noeuds[noeud1].push_back(make_pair(noeud2, m_nbArcs));
         m_noeuds[noeud2].push_back(make_pair(noeud1, m_nbArcs++));
-        m_ponderations.push_back(ponderation);
+        if (m_proprietes & GRAPHE_PONDERE) m_ponderations.push_back(ponderation);
     }
 
 private:
