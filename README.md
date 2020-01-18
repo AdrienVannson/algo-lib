@@ -2,7 +2,7 @@
 
 ## Algorithmes et structures de données disponibles
 - Graphes
-    - Graphe transposé
+    - Graphe transposé (retournement des arcs)
     - Kosaraju (calcul des CFC)
 - Union-Find
 - 2-SAT
