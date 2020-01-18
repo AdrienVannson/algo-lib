@@ -7,6 +7,13 @@
 #include "graphes/Graphe.hpp"
 #include "graphes/Kosaraju.hpp"
 
+// Algos
+#include "2SAT.hpp"
+#include "exponentiation_rapide.hpp"
+
+// Structures de données
+#include "UnionFind.hpp"
+
 // Maths
 #include "maths/PGCD_PPCM.hpp"
 
