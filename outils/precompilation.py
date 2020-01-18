@@ -55,7 +55,11 @@ def inclure (chemin, inclureRecursivement=True):
 				if not succes:
 					print("ERREUR", nouveauFichier)
 		else:
-			if not ligne == '':
+			if not ligne == '' \
+			   and not re.match("^#ifndef .*_HPP$", ligne) \
+			   and not re.match("^#define .*_HPP$", ligne) \
+			   and not re.match("^#endif .*_HPP", ligne):
+				resultats.write(ligne + '\n')
 				resultats.write(ligne + '\n')
 
 
