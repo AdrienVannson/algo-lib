@@ -6,3 +6,5 @@
     - Kosaraju (calcul des CFC)
 - Union-Find
 - 2-SAT
+- Maths
+    - PGCD, PPCM
