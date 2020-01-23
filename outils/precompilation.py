@@ -12,6 +12,7 @@ for i in range(int(input())):
 resultats = open('output.cpp', 'w')
 
 fichiersInclus = []
+motsVus = set() # Utilisé pour les inclusions facultatives
 
 
 def inclure (chemin, inclureRecursivement=True):
@@ -23,8 +24,31 @@ def inclure (chemin, inclureRecursivement=True):
 
 	contenu = open(chemin, 'r').read().split('\n')
 
+	# Mise à jour des mots vus
+	motActuel = []
+	for l in contenu:
+		if re.match("^#include ", l):
+			continue
+		for c in l:
+			if c.isalpha() or c.isdigit() or c == '_':
+				motActuel.append(c)
+			else:
+				motsVus.add(''.join(motActuel))
+				motActuel = []
+
 	for ligne in contenu:
 		if re.match("^#include \"*\"", ligne): # Inclusion
+
+			if ' // ONLY_IF ' in ligne:
+				ligne, motsRequis = ligne.split(' // ONLY_IF ')
+				motsRequis = motsRequis.split()
+
+				succes = False
+				for m in motsRequis:
+					if m in motsVus:
+						succes = True
+				if not succes:
+					continue
 
 			nouveauFichier = re.sub("^\\#include \"(.+)\"$", "\\1", ligne)
 
@@ -59,7 +83,6 @@ def inclure (chemin, inclureRecursivement=True):
 			   and not re.match("^#ifndef .*_HPP$", ligne) \
 			   and not re.match("^#define .*_HPP$", ligne) \
 			   and not re.match("^#endif .*_HPP", ligne):
-				resultats.write(ligne + '\n')
 				resultats.write(ligne + '\n')
 
 
