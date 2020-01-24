@@ -17,7 +17,8 @@ public:
         return x - m_nbVariables;
     }
 
-    void ajouterContrainte (const int a, const int b) // a v b
+    /// \brief Ajoute une contrainte de la forme a v b
+    void ajouterContrainte (const int a, const int b)
     {
         if (a%m_nbVariables != b%m_nbVariables) {
             m_grapheContraintes.ajouterArc(non(a), b);
@@ -28,7 +29,7 @@ public:
         }
     }
 
-    // Renvoie s'il existe une solution, et calcule une affectation possible
+    /// \brief Renvoie s'il existe une solution, et calcule une affectation possible
     bool resoudre ()
     {
         Kosaraju kosaraju (m_grapheContraintes); // Calcul des CFC
@@ -46,6 +47,8 @@ public:
         return true;
     }
 
+    /// \brief Renvoie l'état auquel la variable peut être affectée pour résoudre le problème
+    /// (resoudre doit avoir été appelée auparavant)
     bool estVrai (const int x) const
     {
         return m_affectations[x];

@@ -3,6 +3,7 @@
 
 #include "global.hpp"
 
+
 template<int NB_NOEUDS>
 class UnionFind
 {
@@ -24,11 +25,13 @@ public:
         return representants[iNoeud] = representant(representants[iNoeud]);
     }
 
+    /// \brief Renvoie la taille de la composante dans laquelle se trouve le noeud
     int taille (const int iNoeud)
     {
         return tailles[representant(iNoeud)];
     }
 
+    /// \brief Fusionne deux composantes
     void unir (int iNoeud1, int iNoeud2)
     {
         iNoeud1 = representant(iNoeud1);

@@ -3,6 +3,8 @@
 
 #include "global.hpp"
 
+
+/// \brief Exponentiation rapide (la puissance doit être strictement positive)
 template<class T>
 T getPuissance (const T &x, const int puissance)
 {
