@@ -9,7 +9,7 @@
 
 // Algos
 #include "2SAT.hpp" // ONLY_IF Resoudre2SAT test
-#include "exponentiation_rapide.hpp"
+#include "exponentiation_rapide.hpp" // ONLY_IF getPuissance
 
 // Structures de données
 #include "UnionFind.hpp" // ONLY_IF UnionFind
