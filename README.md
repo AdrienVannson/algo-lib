@@ -8,4 +8,5 @@
 - 2-SAT
 - Exponentiation rapide
 - Maths
+    - Fraction
     - PGCD, PPCM
