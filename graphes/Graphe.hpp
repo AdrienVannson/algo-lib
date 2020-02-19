@@ -77,6 +77,9 @@ public:
 
     inline int ponderation (const int noeud, const int iVoisin) const
     {
+        if (!(m_proprietes & GRAPHE_PONDERE)) {
+            return 1;
+        }
         return m_ponderations[ m_noeuds[noeud][iVoisin].second ];
     }
     inline void setPonderation (const int arc, const int ponderation)
@@ -86,11 +89,6 @@ public:
     inline void setPonderation (const int noeud, const int iVoisin, const int ponderation)
     {
         m_ponderations[ m_noeuds[noeud][iVoisin].second ] = ponderation;
-    }
-
-    inline const vector<pair<int,int>>& arcs (const int noeud) const
-    {
-        return m_noeuds[noeud];
     }
 
 
@@ -110,7 +108,7 @@ public:
 private:
     int m_proprietes;
     int m_nbArcs;
-    vector<vector<pair<int, int>>> m_noeuds; // [noeud][voisin] --> {idVoisin, idArc}
+    vector<vector<pair<int, int>>> m_noeuds; // [noeud][iVoisin] --> {idVoisin, idArc}
     vector<int> m_ponderations;
 };
 
