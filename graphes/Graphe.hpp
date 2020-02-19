@@ -13,7 +13,7 @@ const int GRAPHE_NON_PONDERE = 0;
 class Graphe
 {
 public:
-    Graphe (const int proprietes, const int nbNoeuds=0) :
+    Graphe (const int proprietes, const int nbNoeuds) :
         m_proprietes (proprietes),
         m_nbArcs (0)
     {
