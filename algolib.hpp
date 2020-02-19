@@ -5,6 +5,7 @@
 
 
 #include "graphes/Graphe.hpp" // ONLY_IF Graphe
+#include "graphes/BFS.hpp" // ONLY_IF BFS
 #include "graphes/FloydWarshall.hpp" // ONLY_IF FloydWarshall
 #include "graphes/Kosaraju.hpp" // ONLY_IF Kosaraju
 #include "graphes/inverserArcs.hpp" // ONLY_IF inverserArcs

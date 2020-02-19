@@ -2,6 +2,7 @@
 
 ## Algorithmes et structures de données disponibles
 - Graphes
+    - BFS
     - Floyd-Warshall
     - Kosaraju (calcul des CFC)
     - Graphe transposé (retournement des arcs)
