@@ -2,8 +2,9 @@
 
 ## Algorithmes et structures de données disponibles
 - Graphes
-    - Graphe transposé (retournement des arcs)
+    - Floyd-Warshall
     - Kosaraju (calcul des CFC)
+    - Graphe transposé (retournement des arcs)
 - Union-Find
 - 2-SAT
 - Exponentiation rapide

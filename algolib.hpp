@@ -5,7 +5,9 @@
 
 
 #include "graphes/Graphe.hpp" // ONLY_IF Graphe
+#include "graphes/FloydWarshall.hpp" // ONLY_IF FloydWarshall
 #include "graphes/Kosaraju.hpp" // ONLY_IF Kosaraju
+#include "graphes/inverserArcs.hpp" // ONLY_IF inverserArcs
 
 
 #include "2SAT.hpp" // ONLY_IF Resoudre2SAT test
