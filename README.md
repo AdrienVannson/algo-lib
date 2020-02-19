@@ -7,7 +7,7 @@
     - Graphe transposé (retournement des arcs)
 - Union-Find
 - 2-SAT
-- Exponentiation rapide
 - Maths
+    - Exponentiation rapide
     - Fraction
     - PGCD, PPCM

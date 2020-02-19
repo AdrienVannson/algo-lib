@@ -9,16 +9,13 @@
 #include "graphes/Kosaraju.hpp" // ONLY_IF Kosaraju
 #include "graphes/inverserArcs.hpp" // ONLY_IF inverserArcs
 
-
 #include "2SAT.hpp" // ONLY_IF Resoudre2SAT test
-#include "exponentiation_rapide.hpp" // ONLY_IF getPuissance
-
 
 #include "UnionFind.hpp" // ONLY_IF UnionFind
 
-
 #include "maths/PGCD_PPCM.hpp" // ONLY_IF PGCD PPCM PGCD_bezout
 #include "maths/Fraction.hpp" // ONLY_IF Fraction
+#include "maths/exponentiation_rapide.hpp" // ONLY_IF getPuissance
 
 
 #endif // ALGOLIB_HPP
