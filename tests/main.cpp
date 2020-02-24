@@ -6,6 +6,23 @@
 #include "algolib.hpp"
 
 
+// Graphs
+void checkBFS ()
+{
+    Graph graph (4, true);
+    graph.addEdge(0, 2);
+    graph.addEdge(1, 2);
+    graph.addEdge(2, 0);
+    graph.addEdge(2, 3);
+
+    BFS<Graph> bfs (graph, 0);
+    assert(bfs.distTo(0) == 0);
+    assert(bfs.distTo(1) == +oo);
+    assert(bfs.distTo(2) == 1);
+    assert(bfs.distTo(3) == 2);
+}
+
+
 // Maths
 void testerExponentiationRapide ()
 {
@@ -29,6 +46,9 @@ void testerPGCD_PPCM ()
 
 int main ()
 {
+    // Graphs
+    checkBFS();
+
     // Maths
     testerExponentiationRapide();
     testerFraction();
