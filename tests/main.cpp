@@ -22,6 +22,22 @@ void checkBFS ()
     assert(bfs.distTo(3) == 2);
 }
 
+void checkDijkstra ()
+{
+    WGraph<int> graph (4, true);
+    graph.addEdge(0, 2, 1);
+    graph.addEdge(1, 2, 1);
+    graph.addEdge(2, 0, 1);
+    graph.addEdge(2, 3, 5);
+    graph.addEdge(2, 3, 3);
+
+    Dijkstra<WGraph<int>, int> dijkstra (graph, 0);
+    assert(dijkstra.distTo(0) == 0);
+    assert(dijkstra.distTo(1) == +oo);
+    assert(dijkstra.distTo(2) == 1);
+    assert(dijkstra.distTo(3) == 4);
+}
+
 
 // Maths
 void testerExponentiationRapide ()
@@ -48,6 +64,7 @@ int main ()
 {
     // Graphs
     checkBFS();
+    checkDijkstra();
 
     // Maths
     testerExponentiationRapide();

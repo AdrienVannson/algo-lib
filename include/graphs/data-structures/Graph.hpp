@@ -59,7 +59,7 @@ public:
         m_edgeCount++;
     }
 
-private:
+protected:
     bool m_isDirected;
     int m_edgeCount;
     vector<vector<pair<int, int>>> m_vertice; // [vertex][neighbourPos] --> {neighbourID, edgeID}

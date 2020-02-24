@@ -4,7 +4,9 @@
 #include "global.hpp"
 
 #include "graphs/data-structures/Graph.hpp" // ONLY_IF Graph
+#include "graphs/data-structures/WGraph.hpp" // ONLY_IF WGraph
 #include "graphs/algorithms/BFS.hpp" // ONLY_IF BFS
+#include "graphs/algorithms/Dijkstra.hpp" // ONLY_IF Dijkstra
 
 /*
 #include "graphes/Graphe.hpp" // ONLY_IF Graphe
