@@ -3,7 +3,7 @@
  * des implémentations mais de vérifier que tout compile correctemment
  */
 
-#include "../include/algolib.hpp"
+#include "algolib.hpp"
 
 
 // Maths

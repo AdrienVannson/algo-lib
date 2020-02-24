@@ -1,4 +1,4 @@
 outils/config
 *.pro*
-src/prog
-src/output.cpp
+tests/prog
+tests/output.cpp
