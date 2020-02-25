@@ -36,6 +36,13 @@ public:
         return m_vertice[vertex][neighbourPos].first;
     }
 
+    /// \brief Always returns 1 (the graph is not weighted)
+    inline int weight (const int vertex, const int neighbourPos) const
+    {
+        (void)vertex, (void)neighbourPos;
+        return 1;
+    }
+
     /// \brief Returns the id of the n-th out-edge of a vertex
     inline int edgeId (const int vertex, const int neighbourPos) const
     {

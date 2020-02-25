@@ -12,19 +12,19 @@ public:
     {}
 
     /// \brief Returns the weight of the n-th out-edge of a vertex
-    inline int weight (const int vertex, const int neighbourPos) const
+    inline T weight (const int vertex, const int neighbourPos) const
     {
         return m_weights[ m_vertice[vertex][neighbourPos].second ];
     }
 
     /// \brief Sets the weight of the n-th out-edge of a vertex
-    inline void setWeight (const int vertex, const int neighbourPos, const int weight)
+    inline void setWeight (const int vertex, const int neighbourPos, const T weight)
     {
         m_weights[ m_vertice[vertex][neighbourPos].second ] = weight;
     }
 
     /// \brief Sets the weight of the n-th edge
-    inline void setWeight (const int edgeId, const int weight)
+    inline void setWeight (const int edgeId, const T weight)
     {
         m_weights[edgeId] = weight;
     }
