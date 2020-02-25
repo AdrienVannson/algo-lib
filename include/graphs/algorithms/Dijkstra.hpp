@@ -44,9 +44,9 @@ public:
         Dijkstra (graph, vector<int>{startVertex})
     {}
 
-    T distTo (const int noeud) const
+    inline T distTo (const int vertex) const
     {
-        return m_dists[noeud];
+        return m_dists[vertex];
     }
 
 private:
