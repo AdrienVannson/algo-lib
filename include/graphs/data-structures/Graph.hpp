@@ -15,6 +15,11 @@ public:
         m_vertice.resize(verticeCount);
     }
 
+    inline bool isDirected () const
+    {
+        return m_isDirected;
+    }
+
     inline int verticeCount () const
     {
         return m_vertice.size();

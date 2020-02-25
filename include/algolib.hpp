@@ -7,6 +7,7 @@
 #include "graphs/data-structures/WGraph.hpp" // ONLY_IF WGraph
 #include "graphs/algorithms/BFS.hpp" // ONLY_IF BFS
 #include "graphs/algorithms/Dijkstra.hpp" // ONLY_IF Dijkstra
+#include "graphs/algorithms/transposeGraph.hpp" // ONLY_IF getTransposeGraph
 
 /*
 #include "graphes/Graphe.hpp" // ONLY_IF Graphe
