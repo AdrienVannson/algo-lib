@@ -1,12 +1,16 @@
 # Algolib
 
-## Algorithmes et structures de données disponibles
-- Graphes
-    - BFS
-    - Dijkstra
-    - Floyd-Warshall
-    - Kosaraju (calcul des CFC)
-    - Graphe transposé (retournement des arcs)
+## Available data-structures and algorithms
+- Graphs
+    - Data structures
+        - Graph
+        - Weighted graph
+    - Algorithms
+        - BFS
+        - Bellman-Ford
+        - Dijkstra
+        - Topological sort
+        - Transpose graph
 - Union-Find
 - 2-SAT
 - Maths
