@@ -8,6 +8,7 @@
 #include "graphs/algorithms/BFS.hpp" // ONLY_IF BFS
 #include "graphs/algorithms/BellmanFord.hpp" // ONLY_IF BellmanFord
 #include "graphs/algorithms/Dijkstra.hpp" // ONLY_IF Dijkstra
+#include "graphs/algorithms/TopologicalSort.hpp" // ONLY_IF TopologicalSort
 #include "graphs/algorithms/transposeGraph.hpp" // ONLY_IF getTransposeGraph
 
 /*
