@@ -11,16 +11,7 @@
 #include "graphs/algorithms/TopologicalSort.hpp" // ONLY_IF TopologicalSort
 #include "graphs/algorithms/transposeGraph.hpp" // ONLY_IF getTransposeGraph
 
-/*
-#include "graphes/Graphe.hpp" // ONLY_IF Graphe
-#include "graphes/BFS.hpp" // ONLY_IF BFS
-#include "graphes/Dijkstra.hpp" // ONLY_IF Dijkstra
-#include "graphes/FloydWarshall.hpp" // ONLY_IF FloydWarshall
-#include "graphes/Kosaraju.hpp" // ONLY_IF Kosaraju
-#include "graphes/inverserArcs.hpp" // ONLY_IF inverserArcs
-*/
-
-#include "2SAT.hpp" // ONLY_IF Resoudre2SAT test
+#include "2SAT.hpp" // ONLY_IF Resoudre2SAT
 
 #include "UnionFind.hpp" // ONLY_IF UnionFind
 
