@@ -8,9 +8,11 @@ template<class G>
 class TopologicalSort
 {
 public:
-    TopologicalSort (const G &g)
+    TopologicalSort (const G &g) :
+        m_isPossible (true)
     {
         m_states.resize(g.verticeCount());
+        m_topologicalSort.reserve(g.verticeCount());
 
         for (int vertex=0; vertex<g.verticeCount(); vertex++) {
             if (!dfs(g, vertex)) {
@@ -24,7 +26,7 @@ public:
 
     inline bool isPossible () const
     {
-        return !m_topologicalSort.empty();
+        return m_isPossible;
     }
 
     inline const vector<int>& topologicalSort () const
@@ -36,6 +38,7 @@ private:
     bool dfs (const G &g, const int vertex)
     {
         if (m_states[vertex] == 2) {
+            m_isPossible = false;
             m_topologicalSort.clear();
             return false;
         }
@@ -56,6 +59,7 @@ private:
         return true;
     }
 
+    bool m_isPossible;
     vector<int> m_topologicalSort;
     vector<int> m_states; // 0: not visited, 1: visited, 2: being visited
 };
