@@ -14,9 +14,38 @@ public:
         m_states.resize(g.verticeCount());
         m_topologicalSort.reserve(g.verticeCount());
 
+        vector<pair<int, int>> pending; // {vertex, posNeighbour}
+        pending.reserve(g.verticeCount()+1);
+
         for (int vertex=0; vertex<g.verticeCount(); vertex++) {
-            if (!dfs(g, vertex)) {
-                break;
+            pending.push_back(make_pair(vertex, 0));
+
+            while (pending.size()) {
+                const int vertex = pending.back().first;
+                const int posNeighbour = pending.back().second;
+                pending.pop_back();
+
+                if (posNeighbour == 0) {
+                    if (m_states[vertex] == 2) {
+                        m_isPossible = false;
+                        m_topologicalSort.clear();
+                        return;
+                    }
+                    if (m_states[vertex] == 1) {
+                        continue;
+                    }
+
+                    m_states[vertex] = 2;
+                }
+
+                if (posNeighbour < g.neighbourCount(vertex)) {
+                    pending.push_back(make_pair(vertex, posNeighbour+1));
+                    pending.push_back(make_pair(g.neighbour(vertex, posNeighbour), 0));
+                }
+                else {
+                    m_states[vertex] = 1;
+                    m_topologicalSort.push_back(vertex);
+                }
             }
         }
 
@@ -35,30 +64,6 @@ public:
     }
 
 private:
-    bool dfs (const G &g, const int vertex)
-    {
-        if (m_states[vertex] == 2) {
-            m_isPossible = false;
-            m_topologicalSort.clear();
-            return false;
-        }
-        if (m_states[vertex] == 1) {
-            return true;
-        }
-
-        m_states[vertex] = 2;
-
-        for (int neighbourPos=0; neighbourPos<g.neighbourCount(vertex); neighbourPos++) {
-            if (!dfs(g, g.neighbour(vertex, neighbourPos))) {
-                return false;
-            }
-        }
-
-        m_states[vertex] = 1;
-        m_topologicalSort.push_back(vertex);
-        return true;
-    }
-
     bool m_isPossible;
     vector<int> m_topologicalSort;
     vector<int> m_states; // 0: not visited, 1: visited, 2: being visited
