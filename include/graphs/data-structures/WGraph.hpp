@@ -11,6 +11,12 @@ public:
         Graph (verticeCount, isDirected)
     {}
 
+    /// \brief Returns the weight of the n-th edge
+    inline T weight (const int edgeId) const
+    {
+        return m_weights[edgeId];
+    }
+
     /// \brief Returns the weight of the n-th out-edge of a vertex
     inline T weight (const int vertex, const int neighbourPos) const
     {

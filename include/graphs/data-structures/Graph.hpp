@@ -30,10 +30,22 @@ public:
         return m_vertice[vertex].size();
     }
 
+    inline int edgeCount () const
+    {
+        return m_edgeCount;
+    }
+
     /// \brief Returns the id of the n-th neighbour of a vertex
     inline int neighbour (const int vertex, const int neighbourPos) const
     {
         return m_vertice[vertex][neighbourPos].first;
+    }
+
+    /// \brief Always returns 1 (the graph is not weighted)
+    inline int weight (const int edgeId) const
+    {
+        (void)edgeId;
+        return 1;
     }
 
     /// \brief Always returns 1 (the graph is not weighted)
