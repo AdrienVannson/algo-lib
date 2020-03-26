@@ -4,17 +4,19 @@
 #include "global.hpp"
 
 
-template<int NB_NOEUDS>
 class UnionFind
 {
 public:
 
-    UnionFind ()
+    UnionFind (const int nbNoeuds)
     {
-        for (int iNoeud=0; iNoeud<NB_NOEUDS; iNoeud++) {
-            representants[iNoeud] = iNoeud;
-            tailles[iNoeud] = 1;
+        representants.reserve(nbNoeuds);
+
+        for (int iNoeud=0; iNoeud<nbNoeuds; iNoeud++) {
+            representants.push_back(iNoeud);
         }
+
+        tailles.resize(nbNoeuds, 1);
     }
 
     int representant (const int iNoeud)
@@ -52,8 +54,8 @@ public:
     }
 
 private:
-    int representants[NB_NOEUDS];
-    int tailles[NB_NOEUDS]; // Valide uniquement pour les racines
+    vector<int> representants;
+    vector<int> tailles; // Valide uniquement pour les racines
 };
 
 
