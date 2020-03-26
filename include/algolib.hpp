@@ -19,5 +19,7 @@
 #include "maths/Fraction.hpp" // ONLY_IF Fraction
 #include "maths/exponentiation_rapide.hpp" // ONLY_IF getPuissance
 
+#include "geometry/Vect.hpp" // ONLY_IF Vect
+
 
 #endif // ALGOLIB_HPP
