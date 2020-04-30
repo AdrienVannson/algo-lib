@@ -184,7 +184,13 @@ int JSON::fromString (const string &s, int i)
         return i + 4;
     }
 
-    if (s[i] >= '0' && s[i] <= '9') {
+    if ((s[i] >= '0' && s[i] <= '9') || s[i] == '-') {
+        bool isNegative = false;
+        if (s[i] == '-') {
+            isNegative = true;
+            i = skipWhitespaces(s, i+1);
+        }
+
         string number;
         while (s[i] >= '0' && s[i] <= '9') {
             number.push_back(s[i]);
@@ -201,10 +207,18 @@ int JSON::fromString (const string &s, int i)
 
             m_type = FLOAT;
             m_float = stod(number);
+
+            if (isNegative) {
+                m_float *= -1;
+            }
         }
         else {
             m_type = INT;
             m_int = stoi(number);
+
+            if (isNegative) {
+                m_int *= -1;
+            }
         }
 
         return i;
