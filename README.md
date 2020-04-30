@@ -13,6 +13,7 @@
         - Transpose graph
 - Union-Find
 - 2-SAT
+- JSON
 - Maths
     - Exponentiation rapide
     - Fraction
