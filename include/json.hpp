@@ -62,6 +62,8 @@ public:
     const vector<JSON*>& getArray () const { return m_array; }
     const map<string, JSON*>& getObject () const { return m_object; }
 
+    JSON* operator[] (const string &s);
+
     string toString () const;
     void fromString (const string &s); // The string must be valid JSON
 
@@ -97,6 +99,11 @@ JSON::~JSON ()
             delete child.second;
         }
     }
+}
+
+JSON* JSON::operator[] (const string &s)
+{
+    return getObject()[s];
 }
 
 string JSON::toString () const
