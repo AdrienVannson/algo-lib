@@ -44,6 +44,11 @@ public:
         m_object (o)
     {}
 
+    JSON (const JSON &other);
+    JSON (const JSON *other) :
+        JSON (*other)
+    {}
+
     ~JSON ();
 
     Type type () const { return m_type; }
@@ -86,6 +91,37 @@ private:
     };
 
 };
+
+JSON::JSON (const JSON &other)
+{
+    m_type = other.m_type;
+
+    if (m_type == INT) {
+        m_int = other.m_int;
+    }
+    else if (m_type == FLOAT) {
+        m_float = other.m_float;
+    }
+    else if (m_type == BOOLEAN) {
+        m_bool = other.m_bool;
+    }
+    else if (m_type == STRING) {
+        new (&m_string) string ();
+        m_string = other.m_string;
+    }
+    else if (m_type == ARRAY) {
+        new (&m_array) vector<JSON*> ();
+        for (JSON* obj : other.m_array) {
+            m_array.push_back(new JSON (obj));
+        }
+    }
+    else if (m_type == OBJECT) {
+        new (&m_object) map<string, JSON*> ();
+        for (pair<string, JSON*> p : other.m_object) {
+            m_object[p.first] = new JSON (p.second);
+        }
+    }
+}
 
 JSON::~JSON ()
 {
