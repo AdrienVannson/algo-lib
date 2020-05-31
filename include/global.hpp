@@ -1,7 +1,7 @@
 #ifndef GLOBAL_HPP
 #define GLOBAL_HPP
 
-#define for_n(i,n) for (int i=0;i<n;i++)
+#define for_n(i,n) for (int i=0;i<(int)(n);i++)
 
 #include <bits/stdc++.h>
 
