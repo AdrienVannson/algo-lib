@@ -17,7 +17,7 @@
 
 #include "json.hpp" // ONLY_IF JSON
 
-#include "maths/PGCD_PPCM.hpp" // ONLY_IF PGCD PPCM PGCD_bezout
+#include "maths/GCD_LCM.hpp" // ONLY_IF getGCD getLCM getGCDBezout
 #include "maths/Fraction.hpp" // ONLY_IF Fraction
 #include "maths/exponentiation_rapide.hpp" // ONLY_IF getPuissance
 

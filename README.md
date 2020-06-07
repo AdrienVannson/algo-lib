@@ -1,6 +1,5 @@
 # Algolib
 
-## Available data-structures and algorithms
 - Graphs
     - Data structures
         - Graph
@@ -17,4 +16,4 @@
 - Maths
     - Exponentiation rapide
     - Fraction
-    - PGCD, PPCM
+    - GCD, LCM, Extended Euclidean algorithm

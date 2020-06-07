@@ -1,8 +1,3 @@
-/*
- * L'objectif de ce fichier n'est pas de complètement tester la validité
- * des implémentations mais de vérifier que tout compile correctemment
- */
-
 #include "algolib.hpp"
 
 
@@ -20,6 +15,8 @@ void checkBFS ()
     assert(bfs.distTo(1) == +oo);
     assert(bfs.distTo(2) == 1);
     assert(bfs.distTo(3) == 2);
+
+    cerr << "BFS checked" << endl;
 }
 
 void checkDijkstra ()
@@ -36,6 +33,8 @@ void checkDijkstra ()
     assert(dijkstra.distTo(1) == +oo);
     assert(dijkstra.distTo(2) == 1);
     assert(dijkstra.distTo(3) == 4);
+
+    cerr << "Dijkstra checked" << endl;
 }
 
 
@@ -53,10 +52,30 @@ void testerFraction ()
     assert(r.num() == 5 && r.den() == 12);
 }
 
-void testerPGCD_PPCM ()
+void checkGCD_LCM ()
 {
-    assert(PGCD(42, 13*14) == 14);
-    assert(PPCM(2*7, 2*13) == 2*7*13);
+    assert(getGCD(42, 13*14) == 14);
+    assert(getGCD(42, -13*14) == 14);
+    assert(getGCD(0, 0) == 0);
+    assert(getGCD(0, 42) == 42);
+
+    array<long long,3> res;
+
+    res = getGCDBezout(42, 13*14);
+    assert(res[0] == 14 && 42*res[1]+13*14*res[2] == res[0]);
+
+    res = getGCDBezout(42, -13*14);
+    assert(res[0] == 14 && 42*res[1]-13*14*res[2] == res[0]);
+
+    res = getGCDBezout(0, 0);
+    assert(res[0] == 0);
+
+    res = getGCDBezout(0, 42);
+    assert(res[0] == 42 && 42*res[2] == res[0]);
+
+    assert(getLCM(2*7, 2*13) == 2*7*13);
+    assert(getLCM(2*7, -2*13) == 2*7*13);
+    cerr << "GCD / LCM checked" << endl;
 }
 
 
@@ -69,5 +88,5 @@ int main ()
     // Maths
     testerExponentiationRapide();
     testerFraction();
-    testerPGCD_PPCM();
+    checkGCD_LCM();
 }
