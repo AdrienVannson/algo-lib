@@ -17,3 +17,4 @@
     - Exponentiation rapide
     - Fraction
     - GCD, LCM, Extended Euclidean algorithm
+    - Permutation

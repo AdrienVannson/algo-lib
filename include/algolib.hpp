@@ -18,6 +18,7 @@
 #include "json.hpp" // ONLY_IF JSON
 
 #include "maths/GCD_LCM.hpp" // ONLY_IF getGCD getLCM getGCDBezout
+#include "maths/Permutation.hpp" // ONLY_IF Permutation
 #include "maths/Fraction.hpp" // ONLY_IF Fraction
 #include "maths/exponentiation_rapide.hpp" // ONLY_IF getPuissance
 

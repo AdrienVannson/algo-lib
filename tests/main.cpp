@@ -78,6 +78,35 @@ void checkGCD_LCM ()
     cerr << "GCD / LCM checked" << endl;
 }
 
+void checkPermutation ()
+{
+    Permutation perm ({5, 1, 3, 0, 4, 2, 7, 6});
+
+    // Orbit
+    const vector<int> orbit = perm.orbit(3);
+    assert(orbit.size() == 4);
+    assert(orbit[0] == 3 && orbit[1] == 0 && orbit[2] == 5 && orbit[3] == 2);
+
+    // Orbits
+    const vector<vector<int>> orbits = perm.orbits();
+    assert(orbits.size() == 4);
+
+    assert(orbits[0].size() == 4);
+    assert(orbits[0][0] == 0 && orbits[0][1] == 5 && orbits[0][2] == 2 && orbits[0][3] == 3);
+
+    assert(orbits[1].size() == 1 && orbits[1][0] == 1);
+    assert(orbits[2].size() == 1 && orbits[2][0] == 4);
+
+    assert(orbits[3].size() == 2);
+    assert(orbits[3][0] == 6 && orbits[3][1] == 7);
+
+    // Composition
+    perm = Permutation({2, 0, 1}) * Permutation({1, 0, 2});
+    assert(perm(0) == 0 && perm(1) == 2 && perm(2) == 1);
+
+    cerr << "Permutation checked" << endl;
+}
+
 
 int main ()
 {
@@ -89,4 +118,5 @@ int main ()
     testerExponentiationRapide();
     testerFraction();
     checkGCD_LCM();
+    checkPermutation();
 }
