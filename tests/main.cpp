@@ -104,6 +104,10 @@ void checkPermutation ()
     perm = Permutation({2, 0, 1}) * Permutation({1, 0, 2});
     assert(perm(0) == 0 && perm(1) == 2 && perm(2) == 1);
 
+    // Signature
+    assert(Permutation({2, 3, 4, 1, 0}).signature() == -1);
+    assert(Permutation({2, 0, 4, 1, 3}).signature() == 1);
+
     cerr << "Permutation checked" << endl;
 }
 

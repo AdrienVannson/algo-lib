@@ -46,6 +46,32 @@ vector<vector<int>> Permutation::orbits () const
     return ans;
 }
 
+int Permutation::signature () const
+{
+    vector<bool> isUsed (m_perm.size(), false);
+
+    int sign = 1;
+
+    for (int i=0; i<size(); i++) {
+        if (!isUsed[i]) {
+            int s = 0;
+
+            int x = i;
+            do {
+                s++;
+                isUsed[x] = true;
+                x = m_perm[x];
+            } while (x != i);
+
+            if (s % 2 == 0) {
+                sign *= -1;
+            }
+        }
+    }
+
+    return sign;
+}
+
 // Composition
 Permutation operator* (const Permutation &a, const Permutation &b)
 {

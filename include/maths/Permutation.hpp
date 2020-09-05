@@ -22,6 +22,8 @@ public:
     vector<int> orbit (const int n) const;
     vector<vector<int>> orbits () const;
 
+    int signature () const;
+
 private:
     vector<int> m_perm;
 };
