@@ -72,6 +72,19 @@ int Permutation::signature () const
     return sign;
 }
 
+bool operator== (const Permutation &a, const Permutation &b)
+{
+    assert(a.size() == b.size());
+
+    for (int i=0; i<a.size(); i++) {
+        if (a(i) != b(i)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 // Composition
 Permutation operator* (const Permutation &a, const Permutation &b)
 {

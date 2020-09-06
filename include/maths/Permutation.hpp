@@ -28,6 +28,8 @@ private:
     vector<int> m_perm;
 };
 
+bool operator== (const Permutation &, const Permutation &);
+
 // Composition
 Permutation operator* (const Permutation &a, const Permutation &b);
 
