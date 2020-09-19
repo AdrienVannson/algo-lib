@@ -1,5 +1,10 @@
 #include "Permutation.hpp"
 
+#include <algorithm>
+
+using namespace std;
+
+
 /// \brief Permutation
 Permutation::Permutation (const vector<int> &perm) :
     m_size (perm.size()),
@@ -15,6 +20,17 @@ Permutation::Permutation (const vector<int> &perm) :
     }
 }
 
+/// \brief Identity
+Permutation::Permutation (const int n) :
+    m_size (n),
+    m_isTransposition (false),
+    m_perm (n)
+{
+    for (int i=0; i<n; i++) {
+        m_perm[i] = i;
+    }
+}
+
 /// \brief (a b) transposition of size n
 Permutation::Permutation (const int n, const int a, const int b) :
     m_size (n),
@@ -23,6 +39,19 @@ Permutation::Permutation (const int n, const int a, const int b) :
 {
     assert(0 <= a && a < n && 0 <= b && b < n);
     assert(a != b);
+}
+
+Permutation Permutation::inverse () const
+{
+    if (m_isTransposition) return *this;
+
+    vector<int> permInv (size());
+
+    for (int i=0; i<size(); i++) {
+        permInv[ m_perm[i] ] = i;
+    }
+
+    return Permutation(permInv);
 }
 
 vector<int> Permutation::orbit (const int n) const
@@ -86,6 +115,34 @@ int Permutation::signature () const
 
     return sign;
 }
+
+/*
+ * Decompositions
+ */
+
+/// \brief Decomposition into composition of transpositions
+vector<Permutation> Permutation::transpositionsDecomposition () const
+{
+    if (m_isTransposition) return {*this};
+
+    Permutation perm (m_perm);
+    Permutation inv = perm.inverse();
+
+    vector<Permutation> decomposition;
+
+    for (int i=0; i<(int)perm.size(); i++) {
+        const int i2 = perm(i);
+
+        if (i2 != i) {
+            decomposition.push_back(Permutation(size(), i, i2));
+            swap(perm.m_perm[i], perm.m_perm[ inv(i) ]);
+            swap(inv.m_perm[i], inv.m_perm[i2]);
+        }
+    }
+
+    return decomposition;
+}
+
 
 bool operator== (const Permutation &a, const Permutation &b)
 {

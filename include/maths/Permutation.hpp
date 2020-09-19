@@ -3,12 +3,17 @@
 
 #include "global.hpp"
 
+#include <vector>
+
 
 class Permutation
 {
 public:
     /// \brief Permutation
     Permutation (const vector<int> &perm);
+
+    /// \brief Identity
+    Permutation (const int n);
 
     /// \brief (a b) transposition of size n
     Permutation (const int n, const int a, const int b);
@@ -29,10 +34,17 @@ public:
         return m_perm[v];
     }
 
+    Permutation inverse () const;
+
     vector<int> orbit (const int n) const;
     vector<vector<int>> orbits () const;
 
     int signature () const;
+
+    // Decompositions
+
+    /// \brief Decomposition into composition of transpositions
+    vector<Permutation> transpositionsDecomposition () const;
 
 private:
     int m_size; // Size of the permutation
