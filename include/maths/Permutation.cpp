@@ -1,6 +1,9 @@
 #include "Permutation.hpp"
 
+/// \brief Permutation
 Permutation::Permutation (const vector<int> &perm) :
+    m_size (perm.size()),
+    m_isTransposition (false),
     m_perm (perm)
 {
     vector<bool> isContained (perm.size(), false);
@@ -12,6 +15,16 @@ Permutation::Permutation (const vector<int> &perm) :
     }
 }
 
+/// \brief (a b) transposition of size n
+Permutation::Permutation (const int n, const int a, const int b) :
+    m_size (n),
+    m_isTransposition (true),
+    m_perm ({a, b})
+{
+    assert(0 <= a && a < n && 0 <= b && b < n);
+    assert(a != b);
+}
+
 vector<int> Permutation::orbit (const int n) const
 {
     vector<int> ans;
@@ -19,7 +32,7 @@ vector<int> Permutation::orbit (const int n) const
     int x = n;
     do {
         ans.push_back(x);
-        x = m_perm[x];
+        x = operator() (x);
     } while (x != n);
 
     return ans;
@@ -28,7 +41,7 @@ vector<int> Permutation::orbit (const int n) const
 vector<vector<int>> Permutation::orbits () const
 {
     vector<vector<int>> ans;
-    vector<bool> isAdded (m_perm.size(), false);
+    vector<bool> isAdded (size(), false);
 
     for (int i=0; i<size(); i++) {
         if (!isAdded[i]) {
@@ -38,7 +51,7 @@ vector<vector<int>> Permutation::orbits () const
             do {
                 ans.back().push_back(x);
                 isAdded[x] = true;
-                x = m_perm[x];
+                x = operator() (x);
             } while (x != i);
         }
     }
@@ -48,7 +61,9 @@ vector<vector<int>> Permutation::orbits () const
 
 int Permutation::signature () const
 {
-    vector<bool> isUsed (m_perm.size(), false);
+    if (m_isTransposition) return 1;
+
+    vector<bool> isUsed (size(), false);
 
     int sign = 1;
 
@@ -85,14 +100,14 @@ bool operator== (const Permutation &a, const Permutation &b)
     return true;
 }
 
-// Composition
+/// \brief Composition
 Permutation operator* (const Permutation &a, const Permutation &b)
 {
     assert(a.size() == b.size());
 
     vector<int> perm;
-    for (int x=0; x<a.size(); x++) {
-        perm.push_back( a(b(x)) );
+    for (int i=0; i<a.size(); i++) {
+        perm.push_back( a(b(i)) );
     }
 
     return Permutation (perm);

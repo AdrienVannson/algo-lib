@@ -80,12 +80,16 @@ void checkGCD_LCM ()
 
 void checkPermutation ()
 {
-    Permutation perm ({5, 1, 3, 0, 4, 2, 7, 6});
+    Permutation perm (vector<int>{5, 1, 3, 0, 4, 2, 7, 6});
 
     // Orbit
     const vector<int> orbit = perm.orbit(3);
     assert(orbit.size() == 4);
     assert(orbit[0] == 3 && orbit[1] == 0 && orbit[2] == 5 && orbit[3] == 2);
+
+    assert(Permutation(4, 1, 2).orbit(2).size() == 2);
+    assert(Permutation(4, 1, 2).orbit(2)[0] == 2);
+    assert(Permutation(4, 1, 2).orbit(2)[1] == 1);
 
     // Orbits
     const vector<vector<int>> orbits = perm.orbits();
@@ -101,7 +105,7 @@ void checkPermutation ()
     assert(orbits[3][0] == 6 && orbits[3][1] == 7);
 
     // Composition
-    perm = Permutation({2, 0, 1}) * Permutation({1, 0, 2});
+    perm = Permutation(vector<int>{2, 0, 1}) * Permutation(vector<int>{1, 0, 2});
     assert(perm(0) == 0 && perm(1) == 2 && perm(2) == 1);
 
     // Signature
