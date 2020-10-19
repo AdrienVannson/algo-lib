@@ -1,9 +1,10 @@
 #ifndef EDMONDSKARP_HPP
 #define EDMONDSKARP_HPP
 
+#include <cassert>
+#include <climits>
+#include <queue>
 #include <vector>
-
-#include "algolib.hpp"
 
 // G: graph type; T: weigth type
 template<class G, class T>
@@ -35,7 +36,7 @@ public:
         while (true) {
             std::vector<int> dists(graph.verticeCount(), INT_MAX);
 
-            queue<int> pending;
+            std::queue<int> pending;
             pending.push(source);
             dists[source] = 0;
 
