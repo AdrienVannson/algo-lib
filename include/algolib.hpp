@@ -9,6 +9,7 @@
 #include "graphs/algorithms/BellmanFord.hpp" // ONLY_IF BellmanFord
 #include "graphs/algorithms/Dijkstra.hpp" // ONLY_IF Dijkstra
 #include "graphs/algorithms/edmonds-karp.hpp" // ONLY_IF EdmondsKarp
+#include "graphs/algorithms/min-cut.hpp" // ONLY_IF MinCut
 #include "graphs/algorithms/TopologicalSort.hpp" // ONLY_IF TopologicalSort
 #include "graphs/algorithms/transposeGraph.hpp" // ONLY_IF getTransposeGraph
 

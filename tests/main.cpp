@@ -1,5 +1,7 @@
 #include "algolib.hpp"
 
+#include <climits>
+
 /*
  * Graph algorithms
  */
@@ -14,7 +16,7 @@ void checkBFS ()
 
     BFS<Graph> bfs (graph, 0);
     assert(bfs.distTo(0) == 0);
-    assert(bfs.distTo(1) == +oo);
+    assert(bfs.distTo(1) == INT_MAX);
     assert(bfs.distTo(2) == 1);
     assert(bfs.distTo(3) == 2);
 
@@ -63,6 +65,32 @@ void testEdmondsKarp ()
     assert(flow.flowOnEdge(7) == 7);
 
     cerr << "### Edmonds-Karp: Ok" << endl;
+}
+
+void testMinCut ()
+{
+    WGraph<int> graph(6, true);
+    graph.addEdge(0, 1, 16);
+    graph.addEdge(0, 3, 13);
+    graph.addEdge(1, 3, 10);
+    graph.addEdge(3, 1, 4);
+    graph.addEdge(1, 2, 12);
+    graph.addEdge(2, 3, 9);
+    graph.addEdge(3, 4, 14);
+    graph.addEdge(4, 2, 7);
+    graph.addEdge(2, 5, 20);
+    graph.addEdge(4, 5, 4);
+
+    EdmondsKarp<WGraph<int>, int> flow(graph, 0, 5);
+    MinCut<EdmondsKarp<WGraph<int>, int>, WGraph<int>, int> minCut(flow, graph);
+
+    assert(minCut.minCut() == 23);
+    assert(minCut.cutEdges().size() == 3);
+    assert(minCut.cutEdges()[0].edgeId == 4);
+    assert(minCut.cutEdges()[1].edgeId == 7);
+    assert(minCut.cutEdges()[2].edgeId == 9);
+
+    cerr << "### Min-Cut: Ok" << endl;
 }
 
 
@@ -167,6 +195,7 @@ int main ()
     checkBFS();
     checkDijkstra();
     testEdmondsKarp();
+    testMinCut();
     cerr << "\n";
 
     // Maths

@@ -9,6 +9,7 @@
         - Bellman-Ford
         - Dijkstra
         - Edmonds-Karp
+        - Min-Cut
         - Topological sort
         - Transpose graph
 - Union-Find

@@ -12,6 +12,8 @@ class EdmondsKarp
 {
 public:
     EdmondsKarp (const G &graph, const int source, const int sink) :
+        m_source(source),
+        m_sink(sink),
         m_flow(0)
     {
         assert(source != sink);
@@ -91,6 +93,16 @@ public:
         }
     }
 
+    inline int source () const
+    {
+        return m_source;
+    }
+
+    inline int sink () const
+    {
+        return m_sink;
+    }
+
     inline T maxFlow () const
     {
         return m_flow;
@@ -107,6 +119,7 @@ public:
     }
 
 private:
+    int m_source, m_sink;
     T m_flow;
 
     struct Edge
