@@ -8,6 +8,7 @@
         - BFS
         - Bellman-Ford
         - Dijkstra
+        - Edmonds-Karp
         - Topological sort
         - Transpose graph
 - Union-Find

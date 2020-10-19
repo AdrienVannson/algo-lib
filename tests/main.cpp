@@ -1,7 +1,9 @@
 #include "algolib.hpp"
 
+/*
+ * Graph algorithms
+ */
 
-// Graphs
 void checkBFS ()
 {
     Graph graph (4, true);
@@ -16,7 +18,7 @@ void checkBFS ()
     assert(bfs.distTo(2) == 1);
     assert(bfs.distTo(3) == 2);
 
-    cerr << "BFS checked" << endl;
+    cerr << "### BFS: Ok" << endl;
 }
 
 void checkDijkstra ()
@@ -34,8 +36,35 @@ void checkDijkstra ()
     assert(dijkstra.distTo(2) == 1);
     assert(dijkstra.distTo(3) == 4);
 
-    cerr << "Dijkstra checked" << endl;
+    cerr << "### Dijkstra: Ok" << endl;
 }
+
+void testEdmondsKarp ()
+{
+    WGraph<int> graph(6, true);
+    graph.addEdge(0, 1, 16);
+    graph.addEdge(0, 3, 13);
+    graph.addEdge(1, 3, 10);
+    graph.addEdge(3, 1, 4);
+    graph.addEdge(1, 2, 12);
+    graph.addEdge(2, 3, 9);
+    graph.addEdge(3, 4, 14);
+    graph.addEdge(4, 2, 7);
+    graph.addEdge(2, 5, 20);
+    graph.addEdge(4, 5, 4);
+
+    EdmondsKarp<WGraph<int>, int> flow(graph, 0, 5);
+
+    assert(flow.maxFlow() == 23);
+    assert(flow.flowOnEdge(5) == 0);
+    assert(flow.flowOnEdge(0) == 12);
+    assert(flow.flowOnEdge(1) == 11);
+    assert(flow.flowOnEdge(9) == 4);
+    assert(flow.flowOnEdge(7) == 7);
+
+    cerr << "### Edmonds-Karp: Ok" << endl;
+}
+
 
 
 // Maths
@@ -131,9 +160,14 @@ void checkPermutation ()
 
 int main ()
 {
+    srand(42);
+
     // Graphs
+    cerr << "Testing graphs..." << endl;
     checkBFS();
     checkDijkstra();
+    testEdmondsKarp();
+    cerr << "\n";
 
     // Maths
     testerExponentiationRapide();
