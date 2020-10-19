@@ -20,13 +20,13 @@ public:
     /// \brief Returns the weight of the n-th out-edge of a vertex
     inline T weight (const int vertex, const int neighbourPos) const
     {
-        return m_weights[ m_vertice[vertex][neighbourPos].second ];
+        return m_weights[ m_vertice[vertex][neighbourPos].edgeId ];
     }
 
     /// \brief Sets the weight of the n-th out-edge of a vertex
     inline void setWeight (const int vertex, const int neighbourPos, const T weight)
     {
-        m_weights[ m_vertice[vertex][neighbourPos].second ] = weight;
+        m_weights[ m_vertice[vertex][neighbourPos].edgeId ] = weight;
     }
 
     /// \brief Sets the weight of the n-th edge
@@ -39,9 +39,9 @@ public:
     /// \brief Creates a new edge between two vertice
     inline void addEdge (const int vertex1, const int vertex2, const T weight)
     {
-        m_vertice[vertex1].push_back(make_pair(vertex2, m_edgeCount));
+        m_vertice[vertex1].push_back(EdgeTo{vertex2, m_edgeCount});
         if (!m_isDirected) {
-            m_vertice[vertex2].push_back(make_pair(vertex1, m_edgeCount));
+            m_vertice[vertex2].push_back(EdgeTo{vertex1, m_edgeCount});
         }
 
         m_weights.push_back(weight);

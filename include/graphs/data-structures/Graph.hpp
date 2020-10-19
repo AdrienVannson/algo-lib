@@ -7,6 +7,17 @@
 class Graph
 {
 public:
+    struct Edge
+    {
+        int vertex1, vertex2;
+        int edgeId;
+    };
+
+    struct EdgeTo
+    {
+        int neighbour;
+        int edgeId;
+    };
 
     Graph (const int verticeCount, const bool isDirected) :
         m_isDirected (isDirected),
@@ -38,7 +49,13 @@ public:
     /// \brief Returns the id of the n-th neighbour of a vertex
     inline int neighbour (const int vertex, const int neighbourPos) const
     {
-        return m_vertice[vertex][neighbourPos].first;
+        return m_vertice[vertex][neighbourPos].neighbour;
+    }
+
+    /// \brief Returns all the neighbours of a vertex
+    const vector<EdgeTo>& neighbours (const int vertex) const
+    {
+        return m_vertice[vertex];
     }
 
     /// \brief Always returns 1 (the graph is not weighted)
@@ -58,26 +75,40 @@ public:
     /// \brief Returns the id of the n-th out-edge of a vertex
     inline int edgeId (const int vertex, const int neighbourPos) const
     {
-        return m_vertice[vertex][neighbourPos].second;
+        return m_vertice[vertex][neighbourPos].edgeId;
     }
 
     /// \brief Returns the id of the first edge from one vertex to another (-1 if it doesn't exist)
     inline int edgeIdTo (const int vertex, const int neighbour)
     {
         for (int i=0; i<neighbourCount(vertex); i++) {
-            if (m_vertice[vertex][i].first == neighbour) {
-                return m_vertice[vertex][i].second;
+            if (m_vertice[vertex][i].neighbour == neighbour) {
+                return m_vertice[vertex][i].edgeId;
             }
         }
         return -1;
     }
 
+    /// \brief Returns a vector listing all the edges of the graph
+    std::vector<Edge> edges () const
+    {
+        std::vector<Edge> res;
+
+        for (int n=0; n<verticeCount(); n++) {
+            for (int m=0; m<neighbourCount(n); m++) {
+                res.push_back(Edge{n, neighbour(n, m), edgeId(n, m)});
+            }
+        }
+
+        return res;
+    }
+
     /// \brief Creates a new edge between two vertice
     inline void addEdge (const int vertex1, const int vertex2)
     {
-        m_vertice[vertex1].push_back(make_pair(vertex2, m_edgeCount));
+        m_vertice[vertex1].push_back(EdgeTo{vertex2, m_edgeCount});
         if (!m_isDirected) {
-            m_vertice[vertex2].push_back(make_pair(vertex1, m_edgeCount));
+            m_vertice[vertex2].push_back(EdgeTo{vertex1, m_edgeCount});
         }
 
         m_edgeCount++;
@@ -86,7 +117,7 @@ public:
 protected:
     bool m_isDirected;
     int m_edgeCount;
-    vector<vector<pair<int, int>>> m_vertice; // [vertex][neighbourPos] --> {neighbourID, edgeID}
+    vector<vector<EdgeTo>> m_vertice; // [vertex][neighbourPos]
 };
 
 #endif // GRAPH_HPP
