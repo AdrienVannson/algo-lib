@@ -3,6 +3,59 @@
 #include <climits>
 
 /*
+ * Data structures
+ */
+
+void testMaxHeap ()
+{
+    MaxHeap<int> heap;
+    priority_queue<int> pqueue;
+
+    for (int i=0; i<10000; i++) {
+        const int v = random() % 5000;
+        heap.insert(v);
+        pqueue.push(v);
+    }
+
+    while (pqueue.size() > 1000) {
+        assert(heap.size() == (int)pqueue.size());
+        assert(heap.max() == pqueue.top());
+        heap.removeMax();
+        pqueue.pop();
+    }
+
+    for (int i=0; i<10000; i++) {
+        const int v = random();
+        heap.insert(v);
+        pqueue.push(v);
+    }
+
+    while (pqueue.size() > 0) {
+        assert(heap.size() == (int)pqueue.size());
+        assert(heap.max() == pqueue.top());
+        heap.removeMax();
+        pqueue.pop();
+    }
+
+    vector<int> vs;
+    for (int i=0; i<10000; i++) {
+        const int v = random() % 5000;
+        vs.push_back(v);
+        pqueue.push(v);
+    }
+
+    MaxHeap<int> heap2(vs);
+    while (pqueue.size()) {
+        assert(heap2.max() == pqueue.top());
+        heap2.removeMax();
+        pqueue.pop();
+    }
+
+    cerr << "### Max heap: OK" << endl;
+}
+
+
+/*
  * Graph algorithms
  */
 
@@ -189,6 +242,11 @@ void checkPermutation ()
 int main ()
 {
     srand(42);
+
+    // Data structures
+    cerr << "Testing data structures..." << endl;
+    testMaxHeap();
+    cerr << "\n";
 
     // Graphs
     cerr << "Testing graphs..." << endl;

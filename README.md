@@ -1,5 +1,7 @@
 # Algolib
 
+- Data structures
+    - Max Heap
 - Graphs
     - Data structures
         - Graph
