@@ -28,7 +28,7 @@ public:
             }
         }
 
-        BFS<Graph> bfs(g, {maxFlow.source()});
+        BFS<Graph> bfs(g, maxFlow.source());
 
         for (auto edge : graph.edges()) {
             if (bfs.distTo(edge.vertex1) != INT_MAX && bfs.distTo(edge.vertex2) == INT_MAX) {
