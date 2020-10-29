@@ -73,7 +73,7 @@ void checkBFS ()
     assert(bfs.distTo(2) == 1);
     assert(bfs.distTo(3) == 2);
 
-    cerr << "### BFS: Ok" << endl;
+    cerr << "### BFS: OK" << endl;
 }
 
 void checkDijkstra ()
@@ -91,7 +91,7 @@ void checkDijkstra ()
     assert(dijkstra.distTo(2) == 1);
     assert(dijkstra.distTo(3) == 4);
 
-    cerr << "### Dijkstra: Ok" << endl;
+    cerr << "### Dijkstra: OK" << endl;
 }
 
 void testEdmondsKarp ()
@@ -117,7 +117,7 @@ void testEdmondsKarp ()
     assert(flow.flowOnEdge(9) == 4);
     assert(flow.flowOnEdge(7) == 7);
 
-    cerr << "### Edmonds-Karp: Ok" << endl;
+    cerr << "### Edmonds-Karp: OK" << endl;
 }
 
 void testMinCut ()
@@ -143,7 +143,7 @@ void testMinCut ()
     assert(minCut.cutEdges()[1].edgeId == 7);
     assert(minCut.cutEdges()[2].edgeId == 9);
 
-    cerr << "### Min-Cut: Ok" << endl;
+    cerr << "### Min-Cut: OK" << endl;
 }
 
 
