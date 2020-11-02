@@ -2,23 +2,27 @@
 
 - Data structures
     - Max Heap
+- Geometry
+    - Vector
 - Graphs
     - Data structures
         - Graph
         - Weighted graph
     - Algorithms
-        - BFS
         - Bellman-Ford
+        - BFS
         - Dijkstra
         - Edmonds-Karp
         - Min-Cut
         - Topological sort
         - Transpose graph
-- Union-Find
-- 2-SAT
-- JSON
 - Maths
-    - Exponentiation rapide
+    - Fast exponentiation
     - Fraction
     - GCD, LCM, Extended Euclidean algorithm
     - Permutation
+- Sorting
+    - Merge sort
+- 2-SAT
+- JSON parser
+- Union-Find
