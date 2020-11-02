@@ -148,6 +148,29 @@ void testMinCut ()
 
 
 /*******************************************************************************
+ *** Sorting *******************************************************************
+ ******************************************************************************/
+
+void testSorting ()
+{
+    vector<int> sorted;
+    for (int i=0; i<10000; i++) {
+        sorted.push_back(rand() % 10000);
+    }
+    const vector<int> original = sorted;
+    sort(sorted.begin(), sorted.end());
+
+    vector<int> vs;
+
+    // Merge sort
+    vs = original;
+    vs = mergeSort(vs);
+    assert(vs == sorted);
+    cerr << "### Merge sort: OK" << endl;
+}
+
+
+/*******************************************************************************
  *** Maths *********************************************************************
  ******************************************************************************/
 
@@ -259,6 +282,11 @@ int main ()
     testDijkstra();
     testEdmondsKarp();
     testMinCut();
+    cerr << "\n";
+
+    // Sorting algorithms
+    cerr << "Testing sorting algorithms..." << endl;
+    testSorting();
     cerr << "\n";
 
     // Maths

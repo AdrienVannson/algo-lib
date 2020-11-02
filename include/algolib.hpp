@@ -28,5 +28,7 @@
 
 #include "geometry/Vect.hpp" // ONLY_IF Vect
 
+#include "sorting/merge-sort.hpp" // ONLY_IF mergeSort
+
 
 #endif // ALGOLIB_HPP
