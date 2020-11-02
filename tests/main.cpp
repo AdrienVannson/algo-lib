@@ -59,7 +59,7 @@ void testMaxHeap ()
  *** Graph algorithms **********************************************************
  ******************************************************************************/
 
-void checkBFS ()
+void testBFS ()
 {
     Graph graph (4, true);
     graph.addEdge(0, 2);
@@ -76,7 +76,7 @@ void checkBFS ()
     cerr << "### BFS: OK" << endl;
 }
 
-void checkDijkstra ()
+void testDijkstra ()
 {
     WGraph<int> graph (4, true);
     graph.addEdge(0, 2, 1);
@@ -190,7 +190,7 @@ void checkGCD_LCM ()
     cerr << "GCD / LCM checked" << endl;
 }
 
-void checkPermutation ()
+void testPermutation ()
 {
     const Permutation perm (vector<int>{5, 1, 3, 0, 4, 2, 7, 6});
 
@@ -236,8 +236,7 @@ void checkPermutation ()
     }
     assert(res == perm);
 
-
-    cerr << "Permutation checked" << endl;
+    cerr << "### Permutation: OK" << endl;
 }
 
 
@@ -256,15 +255,17 @@ int main ()
 
     // Graphs
     cerr << "Testing graphs..." << endl;
-    checkBFS();
-    checkDijkstra();
+    testBFS();
+    testDijkstra();
     testEdmondsKarp();
     testMinCut();
     cerr << "\n";
 
     // Maths
+    cerr << "Testing maths..." << endl;
     testerExponentiationRapide();
     testerFraction();
     checkGCD_LCM();
-    checkPermutation();
+    testPermutation();
+    cerr << "\n";
 }
