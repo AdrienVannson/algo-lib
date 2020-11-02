@@ -13,6 +13,11 @@ public:
         y (y_)
     {}
 
+    inline T manhattanNorm () const
+    {
+        return abs(x) + abs(y);
+    }
+
     inline double norm () const
     {
         return sqrt(x*x + y*y);
