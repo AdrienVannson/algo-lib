@@ -14,6 +14,7 @@
         - Dijkstra
         - Edmonds-Karp
         - Min-Cut
+        - Tarjan
         - Topological sort
         - Transpose graph
 - Maths
