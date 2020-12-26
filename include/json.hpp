@@ -131,7 +131,7 @@ JSON::~JSON ()
         }
     }
     else if (m_type == OBJECT) {
-        for (const pair<string, JSON*> &child : m_object) {
+        for (const auto &child : m_object) {
             delete child.second;
         }
     }
@@ -190,7 +190,7 @@ void JSON::addToString (string &s) const
         s.push_back('{');
 
         bool isFirst = true;
-        for (const pair<string, JSON*> &prop : m_object) {
+        for (const auto &prop : m_object) {
             if (!isFirst) s.push_back(',');
             isFirst = false;
 
