@@ -1,7 +1,7 @@
 #ifndef TARJAN_HPP
 #define TARJAN_HPP
 
-#include "global.hpp"
+#include "infinity.hpp"
 
 #include <stack>
 #include <vector>
@@ -100,7 +100,7 @@ int Tarjan<G>::findSccs (const G &graph, const int vertex)
 
         m_sccs.push_back(scc);
 
-        return +oo;
+        return infinity<int>();
     }
 
     return minID;
