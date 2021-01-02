@@ -45,7 +45,7 @@ public:
         return m_sccs;
     }
 
-    /// \brief Returns the strongly connected component containing a vertice
+    /// \brief Returns the ID of the strongly connected component containing a given vertice
     inline int scc (const int v) const {
         return m_states[v];
     }
