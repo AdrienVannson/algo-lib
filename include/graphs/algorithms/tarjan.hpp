@@ -22,7 +22,6 @@ public:
             }
         }
 
-        m_states.clear();
         m_ids.clear();
     }
 
@@ -36,9 +35,9 @@ public:
         return m_sccs;
     }
 
-    /// \brief Returns the i-th strongly connected component of the graph
-    inline const std::vector<int>& scc (const int i) const {
-        return m_sccs[i];
+    /// \brief Returns the ID of the strongly connected component containing a given vertice
+    inline int scc (const int v) const {
+        return m_states[v];
     }
 
 
@@ -46,12 +45,11 @@ private:
     /// \brief Returns the lowest id of a vertice directly accessible from the subtree
     int findSccs (const G &g, const int vertex);
 
-    enum State {
-        NOT_VISITED,
-        IN_STACK,
-        VISITED_WITH_SCC // The vertex' component has been found
-    };
-    std::vector<State> m_states;
+    const int NOT_VISITED = -2;
+    const int IN_STACK = -1;
+
+    // NOT_VISITED, IN_STACK or the ID of the SCC
+    std::vector<int> m_states;
 
     int m_nextID;
     std::vector<int> m_ids;
@@ -94,7 +92,7 @@ int Tarjan<G>::findSccs (const G &graph, const int vertex)
             isOver = pendingVertice.top() == vertex;
 
             scc.push_back(pendingVertice.top());
-            m_states[pendingVertice.top()] = VISITED_WITH_SCC;
+            m_states[pendingVertice.top()] = m_sccs.size();
             pendingVertice.pop();
         }
 

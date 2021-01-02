@@ -151,8 +151,12 @@ void testKosaraju ()
 
     assert(kosaraju.sccCount() == 4);
     assert(kosaraju.sccs() == ans);
-    assert(kosaraju.scc(3) == 2);
-    assert(kosaraju.scc(9) == 1);
+
+    for (int i=0; i<(int)kosaraju.sccCount(); i++) {
+        for (int v : kosaraju.sccs()[i]) {
+            assert(kosaraju.scc(v) == i);
+        }
+    }
 
     cerr << "### Kosaraju: OK" << endl;
 }
@@ -212,7 +216,14 @@ void testTarjan ()
         {11, 10, 1}
     };
 
+    assert(tarjan.sccCount() == 4);
     assert(tarjan.sccs() == ans);
+
+    for (int i=0; i<(int)tarjan.sccCount(); i++) {
+        for (int v : tarjan.sccs()[i]) {
+            assert(tarjan.scc(v) == i);
+        }
+    }
 
     cerr << "### Tarjan: OK" << endl;
 }
