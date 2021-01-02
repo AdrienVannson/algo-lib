@@ -120,6 +120,43 @@ void testEdmondsKarp ()
     cerr << "### Edmonds-Karp: OK" << endl;
 }
 
+void testKosaraju ()
+{
+    Graph graph(12, true);
+    graph.addEdge(1, 2);
+    graph.addEdge(2, 3);
+    graph.addEdge(3, 2);
+    graph.addEdge(1, 4);
+    graph.addEdge(4, 5);
+    graph.addEdge(5, 6);
+    graph.addEdge(6, 7);
+    graph.addEdge(7, 5);
+    graph.addEdge(6, 4);
+    graph.addEdge(5, 3);
+    graph.addEdge(4, 8);
+    graph.addEdge(8, 9);
+    graph.addEdge(9, 7);
+    graph.addEdge(1, 10);
+    graph.addEdge(10, 11);
+    graph.addEdge(11, 1);
+    graph.addEdge(11, 0);
+
+    const Kosaraju<Graph> kosaraju (graph);
+    const vector<vector<int>> ans {
+        {1, 11, 10},
+        {4, 6, 5, 7, 9, 8},
+        {2, 3},
+        {0}
+    };
+
+    assert(kosaraju.sccCount() == 4);
+    assert(kosaraju.sccs() == ans);
+    assert(kosaraju.scc(3) == 2);
+    assert(kosaraju.scc(9) == 1);
+
+    cerr << "### Kosaraju: OK" << endl;
+}
+
 void testMinCut ()
 {
     WGraph<int> graph(6, true);
@@ -327,6 +364,7 @@ int main ()
     testBFS();
     testDijkstra();
     testEdmondsKarp();
+    testKosaraju();
     testMinCut();
     testTarjan();
     cerr << "\n";
