@@ -13,6 +13,7 @@
         - BFS
         - Dijkstra
         - Edmonds-Karp
+        - Kosaraju
         - Min-Cut
         - Tarjan
         - Topological sort
