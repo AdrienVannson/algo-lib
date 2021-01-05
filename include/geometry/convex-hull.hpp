@@ -74,7 +74,7 @@ public:
     }
 
 private:
-    // Vertice of the convex hull in counterclockwise order
+    // Ids of the points belonging to the convex hull's boundary, ordered counterclockwise
     std::vector<int> m_verticeIds;
 };
 
