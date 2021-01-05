@@ -8,7 +8,7 @@ HEADERS += \
         include/UnionFind.hpp \
         include/algolib.hpp \
         include/data-structures/MaxHeap.hpp \
-        include/geometry/Vect.hpp \
+        include/geometry/Vect2.hpp \
         include/graphes/BFS.hpp \
         include/graphes/Dijkstra.hpp \
         include/graphs/algorithms/BFS.hpp \
