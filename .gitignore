@@ -1,4 +1,4 @@
 outils/config
-*.pro*
+*.pro.user
 tests/prog
 tests/output.cpp
