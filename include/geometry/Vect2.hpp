@@ -8,7 +8,12 @@ template<class T>
 class Vect2
 {
 public:
-    inline explicit Vect2 (const T x_=0, const T y_=0) :
+    inline explicit Vect2 () :
+        x(0),
+        y(0)
+    {}
+
+    inline explicit Vect2 (const T x_, const T y_) :
         x (x_),
         y (y_)
     {}
@@ -37,6 +42,12 @@ public:
     inline void operator/= (const T k) { x /= k; y /= k; }
     inline void operator+= (const Vect2<T> &v) { x += v.x; y += v.y; }
     inline void operator-= (const Vect2<T> &v) { x -= v.x; y -= v.y; }
+
+    static inline double dist (const Vect2<T> &a, const Vect2<T> &b)
+    {
+        return (a-b).norm();
+    }
+
 
     T x, y;
 };
@@ -75,12 +86,6 @@ template<class T>
 inline Vect2<T> operator* (const Vect2<T> &v, const T k)
 {
     return Vect2<T>(k*v.x, k*v.y);
-}
-
-template<class T>
-inline double getDist (const Vect2<T> &a, const Vect2<T> &b)
-{
-    return (a-b).norm();
 }
 
 
