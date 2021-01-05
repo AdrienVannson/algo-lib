@@ -6,6 +6,7 @@
 #include "data-structures/MaxHeap.hpp" // ONLY_IF MaxHeap
 
 #include "geometry/Vect2.hpp" // ONLY_IF Vect2
+#include "geometry/convex-hull.hpp" // ONLY_IF ConvexHull
 
 #include "graphs/data-structures/Graph.hpp" // ONLY_IF Graph
 #include "graphs/data-structures/WGraph.hpp" // ONLY_IF WGraph

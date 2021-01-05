@@ -357,6 +357,30 @@ void testVect2 ()
     cerr << "### Vect2: OK" << endl;
 }
 
+void testConvexHull()
+{
+    const vector<Vect2<int>> points = {
+        Vect2<int>(0, 0),
+        Vect2<int>(0, 1),
+        Vect2<int>(0, 2),
+        Vect2<int>(1, 0),
+        Vect2<int>(1, 1),
+        Vect2<int>(1, 2),
+        Vect2<int>(2, 0),
+        Vect2<int>(2, 1),
+        Vect2<int>(2, 2)
+    };
+
+    ConvexHull<int> convexHull(points);
+    assert(convexHull.verticeIds().size() == 4);
+    assert(convexHull.verticeIds()[0] == 6);
+    assert(convexHull.verticeIds()[1] == 8);
+    assert(convexHull.verticeIds()[2] == 2);
+    assert(convexHull.verticeIds()[3] == 0);
+
+    cerr << "### Convex hull: OK" << endl;
+}
+
 
 
 /*******************************************************************************
@@ -410,6 +434,7 @@ int main ()
     // Geometry
     cerr << "Testing geometry..." << endl;
     testVect2();
+    testConvexHull();
     cerr << "\n";
 
     // Other

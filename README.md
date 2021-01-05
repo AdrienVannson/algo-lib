@@ -4,6 +4,7 @@
     - Max Heap
 - Geometry
     - Vector
+    - 2D Convex Hull
 - Graphs
     - Data structures
         - Graph
