@@ -5,8 +5,8 @@ CONFIG -= qt
 
 HEADERS += \
         include/2SAT.hpp \
-        include/UnionFind.hpp \
         include/algolib.hpp \
+        include/data-structures/DisjointSet.hpp \
         include/data-structures/MaxHeap.hpp \
         include/geometry/Vect2.hpp \
         include/geometry/convex-hull.hpp \

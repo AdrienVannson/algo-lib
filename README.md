@@ -1,6 +1,7 @@
 # Algolib
 
 - Data structures
+    - Disjoint set
     - Max Heap
 - Geometry
     - Vector
@@ -28,4 +29,3 @@
     - Merge sort
 - 2-SAT
 - JSON parser
-- Union-Find

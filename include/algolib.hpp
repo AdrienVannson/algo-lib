@@ -3,6 +3,7 @@
 
 #include "global.hpp"
 
+#include "data-structures/DisjointSet.hpp" // ONLY_IF DisjointSet
 #include "data-structures/MaxHeap.hpp" // ONLY_IF MaxHeap
 
 #include "geometry/Vect2.hpp" // ONLY_IF Vect2

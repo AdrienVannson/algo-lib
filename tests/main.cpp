@@ -6,6 +6,23 @@
  *** Data structures ***********************************************************
  ******************************************************************************/
 
+void testDisjointSet ()
+{
+    DisjointSet ds(5);
+
+    assert(ds.size() == 5);
+    assert(ds.find(3) == 3);
+
+    ds.merge(0, 1);
+    assert(ds.size(0) == 2);
+
+    ds.merge(1, 2);
+    assert(ds.size(0) == 3);
+    assert(ds.find(0) == ds.find(1));
+
+    cerr << "### Disjoint set: OK" << endl;
+}
+
 void testMaxHeap ()
 {
     MaxHeap<int> heap;
@@ -405,6 +422,7 @@ int main ()
 
     // Data structures
     cerr << "Testing data structures..." << endl;
+    testDisjointSet();
     testMaxHeap();
     cerr << "\n";
 
