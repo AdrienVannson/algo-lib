@@ -32,6 +32,5 @@
 #include "2SAT.hpp" // ONLY_IF Resoudre2SAT
 #include "infinity.hpp" // ONLY_IF infinity
 #include "json.hpp" // ONLY_IF JSON
-#include "UnionFind.hpp" // ONLY_IF UnionFind
 
 #endif // ALGOLIB_HPP
