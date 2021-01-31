@@ -1,13 +1,13 @@
 #ifndef GCD_LCM_HPP
 #define GCD_LCM_HPP
 
-#include "global.hpp"
+#include <array>
 
 long long getGCD (long long a, long long b)
 {
     if (a < 0) a *= -1;
     if (b < 0) b *= -1;
-    if (b > a) swap(a, b);
+    if (b > a) std::swap(a, b);
 
     while (b != 0) {
         const long long t = b;
@@ -19,18 +19,18 @@ long long getGCD (long long a, long long b)
 }
 
 /// \brief Returns {gcd, u, v} such that gcd = a*u + b*v
-array<long long,3> getGCDBezout (long long a, long long b)
+std::array<long long,3> getGCDBezout (long long a, long long b)
 {
     if (a < 0 || b < 0) {
-        array<long long,3> res = getGCDBezout(abs(a), abs(b));
+        std::array<long long,3> res = getGCDBezout(std::abs(a), std::abs(b));
         if (a < 0) res[1] *= -1;
         if (b < 0) res[2] *= -1;
         return res;
     }
 
     if (b > a) {
-        array<long long,3> res = getGCDBezout(b, a);
-        swap(res[1], res[2]);
+        std::array<long long,3> res = getGCDBezout(b, a);
+        std::swap(res[1], res[2]);
         return res;
     }
 
@@ -58,7 +58,7 @@ array<long long,3> getGCDBezout (long long a, long long b)
 
 long long getLCM (long long a, long long b)
 {
-    return abs(a * b) / getGCD(a, b);
+    return std::abs(a * b) / getGCD(a, b);
 }
 
 #endif // GCD_LCM_HPP
