@@ -35,6 +35,7 @@ HEADERS += \
         include/sorting/merge-sort.hpp
 
 SOURCES += \
+    include/json.cpp \
     include/maths/Permutation.cpp \
     tests/main.cpp
 
