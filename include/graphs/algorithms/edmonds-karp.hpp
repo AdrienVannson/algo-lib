@@ -6,8 +6,7 @@
 #include <queue>
 #include <vector>
 
-// G: graph type; T: weight type
-template<class G, class T>
+template<class G>
 class EdmondsKarp
 {
 public:
@@ -64,7 +63,7 @@ public:
 
             std::vector<int> edges;
             int vertex = sink;
-            T flow{};
+            typename G::Weight flow{};
 
             while (vertex != source) {
                 const int dist = dists[vertex];
@@ -103,24 +102,24 @@ public:
         return m_sink;
     }
 
-    inline T maxFlow () const
+    inline typename G::Weight maxFlow () const
     {
         return m_flow;
     }
 
-    inline T flowOnEdge (const int edge) const
+    inline typename G::Weight flowOnEdge (const int edge) const
     {
         return m_residualCapacities[edge + m_residualCapacities.size()/2];
     }
 
-    inline T residualCapacity (const int edge) const
+    inline typename G::Weight residualCapacity (const int edge) const
     {
         return m_residualCapacities[edge];
     }
 
 private:
     int m_source, m_sink;
-    T m_flow;
+    typename G::Weight m_flow;
 
     struct Edge
     {
@@ -128,7 +127,9 @@ private:
         int id;
     };
     std::vector<std::vector<Edge>> m_residualGraph;
-    std::vector<T> m_residualCapacities; // oppositeEdge = (edge + edgeCount) % (2*edgeCount)
+
+    // oppositeEdge = (edge + edgeCount) % (2*edgeCount)
+    std::vector<typename G::Weight> m_residualCapacities;
 };
 
 #endif // EDMONDSKARP_HPP

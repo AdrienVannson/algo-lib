@@ -102,7 +102,7 @@ void testDijkstra ()
     graph.addEdge(2, 3, 5);
     graph.addEdge(2, 3, 3);
 
-    Dijkstra<WGraph<int>, int> dijkstra (graph, 0);
+    Dijkstra<WGraph<int>> dijkstra (graph, 0);
     assert(dijkstra.distTo(0) == 0);
     assert(dijkstra.distTo(1) == +oo);
     assert(dijkstra.distTo(2) == 1);
@@ -125,7 +125,7 @@ void testEdmondsKarp ()
     graph.addEdge(2, 5, 20);
     graph.addEdge(4, 5, 4);
 
-    EdmondsKarp<WGraph<int>, int> flow(graph, 0, 5);
+    EdmondsKarp<WGraph<int>> flow(graph, 0, 5);
 
     assert(flow.maxFlow() == 23);
     assert(flow.flowOnEdge(5) == 0);
@@ -197,7 +197,7 @@ void testKruskal ()
     };
     for (auto e : edges) g.addEdge(e[0], e[1], e[2]);
 
-    Kruskal<WGraph<int>,int> kruskal(g);
+    Kruskal<WGraph<int>> kruskal(g);
     assert(kruskal.edgeCount() == 6);
     assert(kruskal.sum() == 20);
 
@@ -226,8 +226,8 @@ void testMinCut ()
     graph.addEdge(2, 5, 20);
     graph.addEdge(4, 5, 4);
 
-    EdmondsKarp<WGraph<int>, int> flow(graph, 0, 5);
-    MinCut<EdmondsKarp<WGraph<int>, int>, WGraph<int>, int> minCut(flow, graph);
+    EdmondsKarp<WGraph<int>> flow(graph, 0, 5);
+    MinCut<EdmondsKarp<WGraph<int>>, WGraph<int>> minCut(flow, graph);
 
     assert(minCut.minCut() == 23);
     assert(minCut.cutEdges().size() == 3);

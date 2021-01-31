@@ -5,7 +5,7 @@
 
 #include <algorithm>
 
-template<class G, class T>
+template<class G>
 class Kruskal
 {
 public:
@@ -47,7 +47,7 @@ public:
     }
 
     /// \brief Sum of the weights of the edges of a minimum spanning forest
-    T sum () const
+    typename G::Weight sum () const
     {
         return m_sum;
     }
@@ -55,7 +55,7 @@ public:
 
 private:
     std::vector<typename G::Edge> m_edges; // Edges of the minimum spanning forest
-    T m_sum; // Sum of their weights
+    typename G::Weight m_sum; // Sum of their weights
 };
 
 #endif // KRUSKAL_HPP

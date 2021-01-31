@@ -3,8 +3,7 @@
 
 #include "global.hpp"
 
-
-template<class G, class T> // G: graph type ; T: weight type
+template<class G>
 class Dijkstra
 {
 public:
@@ -12,9 +11,9 @@ public:
     {
         m_dists.resize(graph.verticeCount(), +oo);
 
-        priority_queue<pair<T, int>,
-                       vector<pair<T,int>>,
-                       greater<pair<T,int>>> pendingVertice; // {dist, vertex}
+        priority_queue<pair<typename G::Weight, int>,
+                       vector<pair<typename G::Weight,int>>,
+                       greater<pair<typename G::Weight,int>>> pendingVertice; // {dist, vertex}
 
         for (int vertex : startVertice) {
             pendingVertice.push(make_pair(0, vertex));
@@ -44,13 +43,13 @@ public:
         Dijkstra (graph, vector<int>{startVertex})
     {}
 
-    inline T distTo (const int vertex) const
+    inline typename G::Weight distTo (const int vertex) const
     {
         return m_dists[vertex];
     }
 
 private:
-    vector<T> m_dists;
+    vector<typename G::Weight> m_dists;
 };
 
 #endif // DIJKSTRA_HPP

@@ -6,8 +6,8 @@
 #include "graphs/data-structures/Graph.hpp"
 #include "graphs/algorithms/BFS.hpp"
 
-// F: max-flow algorithm; G: graph type; T: weight type
-template<class F, class G, class T>
+// F: max-flow algorithm; G: graph type
+template<class F, class G>
 class MinCut
 {
 public:
@@ -17,8 +17,8 @@ public:
         Graph g(graph.verticeCount(), true);
 
         for (auto edge : graph.edges()) {
-            const T capacity = graph.weight(edge.edgeId);
-            const T flow = maxFlow.flowOnEdge(edge.edgeId);
+            const typename G::Weight capacity = graph.weight(edge.edgeId);
+            const typename G::Weight flow = maxFlow.flowOnEdge(edge.edgeId);
 
             if (flow > 0) {
                 g.addEdge(edge.vertex2, edge.vertex1);
@@ -37,7 +37,7 @@ public:
         }
     }
 
-    T minCut () const
+    typename G::Weight minCut () const
     {
         return m_minCut;
     }
@@ -48,7 +48,7 @@ public:
     }
 
 private:
-    const T m_minCut;
+    const typename G::Weight m_minCut;
     std::vector<typename G::Edge> m_cut;
 };
 
