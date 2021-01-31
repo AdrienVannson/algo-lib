@@ -1,9 +1,6 @@
 #ifndef TRANSPOSEGRAPH_HPP
 #define TRANSPOSEGRAPH_HPP
 
-#include "global.hpp"
-
-
 template<class G>
 G getTransposeGraph (const G &graph)
 {
@@ -17,6 +14,5 @@ G getTransposeGraph (const G &graph)
 
     return res;
 }
-
 
 #endif // TRANSPOSEGRAPH_HPP
