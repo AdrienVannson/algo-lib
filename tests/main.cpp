@@ -104,7 +104,7 @@ void testDijkstra ()
 
     Dijkstra<WGraph<int>> dijkstra (graph, 0);
     assert(dijkstra.distTo(0) == 0);
-    assert(dijkstra.distTo(1) == +oo);
+    assert(dijkstra.distTo(1) == infinity<int>());
     assert(dijkstra.distTo(2) == 1);
     assert(dijkstra.distTo(3) == 4);
 
