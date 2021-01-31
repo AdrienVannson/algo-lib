@@ -1,16 +1,13 @@
 #ifndef PERMUTATION_HPP
 #define PERMUTATION_HPP
 
-#include "global.hpp"
-
 #include <vector>
-
 
 class Permutation
 {
 public:
     /// \brief Permutation
-    Permutation (const vector<int> &perm);
+    Permutation (const std::vector<int> &perm);
 
     /// \brief Identity
     Permutation (const int n);
@@ -36,15 +33,15 @@ public:
 
     Permutation inverse () const;
 
-    vector<int> orbit (const int n) const;
-    vector<vector<int>> orbits () const;
+    std::vector<int> orbit (const int n) const;
+    std::vector<std::vector<int>> orbits () const;
 
     int signature () const;
 
     // Decompositions
 
     /// \brief Decomposition into composition of transpositions
-    vector<Permutation> transpositionsDecomposition () const;
+    std::vector<Permutation> transpositionsDecomposition () const;
 
 private:
     int m_size; // Size of the permutation
@@ -52,7 +49,7 @@ private:
 
     // If the permutation is a transposition, contains the two elements that are swapped
     // If not, describes the permutation
-    vector<int> m_perm;
+    std::vector<int> m_perm;
 };
 
 bool operator== (const Permutation &, const Permutation &);
