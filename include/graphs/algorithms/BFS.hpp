@@ -1,23 +1,24 @@
 #ifndef BFS_HPP
 #define BFS_HPP
 
-#include <climits>
+#include "infinity.hpp"
 
-#include "global.hpp"
+#include <queue>
+#include <vector>
 
 template<class G>
 class BFS
 {
 public:
-    BFS (const G &graph, const vector<int> startVertice)
+    BFS (const G &graph, const std::vector<int> startVertice)
     {
-        m_dists.resize(graph.verticeCount(), INT_MAX);
+        m_dists.resize(graph.verticeCount(), infinity<int>());
 
-        queue<pair<int, int>> pendingVertice; // {vertex, dist}
+        std::queue<std::pair<int, int>> pendingVertice; // {vertex, dist}
 
         for (int vertex : startVertice) {
             m_dists[vertex] = 0;
-            pendingVertice.push(make_pair(vertex, 0));
+            pendingVertice.push(std::make_pair(vertex, 0));
         }
 
         while (pendingVertice.size()) {
@@ -28,16 +29,16 @@ public:
             for (int i=0; i<graph.neighbourCount(vertex); i++) {
                 const int neighbour = graph.neighbour(vertex, i);
 
-                if (m_dists[neighbour] == INT_MAX) {
+                if (m_dists[neighbour] == infinity<int>()) {
                     m_dists[neighbour] = dist;
-                    pendingVertice.push(make_pair(neighbour, dist));
+                    pendingVertice.push(std::make_pair(neighbour, dist));
                 }
             }
         }
     }
 
     BFS (const G &graph, const int startVertex) :
-        BFS (graph, vector<int>{startVertex})
+        BFS (graph, std::vector<int>{startVertex})
     {}
 
     int distTo (const int vertex) const
@@ -46,7 +47,7 @@ public:
     }
 
 private:
-    vector<int> m_dists;
+    std::vector<int> m_dists;
 };
 
 #endif // BFS_HPP
