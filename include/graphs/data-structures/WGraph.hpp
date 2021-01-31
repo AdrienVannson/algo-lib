@@ -49,7 +49,7 @@ public:
     }
 
 protected:
-    vector<T> m_weights;
+    std::vector<T> m_weights;
 
 private:
     inline void addEdge (const int vertex1, const int vertex2) = delete;

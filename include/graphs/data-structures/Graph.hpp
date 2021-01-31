@@ -1,8 +1,7 @@
 #ifndef GRAPH_HPP
 #define GRAPH_HPP
 
-#include "global.hpp"
-
+#include <vector>
 
 class Graph
 {
@@ -53,7 +52,7 @@ public:
     }
 
     /// \brief Returns all the neighbours of a vertex
-    const vector<EdgeTo>& neighbours (const int vertex) const
+    const std::vector<EdgeTo>& neighbours (const int vertex) const
     {
         return m_vertice[vertex];
     }
@@ -119,7 +118,7 @@ public:
 protected:
     bool m_isDirected;
     int m_edgeCount;
-    vector<vector<EdgeTo>> m_vertice; // [vertex][neighbourPos]
+    std::vector<std::vector<EdgeTo>> m_vertice; // [vertex][neighbourPos]
 };
 
 #endif // GRAPH_HPP
