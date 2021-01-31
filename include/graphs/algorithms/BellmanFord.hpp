@@ -1,17 +1,18 @@
 #ifndef BELLMANFORD_CPP
 #define BELLMANFORD_CPP
 
-#include "global.hpp"
+#include "infinity.hpp"
 
+#include <vector>
 
 template<class G, class T> // G: graph type ; T: weight type
 class BellmanFord
 {
 public:
-    BellmanFord (const G &graph, const vector<int> startVertice) :
+    BellmanFord (const G &graph, const std::vector<int> startVertice) :
         m_hasNegativeCycle (false)
     {
-        m_dists.resize(graph.verticeCount(), +oo);
+        m_dists.resize(graph.verticeCount(), infinity<typename G::Weight>());
 
         for (int vertex : startVertice) {
             m_dists[vertex] = 0;
@@ -36,7 +37,7 @@ public:
                     const int neighbour = graph.neighbour(vertex, neighbourPos);
 
                     if (m_dists[vertex] + graph.weight(vertex, neighbourPos) < m_dists[neighbour]) {
-                        m_dists[neighbour] = -oo;
+                        m_dists[neighbour] = -infinity<typename G::Weight>();
                         m_hasNegativeCycle = true;
                     }
                 }
@@ -47,7 +48,7 @@ public:
     }
 
     BellmanFord (const G &graph, const int startVertex) :
-        BellmanFord (graph, vector<int>{startVertex})
+        BellmanFord (graph, std::vector<int>{startVertex})
     {}
 
     inline bool hasNegativeCycle () const
@@ -61,7 +62,7 @@ public:
     }
 
 private:
-    vector<T> m_dists;
+    std::vector<T> m_dists;
     bool m_hasNegativeCycle;
 };
 
