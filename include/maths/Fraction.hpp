@@ -1,7 +1,7 @@
 #ifndef FRACTION_HPP
 #define FRACTION_HPP
 
-#include "global.hpp"
+#include <iostream>
 
 template<class T>
 class Fraction
@@ -124,7 +124,7 @@ inline bool operator>= (const Fraction<T> &a, const Fraction<T> &b)
 }
 
 template<class T>
-inline ostream &operator<< (ostream &os, const Fraction<T> &fraction)
+inline std::ostream &operator<< (std::ostream &os, const Fraction<T> &fraction)
 {
     return os << fraction.num() << "/" << fraction.den() << " (" << fraction.valeur() << ")";
 }
