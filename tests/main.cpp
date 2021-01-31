@@ -178,6 +178,40 @@ void testKosaraju ()
     cerr << "### Kosaraju: OK" << endl;
 }
 
+void testKruskal ()
+{
+    WGraph<int> g(7, false);
+
+    vector<array<int,3>> edges = {
+        {0, 1, 3},
+        {0, 2, 2},
+        {0, 3, 3},
+        {1, 2, 1},
+        {1, 3, 5},
+        {1, 4, 3},
+        {2, 3, 5},
+        {2, 5, 2},
+        {3, 5, 4},
+        {4, 5, 5},
+        {5, 6, 9}
+    };
+    for (auto e : edges) g.addEdge(e[0], e[1], e[2]);
+
+    Kruskal<WGraph<int>,int> kruskal(g);
+    assert(kruskal.edgeCount() == 6);
+    assert(kruskal.sum() == 20);
+
+    vector<int> spanningForest;
+    for (auto e : kruskal.edges()) {
+        spanningForest.push_back(e.edgeId);
+    }
+    sort(spanningForest.begin(), spanningForest.end());
+
+    assert(spanningForest == (vector<int>{1,2,3,5,7,10}));
+
+    cerr << "### Kruskal: OK" << endl;
+}
+
 void testMinCut ()
 {
     WGraph<int> graph(6, true);
@@ -432,6 +466,7 @@ int main ()
     testDijkstra();
     testEdmondsKarp();
     testKosaraju();
+    testKruskal();
     testMinCut();
     testTarjan();
     cerr << "\n";

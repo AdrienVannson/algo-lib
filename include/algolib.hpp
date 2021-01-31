@@ -16,6 +16,7 @@
 #include "graphs/algorithms/Dijkstra.hpp" // ONLY_IF Dijkstra
 #include "graphs/algorithms/edmonds-karp.hpp" // ONLY_IF EdmondsKarp
 #include "graphs/algorithms/kosaraju.hpp" // ONLY_IF Kosaraju
+#include "graphs/algorithms/kruskal.hpp" // ONLY_IF Kruskal
 #include "graphs/algorithms/min-cut.hpp" // ONLY_IF MinCut
 #include "graphs/algorithms/tarjan.hpp" // ONLY_IF Tarjan
 #include "graphs/algorithms/TopologicalSort.hpp" // ONLY_IF TopologicalSort

@@ -16,6 +16,7 @@
         - Dijkstra
         - Edmonds-Karp
         - Kosaraju
+        - Kruskal
         - Min-Cut
         - Tarjan
         - Topological sort

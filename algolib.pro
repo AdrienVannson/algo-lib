@@ -18,6 +18,7 @@ HEADERS += \
         include/graphs/algorithms/TopologicalSort.hpp \
         include/graphs/algorithms/edmonds-karp.hpp \
         include/graphs/algorithms/kosaraju.hpp \
+        include/graphs/algorithms/kruskal.hpp \
         include/graphs/algorithms/min-cut.hpp \
         include/graphs/algorithms/tarjan.hpp \
         include/graphs/algorithms/transposeGraph.hpp \
