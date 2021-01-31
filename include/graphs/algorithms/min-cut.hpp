@@ -6,7 +6,7 @@
 #include "graphs/data-structures/Graph.hpp"
 #include "graphs/algorithms/BFS.hpp"
 
-// F: max-flow algorithm; G: graph type; T: weigth type
+// F: max-flow algorithm; G: graph type; T: weight type
 template<class F, class G, class T>
 class MinCut
 {

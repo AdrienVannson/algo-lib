@@ -6,7 +6,7 @@
 #include <queue>
 #include <vector>
 
-// G: graph type; T: weigth type
+// G: graph type; T: weight type
 template<class G, class T>
 class EdmondsKarp
 {
