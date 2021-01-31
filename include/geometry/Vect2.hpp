@@ -1,9 +1,6 @@
 #ifndef VECT2_HPP
 #define VECT2_HPP
 
-#include "global.hpp"
-
-
 template<class T>
 class Vect2
 {
