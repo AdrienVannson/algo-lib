@@ -6,6 +6,8 @@
 class Graph
 {
 public:
+    typedef int Weight;
+
     struct Edge
     {
         int vertex1, vertex2;

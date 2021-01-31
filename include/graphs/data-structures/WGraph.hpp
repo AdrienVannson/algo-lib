@@ -7,6 +7,8 @@ template<class T>
 class WGraph : public Graph
 {
 public:
+    typedef T Weight;
+
     WGraph (const int verticeCount, const bool isDirected) :
         Graph (verticeCount, isDirected)
     {}
