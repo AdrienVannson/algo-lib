@@ -1,8 +1,8 @@
 #ifndef TOPOLOGICALSORT_HPP
 #define TOPOLOGICALSORT_HPP
 
-#include "global.hpp"
-
+#include <algorithm>
+#include <vector>
 
 template<class G>
 class TopologicalSort
@@ -14,11 +14,11 @@ public:
         m_states.resize(g.verticeCount());
         m_topologicalSort.reserve(g.verticeCount());
 
-        vector<pair<int, int>> pending; // {vertex, posNeighbour}
+        std::vector<std::pair<int, int>> pending; // {vertex, posNeighbour}
         pending.reserve(g.verticeCount()+1);
 
         for (int vertex=0; vertex<g.verticeCount(); vertex++) {
-            pending.push_back(make_pair(vertex, 0));
+            pending.push_back(std::make_pair(vertex, 0));
 
             while (pending.size()) {
                 const int vertex = pending.back().first;
@@ -39,8 +39,8 @@ public:
                 }
 
                 if (posNeighbour < g.neighbourCount(vertex)) {
-                    pending.push_back(make_pair(vertex, posNeighbour+1));
-                    pending.push_back(make_pair(g.neighbour(vertex, posNeighbour), 0));
+                    pending.push_back(std::make_pair(vertex, posNeighbour+1));
+                    pending.push_back(std::make_pair(g.neighbour(vertex, posNeighbour), 0));
                 }
                 else {
                     m_states[vertex] = 1;
@@ -49,7 +49,7 @@ public:
             }
         }
 
-        reverse(m_topologicalSort.begin(), m_topologicalSort.end());
+        std::reverse(m_topologicalSort.begin(), m_topologicalSort.end());
         m_states.clear();
     }
 
@@ -58,15 +58,15 @@ public:
         return m_isPossible;
     }
 
-    inline const vector<int>& topologicalSort () const
+    inline const std::vector<int>& topologicalSort () const
     {
         return m_topologicalSort;
     }
 
 private:
     bool m_isPossible;
-    vector<int> m_topologicalSort;
-    vector<int> m_states; // 0: not visited, 1: visited, 2: being visited
+    std::vector<int> m_topologicalSort;
+    std::vector<int> m_states; // 0: not visited, 1: visited, 2: being visited
 };
 
 #endif // TOPOLOGICALSORT_HPP
