@@ -1,8 +1,7 @@
 #ifndef EXPONENTIATION_RAPIDE_HPP
 #define EXPONENTIATION_RAPIDE_HPP
 
-#include "global.hpp"
-
+#include <cassert>
 
 /// \brief Exponentiation rapide (la puissance doit être strictement positive)
 template<class T>
