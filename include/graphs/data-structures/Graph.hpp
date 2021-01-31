@@ -96,7 +96,9 @@ public:
 
         for (int n=0; n<verticeCount(); n++) {
             for (int m=0; m<neighbourCount(n); m++) {
-                res.push_back(Edge{n, neighbour(n, m), edgeId(n, m)});
+                if (m_isDirected || n <= neighbour(n, m)) {
+                    res.push_back(Edge{n, neighbour(n, m), edgeId(n, m)});
+                }
             }
         }
 
@@ -107,7 +109,7 @@ public:
     inline void addEdge (const int vertex1, const int vertex2)
     {
         m_vertice[vertex1].push_back(EdgeTo{vertex2, m_edgeCount});
-        if (!m_isDirected) {
+        if (!m_isDirected && vertex1 != vertex2) {
             m_vertice[vertex2].push_back(EdgeTo{vertex1, m_edgeCount});
         }
 
