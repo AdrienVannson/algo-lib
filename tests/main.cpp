@@ -104,13 +104,9 @@ void testBellmanFord ()
 
         BellmanFord<WGraph<int>> bellmanFord (graph, 0);
 
-        for (int i=0; i<7; i++)
-            cerr << bellmanFord.distTo(i) << endl;
-
         assert(bellmanFord.distTo(0) == 0);
         assert(bellmanFord.distTo(1) == 3);
         assert(bellmanFord.distTo(2) == infinity<int>());
-        cerr << bellmanFord.distTo(3) << endl;
         assert(bellmanFord.distTo(3) == -infinity<int>());
         assert(bellmanFord.distTo(4) == -infinity<int>());
         assert(bellmanFord.distTo(5) == -infinity<int>());
