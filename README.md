@@ -15,6 +15,7 @@
         - BFS
         - Dijkstra
         - Edmonds-Karp
+        - Floyd-Warshall
         - Kosaraju
         - Kruskal
         - Min-Cut
