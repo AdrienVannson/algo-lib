@@ -1,8 +1,6 @@
 #ifndef ALGOLIB_HPP
 #define ALGOLIB_HPP
 
-#include "global.hpp"
-
 #include "data-structures/DisjointSet.hpp" // ONLY_IF DisjointSet
 #include "data-structures/MaxHeap.hpp" // ONLY_IF MaxHeap
 

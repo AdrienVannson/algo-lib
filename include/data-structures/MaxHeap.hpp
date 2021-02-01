@@ -28,7 +28,7 @@ public:
                 }
 
                 if (m_heap[maxChild] > m_heap[i]) {
-                    swap(m_heap[i], m_heap[maxChild]);
+                    std::swap(m_heap[i], m_heap[maxChild]);
                     i = maxChild;
                 }
                 else {
@@ -105,7 +105,7 @@ void MaxHeap<T>::removeMax ()
         }
 
         if (m_heap[maxChild] > m_heap[i]) {
-            swap(m_heap[i], m_heap[maxChild]);
+            std::swap(m_heap[i], m_heap[maxChild]);
             i = maxChild;
         }
         else {

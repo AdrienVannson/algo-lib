@@ -23,9 +23,9 @@ public:
         // Shortest paths
         for (int i=0; i<g.verticeCount()-1; i++) {
             for (const typename G::Edge e : g.edges()) {
-                if (m_dists[e.vertex1] != +oo) {
-                    m_dists[e.vertex2] = min(m_dists[e.vertex1] + g.weight(e.edgeId),
-                                             m_dists[e.vertex2]);
+                if (m_dists[e.vertex1] != +oo
+                 && m_dists[e.vertex1] + g.weight(e.edgeId) < m_dists[e.vertex2]) {
+                    m_dists[e.vertex2] = m_dists[e.vertex1] + g.weight(e.edgeId);
                 }
             }
         }

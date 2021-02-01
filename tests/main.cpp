@@ -1,6 +1,7 @@
 #include "algolib.hpp"
 
-#include <climits>
+#include <bits/stdc++.h>
+using namespace std;
 
 /*******************************************************************************
  *** Data structures ***********************************************************

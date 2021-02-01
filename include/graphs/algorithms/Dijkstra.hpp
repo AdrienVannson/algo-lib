@@ -38,7 +38,7 @@ public:
                 const int neighbour = graph.neighbour(vertex, i);
 
                 if (m_dists[neighbour] == infinity<typename G::Weight>()) {
-                    pendingVertice.push(make_pair(dist + graph.weight(vertex, i), neighbour));
+                    pendingVertice.push(std::make_pair(dist + graph.weight(vertex, i), neighbour));
                 }
             }
         }

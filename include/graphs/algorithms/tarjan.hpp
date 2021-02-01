@@ -79,7 +79,7 @@ int Tarjan<G>::findSccs (const G &graph, const int vertex)
         }
 
         if (m_states[neighbour] == NOT_VISITED) {
-            minID = min(findSccs(graph, neighbour), minID);
+            minID = std::min(findSccs(graph, neighbour), minID);
         }
     }
 
