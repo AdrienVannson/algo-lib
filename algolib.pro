@@ -10,8 +10,6 @@ HEADERS += \
         include/data-structures/MaxHeap.hpp \
         include/geometry/Vect2.hpp \
         include/geometry/convex-hull.hpp \
-        include/graphes/BFS.hpp \
-        include/graphes/Dijkstra.hpp \
         include/graphs/algorithms/BFS.hpp \
         include/graphs/algorithms/BellmanFord.hpp \
         include/graphs/algorithms/Dijkstra.hpp \
@@ -30,7 +28,6 @@ HEADERS += \
         include/maths/GCD_LCM.hpp \
         include/maths/Permutation.hpp \
         include/maths/exponentiation_rapide.hpp \
-        include/graphes/Graphe.hpp \
         include/maths/Fraction.hpp \
         include/global.hpp \
         include/sorting/merge-sort.hpp
