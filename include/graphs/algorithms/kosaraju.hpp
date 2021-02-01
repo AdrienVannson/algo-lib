@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "transposeGraph.hpp"
+#include "transpose-graph.hpp"
 
 template<class G>
 class Kosaraju

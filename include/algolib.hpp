@@ -9,17 +9,17 @@
 
 #include "graphs/data-structures/Graph.hpp" // ONLY_IF Graph
 #include "graphs/data-structures/WGraph.hpp" // ONLY_IF WGraph
-#include "graphs/algorithms/BFS.hpp" // ONLY_IF BFS
-#include "graphs/algorithms/BellmanFord.hpp" // ONLY_IF BellmanFord
-#include "graphs/algorithms/Dijkstra.hpp" // ONLY_IF Dijkstra
+#include "graphs/algorithms/bfs.hpp" // ONLY_IF BFS
+#include "graphs/algorithms/bellman-ford.hpp" // ONLY_IF BellmanFord
+#include "graphs/algorithms/dijkstra.hpp" // ONLY_IF Dijkstra
 #include "graphs/algorithms/edmonds-karp.hpp" // ONLY_IF EdmondsKarp
 #include "graphs/algorithms/floyd-warshall.hpp" // ONLY_IF FloydWarshall
 #include "graphs/algorithms/kosaraju.hpp" // ONLY_IF Kosaraju
 #include "graphs/algorithms/kruskal.hpp" // ONLY_IF Kruskal
 #include "graphs/algorithms/min-cut.hpp" // ONLY_IF MinCut
 #include "graphs/algorithms/tarjan.hpp" // ONLY_IF Tarjan
-#include "graphs/algorithms/TopologicalSort.hpp" // ONLY_IF TopologicalSort
-#include "graphs/algorithms/transposeGraph.hpp" // ONLY_IF getTransposeGraph
+#include "graphs/algorithms/topological-sort.hpp" // ONLY_IF TopologicalSort
+#include "graphs/algorithms/transpose-graph.hpp" // ONLY_IF getTransposeGraph
 
 #include "maths/GCD_LCM.hpp" // ONLY_IF getGCD getLCM getGCDBezout
 #include "maths/Permutation.hpp" // ONLY_IF Permutation

@@ -10,17 +10,17 @@ HEADERS += \
         include/data-structures/MaxHeap.hpp \
         include/geometry/Vect2.hpp \
         include/geometry/convex-hull.hpp \
-        include/graphs/algorithms/BFS.hpp \
-        include/graphs/algorithms/BellmanFord.hpp \
-        include/graphs/algorithms/Dijkstra.hpp \
-        include/graphs/algorithms/TopologicalSort.hpp \
+        include/graphs/algorithms/bellman-ford.hpp \
+        include/graphs/algorithms/bfs.hpp \
+        include/graphs/algorithms/dijkstra.hpp \
         include/graphs/algorithms/edmonds-karp.hpp \
         include/graphs/algorithms/floyd-warshall.hpp \
         include/graphs/algorithms/kosaraju.hpp \
         include/graphs/algorithms/kruskal.hpp \
         include/graphs/algorithms/min-cut.hpp \
         include/graphs/algorithms/tarjan.hpp \
-        include/graphs/algorithms/transposeGraph.hpp \
+        include/graphs/algorithms/topological-sort.hpp \
+        include/graphs/algorithms/transpose-graph.hpp \
         include/graphs/data-structures/Graph.hpp \
         include/graphs/data-structures/WGraph.hpp \
         include/infinity.hpp \
