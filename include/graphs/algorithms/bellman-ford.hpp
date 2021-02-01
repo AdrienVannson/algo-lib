@@ -1,5 +1,5 @@
-#ifndef BELLMANFORD_HPP
-#define BELLMANFORD_HPP
+#ifndef BELLMAN_FORD_HPP
+#define BELLMAN_FORD_HPP
 
 #include "infinity.hpp"
 
@@ -68,4 +68,4 @@ private:
     bool m_hasNegativeCycle;
 };
 
-#endif // BELLMANFORD_HPP
+#endif // BELLMAN_FORD_HPP

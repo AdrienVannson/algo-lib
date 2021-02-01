@@ -1,5 +1,5 @@
-#ifndef TRANSPOSEGRAPH_HPP
-#define TRANSPOSEGRAPH_HPP
+#ifndef TRANSPOSE_GRAPH_HPP
+#define TRANSPOSE_GRAPH_HPP
 
 template<class G>
 G getTransposeGraph (const G &graph)
@@ -15,4 +15,4 @@ G getTransposeGraph (const G &graph)
     return res;
 }
 
-#endif // TRANSPOSEGRAPH_HPP
+#endif // TRANSPOSE_GRAPH_HPP

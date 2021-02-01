@@ -1,5 +1,5 @@
-#ifndef TOPOLOGICALSORT_HPP
-#define TOPOLOGICALSORT_HPP
+#ifndef TOPOLOGICAL_SORT_HPP
+#define TOPOLOGICAL_SORT_HPP
 
 #include <algorithm>
 #include <vector>
@@ -69,4 +69,4 @@ private:
     std::vector<int> m_states; // 0: not visited, 1: visited, 2: being visited
 };
 
-#endif // TOPOLOGICALSORT_HPP
+#endif // TOPOLOGICAL_SORT_HPP
