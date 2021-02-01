@@ -1,49 +1,51 @@
-#ifndef BELLMANFORD_CPP
-#define BELLMANFORD_CPP
+#ifndef BELLMANFORD_HPP
+#define BELLMANFORD_HPP
 
 #include "infinity.hpp"
 
 #include <vector>
 
-template<class G, class T> // G: graph type ; T: weight type
+template<class G>
 class BellmanFord
 {
 public:
-    BellmanFord (const G &graph, const std::vector<int> startVertice) :
+     BellmanFord (const G &g, const std::vector<int> startVertice) :
         m_hasNegativeCycle (false)
     {
-        m_dists.resize(graph.verticeCount(), infinity<typename G::Weight>());
+        const auto oo = infinity<typename G::Weight>();
+
+        m_dists.resize(g.verticeCount(), +oo);
 
         for (int vertex : startVertice) {
             m_dists[vertex] = 0;
         }
 
         // Shortest paths
-        for (int i=0; i<graph.verticeCount()-1; i++) {
-            for (int vertex=0; vertex<graph.verticeCount(); vertex++) {
-                for (int neighbourPos=0; neighbourPos<graph.neighbourCount(vertex); neighbourPos++) {
-                    const int neighbour = graph.neighbour(vertex, neighbourPos);
-
-                    m_dists[neighbour] = min(m_dists[vertex] + graph.weight(vertex, neighbourPos),
-                                             m_dists[neighbour]);
+        for (int i=0; i<g.verticeCount()-1; i++) {
+            for (const typename G::Edge e : g.edges()) {
+                if (m_dists[e.vertex1] != +oo) {
+                    m_dists[e.vertex2] = min(m_dists[e.vertex1] + g.weight(e.edgeId),
+                                             m_dists[e.vertex2]);
                 }
             }
         }
 
         // Negative cycles
-        for (int i=0; i<graph.verticeCount(); i++) {
-            for (int vertex=0; vertex<graph.verticeCount(); vertex++) {
-                for (int neighbourPos=0; neighbourPos<graph.neighbourCount(vertex); neighbourPos++) {
-                    const int neighbour = graph.neighbour(vertex, neighbourPos);
+        bool succes = true;
+        while (succes) {
+            succes = false;
 
-                    if (m_dists[vertex] + graph.weight(vertex, neighbourPos) < m_dists[neighbour]) {
-                        m_dists[neighbour] = -infinity<typename G::Weight>();
-                        m_hasNegativeCycle = true;
-                    }
+            for (const typename G::Edge e : g.edges()) {
+                if (m_dists[e.vertex1] == +oo) continue;
+
+                if ( (m_dists[e.vertex1] == -oo && m_dists[e.vertex2] != -oo)
+                  || (m_dists[e.vertex1] != -oo && m_dists[e.vertex1]+g.weight(e.edgeId) < m_dists[e.vertex2])) {
+                    m_dists[e.vertex2] = -oo;
+
+                    m_hasNegativeCycle = true;
+                    succes = true;
                 }
             }
-
-            if (!m_hasNegativeCycle) break;
         }
     }
 
@@ -56,14 +58,14 @@ public:
         return m_hasNegativeCycle;
     }
 
-    inline T distTo (const int vertex) const
+    inline typename G::Weight distTo (const int vertex) const
     {
         return m_dists[vertex];
     }
 
 private:
-    std::vector<T> m_dists;
+    std::vector<typename G::Weight> m_dists;
     bool m_hasNegativeCycle;
 };
 
-#endif // BELLMANFORD_CPP
+#endif // BELLMANFORD_HPP
