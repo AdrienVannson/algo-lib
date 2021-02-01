@@ -1,6 +1,7 @@
 #include "Permutation.hpp"
 
 #include <algorithm>
+#include <cassert>
 
 using namespace std;
 
