@@ -15,6 +15,7 @@
 #include "graphs/algorithms/BellmanFord.hpp" // ONLY_IF BellmanFord
 #include "graphs/algorithms/Dijkstra.hpp" // ONLY_IF Dijkstra
 #include "graphs/algorithms/edmonds-karp.hpp" // ONLY_IF EdmondsKarp
+#include "graphs/algorithms/floyd-warshall.hpp" // ONLY_IF FloydWarshall
 #include "graphs/algorithms/kosaraju.hpp" // ONLY_IF Kosaraju
 #include "graphs/algorithms/kruskal.hpp" // ONLY_IF Kruskal
 #include "graphs/algorithms/min-cut.hpp" // ONLY_IF MinCut

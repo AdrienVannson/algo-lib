@@ -181,6 +181,24 @@ void testEdmondsKarp ()
     cerr << "### Edmonds-Karp: OK" << endl;
 }
 
+void testFloydWarshall ()
+{
+    WGraph<int> graph (4, true);
+    graph.addEdge(0, 2, 1);
+    graph.addEdge(1, 2, 1);
+    graph.addEdge(2, 0, 1);
+    graph.addEdge(2, 3, 5);
+    graph.addEdge(2, 3, 3);
+
+    FloydWarshall<WGraph<int>> fw (graph);
+    assert(fw.dist(0,0) == 0);
+    assert(fw.dist(0,1) == infinity<int>());
+    assert(fw.dist(0,2) == 1);
+    assert(fw.dist(0,3) == 4);
+
+    cerr << "### Floyd-Warshall: OK" << endl;
+}
+
 void testKosaraju ()
 {
     Graph graph(12, true);
@@ -510,6 +528,7 @@ int main ()
     testBFS();
     testDijkstra();
     testEdmondsKarp();
+    testFloydWarshall();
     testKosaraju();
     testKruskal();
     testMinCut();
