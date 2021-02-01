@@ -27,9 +27,9 @@ HEADERS += \
         include/json.hpp \
         include/maths/GCD_LCM.hpp \
         include/maths/Permutation.hpp \
-        include/maths/exponentiation_rapide.hpp \
         include/maths/Fraction.hpp \
         include/global.hpp \
+        include/maths/exponentiation-by-squaring.hpp \
         include/sorting/merge-sort.hpp
 
 SOURCES += \

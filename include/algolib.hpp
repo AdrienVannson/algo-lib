@@ -21,10 +21,10 @@
 #include "graphs/algorithms/topological-sort.hpp" // ONLY_IF TopologicalSort
 #include "graphs/algorithms/transpose-graph.hpp" // ONLY_IF getTransposeGraph
 
+#include "maths/exponentiation-by-squaring.hpp" // ONLY_IF getPower
 #include "maths/GCD_LCM.hpp" // ONLY_IF getGCD getLCM getGCDBezout
 #include "maths/Permutation.hpp" // ONLY_IF Permutation
 #include "maths/Fraction.hpp" // ONLY_IF Fraction
-#include "maths/exponentiation_rapide.hpp" // ONLY_IF getPuissance
 
 #include "sorting/merge-sort.hpp" // ONLY_IF mergeSort
 

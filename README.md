@@ -23,7 +23,7 @@
         - Topological sort
         - Transpose graph
 - Maths
-    - Fast exponentiation
+    - Exponentiation by squaring
     - Fraction
     - GCD, LCM, Extended Euclidean algorithm
     - Permutation

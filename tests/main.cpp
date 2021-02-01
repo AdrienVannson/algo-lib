@@ -366,9 +366,13 @@ void testSorting ()
  *** Maths *********************************************************************
  ******************************************************************************/
 
-void testerExponentiationRapide ()
+void testExponentiationBySquaring ()
 {
-    assert(getPuissance(2, 7) == 128);
+    for (int p=1; p<30; p++) {
+        assert(getPower(2, p) == (1<<p));
+    }
+
+    cerr << "### Exponentiation by squaring: OK" << endl;
 }
 
 void testerFraction ()
@@ -539,7 +543,7 @@ int main ()
 
     // Maths
     cerr << "Testing maths..." << endl;
-    testerExponentiationRapide();
+    testExponentiationBySquaring();
     testerFraction();
     checkGCD_LCM();
     testPermutation();
