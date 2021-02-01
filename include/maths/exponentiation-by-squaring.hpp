@@ -1,17 +1,17 @@
-#ifndef EXPONENTIATION_RAPIDE_HPP
-#define EXPONENTIATION_RAPIDE_HPP
+#ifndef EXPONENTIATION_BY_SQUARING_HPP
+#define EXPONENTIATION_BY_SQUARING_HPP
 
 #include <cassert>
 
-/// \brief Exponentiation rapide (la puissance doit être strictement positive)
+/// \brief Exponentiation by squaring (p must be strictly positive)
 template<class T>
-T getPuissance (const T &x, const int puissance)
+T getPower (const T &x, const int p)
 {
-    assert(puissance > 0);
+    assert(p > 0);
 
-    if (puissance == 1) return x;
-    if (puissance % 2 == 1) return x * getPuissance(x * x, (puissance-1) / 2);
-    return getPuissance(x * x, puissance / 2);
+    if (p == 1) return x;
+    if (p % 2 == 1) return x * getPower(x * x, p / 2);
+    return getPower(x * x, p / 2);
 }
 
-#endif // EXPONENTIATION_RAPIDE_HPP
+#endif // EXPONENTIATION_BY_SQUARING_HPP
