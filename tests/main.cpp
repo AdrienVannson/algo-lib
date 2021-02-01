@@ -76,6 +76,50 @@ void testMaxHeap ()
  *** Graph algorithms **********************************************************
  ******************************************************************************/
 
+void testBellmanFord ()
+{
+    {
+        WGraph<int> graph (4, true);
+        graph.addEdge(0, 2, 1);
+        graph.addEdge(1, 2, 1);
+        graph.addEdge(2, 0, 1);
+        graph.addEdge(2, 3, 5);
+        graph.addEdge(2, 3, 3);
+
+        BellmanFord<WGraph<int>> bellmanFord (graph, 0);
+        assert(bellmanFord.distTo(0) == 0);
+        assert(bellmanFord.distTo(1) == infinity<int>());
+        assert(bellmanFord.distTo(2) == 1);
+        assert(bellmanFord.distTo(3) == 4);
+    }
+
+    {
+        WGraph<int> graph (7, true);
+        graph.addEdge(0, 1, 3);
+        graph.addEdge(0, 3, 10000);
+        graph.addEdge(3, 4, 1);
+        graph.addEdge(4, 5, 1);
+        graph.addEdge(5, 6, 1);
+        graph.addEdge(6, 3, -4);
+
+        BellmanFord<WGraph<int>> bellmanFord (graph, 0);
+
+        for (int i=0; i<7; i++)
+            cerr << bellmanFord.distTo(i) << endl;
+
+        assert(bellmanFord.distTo(0) == 0);
+        assert(bellmanFord.distTo(1) == 3);
+        assert(bellmanFord.distTo(2) == infinity<int>());
+        cerr << bellmanFord.distTo(3) << endl;
+        assert(bellmanFord.distTo(3) == -infinity<int>());
+        assert(bellmanFord.distTo(4) == -infinity<int>());
+        assert(bellmanFord.distTo(5) == -infinity<int>());
+        assert(bellmanFord.distTo(6) == -infinity<int>());
+    }
+
+    cerr << "### Bellman-Ford: OK" << endl;
+}
+
 void testBFS ()
 {
     Graph graph (4, true);
@@ -462,6 +506,7 @@ int main ()
 
     // Graphs
     cerr << "Testing graphs..." << endl;
+    testBellmanFord();
     testBFS();
     testDijkstra();
     testEdmondsKarp();
