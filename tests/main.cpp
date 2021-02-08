@@ -338,6 +338,31 @@ void testTarjan ()
     cerr << "### Tarjan: OK" << endl;
 }
 
+void testTopologicalSort ()
+{
+    TopologicalSort<Graph> ts(Graph(0, true));
+    assert(ts.isPossible() && ts.topologicalSort().size() == 0);
+
+    Graph g(10, true);
+    vector<array<int,2>> edges = {
+        {1, 2},
+        {1, 8},
+        {2, 3},
+        {2, 8},
+        {3, 6},
+        {4, 3},
+        {4, 5},
+        {5, 6},
+        {9, 8}
+    };
+    for (auto e : edges) g.addEdge(e[0], e[1]);
+
+    ts = TopologicalSort<Graph>(g);
+    assert(ts.topologicalSort() == vector<int>({9, 7, 4, 5, 1, 2, 8, 3, 6, 0}));
+
+    cerr << "### Topological sort: OK" << endl;
+}
+
 
 /*******************************************************************************
  *** Sorting *******************************************************************
@@ -534,6 +559,7 @@ int main ()
     testKruskal();
     testMinCut();
     testTarjan();
+    testTopologicalSort();
     cerr << "\n";
 
     // Sorting algorithms
