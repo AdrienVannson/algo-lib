@@ -18,6 +18,7 @@ HEADERS += \
         include/graphs/algorithms/kosaraju.hpp \
         include/graphs/algorithms/kruskal.hpp \
         include/graphs/algorithms/min-cut.hpp \
+        include/graphs/algorithms/prim.hpp \
         include/graphs/algorithms/tarjan.hpp \
         include/graphs/algorithms/topological-sort.hpp \
         include/graphs/algorithms/transpose-graph.hpp \

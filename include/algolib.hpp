@@ -17,6 +17,7 @@
 #include "graphs/algorithms/kosaraju.hpp" // ONLY_IF Kosaraju
 #include "graphs/algorithms/kruskal.hpp" // ONLY_IF Kruskal
 #include "graphs/algorithms/min-cut.hpp" // ONLY_IF MinCut
+#include "graphs/algorithms/prim.hpp" // ONLY_IF Prim
 #include "graphs/algorithms/tarjan.hpp" // ONLY_IF Tarjan
 #include "graphs/algorithms/topological-sort.hpp" // ONLY_IF TopologicalSort
 #include "graphs/algorithms/transpose-graph.hpp" // ONLY_IF getTransposeGraph
