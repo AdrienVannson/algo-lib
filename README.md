@@ -19,6 +19,7 @@
         - Kosaraju
         - Kruskal
         - Min-Cut
+        - Prim
         - Tarjan
         - Topological sort
         - Transpose graph
