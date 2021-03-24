@@ -30,5 +30,7 @@
     - Permutation
 - Sorting
     - Merge sort
+- Strings
+    - Regex
 - 2-SAT
 - JSON parser

@@ -31,7 +31,8 @@ HEADERS += \
         include/maths/Fraction.hpp \
         include/global.hpp \
         include/maths/exponentiation-by-squaring.hpp \
-        include/sorting/merge-sort.hpp
+        include/sorting/merge-sort.hpp \
+        include/strings/regex.hpp
 
 SOURCES += \
     include/json.cpp \
