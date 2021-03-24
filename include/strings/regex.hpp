@@ -1,6 +1,3 @@
-// En interne, utilise de l'allocation dynamique
-// Cependant, il faut de préférence les manipuler sans pointeurs (pour la "racine")
-
 #ifndef REGEX_H
 #define REGEX_H
 
