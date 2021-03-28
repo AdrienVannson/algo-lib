@@ -560,6 +560,14 @@ void testConvexHull()
  *** Strings *******************************************************************
  ******************************************************************************/
 
+void testKmp ()
+{
+    const vector<int> kmp = getKmp("ababc#abababcd");
+    assert(kmp == vector<int>({-1, 0, 0, 1, 2, 0, 0, 1, 2, 3, 4, 3, 4, 5, 0}));
+
+    cerr << "### KMP: OK" << endl;
+}
+
 void testRegex()
 {
     typedef Regex<char> Reg;
@@ -646,6 +654,7 @@ int main ()
 
     // Strings
     cerr << "Testing strings..." << endl;
+    testKmp();
     testRegex();
     cerr << "\n";
 

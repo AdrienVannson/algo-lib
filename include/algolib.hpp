@@ -30,6 +30,7 @@
 #include "sorting/merge-sort.hpp" // ONLY_IF mergeSort
 
 #include "2SAT.hpp" // ONLY_IF Resoudre2SAT
+#include "strings/kmp.hpp" // ONLY_IF getKmp
 #include "strings/regex.hpp" // ONLY_IF Regex
 
 #include "infinity.hpp" // ONLY_IF infinity

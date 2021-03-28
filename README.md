@@ -31,6 +31,7 @@
 - Sorting
     - Merge sort
 - Strings
+    - Knuth–Morris–Pratt algorithm
     - Regex
 - 2-SAT
 - JSON parser

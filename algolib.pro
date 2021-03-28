@@ -32,6 +32,7 @@ HEADERS += \
         include/global.hpp \
         include/maths/exponentiation-by-squaring.hpp \
         include/sorting/merge-sort.hpp \
+        include/strings/kmp.hpp \
         include/strings/regex.hpp
 
 SOURCES += \
