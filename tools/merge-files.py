@@ -9,50 +9,54 @@ for i in range(int(input())):
     fichiersSources.append(os.path.abspath(input()))
 
 
-resultats = open('output.cpp', 'w')
 isPreviousLineEmpty = True # Remove consecutive empty lines
 
-fichiersInclus = []
-motsVus = set() # Utilisé pour les inclusions facultatives
+includedFiles = []
+words = set() # All the words contained in the files
+
+firstLines = set() # Lines that should be added only once (at the beginning of the file)
+outputLines = []
 
 def include (path, includeRecursivement):
     global isPreviousLineEmpty
 
     path = os.path.realpath(path)
 
-    if path in fichiersInclus:
+    if path in includedFiles:
         return
-    fichiersInclus.append(path)
+    includedFiles.append(path)
 
-    contenu = open(path, 'r').read().split('\n')
+    content = open(path, 'r').read().split('\n')
 
-    # Mise à jour des mots vus
-    motActuel = []
-    for l in contenu:
+    # Words contained in the file
+    currentWord = []
+    for l in content:
         if re.match("^#include ", l):
             continue
-        for c in l:
+        for c in l + ' ':
             if c.isalpha() or c.isdigit() or c == '_':
-                motActuel.append(c)
+                currentWord.append(c)
             else:
-                motsVus.add(''.join(motActuel))
-                motActuel = []
+                words.add(''.join(currentWord))
+                currentWord = []
 
-    for ligne in contenu:
-        if re.match("^#include \"*\"", ligne): # Inclusion
+    for line in content:
+        if re.match("^#include <", line) or line == "using namespace std;": # Include
+            firstLines.add(line)
+        elif re.match("^#include \"*\"", line): # Include
 
-            if ' // ONLY_IF ' in ligne:
-                ligne, motsRequis = ligne.split(' // ONLY_IF ')
+            if ' // ONLY_IF ' in line:
+                line, motsRequis = line.split(' // ONLY_IF ')
                 motsRequis = motsRequis.split()
 
-                succes = False
-                for m in motsRequis:
-                    if m in motsVus:
-                        succes = True
-                if not succes:
+                success = False
+                for w in motsRequis:
+                    if w in words:
+                        success = True
+                if not success:
                     continue
 
-            nouveauFichier = re.sub("^\\#include \"(.+)\"$", "\\1", ligne)
+            nouveauFichier = re.sub("^\\#include \"(.+)\"$", "\\1", line)
 
             if includeRecursivement:
                 succes = False
@@ -80,20 +84,20 @@ def include (path, includeRecursivement):
 
                 if not succes:
                     print("ERREUR", nouveauFichier)
-        elif ligne == '':
+        elif line == '':
             if not isPreviousLineEmpty:
-                resultats.write('\n')
+                outputLines.append('')
                 isPreviousLineEmpty = True
-        elif not re.match("^#ifndef .*_HPP$", ligne) \
-         and not re.match("^#define .*_HPP$", ligne) \
-         and not re.match("^#endif .*_HPP", ligne):
-               resultats.write(ligne + '\n')
+        elif not re.match("^#ifndef .*_HPP$", line) \
+         and not re.match("^#define .*_HPP$", line) \
+         and not re.match("^#endif .*_HPP", line):
+               outputLines.append(line)
                isPreviousLineEmpty = False
 
 
 include('main.cpp', True)
 
-for nomFichier in fichiersInclus:
+for nomFichier in includedFiles:
     nomFichier = re.sub("^(.+)\\.h(pp)?$", "\\1.cpp", nomFichier)
 
     if not nomFichier == 'main.cpp' and os.path.exists(nomFichier):
@@ -101,3 +105,13 @@ for nomFichier in fichiersInclus:
 
 for fichierSource in fichiersSources:
     include(fichierSource, False)
+
+# Write output.cpp
+output = open('output.cpp', 'w')
+
+for l in sorted(list(firstLines)):
+    output.write(l + '\n')
+output.write('\n')
+
+for l in outputLines:
+    output.write(l + '\n')
