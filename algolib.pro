@@ -6,6 +6,7 @@ CONFIG -= qt
 HEADERS += \
         include/2SAT.hpp \
         include/algolib.hpp \
+        include/constants.hpp \
         include/data-structures/DisjointSet.hpp \
         include/data-structures/MaxHeap.hpp \
         include/geometry/Vect2.hpp \
@@ -24,7 +25,6 @@ HEADERS += \
         include/graphs/algorithms/transpose-graph.hpp \
         include/graphs/data-structures/Graph.hpp \
         include/graphs/data-structures/WGraph.hpp \
-        include/infinity.hpp \
         include/json.hpp \
         include/maths/GCD_LCM.hpp \
         include/maths/Permutation.hpp \
