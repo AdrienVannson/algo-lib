@@ -30,6 +30,7 @@ HEADERS += \
         include/maths/Permutation.hpp \
         include/maths/Fraction.hpp \
         include/global.hpp \
+        include/maths/Polynomial.hpp \
         include/maths/exponentiation-by-squaring.hpp \
         include/sorting/merge-sort.hpp \
         include/strings/kmp.hpp \

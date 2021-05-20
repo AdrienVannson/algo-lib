@@ -517,6 +517,18 @@ void testPermutation ()
     cerr << "### Permutation: OK" << endl;
 }
 
+void testPolynomial ()
+{
+    Polynomial<int> P({-3, 1});
+    Polynomial<int> Q({5, -3, 1});
+
+    assert(P == P);
+    assert(((P+Q) == Polynomial<int>({2, -2, 1})));
+    assert(((P*Q) == Polynomial<int>({-15, 14, -6, 1})));
+
+    cerr << "### Polynomial: OK" << endl;
+}
+
 
 /*******************************************************************************
  *** Geometry ******************************************************************
@@ -644,6 +656,7 @@ int main ()
     testerFraction();
     checkGCD_LCM();
     testPermutation();
+    testPolynomial();
     cerr << "\n";
 
     // Geometry

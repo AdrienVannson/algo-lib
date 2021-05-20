@@ -28,6 +28,7 @@
     - Fraction
     - GCD, LCM, Extended Euclidean algorithm
     - Permutation
+    - Polynomial
 - Sorting
     - Merge sort
 - Strings
