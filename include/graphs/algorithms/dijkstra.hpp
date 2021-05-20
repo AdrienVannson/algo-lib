@@ -1,7 +1,7 @@
 #ifndef DIJKSTRA_HPP
 #define DIJKSTRA_HPP
 
-#include "infinity.hpp"
+#include "constants.hpp"
 
 #include <queue>
 #include <vector>

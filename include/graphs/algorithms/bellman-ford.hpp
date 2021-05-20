@@ -1,7 +1,7 @@
 #ifndef BELLMAN_FORD_HPP
 #define BELLMAN_FORD_HPP
 
-#include "infinity.hpp"
+#include "constants.hpp"
 
 #include <vector>
 

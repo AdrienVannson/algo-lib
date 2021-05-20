@@ -1,7 +1,7 @@
 #ifndef BFS_HPP
 #define BFS_HPP
 
-#include "infinity.hpp"
+#include "constants.hpp"
 
 #include <queue>
 #include <vector>

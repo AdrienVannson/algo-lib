@@ -1,7 +1,7 @@
 #ifndef FLOYDWARSHALL_HPP
 #define FLOYDWARSHALL_HPP
 
-#include "infinity.hpp"
+#include "constants.hpp"
 #include <vector>
 
 template<class G>

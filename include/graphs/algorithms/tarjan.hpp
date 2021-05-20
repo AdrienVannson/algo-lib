@@ -1,7 +1,7 @@
 #ifndef TARJAN_HPP
 #define TARJAN_HPP
 
-#include "infinity.hpp"
+#include "constants.hpp"
 
 #include <stack>
 #include <vector>

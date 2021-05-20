@@ -25,6 +25,7 @@
 #include "maths/exponentiation-by-squaring.hpp" // ONLY_IF getPower
 #include "maths/GCD_LCM.hpp" // ONLY_IF getGCD getLCM getGCDBezout
 #include "maths/Permutation.hpp" // ONLY_IF Permutation
+#include "maths/Polynomial.hpp" // ONLY_IF Polynomial
 #include "maths/Fraction.hpp" // ONLY_IF Fraction
 
 #include "sorting/merge-sort.hpp" // ONLY_IF mergeSort
