@@ -29,7 +29,7 @@ public:
 
     inline T coef (const int i) const
     {
-        if (i >= m_coefs.size()) {
+        if (i >= (int)m_coefs.size()) {
             return zero<T>();
         }
         return m_coefs[i];
