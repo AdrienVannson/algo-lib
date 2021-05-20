@@ -17,6 +17,11 @@ public:
         removeLeadingZeros();
     }
 
+    /// \brief Constant polynomial
+    Polynomial (const T cst) :
+        Polynomial(std::vector<T>{cst})
+    {}
+
     inline int degree () const
     {
         return m_coefs.size() - 1;
@@ -24,6 +29,9 @@ public:
 
     inline T coef (const int i) const
     {
+        if (i >= m_coefs.size()) {
+            return zero<T>();
+        }
         return m_coefs[i];
     }
 
@@ -37,6 +45,12 @@ public:
 
     template<class T_>
     friend Polynomial<T_> operator* (const Polynomial<T_> &P, const Polynomial<T_> &Q);
+
+    template<class T_>
+    friend Polynomial<T_> operator* (const T_ lambda, const Polynomial<T_> &P);
+
+    void operator+= (const Polynomial<T> &P);
+    void operator*= (const Polynomial<T> &P);
 
     // Other functions
     template<class T_>
@@ -59,8 +73,8 @@ U Polynomial<T>::operator() (const U &x) const
     U p = one<U>();
 
     for (const T &coef : m_coefs) {
-        s += coef * p;
-        p *= x;
+        s = s + coef * p;
+        p = p * x;
     }
 
     return s;
@@ -73,10 +87,10 @@ Polynomial<T> operator+ (const Polynomial<T> &P, const Polynomial<T> &Q)
 
     for (int i=0; i<(int)v.size(); i++) {
         if (i < (int)P.m_coefs.size()) {
-            v[i] += P.m_coefs[i];
+            v[i] = v[i] + P.m_coefs[i];
         }
         if (i < (int)Q.m_coefs.size()) {
-            v[i] += Q.m_coefs[i];
+            v[i] = v[i] + Q.m_coefs[i];
         }
     }
 
@@ -91,12 +105,34 @@ Polynomial<T> operator* (const Polynomial<T> &P, const Polynomial<T> &Q)
 
     for (int i=0; i<(int)v.size(); i++) {
         for (int k=0; k<=i; k++) {
-            v[i] += P.m_coefs[k] * Q.m_coefs[i-k];
+            v[i] = v[i] + P.coef(k) * Q.coef(i-k);
         }
     }
 
     Polynomial<T> S(v);
     return S;
+}
+
+template<class T>
+Polynomial<T> operator* (const T lambda, const Polynomial<T> &P)
+{
+    Polynomial<T> R = P;
+    for (T &coef : R.m_coefs) {
+        coef = coef * lambda;
+    }
+    return R;
+}
+
+template<class T>
+void Polynomial<T>::operator+= (const Polynomial<T> &P)
+{
+    (*this) = (*this) + P;
+}
+
+template<class T>
+void Polynomial<T>::operator*= (const Polynomial<T> &P)
+{
+    (*this) = (*this) * P;
 }
 
 template<class T>
@@ -125,9 +161,28 @@ std::ostream &operator<< (std::ostream &os, const Polynomial<T> &P)
 template<class T>
 void Polynomial<T>::removeLeadingZeros ()
 {
-    while (m_coefs.size() && m_coefs.back() == 0) {
+    while (m_coefs.size() && m_coefs.back() == zero<T>()) {
         m_coefs.pop_back();
     }
+}
+
+template<class T>
+Polynomial<T> lagrangePolynomial (const std::vector<std::pair<T,T>> &points)
+{
+    Polynomial<T> P;
+
+    for (int i=0; i<(int)points.size(); i++) {
+        Polynomial<T> Q(one<T>());
+        for (int j=0; j<(int)points.size(); j++) {
+            if (j != i) {
+                Q *= Polynomial<T>({-points[j].first, 1}); // (X - x_j)
+            }
+        }
+
+        P += (points[i].second / Q(points[i].first)) * Q;
+    }
+
+    return P;
 }
 
 #endif // POLYNOMIAL_HPP
