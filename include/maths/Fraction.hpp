@@ -2,30 +2,31 @@
 #define FRACTION_HPP
 
 #include <iostream>
+#include <cassert>
 
 template<class T>
 class Fraction
 {
 public:
-    Fraction (const T num=0, const T den=1) :
+    Fraction (const T num=zero<T>(), const T den=one<T>()) :
         m_num (num),
         m_den (den)
     {
-        simplifier();
+        simplify();
     }
 
-    /// \brief Numérateur
+    /// \brief Numerator
     inline T num () const {
         return m_num;
     }
 
-    /// \brief Dénominateur
+    /// \brief Denominator
     inline T den () const {
         return m_den;
     }
 
-    /// \brief Valeur numérique approchée
-    inline double valeur () const {
+    /// \brief Numerical approximation
+    inline double approx () const {
         return (double)m_num / (double)m_den;
     }
 
@@ -36,19 +37,19 @@ public:
 private:
     T m_num, m_den;
 
-    T PGCD (const T a, const T b)
+    T GCD (const T a, const T b)
     {
         if (a == 0) return b;
-        return PGCD(b%a, a);
+        return GCD(b%a, a);
     }
 
-    inline void simplifier ()
+    inline void simplify ()
     {
         assert(m_den != 0);
 
-        const T pgcd = PGCD(m_num, m_den);
-        m_num /= pgcd;
-        m_den /= pgcd;
+        const T gcd = GCD(m_num, m_den);
+        m_num /= gcd;
+        m_den /= gcd;
 
         if (m_den < 0) {
             m_num *= -1;
@@ -127,6 +128,7 @@ template<class T>
 inline std::ostream &operator<< (std::ostream &os, const Fraction<T> &fraction)
 {
     return os << fraction.num() << "/" << fraction.den() << " (" << fraction.valeur() << ")";
+    return os << fraction.num() << "/" << fraction.den() << " (" << fraction.approx() << ")";
 }
 
 
