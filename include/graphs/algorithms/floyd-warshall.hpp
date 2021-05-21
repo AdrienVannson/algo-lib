@@ -12,7 +12,7 @@ class FloydWarshall
 public:
     FloydWarshall (const G &g)
     {
-        const auto oo = infinity<Weight>();
+        const auto oo = Constants<Weight>::infinity();
 
         m_dists.resize(g.verticeCount());
         for (int i=0; i<g.verticeCount(); i++) {

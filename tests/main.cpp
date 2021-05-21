@@ -89,7 +89,7 @@ void testBellmanFord ()
 
         BellmanFord<WGraph<int>> bellmanFord (graph, 0);
         assert(bellmanFord.distTo(0) == 0);
-        assert(bellmanFord.distTo(1) == infinity<int>());
+        assert(bellmanFord.distTo(1) == Constants<int>::infinity());
         assert(bellmanFord.distTo(2) == 1);
         assert(bellmanFord.distTo(3) == 4);
     }
@@ -107,11 +107,11 @@ void testBellmanFord ()
 
         assert(bellmanFord.distTo(0) == 0);
         assert(bellmanFord.distTo(1) == 3);
-        assert(bellmanFord.distTo(2) == infinity<int>());
-        assert(bellmanFord.distTo(3) == -infinity<int>());
-        assert(bellmanFord.distTo(4) == -infinity<int>());
-        assert(bellmanFord.distTo(5) == -infinity<int>());
-        assert(bellmanFord.distTo(6) == -infinity<int>());
+        assert(bellmanFord.distTo(2) == Constants<int>::infinity());
+        assert(bellmanFord.distTo(3) == -Constants<int>::infinity());
+        assert(bellmanFord.distTo(4) == -Constants<int>::infinity());
+        assert(bellmanFord.distTo(5) == -Constants<int>::infinity());
+        assert(bellmanFord.distTo(6) == -Constants<int>::infinity());
     }
 
     cerr << "### Bellman-Ford: OK" << endl;
@@ -145,7 +145,7 @@ void testDijkstra ()
 
     Dijkstra<WGraph<int>> dijkstra (graph, 0);
     assert(dijkstra.distTo(0) == 0);
-    assert(dijkstra.distTo(1) == infinity<int>());
+    assert(dijkstra.distTo(1) == Constants<int>::infinity());
     assert(dijkstra.distTo(2) == 1);
     assert(dijkstra.distTo(3) == 4);
 
@@ -189,7 +189,7 @@ void testFloydWarshall ()
 
     FloydWarshall<WGraph<int>> fw (graph);
     assert(fw.dist(0,0) == 0);
-    assert(fw.dist(0,1) == infinity<int>());
+    assert(fw.dist(0,1) == Constants<int>::infinity());
     assert(fw.dist(0,2) == 1);
     assert(fw.dist(0,3) == 4);
 
@@ -526,6 +526,10 @@ void testPolynomial ()
     assert(((P+Q) == Polynomial<int>({2, -2, 1})));
     assert(((P*Q) == Polynomial<int>({-15, 14, -6, 1})));
 
+    // Lagrange polynomial
+    std::vector<std::pair<Fraction<int>,Fraction<int>>> points{make_pair(0,-2), make_pair(1,2), make_pair(2,8)};
+    assert(lagrangePolynomial(points) == Polynomial<Fraction<int>>({-2, 3, 1}));
+
     cerr << "### Polynomial: OK" << endl;
 }
 
@@ -610,7 +614,7 @@ void testRegex()
 
 void testInfinity ()
 {
-    assert(infinity<int>() == 2147483647);
+    assert(Constants<int>::infinity() == 2147483647);
 
     cerr << "### Infinity: OK" << endl;
 }

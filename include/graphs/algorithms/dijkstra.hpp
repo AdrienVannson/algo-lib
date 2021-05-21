@@ -12,7 +12,7 @@ class Dijkstra
 public:
     Dijkstra (const G &graph, const std::vector<int> startVertice)
     {
-        m_dists.resize(graph.verticeCount(), infinity<typename G::Weight>());
+        m_dists.resize(graph.verticeCount(), Constants<typename G::Weight>::infinity());
 
         std::priority_queue<
             std::pair<typename G::Weight, int>,
@@ -29,7 +29,7 @@ public:
             const int dist = pendingVertice.top().first;
             pendingVertice.pop();
 
-            if (m_dists[vertex] != infinity<typename G::Weight>()) {
+            if (m_dists[vertex] != Constants<typename G::Weight>::infinity()) {
                 continue;
             }
             m_dists[vertex] = dist;
@@ -37,7 +37,7 @@ public:
             for (int i=0; i<graph.neighbourCount(vertex); i++) {
                 const int neighbour = graph.neighbour(vertex, i);
 
-                if (m_dists[neighbour] == infinity<typename G::Weight>()) {
+                if (m_dists[neighbour] == Constants<typename G::Weight>::infinity()) {
                     pendingVertice.push(std::make_pair(dist + graph.weight(vertex, i), neighbour));
                 }
             }

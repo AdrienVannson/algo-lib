@@ -98,7 +98,7 @@ int Tarjan<G>::findSccs (const G &graph, const int vertex)
 
         m_sccs.push_back(scc);
 
-        return infinity<int>();
+        return Constants<int>::infinity();
     }
 
     return minID;

@@ -4,127 +4,68 @@
 #include <cstdlib>
 #include <limits>
 
-// Infinity
 template<class T>
-T infinity () = delete;
+class Constants
+{
+public:
+    static T zero () = delete;
+    static T one () = delete;
+
+    static T infinity() = delete;
+};
 
 template<>
-int infinity ()
+class Constants<int>
 {
-    return std::numeric_limits<int>::max();
-}
+public:
+    static int zero () { return 0; }
+    static int one () { return 1; }
+    static int infinity () { return std::numeric_limits<int>::max(); }
+};
 
 template<>
-unsigned int infinity ()
+class Constants<unsigned int>
 {
-    return std::numeric_limits<unsigned int>::max();
-}
+public:
+    static unsigned int zero () { return 0; }
+    static unsigned int one () { return 1; }
+    static unsigned int infinity () { return std::numeric_limits<unsigned int>::max(); }
+};
 
 template<>
-long long infinity ()
+class Constants<long long>
 {
-    return std::numeric_limits<long long>::max();
-}
+public:
+    static long long zero () { return 0; }
+    static long long one () { return 1; }
+    static long long infinity () { return std::numeric_limits<long long>::max(); }
+};
 
 template<>
-unsigned long long infinity ()
+class Constants<unsigned long long>
 {
-    return std::numeric_limits<unsigned long long>::max();
-}
+public:
+    static unsigned long long zero () { return 0; }
+    static unsigned long long one () { return 1; }
+    static unsigned long long infinity () { return std::numeric_limits<unsigned long long>::max(); }
+};
 
 template<>
-float infinity ()
+class Constants<float>
 {
-    return std::numeric_limits<float>::infinity();
-}
+public:
+    static float zero () { return 0; }
+    static float one () { return 1; }
+    static float infinity () { return std::numeric_limits<float>::infinity(); }
+};
 
 template<>
-double infinity ()
+class Constants<double>
 {
-    return std::numeric_limits<double>::infinity();
-}
-
-
-// Zero
-template<class T>
-T zero () = delete;
-
-template<>
-int zero ()
-{
-    return 0;
-}
-
-template<>
-unsigned int zero ()
-{
-    return 0;
-}
-
-template<>
-long long zero ()
-{
-    return 0;
-}
-
-template<>
-unsigned long long zero ()
-{
-    return 0;
-}
-
-template<>
-float zero ()
-{
-    return 0;
-}
-
-template<>
-double zero ()
-{
-    return 0;
-}
-
-
-// One
-template<class T>
-T one () = delete;
-
-template<>
-int one ()
-{
-    return 1;
-}
-
-template<>
-unsigned int one ()
-{
-    return 1;
-}
-
-template<>
-long long one ()
-{
-    return 1;
-}
-
-template<>
-unsigned long long one ()
-{
-    return 1;
-}
-
-template<>
-float one ()
-{
-    return 1;
-}
-
-template<>
-double one ()
-{
-    return 1;
-}
-
+public:
+    static double zero () { return 0; }
+    static double one () { return 1; }
+    static unsigned long long infinity () { return std::numeric_limits<unsigned long long>::infinity(); }
+};
 
 #endif // CONSTANTS_HPP

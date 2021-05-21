@@ -12,7 +12,7 @@ class BFS
 public:
     BFS (const G &graph, const std::vector<int> startVertice)
     {
-        m_dists.resize(graph.verticeCount(), infinity<int>());
+        m_dists.resize(graph.verticeCount(), Constants<int>::infinity());
 
         std::queue<std::pair<int, int>> pendingVertice; // {vertex, dist}
 
@@ -29,7 +29,7 @@ public:
             for (int i=0; i<graph.neighbourCount(vertex); i++) {
                 const int neighbour = graph.neighbour(vertex, i);
 
-                if (m_dists[neighbour] == infinity<int>()) {
+                if (m_dists[neighbour] == Constants<int>::infinity()) {
                     m_dists[neighbour] = dist;
                     pendingVertice.push(std::make_pair(neighbour, dist));
                 }

@@ -4,11 +4,13 @@
 #include <iostream>
 #include <cassert>
 
+#include "constants.hpp"
+
 template<class T>
 class Fraction
 {
 public:
-    Fraction (const T num=zero<T>(), const T den=one<T>()) :
+    Fraction (const T num=Constants<T>::zero(), const T den=Constants<T>::one()) :
         m_num (num),
         m_den (den)
     {
@@ -127,9 +129,18 @@ inline bool operator>= (const Fraction<T> &a, const Fraction<T> &b)
 template<class T>
 inline std::ostream &operator<< (std::ostream &os, const Fraction<T> &fraction)
 {
-    return os << fraction.num() << "/" << fraction.den() << " (" << fraction.valeur() << ")";
     return os << fraction.num() << "/" << fraction.den() << " (" << fraction.approx() << ")";
 }
+
+
+template<class T>
+class Constants<Fraction<T>>
+{
+public:
+    static Fraction<T> zero () { return Fraction<T>(); }
+    static Fraction<T> one () { return Fraction<T>(Constants<T>::one()); }
+    static Fraction<T> infinity () { return Fraction<T>(Constants<T>::infinity()); }
+};
 
 
 #endif // FRACTION_HPP

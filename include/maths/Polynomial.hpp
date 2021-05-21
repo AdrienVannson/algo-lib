@@ -30,7 +30,7 @@ public:
     inline T coef (const int i) const
     {
         if (i >= (int)m_coefs.size()) {
-            return zero<T>();
+            return Constants<T>::zero();
         }
         return m_coefs[i];
     }
@@ -69,8 +69,8 @@ template<class T>
 template<class U>
 U Polynomial<T>::operator() (const U &x) const
 {
-    U s = zero<U>();
-    U p = one<U>();
+    U s = Constants<U>::zero();
+    U p = Constants<U>::one();
 
     for (const T &coef : m_coefs) {
         s = s + coef * p;
@@ -83,7 +83,7 @@ U Polynomial<T>::operator() (const U &x) const
 template<class T>
 Polynomial<T> operator+ (const Polynomial<T> &P, const Polynomial<T> &Q)
 {
-    std::vector<T> v(std::max(P.m_coefs.size(), Q.m_coefs.size()), zero<T>());
+    std::vector<T> v(std::max(P.m_coefs.size(), Q.m_coefs.size()), Constants<T>::zero());
 
     for (int i=0; i<(int)v.size(); i++) {
         if (i < (int)P.m_coefs.size()) {
@@ -101,7 +101,7 @@ Polynomial<T> operator+ (const Polynomial<T> &P, const Polynomial<T> &Q)
 template<class T>
 Polynomial<T> operator* (const Polynomial<T> &P, const Polynomial<T> &Q)
 {
-    std::vector<T> v(P.m_coefs.size() + Q.m_coefs.size() - 1, zero<T>());
+    std::vector<T> v(P.m_coefs.size() + Q.m_coefs.size() - 1, Constants<T>::zero());
 
     for (int i=0; i<(int)v.size(); i++) {
         for (int k=0; k<=i; k++) {
@@ -161,7 +161,7 @@ std::ostream &operator<< (std::ostream &os, const Polynomial<T> &P)
 template<class T>
 void Polynomial<T>::removeLeadingZeros ()
 {
-    while (m_coefs.size() && m_coefs.back() == zero<T>()) {
+    while (m_coefs.size() && m_coefs.back() == Constants<T>::zero()) {
         m_coefs.pop_back();
     }
 }
@@ -172,7 +172,7 @@ Polynomial<T> lagrangePolynomial (const std::vector<std::pair<T,T>> &points)
     Polynomial<T> P;
 
     for (int i=0; i<(int)points.size(); i++) {
-        Polynomial<T> Q(one<T>());
+        Polynomial<T> Q(Constants<T>::one());
         for (int j=0; j<(int)points.size(); j++) {
             if (j != i) {
                 Q *= Polynomial<T>({-points[j].first, 1}); // (X - x_j)

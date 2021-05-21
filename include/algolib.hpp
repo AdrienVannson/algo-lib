@@ -34,7 +34,7 @@
 #include "strings/kmp.hpp" // ONLY_IF getKmp
 #include "strings/regex.hpp" // ONLY_IF Regex
 
-#include "constants.hpp" // ONLY_IF infinity one zero
+#include "constants.hpp" // ONLY_IF Constants
 #include "json.hpp" // ONLY_IF JSON
 
 #endif // ALGOLIB_HPP

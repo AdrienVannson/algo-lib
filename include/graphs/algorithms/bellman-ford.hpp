@@ -12,7 +12,7 @@ public:
      BellmanFord (const G &g, const std::vector<int> startVertice) :
         m_hasNegativeCycle (false)
     {
-        const auto oo = infinity<typename G::Weight>();
+        const auto oo = Constants<typename G::Weight>::infinity();
 
         m_dists.resize(g.verticeCount(), +oo);
 
