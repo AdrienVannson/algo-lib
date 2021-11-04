@@ -19,6 +19,8 @@ public:
     void addEpsilonTransition(const int state1, const int state2);
     void addTransition(const int state1, const T letter, const int state2);
 
+    void clear();
+
     // Check string
     bool isAccepted(const std::vector<T> &str) const;
 
@@ -76,6 +78,15 @@ void Automaton<T>::addTransition(const int state1, const T letter, const int sta
         std::make_pair(state1, letter),
         state2
     ));
+}
+
+template<class T>
+void Automaton<T>::clear()
+{
+    m_transitions.clear();
+    m_epsilonTransitions.clear();
+    m_startStates.clear();
+    m_isAccepting.clear();
 }
 
 
