@@ -26,6 +26,9 @@ public:
     bool hasEpsilonTransitions() const;
     void removeEpsilonTransitions();
 
+    // Printing
+    template<class U>
+    friend std::ostream &operator<<(std::ostream &os, const Automaton<U> &aut);
 
 private:
     std::multimap<std::pair<int,T>,int> m_transitions;
@@ -118,6 +121,49 @@ template<class T>
 bool Automaton<T>::hasEpsilonTransitions() const
 {
     return m_epsilonTransitions.size() > 0;
+}
+
+/*
+ * Printing
+ */
+
+template<class T>
+std::ostream &operator<<(std::ostream &os, const Automaton<T> &aut)
+{
+    os << "Automaton :\n";
+
+    os << " | Start states :";
+    for (int s : aut.m_startStates) {
+        os << " " << s;
+    }
+    os << "\n";
+
+    for (int s = 0; s < (int)aut.stateCount(); s++) {
+        os << " | State " << s << " (";
+        if (!aut.m_isAccepting[s]) {
+            os << "not ";
+        }
+        os << "accepting) :";
+
+        // Transitions
+        for (std::pair<std::pair<int,T>,int> trans : aut.m_transitions) {
+            if (trans.first.first == s) {
+                os << " [" << trans.first.second << " -> " << trans.second << "]";
+            }
+        }
+
+        // Epsilon-transitions
+        auto range = aut.m_epsilonTransitions.equal_range(s);
+
+        for (auto it=range.first; it!=range.second; it++) {
+            os << " [ɛ -> " << it->second << "]";
+        }
+
+        os << "\n";
+    }
+
+
+    return os;
 }
 
 #endif // AUTOMATON_HPP
