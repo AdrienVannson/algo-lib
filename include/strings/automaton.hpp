@@ -42,6 +42,9 @@ public:
 
     template<class U>
     friend Automaton<U> operator*(const Automaton<U> &a, const Automaton<U> &b);
+
+    // Regex
+    static Automaton<T> fromRegex(const Regex<T> *r);
     // Printing
     template<class U>
     friend std::ostream &operator<<(std::ostream &os, const Automaton<U> &aut);
@@ -253,6 +256,43 @@ Automaton<T> operator*(const Automaton<T> &a, const Automaton<T> &b)
     Automaton<T> res = a;
     res *= b;
     return res;
+}
+
+
+/*
+ * Regex
+ */
+
+template<class T>
+Automaton<T> Automaton<T>::fromRegex(const Regex<T> *r)
+{
+    Automaton<T> aut;
+
+    switch (r->type()) {
+    case Regex<T>::EMPTY_SET:
+        return aut;
+
+    case Regex<T>::EMPTY_STRING:
+        aut.addState(true, true);
+        return aut;
+
+    case Regex<T>::CHARACTER:
+        aut.addState(true, false);
+        aut.addState(false, true);
+        aut.addTransition(0, r->character(), 1);
+        return aut;
+
+    case Regex<T>::CONCATENATION:
+        return fromRegex(r->regex1()) * fromRegex(r->regex2());
+
+    case Regex<T>::ALTERNATION:
+        return fromRegex(r->regex1()) + fromRegex(r->regex2());
+
+    case Regex<T>::KLEEN_STAR:
+        aut = fromRegex(r->regex1());
+        aut.applyKleenStar();
+        return aut;
+    }
 }
 
 
