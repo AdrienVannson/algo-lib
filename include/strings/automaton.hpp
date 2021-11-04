@@ -1,6 +1,7 @@
 #ifndef AUTOMATON_HPP
 #define AUTOMATON_HPP
 
+#include <algorithm>
 #include <map>
 #include <set>
 #include <vector>
