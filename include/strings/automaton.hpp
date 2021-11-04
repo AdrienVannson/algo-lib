@@ -32,6 +32,15 @@ public:
     // Closure properties
     void applyKleenStar();
     void applyKleenPlus();
+
+    void operator+=(const Automaton<T> &other);
+    void operator*=(const Automaton<T> &other); // Concatenation
+
+    template<class U>
+    friend Automaton<U> operator+(const Automaton<U> &a, const Automaton<U> &b);
+
+    template<class U>
+    friend Automaton<U> operator*(const Automaton<U> &a, const Automaton<U> &b);
     // Printing
     template<class U>
     friend std::ostream &operator<<(std::ostream &os, const Automaton<U> &aut);
@@ -170,6 +179,79 @@ void Automaton<T>::applyKleenPlus()
             }
         }
     }
+}
+
+template<class T>
+void Automaton<T>::operator+=(const Automaton<T> &other)
+{
+    const int n = stateCount();
+
+    // Add states
+    for (int s = 0; s < other.stateCount(); s++) {
+        const auto it = other.m_startStates.find(s);
+        const bool isStart = it != other.m_startStates.end();
+
+        addState(isStart, other.m_isAccepting[s]);
+    }
+
+    // Add transitions
+    for (const std::pair<std::pair<int,T>,int> trans : other.m_transitions) {
+        addTransition(n + trans.first.first, trans.first.second, n + trans.second);
+    }
+
+    // Add epsilon-transitions
+    for (const std::pair<int,int> trans : other.m_epsilonTransitions) {
+        addEpsilonTransition(n + trans.first, n + trans.second);
+    }
+}
+
+template<class T>
+void Automaton<T>::operator*=(const Automaton<T> &other)
+{
+    const int n = stateCount();
+
+    const std::vector<bool> prevIsAccepting = m_isAccepting;
+    std::fill(m_isAccepting.begin(), m_isAccepting.end(), false);
+
+    // Add states
+    for (int s = 0; s < other.stateCount(); s++) {
+        addState(false, other.m_isAccepting[s]);
+    }
+
+    // Add transitions
+    for (const std::pair<std::pair<int,T>,int> trans : other.m_transitions) {
+        addTransition(n + trans.first.first, trans.first.second, n + trans.second);
+    }
+
+    // Add epsilon-transitions
+    for (const std::pair<int,int> trans : other.m_epsilonTransitions) {
+        addEpsilonTransition(n + trans.first, n + trans.second);
+    }
+
+    // Link the two automatons
+    for (int s1 = 0; s1 < n; s1++) {
+        if (!prevIsAccepting[s1]) continue;
+
+        for (int s2 : other.m_startStates) {
+            addEpsilonTransition(s1, n + s2);
+        }
+    }
+}
+
+template<class T>
+Automaton<T> operator+(const Automaton<T> &a, const Automaton<T> &b)
+{
+    Automaton<T> res = a;
+    res += b;
+    return res;
+}
+
+template<class T>
+Automaton<T> operator*(const Automaton<T> &a, const Automaton<T> &b)
+{
+    Automaton<T> res = a;
+    res *= b;
+    return res;
 }
 
 
