@@ -1,5 +1,5 @@
-#ifndef REGEX_H
-#define REGEX_H
+#ifndef REGEX_HPP
+#define REGEX_HPP
 
 #include <ostream>
 #include <cassert>
@@ -246,4 +246,4 @@ bool operator==(const Regex<T> &a, const Regex<T> &b)
     return true;
 }
 
-#endif // REGEX_H
+#endif // REGEX_HPP
