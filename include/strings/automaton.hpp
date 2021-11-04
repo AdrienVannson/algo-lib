@@ -28,6 +28,10 @@ public:
     bool hasEpsilonTransitions() const;
     void removeEpsilonTransitions();
 
+
+    // Closure properties
+    void applyKleenStar();
+    void applyKleenPlus();
     // Printing
     template<class U>
     friend std::ostream &operator<<(std::ostream &os, const Automaton<U> &aut);
@@ -133,6 +137,41 @@ bool Automaton<T>::hasEpsilonTransitions() const
 {
     return m_epsilonTransitions.size() > 0;
 }
+
+/*
+ * Closure properties
+ */
+
+template<class T>
+void Automaton<T>::applyKleenStar()
+{
+    if (m_startStates.empty()) {
+        clear();
+        addState(true, true);
+        return;
+    }
+
+    applyKleenPlus();
+
+    for (int s : m_startStates) {
+        m_isAccepting[s] = true;
+    }
+}
+
+template<class T>
+void Automaton<T>::applyKleenPlus()
+{
+    for (int s1=0; s1<stateCount(); s1++) {
+        if (!m_isAccepting[s1]) continue;
+
+        for (int s2 : m_startStates) {
+            if (s1 != s2) {
+                m_epsilonTransitions.insert(std::make_pair(s1, s2));
+            }
+        }
+    }
+}
+
 
 /*
  * Printing
