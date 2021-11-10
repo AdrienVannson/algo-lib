@@ -6,6 +6,8 @@
 #include <set>
 #include <vector>
 
+#include "regex.hpp"
+
 // T: type of the letters
 template<class T>
 class Automaton
