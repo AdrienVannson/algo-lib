@@ -166,11 +166,16 @@ void Automaton<T>::applyKleenStar()
         return;
     }
 
-    applyKleenPlus();
+    addState(true, true);
 
     for (int s : m_startStates) {
-        m_isAccepting[s] = true;
+        if (s != stateCount() - 1) {
+            addEpsilonTransition(stateCount() - 1, s);
+        }
     }
+
+    m_startStates.clear();
+    m_startStates.insert(stateCount() - 1);
 }
 
 template<class T>
