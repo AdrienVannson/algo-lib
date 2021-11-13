@@ -33,6 +33,7 @@ HEADERS += \
         include/maths/Polynomial.hpp \
         include/maths/exponentiation-by-squaring.hpp \
         include/sorting/merge-sort.hpp \
+        include/strings/automaton.hpp \
         include/strings/kmp.hpp \
         include/strings/regex.hpp
 
