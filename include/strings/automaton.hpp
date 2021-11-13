@@ -179,12 +179,6 @@ bool Automaton<T>::hasEpsilonTransitions() const
 template<class T>
 void Automaton<T>::applyKleenStar()
 {
-    if (m_startStates.empty()) {
-        clear();
-        addState(true, true);
-        return;
-    }
-
     addState(true, true);
 
     for (int s : m_startStates) {
