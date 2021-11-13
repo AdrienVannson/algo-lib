@@ -173,6 +173,51 @@ bool Automaton<T>::hasEpsilonTransitions() const
     return m_epsilonTransitions.size() > 0;
 }
 
+template<class T>
+void Automaton<T>::removeEpsilonTransitions()
+{
+    if (!hasEpsilonTransitions()) return;
+
+    for (int s = 0; s < stateCount(); s++) {
+        std::vector<bool> isReachable(stateCount(), false);
+
+        std::queue<int> pendingStates;
+        pendingStates.push(s);
+
+        while (pendingStates.size()) {
+            int s = pendingStates.front();
+            pendingStates.pop();
+
+            if (isReachable[s]) continue;
+            isReachable[s] = true;
+
+            auto range = m_epsilonTransitions.equal_range(s);
+            for (auto it=range.first; it!=range.second; it++) {
+                pendingStates.push(it->second);
+            }
+        }
+
+        // Update accepting states
+        for (int s2 = 0; s2 < stateCount(); s2++) {
+            if (isReachable[s2] && m_isAccepting[s2]) {
+                m_isAccepting[s] = true;
+            }
+        }
+
+        // Update transitions
+        for (const auto &trans : m_transitions) {
+            if (isReachable[trans.first.first] && trans.first.first != s) {
+                m_transitions.insert(std::make_pair(
+                    std::make_pair(s, trans.first.second),
+                    trans.second
+                ));
+            }
+        }
+    }
+
+    m_epsilonTransitions.clear();
+}
+
 /*
  * Closure properties
  */
