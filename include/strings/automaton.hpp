@@ -302,6 +302,8 @@ Automaton<T> Automaton<T>::fromRegex(const Regex<T> *r)
         aut.applyKleenStar();
         return aut;
     }
+
+    assert(false);
 }
 
 
