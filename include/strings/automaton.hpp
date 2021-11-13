@@ -189,6 +189,8 @@ void Automaton<T>::applyKleenStar()
 
     m_startStates.clear();
     m_startStates.insert(stateCount() - 1);
+
+    applyKleenPlus();
 }
 
 template<class T>
