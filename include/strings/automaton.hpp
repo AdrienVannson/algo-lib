@@ -22,6 +22,8 @@ public:
     void addEpsilonTransition(const int state1, const int state2);
     void addTransition(const int state1, const T letter, const int state2);
 
+    std::vector<T> alphabet() const;
+
     void clear();
 
     // Check string
@@ -99,6 +101,21 @@ void Automaton<T>::addTransition(const int state1, const T letter, const int sta
         std::make_pair(state1, letter),
         state2
     ));
+}
+
+template<class T>
+std::vector<T> Automaton<T>::alphabet() const
+{
+    std::set<T> set;
+    for (const auto &transition : m_transitions) {
+        set.insert(transition.first.second);
+    }
+
+    std::vector<T> res;
+    for (T c : set) {
+        res.push_back(c);
+    }
+    return res;
 }
 
 template<class T>
