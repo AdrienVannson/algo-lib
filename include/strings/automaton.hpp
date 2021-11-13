@@ -34,6 +34,7 @@ public:
     bool hasEpsilonTransitions() const;
     void removeEpsilonTransitions();
 
+    void determinize();
 
     // Closure properties
     void applyKleenStar();
@@ -217,6 +218,76 @@ void Automaton<T>::removeEpsilonTransitions()
 
     m_epsilonTransitions.clear();
 }
+
+template<class T>
+void Automaton<T>::determinize()
+{
+    removeEpsilonTransitions();
+
+    std::map<std::vector<bool>,int> ids; // Ids of the new states
+    std::multimap<std::pair<int,T>,int> transitions; // For the new automaton
+
+    // First state
+    std::vector<bool> firstState(stateCount(), false);
+    for (int s : m_startStates) {
+        firstState[s] = true;
+    }
+    ids[firstState] = 0;
+
+    // DFS
+    std::vector<std::vector<bool>> pendingStates;
+    pendingStates.push_back(firstState);
+
+    while (pendingStates.size()) {
+        const std::vector<bool> isInState = pendingStates.back();
+        pendingStates.pop_back();
+
+        for (T c : alphabet()) {
+            std::vector<bool> nextState(stateCount(), false);
+            bool isEmpty = true;
+
+            for (int s = 0; s < stateCount(); s++) {
+                if (!isInState[s]) continue;
+                auto range = m_transitions.equal_range(std::make_pair(s, c));
+
+                for (auto it=range.first; it!=range.second; it++) {
+                    nextState[it->second] = true;
+                    isEmpty = false;
+                }
+            }
+
+            if (!isEmpty) {
+                if (ids.find(nextState) == ids.end()) {
+                    const int id = ids.size();
+                    ids[nextState] = id;
+                    pendingStates.push_back(nextState);
+                }
+
+                transitions.insert(std::make_pair(
+                    std::make_pair(ids[isInState], c),
+                    ids[nextState]
+                ));
+            }
+        }
+    }
+
+    // Update automaton
+    m_transitions = transitions;
+    m_startStates.clear();
+    m_startStates.insert(0);
+
+    std::vector<bool> isAccepting(ids.size(), false);
+    for (auto it = ids.begin(); it != ids.end(); it++) {
+        for (int s=0; s<stateCount(); s++) {
+            if (it->first[s] && m_isAccepting[s]) {
+                isAccepting[it->second] = true;
+                break;
+            }
+        }
+    }
+    m_isAccepting = isAccepting;
+}
+
 
 /*
  * Closure properties
