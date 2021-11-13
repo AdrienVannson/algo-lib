@@ -632,28 +632,6 @@ void testKmp ()
     cerr << "### KMP: OK" << endl;
 }
 
-void testRegex()
-{
-    typedef Regex<char> Reg;
-    typedef Regex<pair<char,int>> Reg2;
-
-    Reg *a1 = Reg::concatenation(Reg::emptySet(), Reg::character('A'));
-    Reg *a2 = Reg::alternation(Reg::character('A'), Reg::character('B'));
-    Reg *a = Reg::concatenation(a1, a2);
-
-    Reg2 *b1 = Reg2::concatenation(Reg2::emptySet(), Reg2::character(make_pair('A', 0)));
-    Reg2 *b2 = Reg2::alternation(Reg2::character(make_pair('A', 1)), Reg2::character(make_pair('B', 2)));
-    Reg2 *b = Reg2::concatenation(b1, b2);
-
-    //assert(a->linearised() == *b);
-
-    delete a;
-    delete b;
-
-    cerr << "### Regex: OK" << endl;
-}
-
-
 
 
 /*******************************************************************************
@@ -668,6 +646,7 @@ void testInfinity ()
 }
 
 
+
 /*******************************************************************************
  *** Main  *********************************************************************
  ******************************************************************************/
@@ -675,10 +654,6 @@ void testInfinity ()
 int main ()
 {
     srand(42);
-
-    testAutomaton();
-    testRegex();
-    return 0;
 
     // Data structures
     cerr << "Testing data structures..." << endl;
@@ -725,8 +700,6 @@ int main ()
     cerr << "Testing strings..." << endl;
     testAutomaton();
     testKmp();
-    //testLocalLanguage();
-    testRegex();
     cerr << "\n";
 
     // Other
