@@ -58,6 +58,8 @@ private:
     std::vector<bool> m_isAccepting;
 };
 
+using Aut = Automaton<char>;
+
 
 template<class T>
 Automaton<T>::Automaton()
