@@ -117,8 +117,6 @@ public:
         return m_character;
     }
 
-    Regex<std::pair<T,int>> linearised() const;
-
     template<class U> friend class Regex;
     friend bool operator== <T>(const Regex<T>&, const Regex<T>&);
     friend std::ostream& operator<< <T>(std::ostream&, const Regex<T>&);
@@ -132,72 +130,8 @@ private:
     T m_character;
 };
 
-template<class T>
-Regex<std::pair<T,int>> Regex<T>::linearised() const
-{
-    Regex<std::pair<T,int>> *lin = linearised(0).first;
+using Reg = Regex<char>;
 
-    Regex<std::pair<T,int>> regex;
-    regex.m_type = lin->m_type;
-    regex.m_regex1 = lin->m_regex1;
-    regex.m_regex2 = lin->m_regex2;
-
-    lin->m_regex1 = 0;
-    lin->m_regex2 = 0;
-    delete lin;
-
-    return regex;
-}
-
-template<class T>
-std::pair<Regex<std::pair<T,int>>*,int> Regex<T>::linearised(const int i) const
-{
-    if (m_type == EMPTY_SET) {
-        return std::make_pair(
-            Regex<std::pair<T,int>>::emptySet(),
-            i
-        );
-    }
-
-    if (m_type == EMPTY_STRING) {
-        return std::make_pair(
-            Regex<std::pair<T,int>>::emptyString(),
-            i
-        );
-    }
-
-    if (m_type == CHARACTER) {
-        return std::make_pair(
-            Regex<std::pair<T,int>>::character(std::make_pair(m_character, i)),
-            i + 1
-        );
-    }
-
-    if (m_type == KLEEN_STAR) {
-        auto lin = m_regex1->linearised(i);
-
-        return std::make_pair(
-            Regex<std::pair<T,int>>::kleenStar(lin.first),
-            lin.second
-        );
-    }
-
-    auto lin1 = m_regex1->linearised(i);
-    auto lin2 = m_regex2->linearised(lin1.second);
-
-    if (m_type == CONCATENATION) {
-        return std::make_pair(
-            Regex<std::pair<T,int>>::concatenation(lin1.first, lin2.first),
-            lin2.second
-        );
-    }
-
-    // Alternation
-    return std::make_pair(
-        Regex<std::pair<T,int>>::alternation(lin1.first, lin2.first),
-        lin2.second
-    );
-}
 
 template<class T>
 std::ostream& operator<<(std::ostream& s, const Regex<T> &r)
