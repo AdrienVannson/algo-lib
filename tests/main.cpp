@@ -621,6 +621,43 @@ void testAutomaton()
         assert(aut.isAccepted(v) == ((x & 4) != 0));
     }
 
+    // (a+b) b^* a
+    aut.clear();
+
+    aut.addState(true, false);
+    aut.addState(false, false);
+    aut.addState(false, false);
+    aut.addState(false, true);
+
+    aut.addTransition(0, 'a', 1);
+    aut.addTransition(0, 'b', 2);
+    aut.addTransition(1, 'b', 2);
+    aut.addTransition(2, 'b', 1);
+    aut.addTransition(1, 'a', 3);
+    aut.addTransition(2, 'a', 3);
+
+    aut.determinize();
+    aut.minimize();
+
+    assert(aut.stateCount() == 3);
+
+    // a+b
+    aut.clear();
+    aut.addState(true, false);
+    aut.addState(false, true);
+    aut.addState(false, true);
+    aut.addTransition(0, 'a', 1);
+    aut.addTransition(0, 'b', 2);
+
+    aut.addState(false, false); // Useless states
+    aut.addState(false, true);
+    aut.addTransition(3, 'z', 4);
+
+    aut.determinize(); // TODO: replace with makeAccessible()
+    aut.minimize();
+
+    assert(aut.stateCount() == 2);
+
     cerr << "### Automaton: OK" << endl;
 }
 

@@ -36,6 +36,8 @@ public:
 
     void determinize();
 
+    void minimize();
+
     // Closure properties
     void applyKleenStar();
     void applyKleenPlus();
@@ -285,6 +287,134 @@ void Automaton<T>::determinize()
             }
         }
     }
+    m_isAccepting = isAccepting;
+}
+
+// Minimize a deterministic automaton with Moore's algorithm
+template<class T>
+void Automaton<T>::minimize()
+{
+    // TODO: assert(isDeterministic() && isAccessible());
+
+    const auto alph = alphabet();
+
+    // Initialize the partition of the states
+    std::set<std::vector<int>> partition;
+
+    std::vector<int> acceptingStates, notAcceptingStates;
+    for (int s = 0; s < stateCount(); s++) {
+        if (m_isAccepting[s]) {
+            acceptingStates.push_back(s);
+        } else {
+            notAcceptingStates.push_back(s);
+        }
+    }
+
+    if (acceptingStates.size()) {
+        partition.insert(acceptingStates);
+    }
+    if (notAcceptingStates.size()) {
+        partition.insert(notAcceptingStates);
+    }
+
+    // Moore's algorithm
+    bool success = true;
+    while (success) {
+        success = false;
+
+        // Find the subset of a state
+        std::vector<int> subsetOf(stateCount(), -1);
+        int currentSubset = 0;
+        for (const auto &subset : partition) {
+            for (int s : subset) {
+                subsetOf[s] = currentSubset;
+            }
+            currentSubset++;
+        }
+
+        std::set<std::vector<int>> nextPartition;
+
+        for (const auto &subset : partition) {
+            // For each state s in the subset, (subset of the next state using letter l for each l, s)
+            std::vector<std::pair<std::vector<int>,int>> nextSubsets;
+
+            for (const int s : subset) {
+                std::vector<int> v;
+
+                for (const T l : alph) {
+                    const auto it = m_transitions.find(std::make_pair(s, l));
+
+                    if (it == m_transitions.end()) {
+                        v.push_back(-1);
+                    } else {
+                        const int nextState = it->second;
+
+                        v.push_back(subsetOf[nextState]);
+                    }
+                }
+
+                nextSubsets.push_back(std::make_pair(v, s));
+            }
+
+            // Separate the subset if needed
+            std::sort(nextSubsets.begin(), nextSubsets.end());
+
+            std::vector<int> newSubset;
+            for (size_t i = 0; i < nextSubsets.size(); i++) {
+                if (i > 0 && nextSubsets[i].first != nextSubsets[i-1].first) {
+                    nextPartition.insert(newSubset);
+                    newSubset.clear();
+                    success = true;
+                }
+                newSubset.push_back(nextSubsets[i].second);
+            }
+
+            if (newSubset.size()) {
+                nextPartition.insert(newSubset);
+            }
+        }
+
+        partition = nextPartition;
+    }
+
+    // Update the automaton (there isn't any epsilon-transition)
+    std::multimap<std::pair<int,T>,int> transitions;
+    std::set<int> startStates;
+    std::vector<bool> isAccepting;
+
+    std::vector<int> subsetOf(stateCount(), -1);
+    int currentSubset = 0;
+
+    for (const auto &subset : partition) {
+        for (int s : subset) {
+            subsetOf[s] = currentSubset;
+        }
+        currentSubset++;
+
+        isAccepting.push_back(m_isAccepting[subset[0]]);
+    }
+
+    for (const auto &subset : partition) {
+        for (const T l : alph) {
+            const auto it = m_transitions.find(std::make_pair(subset[0], l));
+
+            if (it != m_transitions.end()) {
+                const int nextState = it->second;
+
+                transitions.insert(std::make_pair(
+                    std::make_pair(subsetOf[subset[0]], l),
+                    subsetOf[nextState]
+                ));
+            }
+        }
+    }
+
+    for (int s : m_startStates) {
+        startStates.insert(subsetOf[s]);
+    }
+
+    m_transitions = transitions;
+    m_startStates = startStates;
     m_isAccepting = isAccepting;
 }
 
