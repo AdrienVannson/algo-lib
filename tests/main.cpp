@@ -602,15 +602,15 @@ void testAutomaton()
     // De Bruijn automaton
     {
         Reg *reg = Reg::concatenation(
-                    Reg::kleenStar(Reg::alternation(Reg::character('0'), Reg::character('1'))),
-                    Reg::concatenation(
-                        Reg::character('1'),
-                        Reg::concatenation(
-                            Reg::alternation(Reg::character('0'), Reg::character('1')),
-                            Reg::alternation(Reg::character('0'), Reg::character('1'))
-                            )
-                        )
-                    );
+            Reg::kleenStar(Reg::alternation(Reg::character('0'), Reg::character('1'))),
+            Reg::concatenation(
+                Reg::character('1'),
+                Reg::concatenation(
+                    Reg::alternation(Reg::character('0'), Reg::character('1')),
+                    Reg::alternation(Reg::character('0'), Reg::character('1'))
+                )
+            )
+        );
 
         Aut aut = Aut::fromRegex(reg);
 
