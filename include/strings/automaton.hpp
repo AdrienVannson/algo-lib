@@ -34,6 +34,12 @@ public:
     bool hasEpsilonTransitions() const;
     void removeEpsilonTransitions();
 
+    bool isComplete() const;
+    bool isComplete(const std::vector<T> &alphabet) const;
+
+    void makeComplete();
+    void makeComplete(const std::vector<T> &newAlphabet);
+
     void determinize();
 
     void minimize();
@@ -219,6 +225,60 @@ void Automaton<T>::removeEpsilonTransitions()
     }
 
     m_epsilonTransitions.clear();
+}
+
+template<class T>
+bool Automaton<T>::isComplete() const
+{
+    return isComplete(alphabet());
+}
+
+template<class T>
+bool Automaton<T>::isComplete(const std::vector<T> &alphabet) const
+{
+    for (int s = 0; s < stateCount(); s++) {
+        for (T l : alphabet) {
+            if (m_transitions.count(std::make_pair(s, l)) == 0) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+template<class T>
+void Automaton<T>::makeComplete()
+{
+    makeComplete(alphabet());
+}
+
+template<class T>
+void Automaton<T>::makeComplete(const std::vector<T> &newAlphabet)
+{
+    for (T l : alphabet()) {
+        assert(newAlphabet.count(l) == 1);
+    }
+
+    bool hasDumpState = false;
+
+    for (int s = 0; s < stateCount(); s++) {
+        for (T l : newAlphabet) {
+            if (m_transitions.count(std::make_pair(s, l)) == 0) {
+                // Add a dump state if necessary
+                if (!hasDumpState) {
+                    addState(false, false);
+                    hasDumpState = true;
+                }
+
+                m_transitions.insert(std::make_pair(
+                    std::make_pair(s, l),
+                    stateCount() - 1
+                ));
+            }
+
+        }
+    }
 }
 
 template<class T>

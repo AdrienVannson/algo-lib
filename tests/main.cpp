@@ -594,6 +594,9 @@ void testAutomaton()
     assert(!aut.isAccepted({'1', '3', '6', '4', '2'}));
     assert(aut.isAccepted({'1', '3', '5', '4', '2'}));
 
+    assert(aut.isComplete());
+    assert(!aut.isComplete({'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X'}));
+
     // De Bruijn automaton
     Reg *reg = Reg::concatenation(
         Reg::kleenStar(Reg::alternation(Reg::character('0'), Reg::character('1'))),
@@ -612,6 +615,10 @@ void testAutomaton()
     assert(aut.alphabet()[0] == '0' && aut.alphabet()[1] == '1');
 
     aut.determinize();
+    aut.minimize();
+
+    assert(aut.isComplete());
+    assert(!aut.isComplete({'0', '1', '2'}));
 
     for (int x = 0; x < 256; x++) {
         vector<char> v;
@@ -639,6 +646,7 @@ void testAutomaton()
     aut.determinize();
     aut.minimize();
 
+    assert(!aut.isComplete());
     assert(aut.stateCount() == 3);
 
     // a+b
