@@ -579,92 +579,102 @@ void testConvexHull()
 void testAutomaton()
 {
     // Automaton testing if a number is a multiple of 3
-    Aut aut;
-    aut.addState(true, true);
-    aut.addState(false, false);
-    aut.addState(false, false);
-    for (int s=0; s<3; s++) {
-        for (int d=0; d<=9; d++) {
-            aut.addTransition(s, '0'+d, (s+d) % 3);
+    {
+        Aut aut;
+        aut.addState(true, true);
+        aut.addState(false, false);
+        aut.addState(false, false);
+        for (int s=0; s<3; s++) {
+            for (int d=0; d<=9; d++) {
+                aut.addTransition(s, '0'+d, (s+d) % 3);
+            }
         }
+
+        assert(aut.isAccepted({'1', '3', '8', '4', '2'}));
+        assert(!aut.isAccepted({'1', '3', '7', '4', '2'}));
+        assert(!aut.isAccepted({'1', '3', '6', '4', '2'}));
+        assert(aut.isAccepted({'1', '3', '5', '4', '2'}));
+
+        assert(aut.isComplete());
+        assert(!aut.isComplete({'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X'}));
     }
 
-    assert(aut.isAccepted({'1', '3', '8', '4', '2'}));
-    assert(!aut.isAccepted({'1', '3', '7', '4', '2'}));
-    assert(!aut.isAccepted({'1', '3', '6', '4', '2'}));
-    assert(aut.isAccepted({'1', '3', '5', '4', '2'}));
-
-    assert(aut.isComplete());
-    assert(!aut.isComplete({'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X'}));
-
     // De Bruijn automaton
-    Reg *reg = Reg::concatenation(
-        Reg::kleenStar(Reg::alternation(Reg::character('0'), Reg::character('1'))),
-        Reg::concatenation(
-            Reg::character('1'),
-            Reg::concatenation(
-                Reg::alternation(Reg::character('0'), Reg::character('1')),
-                Reg::alternation(Reg::character('0'), Reg::character('1'))
-            )
-        )
-    );
+    {
+        Reg *reg = Reg::concatenation(
+                    Reg::kleenStar(Reg::alternation(Reg::character('0'), Reg::character('1'))),
+                    Reg::concatenation(
+                        Reg::character('1'),
+                        Reg::concatenation(
+                            Reg::alternation(Reg::character('0'), Reg::character('1')),
+                            Reg::alternation(Reg::character('0'), Reg::character('1'))
+                            )
+                        )
+                    );
 
-    aut = Aut::fromRegex(reg);
+        Aut aut = Aut::fromRegex(reg);
 
-    assert(aut.alphabet().size() == 2);
-    assert(aut.alphabet()[0] == '0' && aut.alphabet()[1] == '1');
+        assert(aut.alphabet().size() == 2);
+        assert(aut.alphabet()[0] == '0' && aut.alphabet()[1] == '1');
 
-    aut.determinize();
-    aut.minimize();
+        aut.determinize();
+        aut.minimize();
 
-    assert(aut.isComplete());
-    assert(!aut.isComplete({'0', '1', '2'}));
+        assert(aut.isComplete());
+        assert(!aut.isComplete({'0', '1', '2'}));
 
-    for (int x = 0; x < 256; x++) {
-        vector<char> v;
-        for (int i = 7; i >= 0; i--) {
-            v.push_back(x & (1<<i) ? '1' : '0');
+        for (int x = 0; x < 256; x++) {
+            vector<char> v;
+            for (int i = 7; i >= 0; i--) {
+                v.push_back(x & (1<<i) ? '1' : '0');
+            }
+            assert(aut.isAccepted(v) == ((x & 4) != 0));
         }
-        assert(aut.isAccepted(v) == ((x & 4) != 0));
+
+        delete reg;
     }
 
     // (a+b) b^* a
-    aut.clear();
+    {
+        Aut aut;
+        aut.addState(true, false);
+        aut.addState(false, false);
+        aut.addState(false, false);
+        aut.addState(false, true);
 
-    aut.addState(true, false);
-    aut.addState(false, false);
-    aut.addState(false, false);
-    aut.addState(false, true);
+        aut.addTransition(0, 'a', 1);
+        aut.addTransition(0, 'b', 2);
+        aut.addTransition(1, 'b', 2);
+        aut.addTransition(2, 'b', 1);
+        aut.addTransition(1, 'a', 3);
+        aut.addTransition(2, 'a', 3);
 
-    aut.addTransition(0, 'a', 1);
-    aut.addTransition(0, 'b', 2);
-    aut.addTransition(1, 'b', 2);
-    aut.addTransition(2, 'b', 1);
-    aut.addTransition(1, 'a', 3);
-    aut.addTransition(2, 'a', 3);
+        aut.determinize();
+        aut.minimize();
 
-    aut.determinize();
-    aut.minimize();
-
-    assert(!aut.isComplete());
-    assert(aut.stateCount() == 3);
+        assert(!aut.isComplete());
+        assert(aut.stateCount() == 3);
+    }
 
     // a+b
-    aut.clear();
-    aut.addState(true, false);
-    aut.addState(false, true);
-    aut.addState(false, true);
-    aut.addTransition(0, 'a', 1);
-    aut.addTransition(0, 'b', 2);
+    {
+        Aut aut;
 
-    aut.addState(false, false); // Useless states
-    aut.addState(false, true);
-    aut.addTransition(3, 'z', 4);
+        aut.addState(true, false);
+        aut.addState(false, true);
+        aut.addState(false, true);
+        aut.addTransition(0, 'a', 1);
+        aut.addTransition(0, 'b', 2);
 
-    aut.determinize(); // TODO: replace with makeAccessible()
-    aut.minimize();
+        aut.addState(false, false); // Useless states
+        aut.addState(false, true);
+        aut.addTransition(3, 'z', 4);
 
-    assert(aut.stateCount() == 2);
+        aut.determinize(); // TODO: replace with makeAccessible()
+        aut.minimize();
+
+        assert(aut.stateCount() == 2);
+    }
 
     cerr << "### Automaton: OK" << endl;
 }
