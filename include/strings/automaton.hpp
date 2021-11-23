@@ -287,10 +287,6 @@ void Automaton<T>::makeComplete()
 template<class T>
 void Automaton<T>::makeComplete(const std::vector<T> &newAlphabet)
 {
-    for (T l : alphabet()) {
-        assert(newAlphabet.count(l) == 1);
-    }
-
     bool hasDumpState = false;
 
     for (int s = 0; s < stateCount(); s++) {
