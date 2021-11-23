@@ -23,6 +23,8 @@ public:
     void addEpsilonTransition(const int state1, const int state2);
     void addTransition(const int state1, const T letter, const int state2);
 
+    void removeState(const int s);
+
     std::vector<T> alphabet() const;
 
     void clear();
@@ -111,6 +113,35 @@ void Automaton<T>::addTransition(const int state1, const T letter, const int sta
         std::make_pair(state1, letter),
         state2
     ));
+}
+
+template<class T>
+void Automaton<T>::removeState(const int s)
+{
+    for (typename std::multimap<std::pair<int,T>,int>::iterator it = m_transitions.begin();
+         it != m_transitions.end(); ) {
+        if (it->first.first == s || it->second == s) {
+            it = m_transitions.erase(it);
+        } else {
+            it++;
+        }
+    }
+
+    for (std::multimap<int,int>::iterator it = m_epsilonTransitions.begin();
+         it != m_epsilonTransitions.end(); ) {
+        if (it->first == s || it->second == s) {
+            it = m_epsilonTransitions.erase(it);
+        } else {
+            it++;
+        }
+    }
+
+    auto it = m_startStates.find(s);
+    if (it != m_startStates.end()) {
+        m_startStates.erase(it);
+    }
+
+    m_isAccepting.erase(m_isAccepting.begin() + s);
 }
 
 template<class T>
@@ -354,128 +385,206 @@ void Automaton<T>::determinize()
 template<class T>
 void Automaton<T>::minimize()
 {
-    // TODO: assert(isDeterministic() && isAccessible());
+    // TODO: assert(isDeterministic());
 
-    const auto alph = alphabet();
+    // Step 1 : Remove unreachable states
+    {
+        std::vector<int> pending;
+        for (int s : m_startStates) {
+            pending.push_back(s);
+        }
 
-    // Initialize the partition of the states
-    std::set<std::vector<int>> partition;
+        std::vector<bool> accessibleFromStartState(stateCount(), false);
 
-    std::vector<int> acceptingStates, notAcceptingStates;
-    for (int s = 0; s < stateCount(); s++) {
-        if (m_isAccepting[s]) {
-            acceptingStates.push_back(s);
-        } else {
-            notAcceptingStates.push_back(s);
+        while (pending.size()) {
+            const int s = pending.back();
+            pending.pop_back();
+
+            if (accessibleFromStartState[s]) continue;
+            accessibleFromStartState[s] = true;
+
+            for (T l : alphabet()) {
+                auto range = m_transitions.equal_range(std::make_pair(s, l));
+                for (auto it = range.first; it != range.second; it++) {
+                    pending.push_back(it->second);
+                }
+            }
+
+            auto range = m_epsilonTransitions.equal_range(s);
+            for (auto it = range.first; it != range.second; it++) {
+                pending.push_back(it->second);
+            }
+        }
+
+        for (int s = stateCount()-1; s >= 0; s--) {
+            if (!accessibleFromStartState[s]) {
+                removeState(s);
+            }
         }
     }
 
-    if (acceptingStates.size()) {
-        partition.insert(acceptingStates);
-    }
-    if (notAcceptingStates.size()) {
-        partition.insert(notAcceptingStates);
+    // Step 2 : Remove states that don't have access to a final state
+    {
+        // For each state s, states having access to s
+        std::vector<std::vector<int>> previousStates(stateCount());
+        for (const auto &p : m_epsilonTransitions) {
+            previousStates[p.second].push_back(p.first);
+        }
+        for (const auto &p : m_transitions) {
+            previousStates[p.second].push_back(p.first.first);
+        }
+
+        std::vector<bool> hasAccessToFinalState(stateCount(), false);
+
+        std::vector<int> pending;
+        for (int s = 0; s < stateCount(); s++) {
+            if (m_isAccepting[s]) {
+                pending.push_back(s);
+            }
+        }
+
+        while (pending.size()) {
+            const int s = pending.back();
+            pending.pop_back();
+
+            if (hasAccessToFinalState[s]) continue;
+            hasAccessToFinalState[s] = true;
+
+            for (int s2 : previousStates[s]) {
+                pending.push_back(s2);
+            }
+        }
+
+        for (int s = stateCount()-1; s >= 0; s--) {
+            if (!hasAccessToFinalState[s]) {
+                removeState(s);
+            }
+        }
     }
 
-    // Moore's algorithm
-    bool success = true;
-    while (success) {
-        success = false;
+    // Step 3 : Merge nondistinguishable states
+    {
+        const auto alph = alphabet();
 
-        // Find the subset of a state
+        // Initialize the partition of the states
+        std::set<std::vector<int>> partition;
+
+        std::vector<int> acceptingStates, notAcceptingStates;
+        for (int s = 0; s < stateCount(); s++) {
+            if (m_isAccepting[s]) {
+                acceptingStates.push_back(s);
+            } else {
+                notAcceptingStates.push_back(s);
+            }
+        }
+
+        if (acceptingStates.size()) {
+            partition.insert(acceptingStates);
+        }
+        if (notAcceptingStates.size()) {
+            partition.insert(notAcceptingStates);
+        }
+
+        // Moore's algorithm
+        bool success = true;
+        while (success) {
+            success = false;
+
+            // Find the subset of a state
+            std::vector<int> subsetOf(stateCount(), -1);
+            int currentSubset = 0;
+            for (const auto &subset : partition) {
+                for (int s : subset) {
+                    subsetOf[s] = currentSubset;
+                }
+                currentSubset++;
+            }
+
+            std::set<std::vector<int>> nextPartition;
+
+            for (const auto &subset : partition) {
+                // For each state s in the subset, (subset of the next state using letter l for each l, s)
+                std::vector<std::pair<std::vector<int>,int>> nextSubsets;
+
+                for (const int s : subset) {
+                    std::vector<int> v;
+
+                    for (const T l : alph) {
+                        const auto it = m_transitions.find(std::make_pair(s, l));
+
+                        if (it == m_transitions.end()) {
+                            v.push_back(-1);
+                        } else {
+                            const int nextState = it->second;
+
+                            v.push_back(subsetOf[nextState]);
+                        }
+                    }
+
+                    nextSubsets.push_back(std::make_pair(v, s));
+                }
+
+                // Separate the subset if needed
+                std::sort(nextSubsets.begin(), nextSubsets.end());
+
+                std::vector<int> newSubset;
+                for (size_t i = 0; i < nextSubsets.size(); i++) {
+                    if (i > 0 && nextSubsets[i].first != nextSubsets[i-1].first) {
+                        nextPartition.insert(newSubset);
+                        newSubset.clear();
+                        success = true;
+                    }
+                    newSubset.push_back(nextSubsets[i].second);
+                }
+
+                if (newSubset.size()) {
+                    nextPartition.insert(newSubset);
+                }
+            }
+
+            partition = nextPartition;
+        }
+
+        // Update the automaton (there isn't any epsilon-transition)
+        std::multimap<std::pair<int,T>,int> transitions;
+        std::set<int> startStates;
+        std::vector<bool> isAccepting;
+
         std::vector<int> subsetOf(stateCount(), -1);
         int currentSubset = 0;
+
         for (const auto &subset : partition) {
             for (int s : subset) {
                 subsetOf[s] = currentSubset;
             }
             currentSubset++;
-        }
 
-        std::set<std::vector<int>> nextPartition;
+            isAccepting.push_back(m_isAccepting[subset[0]]);
+        }
 
         for (const auto &subset : partition) {
-            // For each state s in the subset, (subset of the next state using letter l for each l, s)
-            std::vector<std::pair<std::vector<int>,int>> nextSubsets;
+            for (const T l : alph) {
+                const auto it = m_transitions.find(std::make_pair(subset[0], l));
 
-            for (const int s : subset) {
-                std::vector<int> v;
+                if (it != m_transitions.end()) {
+                    const int nextState = it->second;
 
-                for (const T l : alph) {
-                    const auto it = m_transitions.find(std::make_pair(s, l));
-
-                    if (it == m_transitions.end()) {
-                        v.push_back(-1);
-                    } else {
-                        const int nextState = it->second;
-
-                        v.push_back(subsetOf[nextState]);
-                    }
+                    transitions.insert(std::make_pair(
+                                           std::make_pair(subsetOf[subset[0]], l),
+                            subsetOf[nextState]
+                            ));
                 }
-
-                nextSubsets.push_back(std::make_pair(v, s));
-            }
-
-            // Separate the subset if needed
-            std::sort(nextSubsets.begin(), nextSubsets.end());
-
-            std::vector<int> newSubset;
-            for (size_t i = 0; i < nextSubsets.size(); i++) {
-                if (i > 0 && nextSubsets[i].first != nextSubsets[i-1].first) {
-                    nextPartition.insert(newSubset);
-                    newSubset.clear();
-                    success = true;
-                }
-                newSubset.push_back(nextSubsets[i].second);
-            }
-
-            if (newSubset.size()) {
-                nextPartition.insert(newSubset);
             }
         }
 
-        partition = nextPartition;
-    }
-
-    // Update the automaton (there isn't any epsilon-transition)
-    std::multimap<std::pair<int,T>,int> transitions;
-    std::set<int> startStates;
-    std::vector<bool> isAccepting;
-
-    std::vector<int> subsetOf(stateCount(), -1);
-    int currentSubset = 0;
-
-    for (const auto &subset : partition) {
-        for (int s : subset) {
-            subsetOf[s] = currentSubset;
+        for (int s : m_startStates) {
+            startStates.insert(subsetOf[s]);
         }
-        currentSubset++;
 
-        isAccepting.push_back(m_isAccepting[subset[0]]);
+        m_transitions = transitions;
+        m_startStates = startStates;
+        m_isAccepting = isAccepting;
     }
-
-    for (const auto &subset : partition) {
-        for (const T l : alph) {
-            const auto it = m_transitions.find(std::make_pair(subset[0], l));
-
-            if (it != m_transitions.end()) {
-                const int nextState = it->second;
-
-                transitions.insert(std::make_pair(
-                    std::make_pair(subsetOf[subset[0]], l),
-                    subsetOf[nextState]
-                ));
-            }
-        }
-    }
-
-    for (int s : m_startStates) {
-        startStates.insert(subsetOf[s]);
-    }
-
-    m_transitions = transitions;
-    m_startStates = startStates;
-    m_isAccepting = isAccepting;
 }
 
 

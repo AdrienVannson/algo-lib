@@ -649,7 +649,6 @@ void testAutomaton()
         aut.addTransition(1, 'a', 3);
         aut.addTransition(2, 'a', 3);
 
-        aut.determinize();
         aut.minimize();
 
         assert(!aut.isComplete());
@@ -670,7 +669,6 @@ void testAutomaton()
         aut.addState(false, true);
         aut.addTransition(3, 'z', 4);
 
-        aut.determinize(); // TODO: replace with makeAccessible()
         aut.minimize();
 
         assert(aut.stateCount() == 2);
