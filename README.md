@@ -3,9 +3,6 @@
 - Data structures
     - Disjoint set
     - Max Heap
-- Geometry
-    - Vector
-    - 2D Convex Hull
 - Graphs
     - Data structures
         - Graph
@@ -23,6 +20,11 @@
         - Tarjan
         - Topological sort
         - Transpose graph
+- Tree
+    - Conversion from a graph
+- Geometry
+    - Vector
+    - 2D Convex Hull
 - Maths
     - Exponentiation by squaring
     - Fraction
@@ -32,7 +34,8 @@
 - Sorting
     - Merge sort
 - Strings
-    - Knuth–Morris–Pratt algorithm
+    - Automaton
     - Regex
+    - Knuth–Morris–Pratt algorithm
 - 2-SAT
 - JSON parser
