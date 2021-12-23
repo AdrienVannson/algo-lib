@@ -35,6 +35,8 @@
 #include "strings/kmp.hpp" // ONLY_IF getKmp
 #include "strings/regex.hpp" // ONLY_IF Regex Reg
 
+#include "trees/Tree.hpp" // ONLY_IF Tree
+
 #include "constants.hpp" // ONLY_IF Constants
 #include "json.hpp" // ONLY_IF JSON
 

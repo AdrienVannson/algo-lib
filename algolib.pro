@@ -35,11 +35,13 @@ HEADERS += \
         include/sorting/merge-sort.hpp \
         include/strings/automaton.hpp \
         include/strings/kmp.hpp \
-        include/strings/regex.hpp
+        include/strings/regex.hpp \
+        include/trees/Tree.hpp \
 
 SOURCES += \
     include/json.cpp \
     include/maths/Permutation.cpp \
+    include/trees/Tree.cpp \
     tests/main.cpp
 
 INCLUDEPATH += include
