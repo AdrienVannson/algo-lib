@@ -399,6 +399,33 @@ void testTopologicalSort ()
 
 
 /*******************************************************************************
+ *** Trees *********************************************************************
+ ******************************************************************************/
+
+void testGraphToTree()
+{
+    Graph g(6, false);
+    g.addEdge(0, 1);
+    g.addEdge(1, 2);
+    g.addEdge(1, 3);
+    g.addEdge(2, 4);
+    g.addEdge(4, 5);
+
+    Tree t = graphToTree(g, 1);
+    assert(t.verticeCount() == 6);
+    assert(t.parent(0) == 1);
+    assert(t.parent(1) == -1);
+    assert(t.parent(2) == 1);
+    assert(t.parent(3) == 1);
+    assert(t.parent(4) == 2);
+    assert(t.parent(5) == 4);
+    assert(t.children(1) == vector<int>({3, 2, 0}));
+
+    cerr << "### Graph to tree: OK" << endl;
+}
+
+
+/*******************************************************************************
  *** Sorting *******************************************************************
  ******************************************************************************/
 
@@ -727,6 +754,11 @@ int main ()
     testPrim();
     testTarjan();
     testTopologicalSort();
+    cerr << "\n";
+
+    // Trees
+    cerr << "Testing trees..." << endl;
+    testGraphToTree();
     cerr << "\n";
 
     // Sorting algorithms
