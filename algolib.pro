@@ -37,6 +37,7 @@ HEADERS += \
         include/strings/kmp.hpp \
         include/strings/regex.hpp \
         include/trees/Tree.hpp \
+        include/trees/graph-to-tree.hpp
 
 SOURCES += \
     include/json.cpp \
