@@ -53,10 +53,22 @@ public:
         return m_vertice[vertex][neighbourPos].neighbour;
     }
 
-    /// \brief Returns all the neighbours of a vertex
-    const std::vector<EdgeTo>& neighbours (const int vertex) const
+    /// \brief Returns the edges connected to a vertex
+    const std::vector<EdgeTo>& edgesToNeighbours (const int vertex) const
     {
         return m_vertice[vertex];
+    }
+
+    /// \brief Returns the neighbours of a vertex
+    std::vector<int> neighbours (const int vertex) const
+    {
+        std::vector<int> nbs;
+
+        for (EdgeTo edge : m_vertice[vertex]) {
+            nbs.push_back(edge.neighbour);
+        }
+
+        return nbs;
     }
 
     /// \brief Always returns 1 (the graph is not weighted)

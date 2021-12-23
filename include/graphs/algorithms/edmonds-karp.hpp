@@ -25,7 +25,7 @@ public:
         m_residualCapacities.resize(2*edgeCount, 0);
 
         for (int v=0; v<graph.verticeCount(); v++) {
-            for (auto edgeTo : graph.neighbours(v)) {
+            for (auto edgeTo : graph.edgesToNeighbours(v)) {
                 m_residualGraph[v].push_back(Edge{edgeTo.neighbour, edgeTo.edgeId});
                 m_residualGraph[edgeTo.neighbour].push_back(Edge{v, edgeTo.edgeId + edgeCount});
 

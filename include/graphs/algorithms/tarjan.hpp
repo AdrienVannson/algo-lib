@@ -71,8 +71,7 @@ int Tarjan<G>::findSccs (const G &graph, const int vertex)
 
     int minID = m_ids[vertex];
 
-    for (auto edge : graph.neighbours(vertex)) {
-        const int neighbour = edge.neighbour;
+    for (const int neighbour : graph.neighbours(vertex)) {
 
         if (m_states[neighbour] == IN_STACK) {
             minID = std::min(m_ids[neighbour], minID);

@@ -41,7 +41,7 @@ public:
                     m_sum += g.weight(edge.edgeId);
                 }
 
-                for (auto edgeTo : g.neighbours(edge.vertex2)) {
+                for (const auto edgeTo : g.edgesToNeighbours(edge.vertex2)) {
                     if (!isVisited[edgeTo.neighbour]) {
                         pending.push(typename G::Edge{
                             edge.vertex2, edgeTo.neighbour, edgeTo.edgeId

@@ -58,8 +58,8 @@ private:
         if (m_states[v] == VISITED_1) return;
         m_states[v] = VISITED_1;
 
-        for (auto edge : m_graph->neighbours(v)) {
-            findPostOrdering(edge.neighbour);
+        for (int nb : m_graph->neighbours(v)) {
+            findPostOrdering(nb);
         }
 
         m_postOrdering.push_back(v);
@@ -73,8 +73,8 @@ private:
 
         m_sccs.back().push_back(v);
 
-        for (auto edge : m_graph->neighbours(v)) {
-            findSccs(edge.neighbour);
+        for (int nb : m_graph->neighbours(v)) {
+            findSccs(nb);
         }
     }
 
