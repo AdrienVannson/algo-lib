@@ -4,7 +4,7 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 HEADERS += \
-        include/2SAT.hpp \
+        #include/2SAT.hpp \
         include/algolib.hpp \
         include/constants.hpp \
         include/data-structures/DisjointSet.hpp \

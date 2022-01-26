@@ -30,7 +30,6 @@
 
 #include "sorting/merge-sort.hpp" // ONLY_IF mergeSort
 
-#include "2SAT.hpp" // ONLY_IF Resoudre2SAT
 #include "strings/automaton.hpp" // ONLY_IF Automaton Aut
 #include "strings/kmp.hpp" // ONLY_IF getKmp
 #include "strings/regex.hpp" // ONLY_IF Regex Reg
