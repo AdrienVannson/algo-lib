@@ -66,19 +66,18 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const Automaton<U> &aut);
 
 private:
-    std::multimap<std::pair<int,T>,int> m_transitions;
-    std::multimap<int,int> m_epsilonTransitions;
+    std::multimap<std::pair<int, T>, int> m_transitions;
+    std::multimap<int, int> m_epsilonTransitions;
     std::set<int> m_startStates;
     std::vector<bool> m_isAccepting;
 };
 
 using Aut = Automaton<char>;
 
-
 template<class T>
 Automaton<T>::Automaton()
-{}
-
+{
+}
 
 /*
  * Structure of the automaton
@@ -95,9 +94,7 @@ void Automaton<T>::addState(const bool isStart, const bool isAccepting)
 {
     m_isAccepting.push_back(isAccepting);
 
-    if (isStart) {
-        m_startStates.insert(m_isAccepting.size() - 1);
-    }
+    if (isStart) { m_startStates.insert(m_isAccepting.size() - 1); }
 }
 
 template<class T>
@@ -109,17 +106,15 @@ void Automaton<T>::addEpsilonTransition(const int state1, const int state2)
 template<class T>
 void Automaton<T>::addTransition(const int state1, const T letter, const int state2)
 {
-    m_transitions.insert(std::make_pair(
-        std::make_pair(state1, letter),
-        state2
-    ));
+    m_transitions.insert(std::make_pair(std::make_pair(state1, letter), state2));
 }
 
 template<class T>
 void Automaton<T>::removeState(const int s)
 {
-    for (typename std::multimap<std::pair<int,T>,int>::iterator it = m_transitions.begin();
-         it != m_transitions.end(); ) {
+    for (typename std::multimap<std::pair<int, T>, int>::iterator it
+         = m_transitions.begin();
+         it != m_transitions.end();) {
         if (it->first.first == s || it->second == s) {
             it = m_transitions.erase(it);
         } else {
@@ -127,8 +122,8 @@ void Automaton<T>::removeState(const int s)
         }
     }
 
-    for (std::multimap<int,int>::iterator it = m_epsilonTransitions.begin();
-         it != m_epsilonTransitions.end(); ) {
+    for (std::multimap<int, int>::iterator it = m_epsilonTransitions.begin();
+         it != m_epsilonTransitions.end();) {
         if (it->first == s || it->second == s) {
             it = m_epsilonTransitions.erase(it);
         } else {
@@ -137,9 +132,7 @@ void Automaton<T>::removeState(const int s)
     }
 
     auto it = m_startStates.find(s);
-    if (it != m_startStates.end()) {
-        m_startStates.erase(it);
-    }
+    if (it != m_startStates.end()) { m_startStates.erase(it); }
 
     m_isAccepting.erase(m_isAccepting.begin() + s);
 }
@@ -168,7 +161,6 @@ void Automaton<T>::clear()
     m_isAccepting.clear();
 }
 
-
 /*
  * Check string
  */
@@ -186,7 +178,7 @@ bool Automaton<T>::isAccepted(const std::vector<T> &str) const
         for (int state : states) {
             auto range = m_transitions.equal_range(std::make_pair(state, c));
 
-            for (auto it=range.first; it!=range.second; it++) {
+            for (auto it = range.first; it != range.second; it++) {
                 nextStates.insert(it->second);
             }
         }
@@ -195,13 +187,10 @@ bool Automaton<T>::isAccepted(const std::vector<T> &str) const
     }
 
     for (int state : states) {
-        if (m_isAccepting[state]) {
-            return true;
-        }
+        if (m_isAccepting[state]) { return true; }
     }
     return false;
 }
-
 
 /*
  * Properties and operations
@@ -232,25 +221,21 @@ void Automaton<T>::removeEpsilonTransitions()
             isReachable[s] = true;
 
             auto range = m_epsilonTransitions.equal_range(s);
-            for (auto it=range.first; it!=range.second; it++) {
+            for (auto it = range.first; it != range.second; it++) {
                 pendingStates.push(it->second);
             }
         }
 
         // Update accepting states
         for (int s2 = 0; s2 < stateCount(); s2++) {
-            if (isReachable[s2] && m_isAccepting[s2]) {
-                m_isAccepting[s] = true;
-            }
+            if (isReachable[s2] && m_isAccepting[s2]) { m_isAccepting[s] = true; }
         }
 
         // Update transitions
         for (const auto &trans : m_transitions) {
             if (isReachable[trans.first.first] && trans.first.first != s) {
-                m_transitions.insert(std::make_pair(
-                    std::make_pair(s, trans.first.second),
-                    trans.second
-                ));
+                m_transitions.insert(
+                    std::make_pair(std::make_pair(s, trans.first.second), trans.second));
             }
         }
     }
@@ -269,9 +254,7 @@ bool Automaton<T>::isComplete(const std::vector<T> &alphabet) const
 {
     for (int s = 0; s < stateCount(); s++) {
         for (T l : alphabet) {
-            if (m_transitions.count(std::make_pair(s, l)) == 0) {
-                return false;
-            }
+            if (m_transitions.count(std::make_pair(s, l)) == 0) { return false; }
         }
     }
 
@@ -298,12 +281,9 @@ void Automaton<T>::makeComplete(const std::vector<T> &newAlphabet)
                     hasDumpState = true;
                 }
 
-                m_transitions.insert(std::make_pair(
-                    std::make_pair(s, l),
-                    stateCount() - 1
-                ));
+                m_transitions.insert(
+                    std::make_pair(std::make_pair(s, l), stateCount() - 1));
             }
-
         }
     }
 }
@@ -313,8 +293,8 @@ void Automaton<T>::determinize()
 {
     removeEpsilonTransitions();
 
-    std::map<std::vector<bool>,int> ids; // Ids of the new states
-    std::multimap<std::pair<int,T>,int> transitions; // For the new automaton
+    std::map<std::vector<bool>, int> ids; // Ids of the new states
+    std::multimap<std::pair<int, T>, int> transitions; // For the new automaton
 
     // First state
     std::vector<bool> firstState(stateCount(), false);
@@ -339,7 +319,7 @@ void Automaton<T>::determinize()
                 if (!isInState[s]) continue;
                 auto range = m_transitions.equal_range(std::make_pair(s, c));
 
-                for (auto it=range.first; it!=range.second; it++) {
+                for (auto it = range.first; it != range.second; it++) {
                     nextState[it->second] = true;
                     isEmpty = false;
                 }
@@ -352,10 +332,8 @@ void Automaton<T>::determinize()
                     pendingStates.push_back(nextState);
                 }
 
-                transitions.insert(std::make_pair(
-                    std::make_pair(ids[isInState], c),
-                    ids[nextState]
-                ));
+                transitions.insert(
+                    std::make_pair(std::make_pair(ids[isInState], c), ids[nextState]));
             }
         }
     }
@@ -367,7 +345,7 @@ void Automaton<T>::determinize()
 
     std::vector<bool> isAccepting(ids.size(), false);
     for (auto it = ids.begin(); it != ids.end(); it++) {
-        for (int s=0; s<stateCount(); s++) {
+        for (int s = 0; s < stateCount(); s++) {
             if (it->first[s] && m_isAccepting[s]) {
                 isAccepting[it->second] = true;
                 break;
@@ -412,10 +390,8 @@ void Automaton<T>::minimize()
             }
         }
 
-        for (int s = stateCount()-1; s >= 0; s--) {
-            if (!accessibleFromStartState[s]) {
-                removeState(s);
-            }
+        for (int s = stateCount() - 1; s >= 0; s--) {
+            if (!accessibleFromStartState[s]) { removeState(s); }
         }
     }
 
@@ -434,9 +410,7 @@ void Automaton<T>::minimize()
 
         std::vector<int> pending;
         for (int s = 0; s < stateCount(); s++) {
-            if (m_isAccepting[s]) {
-                pending.push_back(s);
-            }
+            if (m_isAccepting[s]) { pending.push_back(s); }
         }
 
         while (pending.size()) {
@@ -451,10 +425,8 @@ void Automaton<T>::minimize()
             }
         }
 
-        for (int s = stateCount()-1; s >= 0; s--) {
-            if (!hasAccessToFinalState[s]) {
-                removeState(s);
-            }
+        for (int s = stateCount() - 1; s >= 0; s--) {
+            if (!hasAccessToFinalState[s]) { removeState(s); }
         }
     }
 
@@ -474,12 +446,8 @@ void Automaton<T>::minimize()
             }
         }
 
-        if (acceptingStates.size()) {
-            partition.insert(acceptingStates);
-        }
-        if (notAcceptingStates.size()) {
-            partition.insert(notAcceptingStates);
-        }
+        if (acceptingStates.size()) { partition.insert(acceptingStates); }
+        if (notAcceptingStates.size()) { partition.insert(notAcceptingStates); }
 
         // Moore's algorithm
         bool success = true;
@@ -499,8 +467,9 @@ void Automaton<T>::minimize()
             std::set<std::vector<int>> nextPartition;
 
             for (const auto &subset : partition) {
-                // For each state s in the subset, (subset of the next state using letter l for each l, s)
-                std::vector<std::pair<std::vector<int>,int>> nextSubsets;
+                // For each state s in the subset, (subset of the next state using letter
+                // l for each l, s)
+                std::vector<std::pair<std::vector<int>, int>> nextSubsets;
 
                 for (const int s : subset) {
                     std::vector<int> v;
@@ -525,7 +494,7 @@ void Automaton<T>::minimize()
 
                 std::vector<int> newSubset;
                 for (size_t i = 0; i < nextSubsets.size(); i++) {
-                    if (i > 0 && nextSubsets[i].first != nextSubsets[i-1].first) {
+                    if (i > 0 && nextSubsets[i].first != nextSubsets[i - 1].first) {
                         nextPartition.insert(newSubset);
                         newSubset.clear();
                         success = true;
@@ -533,16 +502,14 @@ void Automaton<T>::minimize()
                     newSubset.push_back(nextSubsets[i].second);
                 }
 
-                if (newSubset.size()) {
-                    nextPartition.insert(newSubset);
-                }
+                if (newSubset.size()) { nextPartition.insert(newSubset); }
             }
 
             partition = nextPartition;
         }
 
         // Update the automaton (there isn't any epsilon-transition)
-        std::multimap<std::pair<int,T>,int> transitions;
+        std::multimap<std::pair<int, T>, int> transitions;
         std::set<int> startStates;
         std::vector<bool> isAccepting;
 
@@ -566,9 +533,7 @@ void Automaton<T>::minimize()
                     const int nextState = it->second;
 
                     transitions.insert(std::make_pair(
-                                           std::make_pair(subsetOf[subset[0]], l),
-                            subsetOf[nextState]
-                            ));
+                        std::make_pair(subsetOf[subset[0]], l), subsetOf[nextState]));
                 }
             }
         }
@@ -583,7 +548,6 @@ void Automaton<T>::minimize()
     }
 }
 
-
 /*
  * Closure properties
  */
@@ -594,9 +558,7 @@ void Automaton<T>::applyKleenStar()
     addState(true, true);
 
     for (int s : m_startStates) {
-        if (s != stateCount() - 1) {
-            addEpsilonTransition(stateCount() - 1, s);
-        }
+        if (s != stateCount() - 1) { addEpsilonTransition(stateCount() - 1, s); }
     }
 
     m_startStates.clear();
@@ -608,13 +570,11 @@ void Automaton<T>::applyKleenStar()
 template<class T>
 void Automaton<T>::applyKleenPlus()
 {
-    for (int s1=0; s1<stateCount(); s1++) {
+    for (int s1 = 0; s1 < stateCount(); s1++) {
         if (!m_isAccepting[s1]) continue;
 
         for (int s2 : m_startStates) {
-            if (s1 != s2) {
-                m_epsilonTransitions.insert(std::make_pair(s1, s2));
-            }
+            if (s1 != s2) { m_epsilonTransitions.insert(std::make_pair(s1, s2)); }
         }
     }
 }
@@ -633,12 +593,12 @@ void Automaton<T>::operator+=(const Automaton<T> &other)
     }
 
     // Add transitions
-    for (const std::pair<std::pair<int,T>,int> trans : other.m_transitions) {
+    for (const std::pair<std::pair<int, T>, int> trans : other.m_transitions) {
         addTransition(n + trans.first.first, trans.first.second, n + trans.second);
     }
 
     // Add epsilon-transitions
-    for (const std::pair<int,int> trans : other.m_epsilonTransitions) {
+    for (const std::pair<int, int> trans : other.m_epsilonTransitions) {
         addEpsilonTransition(n + trans.first, n + trans.second);
     }
 }
@@ -657,12 +617,12 @@ void Automaton<T>::operator*=(const Automaton<T> &other)
     }
 
     // Add transitions
-    for (const std::pair<std::pair<int,T>,int> trans : other.m_transitions) {
+    for (const std::pair<std::pair<int, T>, int> trans : other.m_transitions) {
         addTransition(n + trans.first.first, trans.first.second, n + trans.second);
     }
 
     // Add epsilon-transitions
-    for (const std::pair<int,int> trans : other.m_epsilonTransitions) {
+    for (const std::pair<int, int> trans : other.m_epsilonTransitions) {
         addEpsilonTransition(n + trans.first, n + trans.second);
     }
 
@@ -691,7 +651,6 @@ Automaton<T> operator*(const Automaton<T> &a, const Automaton<T> &b)
     res *= b;
     return res;
 }
-
 
 /*
  * Regex
@@ -731,7 +690,6 @@ Automaton<T> Automaton<T>::fromRegex(const Regex<T> *r)
     assert(false);
 }
 
-
 /*
  * Printing
  */
@@ -749,13 +707,11 @@ std::ostream &operator<<(std::ostream &os, const Automaton<T> &aut)
 
     for (int s = 0; s < (int)aut.stateCount(); s++) {
         os << " | State " << s << " (";
-        if (!aut.m_isAccepting[s]) {
-            os << "not ";
-        }
+        if (!aut.m_isAccepting[s]) { os << "not "; }
         os << "accepting) :";
 
         // Transitions
-        for (std::pair<std::pair<int,T>,int> trans : aut.m_transitions) {
+        for (std::pair<std::pair<int, T>, int> trans : aut.m_transitions) {
             if (trans.first.first == s) {
                 os << " [" << trans.first.second << " -> " << trans.second << "]";
             }
@@ -764,13 +720,12 @@ std::ostream &operator<<(std::ostream &os, const Automaton<T> &aut)
         // Epsilon-transitions
         auto range = aut.m_epsilonTransitions.equal_range(s);
 
-        for (auto it=range.first; it!=range.second; it++) {
+        for (auto it = range.first; it != range.second; it++) {
             os << " [ɛ -> " << it->second << "]";
         }
 
         os << "\n";
     }
-
 
     return os;
 }

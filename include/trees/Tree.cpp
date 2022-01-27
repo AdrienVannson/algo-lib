@@ -3,14 +3,11 @@
 #include <algorithm>
 #include <cassert>
 
-Tree::Tree() :
-    m_root(0)
-{}
+Tree::Tree() : m_root(0) {}
 
-Tree::Tree(const int verticeCount, const int root) :
-    m_root(root)
+Tree::Tree(const int verticeCount, const int root) : m_root(root)
 {
-    m_vertice.resize(verticeCount, Vertex{-1, std::vector<int>()});
+    m_vertice.resize(verticeCount, Vertex {-1, std::vector<int>()});
 }
 
 void Tree::setParent(const int vertex, const int newParent)
@@ -24,13 +21,10 @@ void Tree::setParent(const int vertex, const int newParent)
         p.children.erase(it);
     }
 
-    if (newParent != -1) {
-        m_vertice[newParent].children.push_back(vertex);
-    }
+    if (newParent != -1) { m_vertice[newParent].children.push_back(vertex); }
 
     m_vertice[vertex].parent = newParent;
 }
-
 
 void printSubtree(std::ostream &os, const Tree &tree, const int vertex, const int depth)
 {
@@ -40,11 +34,11 @@ void printSubtree(std::ostream &os, const Tree &tree, const int vertex, const in
     os << vertex << "\n";
 
     for (int child : tree.children(vertex)) {
-        printSubtree(os, tree, child, depth+1);
+        printSubtree(os, tree, child, depth + 1);
     }
 }
 
-std::ostream& operator<<(std::ostream &os, const Tree &tree)
+std::ostream &operator<<(std::ostream &os, const Tree &tree)
 {
     printSubtree(os, tree, tree.root(), 0);
     return os;

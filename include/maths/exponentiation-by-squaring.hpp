@@ -5,7 +5,7 @@
 
 /// \brief Exponentiation by squaring (p must be strictly positive)
 template<class T>
-T getPower (const T &x, const int p)
+T getPower(const T &x, const int p)
 {
     assert(p > 0);
 

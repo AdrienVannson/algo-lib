@@ -4,18 +4,15 @@
 #include <vector>
 
 template<class T>
-std::vector<T> mergeSort (const std::vector<T> &v)
+std::vector<T> mergeSort(const std::vector<T> &v)
 {
-    if (v.size() <= 1) {
-        return v;
-    }
+    if (v.size() <= 1) { return v; }
 
     std::vector<T> v1, v2;
     for (const T &a : v) {
         if (v1.size() < v.size() / 2) {
             v1.push_back(a);
-        }
-        else {
+        } else {
             v2.push_back(a);
         }
     }
@@ -28,12 +25,11 @@ std::vector<T> mergeSort (const std::vector<T> &v)
     int i1 = 0, i2 = 0;
 
     while (i1 != (int)sorted1.size() || i2 != (int)sorted2.size()) {
-        if (i2 == (int)sorted2.size() ||
-           (i1 != (int)sorted1.size() && sorted1[i1] < sorted2[i2])) {
+        if (i2 == (int)sorted2.size()
+            || (i1 != (int)sorted1.size() && sorted1[i1] < sorted2[i2])) {
             sorted.push_back(sorted1[i1]);
             i1++;
-        }
-        else {
+        } else {
             sorted.push_back(sorted2[i2]);
             i2++;
         }

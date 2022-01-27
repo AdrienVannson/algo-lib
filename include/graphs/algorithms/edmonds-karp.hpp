@@ -10,24 +10,24 @@ template<class G>
 class EdmondsKarp
 {
 public:
-    EdmondsKarp (const G &graph, const int source, const int sink) :
-        m_source(source),
-        m_sink(sink),
-        m_flow(0)
+    EdmondsKarp(const G &graph, const int source, const int sink) :
+        m_source(source), m_sink(sink), m_flow(0)
     {
         assert(source != sink);
-        assert(graph.isDirected()); // If not, the same edge is represented twice with the same id
+        assert(graph.isDirected()); // If not, the same edge is represented twice with the
+                                    // same id
 
         // Build the residual graph
         m_residualGraph.resize(graph.verticeCount());
 
         const int edgeCount = graph.edgeCount();
-        m_residualCapacities.resize(2*edgeCount, 0);
+        m_residualCapacities.resize(2 * edgeCount, 0);
 
-        for (int v=0; v<graph.verticeCount(); v++) {
+        for (int v = 0; v < graph.verticeCount(); v++) {
             for (auto edgeTo : graph.edgesToNeighbours(v)) {
-                m_residualGraph[v].push_back(Edge{edgeTo.neighbour, edgeTo.edgeId});
-                m_residualGraph[edgeTo.neighbour].push_back(Edge{v, edgeTo.edgeId + edgeCount});
+                m_residualGraph[v].push_back(Edge {edgeTo.neighbour, edgeTo.edgeId});
+                m_residualGraph[edgeTo.neighbour].push_back(
+                    Edge {v, edgeTo.edgeId + edgeCount});
 
                 m_residualCapacities[edgeTo.edgeId] = graph.weight(edgeTo.edgeId);
             }
@@ -50,7 +50,8 @@ public:
                 }
 
                 for (Edge edge : m_residualGraph[vertex]) {
-                    if (m_residualCapacities[edge.id] > 0 && dists[edge.neighbour] == INT_MAX) {
+                    if (m_residualCapacities[edge.id] > 0
+                        && dists[edge.neighbour] == INT_MAX) {
                         dists[edge.neighbour] = dists[vertex] + 1;
                         pending.push(edge.neighbour);
                     }
@@ -63,15 +64,16 @@ public:
 
             std::vector<int> edges;
             int vertex = sink;
-            typename G::Weight flow{};
+            typename G::Weight flow {};
 
             while (vertex != source) {
                 const int dist = dists[vertex];
 
                 for (Edge edge : m_residualGraph[vertex]) {
-                    const int oppositeEdge = (edge.id + edgeCount) % (2*edgeCount);
+                    const int oppositeEdge = (edge.id + edgeCount) % (2 * edgeCount);
 
-                    if (dists[edge.neighbour] == dist - 1 && m_residualCapacities[oppositeEdge] != 0) {
+                    if (dists[edge.neighbour] == dist - 1
+                        && m_residualCapacities[oppositeEdge] != 0) {
                         if (vertex == sink || m_residualCapacities[oppositeEdge] < flow) {
                             flow = m_residualCapacities[oppositeEdge];
                         }
@@ -85,34 +87,25 @@ public:
 
             for (int e : edges) {
                 m_residualCapacities[e] -= flow;
-                m_residualCapacities[(e + edgeCount) % (2*edgeCount)] += flow;
+                m_residualCapacities[(e + edgeCount) % (2 * edgeCount)] += flow;
             }
 
             m_flow += flow;
         }
     }
 
-    inline int source () const
+    inline int source() const { return m_source; }
+
+    inline int sink() const { return m_sink; }
+
+    inline typename G::Weight maxFlow() const { return m_flow; }
+
+    inline typename G::Weight flowOnEdge(const int edge) const
     {
-        return m_source;
+        return m_residualCapacities[edge + m_residualCapacities.size() / 2];
     }
 
-    inline int sink () const
-    {
-        return m_sink;
-    }
-
-    inline typename G::Weight maxFlow () const
-    {
-        return m_flow;
-    }
-
-    inline typename G::Weight flowOnEdge (const int edge) const
-    {
-        return m_residualCapacities[edge + m_residualCapacities.size()/2];
-    }
-
-    inline typename G::Weight residualCapacity (const int edge) const
+    inline typename G::Weight residualCapacity(const int edge) const
     {
         return m_residualCapacities[edge];
     }
@@ -121,8 +114,7 @@ private:
     int m_source, m_sink;
     typename G::Weight m_flow;
 
-    struct Edge
-    {
+    struct Edge {
         int neighbour;
         int id;
     };

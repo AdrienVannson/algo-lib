@@ -6,37 +6,36 @@
 class Resoudre2SAT
 {
 public:
-    Resoudre2SAT (const int nbVariables) :
-        m_nbVariables (nbVariables),
-        m_grapheContraintes (GRAPHE_ORIENTE, 2*nbVariables)
-    {}
+    Resoudre2SAT(const int nbVariables) :
+        m_nbVariables(nbVariables), m_grapheContraintes(GRAPHE_ORIENTE, 2 * nbVariables)
+    {
+    }
 
-    inline int non (const int x) const
+    inline int non(const int x) const
     {
         if (x < m_nbVariables) return x + m_nbVariables;
         return x - m_nbVariables;
     }
 
     /// \brief Ajoute une contrainte de la forme a v b
-    void ajouterContrainte (const int a, const int b)
+    void ajouterContrainte(const int a, const int b)
     {
-        if (a%m_nbVariables != b%m_nbVariables) {
+        if (a % m_nbVariables != b % m_nbVariables) {
             m_grapheContraintes.ajouterArc(non(a), b);
             m_grapheContraintes.ajouterArc(non(b), a);
-        }
-        else if (a == b) {
+        } else if (a == b) {
             m_grapheContraintes.ajouterArc(non(a), a);
         }
     }
 
     /// \brief Renvoie s'il existe une solution, et calcule une affectation possible
-    bool resoudre ()
+    bool resoudre()
     {
-        Kosaraju kosaraju (m_grapheContraintes); // Calcul des CFC
+        Kosaraju kosaraju(m_grapheContraintes); // Calcul des CFC
 
         m_affectations.clear();
 
-        for (int i=0; i<m_nbVariables; i++) {
+        for (int i = 0; i < m_nbVariables; i++) {
             if (kosaraju.CFC(i) == kosaraju.CFC(non(i))) {
                 m_affectations.clear();
                 return false;
@@ -47,13 +46,9 @@ public:
         return true;
     }
 
-    /// \brief Renvoie l'état auquel la variable peut être affectée pour résoudre le problème
-    /// (resoudre doit avoir été appelée auparavant)
-    bool estVrai (const int x) const
-    {
-        return m_affectations[x];
-    }
-
+    /// \brief Renvoie l'état auquel la variable peut être affectée pour résoudre le
+    /// problème (resoudre doit avoir été appelée auparavant)
+    bool estVrai(const int x) const { return m_affectations[x]; }
 
 private:
     int m_nbVariables;

@@ -10,16 +10,16 @@ class FloydWarshall
     typedef typename G::Weight Weight;
 
 public:
-    FloydWarshall (const G &g)
+    FloydWarshall(const G &g)
     {
         const auto oo = Constants<Weight>::infinity();
 
         m_dists.resize(g.verticeCount());
-        for (int i=0; i<g.verticeCount(); i++) {
+        for (int i = 0; i < g.verticeCount(); i++) {
             m_dists[i].resize(g.verticeCount());
 
-            for (int j=0; j<g.verticeCount(); j++) {
-                m_dists[i][j] = i==j ? 0 : +oo;
+            for (int j = 0; j < g.verticeCount(); j++) {
+                m_dists[i][j] = i == j ? 0 : +oo;
             }
         }
 
@@ -29,12 +29,13 @@ public:
             }
         }
 
-        for (int z=0; z<g.verticeCount(); z++) {
-            for (int x=0; x<g.verticeCount(); x++) {
+        for (int z = 0; z < g.verticeCount(); z++) {
+            for (int x = 0; x < g.verticeCount(); x++) {
                 if (m_dists[x][z] == +oo) continue;
 
-                for (int y=0; y<g.verticeCount(); y++) {
-                    if (m_dists[z][y] != +oo && m_dists[x][z] + m_dists[z][y] < m_dists[x][y]) {
+                for (int y = 0; y < g.verticeCount(); y++) {
+                    if (m_dists[z][y] != +oo
+                        && m_dists[x][z] + m_dists[z][y] < m_dists[x][y]) {
                         m_dists[x][y] = m_dists[x][z] + m_dists[z][y];
                     }
                 }
@@ -42,7 +43,7 @@ public:
         }
     }
 
-    inline Weight dist (const int vertex1, const int vertex2) const
+    inline Weight dist(const int vertex1, const int vertex2) const
     {
         return m_dists[vertex1][vertex2];
     }

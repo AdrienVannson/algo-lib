@@ -1,12 +1,17 @@
 #ifndef REGEX_HPP
 #define REGEX_HPP
 
-#include <ostream>
 #include <cassert>
+#include <ostream>
 
-template<class T> class Regex;
-template<class T> std::ostream& operator<<(std::ostream&, const Regex<T>&);
-template<class T> bool operator==(const Regex<T>&, const Regex<T>&);
+template<class T>
+class Regex;
+
+template<class T>
+std::ostream &operator<<(std::ostream &, const Regex<T> &);
+
+template<class T>
+bool operator==(const Regex<T> &, const Regex<T> &);
 
 template<class T>
 class Regex
@@ -21,21 +26,12 @@ public:
         KLEEN_STAR
     };
 
-    Regex() :
-        m_type(EMPTY_SET),
-        m_regex1(0),
-        m_regex2(0)
-    {}
+    Regex() : m_type(EMPTY_SET), m_regex1(0), m_regex2(0) {}
 
-    Regex(const Regex &r) :
-        m_type(r.m_type)
+    Regex(const Regex &r) : m_type(r.m_type)
     {
-        if (r.m_regex1) {
-            m_regex1 = new Regex(*r.m_regex1);
-        }
-        if (r.m_regex2) {
-            m_regex2 = new Regex(*r.m_regex2);
-        }
+        if (r.m_regex1) { m_regex1 = new Regex(*r.m_regex1); }
+        if (r.m_regex2) { m_regex2 = new Regex(*r.m_regex2); }
     }
 
     ~Regex()
@@ -45,21 +41,21 @@ public:
     }
 
     // Static constructors
-    static inline Regex* emptySet()
+    static inline Regex *emptySet()
     {
         Regex *regex = new Regex;
         regex->m_type = EMPTY_SET;
         return regex;
     }
 
-    static inline Regex* emptyString()
+    static inline Regex *emptyString()
     {
         Regex *regex = new Regex;
         regex->m_type = EMPTY_STRING;
         return regex;
     }
 
-    static inline Regex* character(const T c)
+    static inline Regex *character(const T c)
     {
         Regex *regex = new Regex;
         regex->m_type = CHARACTER;
@@ -67,7 +63,7 @@ public:
         return regex;
     }
 
-    static inline Regex* concatenation(Regex *a, Regex *b)
+    static inline Regex *concatenation(Regex *a, Regex *b)
     {
         Regex *regex = new Regex;
         regex->m_type = CONCATENATION;
@@ -76,7 +72,7 @@ public:
         return regex;
     }
 
-    static inline Regex* alternation(Regex *a, Regex *b)
+    static inline Regex *alternation(Regex *a, Regex *b)
     {
         Regex *regex = new Regex;
         regex->m_type = ALTERNATION;
@@ -85,7 +81,7 @@ public:
         return regex;
     }
 
-    static inline Regex* kleenStar(Regex *r)
+    static inline Regex *kleenStar(Regex *r)
     {
         Regex *regex = new Regex;
         regex->m_type = KLEEN_STAR;
@@ -94,12 +90,9 @@ public:
     }
 
     // Getters
-    inline Type type() const
-    {
-        return m_type;
-    }
+    inline Type type() const { return m_type; }
 
-    inline Regex* regex1() const
+    inline Regex *regex1() const
     {
         assert(m_type == CONCATENATION || m_type == ALTERNATION || m_type == KLEEN_STAR);
         return m_regex1;
@@ -117,12 +110,13 @@ public:
         return m_character;
     }
 
-    template<class U> friend class Regex;
-    friend bool operator== <T>(const Regex<T>&, const Regex<T>&);
-    friend std::ostream& operator<< <T>(std::ostream&, const Regex<T>&);
+    template<class U>
+    friend class Regex;
+    friend bool operator==<T>(const Regex<T> &, const Regex<T> &);
+    friend std::ostream &operator<<<T>(std::ostream &, const Regex<T> &);
 
 private:
-    std::pair<Regex<std::pair<T,int>>*,int> linearised(const int i) const;
+    std::pair<Regex<std::pair<T, int>> *, int> linearised(const int i) const;
 
     Type m_type;
     Regex *m_regex1;
@@ -132,28 +126,19 @@ private:
 
 using Reg = Regex<char>;
 
-
 template<class T>
-std::ostream& operator<<(std::ostream& s, const Regex<T> &r)
+std::ostream &operator<<(std::ostream &s, const Regex<T> &r)
 {
-    if (r.m_type == Regex<T>::EMPTY_SET) {
-        s << "∅";
-    }
-    if (r.m_type == Regex<T>::EMPTY_STRING) {
-        s << "ε";
-    }
-    if (r.m_type == Regex<T>::CHARACTER) {
-        s << r.m_character.first;
-    }
+    if (r.m_type == Regex<T>::EMPTY_SET) { s << "∅"; }
+    if (r.m_type == Regex<T>::EMPTY_STRING) { s << "ε"; }
+    if (r.m_type == Regex<T>::CHARACTER) { s << r.m_character.first; }
     if (r.m_type == Regex<T>::CONCATENATION) {
         s << "(" << (*r.m_regex1) << (*r.m_regex2) << ")";
     }
     if (r.m_type == Regex<T>::ALTERNATION) {
         s << "(" << (*r.m_regex1) << "+" << (*r.m_regex2) << ")";
     }
-    if (r.m_type == Regex<T>::KLEEN_STAR) {
-        s << (*r.m_regex1) << "*";
-    }
+    if (r.m_type == Regex<T>::KLEEN_STAR) { s << (*r.m_regex1) << "*"; }
 
     return s;
 }
@@ -161,17 +146,11 @@ std::ostream& operator<<(std::ostream& s, const Regex<T> &r)
 template<class T>
 bool operator==(const Regex<T> &a, const Regex<T> &b)
 {
-    if (a.m_type != b.m_type) {
-        return false;
-    }
+    if (a.m_type != b.m_type) { return false; }
 
-    if (a.m_type == Regex<T>::CHARACTER) {
-        return a.m_character == b.m_character;
-    }
+    if (a.m_type == Regex<T>::CHARACTER) { return a.m_character == b.m_character; }
 
-    if (a.m_type == Regex<T>::KLEEN_STAR) {
-        return (*a.m_regex1) == (*b.m_regex1);
-    }
+    if (a.m_type == Regex<T>::KLEEN_STAR) { return (*a.m_regex1) == (*b.m_regex1); }
 
     if (a.m_type == Regex<T>::CONCATENATION || a.m_type == Regex<T>::ALTERNATION) {
         return (*a.m_regex1) == (*b.m_regex1) && (*a.m_regex2) == (*b.m_regex2);

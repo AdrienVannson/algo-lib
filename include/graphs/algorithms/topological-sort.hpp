@@ -8,16 +8,15 @@ template<class G>
 class TopologicalSort
 {
 public:
-    TopologicalSort (const G &g) :
-        m_isPossible (true)
+    TopologicalSort(const G &g) : m_isPossible(true)
     {
         m_states.resize(g.verticeCount());
         m_topologicalSort.reserve(g.verticeCount());
 
         std::vector<std::pair<int, int>> pending; // {vertex, posNeighbour}
-        pending.reserve(g.verticeCount()+1);
+        pending.reserve(g.verticeCount() + 1);
 
-        for (int vertex=0; vertex<g.verticeCount(); vertex++) {
+        for (int vertex = 0; vertex < g.verticeCount(); vertex++) {
             pending.push_back(std::make_pair(vertex, 0));
 
             while (pending.size()) {
@@ -31,18 +30,16 @@ public:
                         m_topologicalSort.clear();
                         return;
                     }
-                    if (m_states[vertex] == 1) {
-                        continue;
-                    }
+                    if (m_states[vertex] == 1) continue;
 
                     m_states[vertex] = 2;
                 }
 
                 if (posNeighbour < g.neighbourCount(vertex)) {
-                    pending.push_back(std::make_pair(vertex, posNeighbour+1));
-                    pending.push_back(std::make_pair(g.neighbour(vertex, posNeighbour), 0));
-                }
-                else {
+                    pending.push_back(std::make_pair(vertex, posNeighbour + 1));
+                    pending.push_back(
+                        std::make_pair(g.neighbour(vertex, posNeighbour), 0));
+                } else {
                     m_states[vertex] = 1;
                     m_topologicalSort.push_back(vertex);
                 }
@@ -53,15 +50,9 @@ public:
         m_states.clear();
     }
 
-    inline bool isPossible () const
-    {
-        return m_isPossible;
-    }
+    inline bool isPossible() const { return m_isPossible; }
 
-    inline const std::vector<int>& topologicalSort () const
-    {
-        return m_topologicalSort;
-    }
+    inline const std::vector<int> &topologicalSort() const { return m_topologicalSort; }
 
 private:
     bool m_isPossible;

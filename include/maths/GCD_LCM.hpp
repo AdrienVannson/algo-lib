@@ -3,7 +3,7 @@
 
 #include <array>
 
-long long getGCD (long long a, long long b)
+long long getGCD(long long a, long long b)
 {
     if (a < 0) a *= -1;
     if (b < 0) b *= -1;
@@ -19,17 +19,17 @@ long long getGCD (long long a, long long b)
 }
 
 /// \brief Returns {gcd, u, v} such that gcd = a*u + b*v
-std::array<long long,3> getGCDBezout (long long a, long long b)
+std::array<long long, 3> getGCDBezout(long long a, long long b)
 {
     if (a < 0 || b < 0) {
-        std::array<long long,3> res = getGCDBezout(std::abs(a), std::abs(b));
+        std::array<long long, 3> res = getGCDBezout(std::abs(a), std::abs(b));
         if (a < 0) res[1] *= -1;
         if (b < 0) res[2] *= -1;
         return res;
     }
 
     if (b > a) {
-        std::array<long long,3> res = getGCDBezout(b, a);
+        std::array<long long, 3> res = getGCDBezout(b, a);
         std::swap(res[1], res[2]);
         return res;
     }
@@ -44,8 +44,8 @@ std::array<long long,3> getGCDBezout (long long a, long long b)
 
         const long long q = a / b;
 
-        u2 = u1 - q*u2;
-        v2 = v1 - q*v2;
+        u2 = u1 - q * u2;
+        v2 = v1 - q * v2;
         b = a % b;
 
         a = t;
@@ -56,9 +56,6 @@ std::array<long long,3> getGCDBezout (long long a, long long b)
     return {a, u1, v1};
 }
 
-long long getLCM (long long a, long long b)
-{
-    return std::abs(a * b) / getGCD(a, b);
-}
+long long getLCM(long long a, long long b) { return std::abs(a * b) / getGCD(a, b); }
 
 #endif // GCD_LCM_HPP

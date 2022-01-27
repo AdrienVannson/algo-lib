@@ -10,7 +10,7 @@ template<class G>
 class BFS
 {
 public:
-    BFS (const G &graph, const std::vector<int> startVertice)
+    BFS(const G &graph, const std::vector<int> startVertice)
     {
         m_dists.resize(graph.verticeCount(), Constants<int>::infinity());
 
@@ -26,7 +26,7 @@ public:
             const int dist = pendingVertice.front().second + 1;
             pendingVertice.pop();
 
-            for (int i=0; i<graph.neighbourCount(vertex); i++) {
+            for (int i = 0; i < graph.neighbourCount(vertex); i++) {
                 const int neighbour = graph.neighbour(vertex, i);
 
                 if (m_dists[neighbour] == Constants<int>::infinity()) {
@@ -37,14 +37,12 @@ public:
         }
     }
 
-    BFS (const G &graph, const int startVertex) :
-        BFS (graph, std::vector<int>{startVertex})
-    {}
-
-    int distTo (const int vertex) const
+    BFS(const G &graph, const int startVertex) :
+        BFS(graph, std::vector<int> {startVertex})
     {
-        return m_dists[vertex];
     }
+
+    int distTo(const int vertex) const { return m_dists[vertex]; }
 
 private:
     std::vector<int> m_dists;

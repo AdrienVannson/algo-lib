@@ -9,13 +9,13 @@ template<class G>
 class Kosaraju
 {
 public:
-    Kosaraju (const G &graph)
+    Kosaraju(const G &graph)
     {
         m_graph = &graph;
         m_states.resize(graph.verticeCount(), NOT_VISITED);
 
         // First DFS: find a postordering
-        for (int v=0; v<graph.verticeCount(); v++) {
+        for (int v = 0; v < graph.verticeCount(); v++) {
             findPostOrdering(v);
         }
 
@@ -23,7 +23,7 @@ public:
         m_graph = &transposeGraph;
 
         // Second DFS: find the SCCs
-        for (int i=graph.verticeCount()-1; i>=0; i--) {
+        for (int i = graph.verticeCount() - 1; i >= 0; i--) {
             const int v = m_postOrdering[i];
 
             if (m_states[v] < 0) { // Not visited during the second DFS
@@ -36,24 +36,18 @@ public:
     }
 
     /// \brief Returns the number of strongly connected components of the graph
-    inline int sccCount () const {
-        return m_sccs.size();
-    }
+    inline int sccCount() const { return m_sccs.size(); }
 
     /// \brief Returns a vector containing the strongly connected components of the graph
-    inline const std::vector<std::vector<int>>& sccs () const {
-        return m_sccs;
-    }
+    inline const std::vector<std::vector<int>> &sccs() const { return m_sccs; }
 
-    /// \brief Returns the ID of the strongly connected component containing a given vertice
-    inline int scc (const int v) const {
-        return m_states[v];
-    }
-
+    /// \brief Returns the ID of the strongly connected component containing a given
+    /// vertice
+    inline int scc(const int v) const { return m_states[v]; }
 
 private:
     // DFS 1
-    void findPostOrdering (const int v)
+    void findPostOrdering(const int v)
     {
         if (m_states[v] == VISITED_1) return;
         m_states[v] = VISITED_1;
@@ -66,7 +60,7 @@ private:
     }
 
     // DFS 2
-    void findSccs (const int v)
+    void findSccs(const int v)
     {
         if (m_states[v] >= 0) return;
         m_states[v] = m_sccs.size() - 1;

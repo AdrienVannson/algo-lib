@@ -2,124 +2,87 @@
 
 using namespace std;
 
-JSON::JSON () :
-    m_type (NULL_VALUE)
-{}
-JSON::JSON (const int n) :
-    m_type (INT),
-    m_int (n)
-{}
-JSON::JSON (const double x) :
-    m_type (FLOAT),
-    m_float (x)
-{}
-JSON::JSON (const bool b) :
-    m_type (BOOLEAN),
-    m_bool (b)
-{}
-JSON::JSON (const std::string &s) :
-    m_type (STRING),
-    m_string (s)
-{}
-JSON::JSON (const std::vector<JSON*> &a) :
-    m_type (ARRAY),
-    m_array (a)
-{}
-JSON::JSON (const std::map<std::string, JSON*> &o) :
-    m_type (OBJECT),
-    m_object (o)
-{}
+JSON::JSON() : m_type(NULL_VALUE) {}
+JSON::JSON(const int n) : m_type(INT), m_int(n) {}
+JSON::JSON(const double x) : m_type(FLOAT), m_float(x) {}
+JSON::JSON(const bool b) : m_type(BOOLEAN), m_bool(b) {}
+JSON::JSON(const std::string &s) : m_type(STRING), m_string(s) {}
+JSON::JSON(const std::vector<JSON *> &a) : m_type(ARRAY), m_array(a) {}
+JSON::JSON(const std::map<std::string, JSON *> &o) : m_type(OBJECT), m_object(o) {}
 
-JSON::JSON (const JSON &other)
+JSON::JSON(const JSON &other)
 {
     m_type = other.m_type;
 
     if (m_type == INT) {
         m_int = other.m_int;
-    }
-    else if (m_type == FLOAT) {
+    } else if (m_type == FLOAT) {
         m_float = other.m_float;
-    }
-    else if (m_type == BOOLEAN) {
+    } else if (m_type == BOOLEAN) {
         m_bool = other.m_bool;
-    }
-    else if (m_type == STRING) {
-        new (&m_string) string ();
+    } else if (m_type == STRING) {
+        new (&m_string) string();
         m_string = other.m_string;
-    }
-    else if (m_type == ARRAY) {
-        new (&m_array) vector<JSON*> ();
-        for (JSON* obj : other.m_array) {
-            m_array.push_back(new JSON (obj));
+    } else if (m_type == ARRAY) {
+        new (&m_array) vector<JSON *>();
+        for (JSON *obj : other.m_array) {
+            m_array.push_back(new JSON(obj));
         }
-    }
-    else if (m_type == OBJECT) {
-        new (&m_object) map<string, JSON*> ();
-        for (pair<string, JSON*> p : other.m_object) {
-            m_object[p.first] = new JSON (p.second);
+    } else if (m_type == OBJECT) {
+        new (&m_object) map<string, JSON *>();
+        for (pair<string, JSON *> p : other.m_object) {
+            m_object[p.first] = new JSON(p.second);
         }
     }
 }
 
-JSON::JSON (const JSON *other) :
-    JSON (*other)
-{}
+JSON::JSON(const JSON *other) : JSON(*other) {}
 
-JSON::~JSON ()
+JSON::~JSON()
 {
     if (m_type == ARRAY) {
         for (JSON *child : m_array) {
             delete child;
         }
-    }
-    else if (m_type == OBJECT) {
+    } else if (m_type == OBJECT) {
         for (const auto &child : m_object) {
             delete child.second;
         }
     }
 }
 
-JSON* JSON::operator[] (const string &s)
-{
-    return getObject()[s];
-}
+JSON *JSON::operator[](const string &s) { return getObject()[s]; }
 
-string JSON::toString () const
+string JSON::toString() const
 {
     string s;
     addToString(s);
     return s;
 }
 
-void JSON::addToString (string &s) const
+void JSON::addToString(string &s) const
 {
     if (m_type == NULL_VALUE) {
         s.append("null");
-    }
-    else if (m_type == INT) {
+    } else if (m_type == INT) {
         s.append(to_string(m_int));
-    }
-    else if (m_type == FLOAT) {
+    } else if (m_type == FLOAT) {
         s.append(to_string(m_float));
-    }
-    else if (m_type == BOOLEAN) {
+    } else if (m_type == BOOLEAN) {
         if (m_bool) {
             s.append("true");
-        }
-        else {
+        } else {
             s.append("false");
         }
-    }
-    else if (m_type == STRING) {
+    } else if (m_type == STRING) {
         s.push_back('"');
         s.append(m_string);
         s.push_back('"');
-    }
-    else if (m_type == ARRAY) {
+    } else if (m_type == ARRAY) {
         s.push_back('[');
 
         bool isFirst = true;
-        for (JSON* child : m_array) {
+        for (JSON *child : m_array) {
             if (!isFirst) s.push_back(',');
             isFirst = false;
 
@@ -127,8 +90,7 @@ void JSON::addToString (string &s) const
         }
 
         s.push_back(']');
-    }
-    else { // Object
+    } else { // Object
         s.push_back('{');
 
         bool isFirst = true;
@@ -148,12 +110,9 @@ void JSON::addToString (string &s) const
     }
 }
 
-void JSON::fromString (const string &s)
-{
-    fromString(s, 0);
-}
+void JSON::fromString(const string &s) { fromString(s, 0); }
 
-int JSON::fromString (const string &s, int i)
+int JSON::fromString(const string &s, int i)
 {
     i = skipWhitespaces(s, i);
 
@@ -166,7 +125,7 @@ int JSON::fromString (const string &s, int i)
         bool isNegative = false;
         if (s[i] == '-') {
             isNegative = true;
-            i = skipWhitespaces(s, i+1);
+            i = skipWhitespaces(s, i + 1);
         }
 
         string number;
@@ -186,17 +145,12 @@ int JSON::fromString (const string &s, int i)
             m_type = FLOAT;
             m_float = stod(number);
 
-            if (isNegative) {
-                m_float *= -1;
-            }
-        }
-        else {
+            if (isNegative) { m_float *= -1; }
+        } else {
             m_type = INT;
             m_int = stoi(number);
 
-            if (isNegative) {
-                m_int *= -1;
-            }
+            if (isNegative) { m_int *= -1; }
         }
 
         return i;
@@ -218,7 +172,7 @@ int JSON::fromString (const string &s, int i)
         i++;
 
         m_type = STRING;
-        new (&m_string) string ();
+        new (&m_string) string();
 
         while (s[i] != '"') {
             m_string.push_back(s[i]);
@@ -230,12 +184,12 @@ int JSON::fromString (const string &s, int i)
 
     if (s[i] == '[') {
         m_type = ARRAY;
-        new (&m_array) vector<JSON*> ();
+        new (&m_array) vector<JSON *>();
 
-        i = skipWhitespaces(s, i+1);
+        i = skipWhitespaces(s, i + 1);
 
         while (s[i] != ']') {
-            JSON *child = new JSON ();
+            JSON *child = new JSON();
             i = child->fromString(s, i);
             m_array.push_back(child);
 
@@ -252,24 +206,22 @@ int JSON::fromString (const string &s, int i)
 
     if (s[i] == '{') {
         m_type = OBJECT;
-        new (&m_object) map<string, JSON*> ();
+        new (&m_object) map<string, JSON *>();
 
-        i = skipWhitespaces(s, i+1);
+        i = skipWhitespaces(s, i + 1);
 
         while (s[i] != '}') {
             pair<string, int> res = readString(s, i);
             i = skipWhitespaces(s, res.second) + 1;
 
-            JSON *child = new JSON ();
+            JSON *child = new JSON();
             i = child->fromString(s, i);
 
             m_object[res.first] = child;
 
             i = skipWhitespaces(s, i);
 
-            if (s[i] == ',') {
-                i++;
-            }
+            if (s[i] == ',') { i++; }
         }
 
         return i + 1;
@@ -278,7 +230,7 @@ int JSON::fromString (const string &s, int i)
     exit(1);
 }
 
-int JSON::skipWhitespaces (const string &s, int i) const
+int JSON::skipWhitespaces(const string &s, int i) const
 {
     while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t') {
         i++;
@@ -286,7 +238,7 @@ int JSON::skipWhitespaces (const string &s, int i) const
     return i;
 }
 
-pair<string, int> JSON::readString (const string &s, int i) const
+pair<string, int> JSON::readString(const string &s, int i) const
 {
     i = skipWhitespaces(s, i) + 1;
     string content;
@@ -296,5 +248,5 @@ pair<string, int> JSON::readString (const string &s, int i) const
         i++;
     }
 
-    return make_pair(content, i+1);
+    return make_pair(content, i + 1);
 }
