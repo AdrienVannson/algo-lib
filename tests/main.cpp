@@ -7,7 +7,7 @@ using namespace std;
  *** Data structures ***********************************************************
  ******************************************************************************/
 
-void testDisjointSet ()
+void testDisjointSet()
 {
     DisjointSet ds(5);
 
@@ -24,12 +24,12 @@ void testDisjointSet ()
     cerr << "### Disjoint set: OK" << endl;
 }
 
-void testMaxHeap ()
+void testMaxHeap()
 {
     MaxHeap<int> heap;
     priority_queue<int> pqueue;
 
-    for (int i=0; i<10000; i++) {
+    for (int i = 0; i < 10000; i++) {
         const int v = random() % 5000;
         heap.insert(v);
         pqueue.push(v);
@@ -42,7 +42,7 @@ void testMaxHeap ()
         pqueue.pop();
     }
 
-    for (int i=0; i<10000; i++) {
+    for (int i = 0; i < 10000; i++) {
         const int v = random();
         heap.insert(v);
         pqueue.push(v);
@@ -56,7 +56,7 @@ void testMaxHeap ()
     }
 
     vector<int> vs;
-    for (int i=0; i<10000; i++) {
+    for (int i = 0; i < 10000; i++) {
         const int v = random() % 5000;
         vs.push_back(v);
         pqueue.push(v);
@@ -72,22 +72,21 @@ void testMaxHeap ()
     cerr << "### Max heap: OK" << endl;
 }
 
-
 /*******************************************************************************
  *** Graph algorithms **********************************************************
  ******************************************************************************/
 
-void testBellmanFord ()
+void testBellmanFord()
 {
     {
-        WGraph<int> graph (4, true);
+        WGraph<int> graph(4, true);
         graph.addEdge(0, 2, 1);
         graph.addEdge(1, 2, 1);
         graph.addEdge(2, 0, 1);
         graph.addEdge(2, 3, 5);
         graph.addEdge(2, 3, 3);
 
-        BellmanFord<WGraph<int>> bellmanFord (graph, 0);
+        BellmanFord<WGraph<int>> bellmanFord(graph, 0);
         assert(bellmanFord.distTo(0) == 0);
         assert(bellmanFord.distTo(1) == Constants<int>::infinity());
         assert(bellmanFord.distTo(2) == 1);
@@ -95,7 +94,7 @@ void testBellmanFord ()
     }
 
     {
-        WGraph<int> graph (7, true);
+        WGraph<int> graph(7, true);
         graph.addEdge(0, 1, 3);
         graph.addEdge(0, 3, 10000);
         graph.addEdge(3, 4, 1);
@@ -103,7 +102,7 @@ void testBellmanFord ()
         graph.addEdge(5, 6, 1);
         graph.addEdge(6, 3, -4);
 
-        BellmanFord<WGraph<int>> bellmanFord (graph, 0);
+        BellmanFord<WGraph<int>> bellmanFord(graph, 0);
 
         assert(bellmanFord.distTo(0) == 0);
         assert(bellmanFord.distTo(1) == 3);
@@ -117,15 +116,15 @@ void testBellmanFord ()
     cerr << "### Bellman-Ford: OK" << endl;
 }
 
-void testBFS ()
+void testBFS()
 {
-    Graph graph (4, true);
+    Graph graph(4, true);
     graph.addEdge(0, 2);
     graph.addEdge(1, 2);
     graph.addEdge(2, 0);
     graph.addEdge(2, 3);
 
-    BFS<Graph> bfs (graph, 0);
+    BFS<Graph> bfs(graph, 0);
     assert(bfs.distTo(0) == 0);
     assert(bfs.distTo(1) == INT_MAX);
     assert(bfs.distTo(2) == 1);
@@ -134,16 +133,16 @@ void testBFS ()
     cerr << "### BFS: OK" << endl;
 }
 
-void testDijkstra ()
+void testDijkstra()
 {
-    WGraph<int> graph (4, true);
+    WGraph<int> graph(4, true);
     graph.addEdge(0, 2, 1);
     graph.addEdge(1, 2, 1);
     graph.addEdge(2, 0, 1);
     graph.addEdge(2, 3, 5);
     graph.addEdge(2, 3, 3);
 
-    Dijkstra<WGraph<int>> dijkstra (graph, 0);
+    Dijkstra<WGraph<int>> dijkstra(graph, 0);
     assert(dijkstra.distTo(0) == 0);
     assert(dijkstra.distTo(1) == Constants<int>::infinity());
     assert(dijkstra.distTo(2) == 1);
@@ -152,7 +151,7 @@ void testDijkstra ()
     cerr << "### Dijkstra: OK" << endl;
 }
 
-void testEdmondsKarp ()
+void testEdmondsKarp()
 {
     WGraph<int> graph(6, true);
     graph.addEdge(0, 1, 16);
@@ -178,25 +177,25 @@ void testEdmondsKarp ()
     cerr << "### Edmonds-Karp: OK" << endl;
 }
 
-void testFloydWarshall ()
+void testFloydWarshall()
 {
-    WGraph<int> graph (4, true);
+    WGraph<int> graph(4, true);
     graph.addEdge(0, 2, 1);
     graph.addEdge(1, 2, 1);
     graph.addEdge(2, 0, 1);
     graph.addEdge(2, 3, 5);
     graph.addEdge(2, 3, 3);
 
-    FloydWarshall<WGraph<int>> fw (graph);
-    assert(fw.dist(0,0) == 0);
-    assert(fw.dist(0,1) == Constants<int>::infinity());
-    assert(fw.dist(0,2) == 1);
-    assert(fw.dist(0,3) == 4);
+    FloydWarshall<WGraph<int>> fw(graph);
+    assert(fw.dist(0, 0) == 0);
+    assert(fw.dist(0, 1) == Constants<int>::infinity());
+    assert(fw.dist(0, 2) == 1);
+    assert(fw.dist(0, 3) == 4);
 
     cerr << "### Floyd-Warshall: OK" << endl;
 }
 
-void testKosaraju ()
+void testKosaraju()
 {
     Graph graph(12, true);
     graph.addEdge(1, 2);
@@ -217,18 +216,13 @@ void testKosaraju ()
     graph.addEdge(11, 1);
     graph.addEdge(11, 0);
 
-    const Kosaraju<Graph> kosaraju (graph);
-    const vector<vector<int>> ans {
-        {1, 11, 10},
-        {4, 6, 5, 7, 9, 8},
-        {2, 3},
-        {0}
-    };
+    const Kosaraju<Graph> kosaraju(graph);
+    const vector<vector<int>> ans {{1, 11, 10}, {4, 6, 5, 7, 9, 8}, {2, 3}, {0}};
 
     assert(kosaraju.sccCount() == 4);
     assert(kosaraju.sccs() == ans);
 
-    for (int i=0; i<(int)kosaraju.sccCount(); i++) {
+    for (int i = 0; i < (int)kosaraju.sccCount(); i++) {
         for (int v : kosaraju.sccs()[i]) {
             assert(kosaraju.scc(v) == i);
         }
@@ -237,24 +231,15 @@ void testKosaraju ()
     cerr << "### Kosaraju: OK" << endl;
 }
 
-void testKruskal ()
+void testKruskal()
 {
     WGraph<int> g(7, false);
 
-    vector<array<int,3>> edges = {
-        {0, 1, 3},
-        {0, 2, 2},
-        {0, 3, 3},
-        {1, 2, 1},
-        {1, 3, 5},
-        {1, 4, 3},
-        {2, 3, 5},
-        {2, 5, 2},
-        {3, 5, 4},
-        {4, 5, 5},
-        {5, 6, 9}
-    };
-    for (auto e : edges) g.addEdge(e[0], e[1], e[2]);
+    vector<array<int, 3>> edges
+        = {{0, 1, 3}, {0, 2, 2}, {0, 3, 3}, {1, 2, 1}, {1, 3, 5}, {1, 4, 3},
+           {2, 3, 5}, {2, 5, 2}, {3, 5, 4}, {4, 5, 5}, {5, 6, 9}};
+    for (auto e : edges)
+        g.addEdge(e[0], e[1], e[2]);
 
     Kruskal<WGraph<int>> kruskal(g);
     assert(kruskal.edgeCount() == 6);
@@ -266,12 +251,12 @@ void testKruskal ()
     }
     sort(spanningForest.begin(), spanningForest.end());
 
-    assert(spanningForest == (vector<int>{1,2,3,5,7,10}));
+    assert(spanningForest == (vector<int> {1, 2, 3, 5, 7, 10}));
 
     cerr << "### Kruskal: OK" << endl;
 }
 
-void testMinCut ()
+void testMinCut()
 {
     WGraph<int> graph(6, true);
     graph.addEdge(0, 1, 16);
@@ -297,24 +282,15 @@ void testMinCut ()
     cerr << "### Min-Cut: OK" << endl;
 }
 
-void testPrim ()
+void testPrim()
 {
     WGraph<int> g(7, false);
 
-    vector<array<int,3>> edges = {
-        {0, 1, 3},
-        {0, 2, 2},
-        {0, 3, 3},
-        {1, 2, 1},
-        {1, 3, 5},
-        {1, 4, 3},
-        {2, 3, 5},
-        {2, 5, 2},
-        {3, 5, 4},
-        {4, 5, 5},
-        {5, 6, 9}
-    };
-    for (auto e : edges) g.addEdge(e[0], e[1], e[2]);
+    vector<array<int, 3>> edges
+        = {{0, 1, 3}, {0, 2, 2}, {0, 3, 3}, {1, 2, 1}, {1, 3, 5}, {1, 4, 3},
+           {2, 3, 5}, {2, 5, 2}, {3, 5, 4}, {4, 5, 5}, {5, 6, 9}};
+    for (auto e : edges)
+        g.addEdge(e[0], e[1], e[2]);
 
     Prim<WGraph<int>> prim(g);
     assert(prim.edgeCount() == 6);
@@ -326,12 +302,12 @@ void testPrim ()
     }
     sort(spanningForest.begin(), spanningForest.end());
 
-    assert(spanningForest == (vector<int>{1,2,3,5,7,10}));
+    assert(spanningForest == (vector<int> {1, 2, 3, 5, 7, 10}));
 
     cerr << "### Prim: OK" << endl;
 }
 
-void testTarjan ()
+void testTarjan()
 {
     Graph graph(12, true);
     graph.addEdge(1, 2);
@@ -352,18 +328,13 @@ void testTarjan ()
     graph.addEdge(11, 1);
     graph.addEdge(11, 0);
 
-    const Tarjan<Graph> tarjan (graph);
-    const vector<vector<int>> ans {
-        {0},
-        {3, 2},
-        {9, 8, 7, 6, 5, 4},
-        {11, 10, 1}
-    };
+    const Tarjan<Graph> tarjan(graph);
+    const vector<vector<int>> ans {{0}, {3, 2}, {9, 8, 7, 6, 5, 4}, {11, 10, 1}};
 
     assert(tarjan.sccCount() == 4);
     assert(tarjan.sccs() == ans);
 
-    for (int i=0; i<(int)tarjan.sccCount(); i++) {
+    for (int i = 0; i < (int)tarjan.sccCount(); i++) {
         for (int v : tarjan.sccs()[i]) {
             assert(tarjan.scc(v) == i);
         }
@@ -372,31 +343,22 @@ void testTarjan ()
     cerr << "### Tarjan: OK" << endl;
 }
 
-void testTopologicalSort ()
+void testTopologicalSort()
 {
     TopologicalSort<Graph> ts(Graph(0, true));
     assert(ts.isPossible() && ts.topologicalSort().size() == 0);
 
     Graph g(10, true);
-    vector<array<int,2>> edges = {
-        {1, 2},
-        {1, 8},
-        {2, 3},
-        {2, 8},
-        {3, 6},
-        {4, 3},
-        {4, 5},
-        {5, 6},
-        {9, 8}
-    };
-    for (auto e : edges) g.addEdge(e[0], e[1]);
+    vector<array<int, 2>> edges
+        = {{1, 2}, {1, 8}, {2, 3}, {2, 8}, {3, 6}, {4, 3}, {4, 5}, {5, 6}, {9, 8}};
+    for (auto e : edges)
+        g.addEdge(e[0], e[1]);
 
     ts = TopologicalSort<Graph>(g);
     assert(ts.topologicalSort() == vector<int>({9, 7, 4, 5, 1, 2, 8, 3, 6, 0}));
 
     cerr << "### Topological sort: OK" << endl;
 }
-
 
 /*******************************************************************************
  *** Trees *********************************************************************
@@ -424,15 +386,14 @@ void testGraphToTree()
     cerr << "### Graph to tree: OK" << endl;
 }
 
-
 /*******************************************************************************
  *** Sorting *******************************************************************
  ******************************************************************************/
 
-void testSorting ()
+void testSorting()
 {
     vector<int> sorted;
-    for (int i=0; i<10000; i++) {
+    for (int i = 0; i < 10000; i++) {
         sorted.push_back(rand() % 10000);
     }
     const vector<int> original = sorted;
@@ -447,21 +408,20 @@ void testSorting ()
     cerr << "### Merge sort: OK" << endl;
 }
 
-
 /*******************************************************************************
  *** Maths *********************************************************************
  ******************************************************************************/
 
-void testExponentiationBySquaring ()
+void testExponentiationBySquaring()
 {
-    for (int p=1; p<30; p++) {
-        assert(getPower(2, p) == (1<<p));
+    for (int p = 1; p < 30; p++) {
+        assert(getPower(2, p) == (1 << p));
     }
 
     cerr << "### Exponentiation by squaring: OK" << endl;
 }
 
-void testerFraction ()
+void testerFraction()
 {
     const Fraction<int> a(3, 4), b(1, 3);
     const Fraction<int> r = a - b;
@@ -469,35 +429,35 @@ void testerFraction ()
     assert(r.num() == 5 && r.den() == 12);
 }
 
-void checkGCD_LCM ()
+void checkGCD_LCM()
 {
-    assert(getGCD(42, 13*14) == 14);
-    assert(getGCD(42, -13*14) == 14);
+    assert(getGCD(42, 13 * 14) == 14);
+    assert(getGCD(42, -13 * 14) == 14);
     assert(getGCD(0, 0) == 0);
     assert(getGCD(0, 42) == 42);
 
-    array<long long,3> res;
+    array<long long, 3> res;
 
-    res = getGCDBezout(42, 13*14);
-    assert(res[0] == 14 && 42*res[1]+13*14*res[2] == res[0]);
+    res = getGCDBezout(42, 13 * 14);
+    assert(res[0] == 14 && 42 * res[1] + 13 * 14 * res[2] == res[0]);
 
-    res = getGCDBezout(42, -13*14);
-    assert(res[0] == 14 && 42*res[1]-13*14*res[2] == res[0]);
+    res = getGCDBezout(42, -13 * 14);
+    assert(res[0] == 14 && 42 * res[1] - 13 * 14 * res[2] == res[0]);
 
     res = getGCDBezout(0, 0);
     assert(res[0] == 0);
 
     res = getGCDBezout(0, 42);
-    assert(res[0] == 42 && 42*res[2] == res[0]);
+    assert(res[0] == 42 && 42 * res[2] == res[0]);
 
-    assert(getLCM(2*7, 2*13) == 2*7*13);
-    assert(getLCM(2*7, -2*13) == 2*7*13);
+    assert(getLCM(2 * 7, 2 * 13) == 2 * 7 * 13);
+    assert(getLCM(2 * 7, -2 * 13) == 2 * 7 * 13);
     cerr << "GCD / LCM checked" << endl;
 }
 
-void testPermutation ()
+void testPermutation()
 {
-    const Permutation perm (vector<int>{5, 1, 3, 0, 4, 2, 7, 6});
+    const Permutation perm(vector<int> {5, 1, 3, 0, 4, 2, 7, 6});
 
     // Inverse
     assert(perm * perm.inverse() == Permutation(perm.size()));
@@ -516,7 +476,8 @@ void testPermutation ()
     assert(orbits.size() == 4);
 
     assert(orbits[0].size() == 4);
-    assert(orbits[0][0] == 0 && orbits[0][1] == 5 && orbits[0][2] == 2 && orbits[0][3] == 3);
+    assert(
+        orbits[0][0] == 0 && orbits[0][1] == 5 && orbits[0][2] == 2 && orbits[0][3] == 3);
 
     assert(orbits[1].size() == 1 && orbits[1][0] == 1);
     assert(orbits[2].size() == 1 && orbits[2][0] == 4);
@@ -525,7 +486,8 @@ void testPermutation ()
     assert(orbits[3][0] == 6 && orbits[3][1] == 7);
 
     // Composition
-    const Permutation perm2 = Permutation(vector<int>{2, 0, 1}) * Permutation(vector<int>{1, 0, 2});
+    const Permutation perm2
+        = Permutation(vector<int> {2, 0, 1}) * Permutation(vector<int> {1, 0, 2});
     assert(perm2(0) == 0 && perm2(1) == 2 && perm2(2) == 1);
 
     // Signature
@@ -534,7 +496,7 @@ void testPermutation ()
 
     // Transposition decomposition
     vector<Permutation> decomposition = perm.transpositionsDecomposition();
-    Permutation res (perm.size());
+    Permutation res(perm.size());
     while (decomposition.size()) {
         res = decomposition.back() * res;
         decomposition.pop_back();
@@ -544,30 +506,30 @@ void testPermutation ()
     cerr << "### Permutation: OK" << endl;
 }
 
-void testPolynomial ()
+void testPolynomial()
 {
     Polynomial<int> P({-3, 1});
     Polynomial<int> Q({5, -3, 1});
 
     assert(P == P);
-    assert(((P+Q) == Polynomial<int>({2, -2, 1})));
-    assert(((P*Q) == Polynomial<int>({-15, 14, -6, 1})));
+    assert(((P + Q) == Polynomial<int>({2, -2, 1})));
+    assert(((P * Q) == Polynomial<int>({-15, 14, -6, 1})));
 
     // Lagrange polynomial
-    std::vector<std::pair<Fraction<int>,Fraction<int>>> points{make_pair(0,-2), make_pair(1,2), make_pair(2,8)};
+    std::vector<std::pair<Fraction<int>, Fraction<int>>> points {
+        make_pair(0, -2), make_pair(1, 2), make_pair(2, 8)};
     assert(lagrangePolynomial(points) == Polynomial<Fraction<int>>({-2, 3, 1}));
 
     cerr << "### Polynomial: OK" << endl;
 }
 
-
 /*******************************************************************************
  *** Geometry ******************************************************************
  ******************************************************************************/
 
-void testVect2 ()
+void testVect2()
 {
-    Vect2<int> u(1,2), v(3,4);
+    Vect2<int> u(1, 2), v(3, 4);
     assert((u ^ v) == -2);
 
     cerr << "### Vect2: OK" << endl;
@@ -575,17 +537,10 @@ void testVect2 ()
 
 void testConvexHull()
 {
-    const vector<Vect2<int>> points = {
-        Vect2<int>(0, 0),
-        Vect2<int>(0, 1),
-        Vect2<int>(0, 2),
-        Vect2<int>(1, 0),
-        Vect2<int>(1, 1),
-        Vect2<int>(1, 2),
-        Vect2<int>(2, 0),
-        Vect2<int>(2, 1),
-        Vect2<int>(2, 2)
-    };
+    const vector<Vect2<int>> points
+        = {Vect2<int>(0, 0), Vect2<int>(0, 1), Vect2<int>(0, 2),
+           Vect2<int>(1, 0), Vect2<int>(1, 1), Vect2<int>(1, 2),
+           Vect2<int>(2, 0), Vect2<int>(2, 1), Vect2<int>(2, 2)};
 
     ConvexHull<int> convexHull(points);
     assert(convexHull.verticeIds().size() == 4);
@@ -596,8 +551,6 @@ void testConvexHull()
 
     cerr << "### Convex hull: OK" << endl;
 }
-
-
 
 /*******************************************************************************
  *** Strings *******************************************************************
@@ -611,9 +564,9 @@ void testAutomaton()
         aut.addState(true, true);
         aut.addState(false, false);
         aut.addState(false, false);
-        for (int s=0; s<3; s++) {
-            for (int d=0; d<=9; d++) {
-                aut.addTransition(s, '0'+d, (s+d) % 3);
+        for (int s = 0; s < 3; s++) {
+            for (int d = 0; d <= 9; d++) {
+                aut.addTransition(s, '0' + d, (s + d) % 3);
             }
         }
 
@@ -634,10 +587,7 @@ void testAutomaton()
                 Reg::character('1'),
                 Reg::concatenation(
                     Reg::alternation(Reg::character('0'), Reg::character('1')),
-                    Reg::alternation(Reg::character('0'), Reg::character('1'))
-                )
-            )
-        );
+                    Reg::alternation(Reg::character('0'), Reg::character('1')))));
 
         Aut aut = Aut::fromRegex(reg);
 
@@ -653,7 +603,7 @@ void testAutomaton()
         for (int x = 0; x < 256; x++) {
             vector<char> v;
             for (int i = 7; i >= 0; i--) {
-                v.push_back(x & (1<<i) ? '1' : '0');
+                v.push_back(x & (1 << i) ? '1' : '0');
             }
             assert(aut.isAccepted(v) == ((x & 4) != 0));
         }
@@ -704,7 +654,7 @@ void testAutomaton()
     cerr << "### Automaton: OK" << endl;
 }
 
-void testKmp ()
+void testKmp()
 {
     const vector<int> kmp = getKmp("ababc#abababcd");
     assert(kmp == vector<int>({-1, 0, 0, 1, 2, 0, 0, 1, 2, 3, 4, 3, 4, 5, 0}));
@@ -712,26 +662,22 @@ void testKmp ()
     cerr << "### KMP: OK" << endl;
 }
 
-
-
 /*******************************************************************************
  *** Other *********************************************************************
  ******************************************************************************/
 
-void testInfinity ()
+void testInfinity()
 {
     assert(Constants<int>::infinity() == 2147483647);
 
     cerr << "### Infinity: OK" << endl;
 }
 
-
-
 /*******************************************************************************
  *** Main  *********************************************************************
  ******************************************************************************/
 
-int main ()
+int main()
 {
     srand(42);
 
