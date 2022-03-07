@@ -21,6 +21,7 @@ HEADERS += \
         src/graphs/algorithms/min-cut.hpp \
         src/graphs/algorithms/prim.hpp \
         src/graphs/algorithms/tarjan.hpp \
+        src/graphs/algorithms/to-bipartite.hpp \
         src/graphs/algorithms/topological-sort.hpp \
         src/graphs/algorithms/transpose-graph.hpp \
         src/graphs/data-structures/Graph.hpp \

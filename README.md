@@ -13,6 +13,7 @@
         - Dijkstra
         - Edmonds-Karp
         - Floyd-Warshall
+        - Conversion to bipartite graph
         - Kosaraju
         - Kruskal
         - Min-Cut
