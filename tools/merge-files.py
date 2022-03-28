@@ -14,10 +14,10 @@ isPreviousLineEmpty = True # Remove consecutive empty lines
 includedFiles = []
 words = set() # All the words contained in the files
 
-firstLines = set() # Lines that should be added only once (at the beginning of the file)
+firstLines = set() # Lines that should be added only once, at the beginning of the file
 outputLines = []
 
-def include (path, includeRecursivement):
+def include(path, isRecursive):
     global isPreviousLineEmpty
 
     path = os.path.realpath(path)
@@ -41,9 +41,12 @@ def include (path, includeRecursivement):
                 currentWord = []
 
     for line in content:
-        if re.match("^#include <", line) or line == "using namespace std;": # Include
+        # The line should appear only once, at the beginning of the file
+        if re.match("^#include <", line) or line == "using namespace std;":
             firstLines.add(line)
-        elif re.match("^#include \"*\"", line): # Include
+
+        # Include
+        elif re.match("^#include \"*\"", line):
 
             if ' // ONLY_IF ' in line:
                 line, motsRequis = line.split(' // ONLY_IF ')
@@ -58,7 +61,7 @@ def include (path, includeRecursivement):
 
             nouveauFichier = re.sub("^\\#include \"(.+)\"$", "\\1", line)
 
-            if includeRecursivement:
+            if isRecursive:
                 succes = False
 
                 for dossierInclusion in dossiersInclusion:
@@ -84,10 +87,14 @@ def include (path, includeRecursivement):
 
                 if not succes:
                     print("ERREUR", nouveauFichier)
+
+        # Empty line
         elif line == '':
             if not isPreviousLineEmpty:
                 outputLines.append('')
                 isPreviousLineEmpty = True
+
+        # The header guards are not written in the output file
         elif not re.match("^#ifndef .*_HPP$", line) \
          and not re.match("^#define .*_HPP$", line) \
          and not re.match("^#endif .*_HPP", line):
@@ -97,11 +104,12 @@ def include (path, includeRecursivement):
 
 include('main.cpp', True)
 
-for nomFichier in includedFiles:
-    nomFichier = re.sub("^(.+)\\.h(pp)?$", "\\1.cpp", nomFichier)
+# Add the .cpp files corresponding to the .hpp files
+for header in includedFiles:
+    source = re.sub("^(.+)\\.h(pp)?$", "\\1.cpp", header)
 
-    if not nomFichier == 'main.cpp' and os.path.exists(nomFichier):
-        include(nomFichier, False)
+    if not source == 'main.cpp' and os.path.exists(source):
+        include(source, False)
 
 for fichierSource in fichiersSources:
     include(fichierSource, False)
