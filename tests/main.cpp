@@ -1,5 +1,7 @@
 #include "algolib.hpp"
 
+#include "maths/modulo.hpp"
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -719,6 +721,7 @@ int main()
     checkGCD_LCM();
     testPermutation();
     testPolynomial();
+    testModulo();
     cerr << "\n";
 
     // Geometry

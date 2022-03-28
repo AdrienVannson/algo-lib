@@ -33,17 +33,22 @@ HEADERS += \
         src/global.hpp \
         src/maths/Polynomial.hpp \
         src/maths/exponentiation-by-squaring.hpp \
+        src/maths/modulo.hpp \
         src/sorting/merge-sort.hpp \
         src/strings/automaton.hpp \
         src/strings/kmp.hpp \
         src/strings/regex.hpp \
         src/trees/Tree.hpp \
-        src/trees/graph-to-tree.hpp
+        src/trees/graph-to-tree.hpp \
+        tests/maths/modulo.hpp \
+        tests/test-done.hpp
 
 SOURCES += \
     src/json.cpp \
     src/maths/Permutation.cpp \
     src/trees/Tree.cpp \
-    tests/main.cpp
+    tests/main.cpp \
+    tests/maths/modulo.cpp \
+    tests/test-done.cpp
 
 INCLUDEPATH += src
