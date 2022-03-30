@@ -13,12 +13,12 @@
 #include "graphs/algorithms/dijkstra.hpp" // ONLY_IF Dijkstra
 #include "graphs/algorithms/edmonds-karp.hpp" // ONLY_IF EdmondsKarp
 #include "graphs/algorithms/floyd-warshall.hpp" // ONLY_IF FloydWarshall
-#include "graphs/algorithms/to-bipartite.hpp" // ONLY_IF ToBipartite
 #include "graphs/algorithms/kosaraju.hpp" // ONLY_IF Kosaraju
 #include "graphs/algorithms/kruskal.hpp" // ONLY_IF Kruskal
 #include "graphs/algorithms/min-cut.hpp" // ONLY_IF MinCut
 #include "graphs/algorithms/prim.hpp" // ONLY_IF Prim
 #include "graphs/algorithms/tarjan.hpp" // ONLY_IF Tarjan
+#include "graphs/algorithms/to-bipartite.hpp" // ONLY_IF ToBipartite
 #include "graphs/algorithms/topological-sort.hpp" // ONLY_IF TopologicalSort
 #include "graphs/algorithms/transpose-graph.hpp" // ONLY_IF getTransposeGraph
 #include "graphs/data-structures/Graph.hpp" // ONLY_IF Graph
@@ -26,10 +26,10 @@
 
 #include "maths/Fraction.hpp" // ONLY_IF Fraction
 #include "maths/GCD_LCM.hpp" // ONLY_IF getGCD getLCM getGCDBezout
-#include "maths/modulo.hpp" // ONLY_IF Modulo
 #include "maths/Permutation.hpp" // ONLY_IF Permutation
 #include "maths/Polynomial.hpp" // ONLY_IF Polynomial
 #include "maths/exponentiation-by-squaring.hpp" // ONLY_IF getPower
+#include "maths/modulo.hpp" // ONLY_IF Modulo
 #include "maths/sieve-of-eratosthenes.hpp" // ONLY_IF SieveOfEratosthenes
 
 #include "sorting/merge-sort.hpp" // ONLY_IF mergeSort
