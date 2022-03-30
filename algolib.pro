@@ -11,6 +11,7 @@ HEADERS += \
         src/data-structures/MaxHeap.hpp \
         src/geometry/Vect2.hpp \
         src/geometry/convex-hull.hpp \
+        src/geometry/primitives.hpp \
         src/graphs/algorithms/bellman-ford.hpp \
         src/graphs/algorithms/bfs.hpp \
         src/graphs/algorithms/dijkstra.hpp \
@@ -40,6 +41,7 @@ HEADERS += \
         src/strings/regex.hpp \
         src/trees/Tree.hpp \
         src/trees/graph-to-tree.hpp \
+        tests/geometry/primitives.hpp \
         tests/maths/modulo.hpp \
         tests/test-done.hpp
 
@@ -47,6 +49,7 @@ SOURCES += \
     src/json.cpp \
     src/maths/Permutation.cpp \
     src/trees/Tree.cpp \
+    tests/geometry/primitives.cpp \
     tests/main.cpp \
     tests/maths/modulo.cpp \
     tests/test-done.cpp

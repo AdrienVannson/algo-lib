@@ -24,6 +24,8 @@
 - Tree
     - Conversion from a graph
 - Geometry
+    - Primitives:
+        - Intersection of two lines
     - Vector
     - 2D Convex Hull
 - Maths

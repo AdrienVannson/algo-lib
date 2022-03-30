@@ -1,6 +1,7 @@
 #include "algolib.hpp"
 
 #include "maths/modulo.hpp"
+#include "geometry/primitives.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -728,6 +729,7 @@ int main()
     cerr << "Testing geometry..." << endl;
     testVect2();
     testConvexHull();
+    testIntersection();
     cerr << "\n";
 
     // Strings
