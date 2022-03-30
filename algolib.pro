@@ -35,6 +35,7 @@ HEADERS += \
         src/maths/Polynomial.hpp \
         src/maths/exponentiation-by-squaring.hpp \
         src/maths/modulo.hpp \
+        src/maths/sieve-of-eratosthenes.hpp \
         src/sorting/merge-sort.hpp \
         src/strings/automaton.hpp \
         src/strings/kmp.hpp \
@@ -43,15 +44,18 @@ HEADERS += \
         src/trees/graph-to-tree.hpp \
         tests/geometry/primitives.hpp \
         tests/maths/modulo.hpp \
+        tests/maths/sieve-of-eratosthenes.hpp \
         tests/test-done.hpp
 
 SOURCES += \
     src/json.cpp \
     src/maths/Permutation.cpp \
+    src/maths/sieve-of-eratosthenes.cpp \
     src/trees/Tree.cpp \
     tests/geometry/primitives.cpp \
     tests/main.cpp \
     tests/maths/modulo.cpp \
+    tests/maths/sieve-of-eratosthenes.cpp \
     tests/test-done.cpp
 
 INCLUDEPATH += src

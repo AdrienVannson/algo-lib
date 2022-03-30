@@ -30,6 +30,7 @@
 #include "maths/Permutation.hpp" // ONLY_IF Permutation
 #include "maths/Polynomial.hpp" // ONLY_IF Polynomial
 #include "maths/exponentiation-by-squaring.hpp" // ONLY_IF getPower
+#include "maths/sieve-of-eratosthenes.hpp" // ONLY_IF SieveOfEratosthenes
 
 #include "sorting/merge-sort.hpp" // ONLY_IF mergeSort
 

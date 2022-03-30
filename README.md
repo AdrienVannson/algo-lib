@@ -35,6 +35,7 @@
     - Modulo
     - Permutation
     - Polynomial
+    - Sieve of Eratosthenes
 - Sorting
     - Merge sort
 - Strings

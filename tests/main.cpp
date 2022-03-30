@@ -1,6 +1,7 @@
 #include "algolib.hpp"
 
 #include "maths/modulo.hpp"
+#include "maths/sieve-of-eratosthenes.hpp"
 #include "geometry/primitives.hpp"
 
 #include <bits/stdc++.h>
@@ -723,6 +724,7 @@ int main()
     testPermutation();
     testPolynomial();
     testModulo();
+    testSieveOfEratosthenes();
     cerr << "\n";
 
     // Geometry
