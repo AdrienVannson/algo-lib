@@ -1,11 +1,16 @@
 #ifndef VECT2_HPP
 #define VECT2_HPP
 
+#include "constants.hpp"
+
 template<class T>
 class Vect2
 {
 public:
-    inline explicit Vect2() : x(0), y(0) {}
+    inline explicit Vect2() :
+        x(Constants<T>::zero()),
+        y(Constants<T>::zero())
+    {}
 
     inline explicit Vect2(const T x_, const T y_) : x(x_), y(y_) {}
 
