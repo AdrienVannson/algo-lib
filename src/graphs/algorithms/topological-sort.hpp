@@ -50,9 +50,15 @@ public:
         m_states.clear();
     }
 
-    inline bool isPossible() const { return m_isPossible; }
+    inline bool isPossible() const
+    {
+        return m_isPossible;
+    }
 
-    inline const std::vector<int> &topologicalSort() const { return m_topologicalSort; }
+    inline const std::vector<int> &topologicalSort() const
+    {
+        return m_topologicalSort;
+    }
 
 private:
     bool m_isPossible;

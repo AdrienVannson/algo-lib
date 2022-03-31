@@ -19,7 +19,8 @@ Permutation::Permutation(const vector<int> &perm) :
 }
 
 /// \brief Identity
-Permutation::Permutation(const int n) : m_size(n), m_isTransposition(false), m_perm(n)
+Permutation::Permutation(const int n) :
+    m_size(n), m_isTransposition(false), m_perm(n)
 {
     for (int i = 0; i < n; i++) {
         m_perm[i] = i;
@@ -100,7 +101,9 @@ int Permutation::signature() const
                 x = m_perm[x];
             } while (x != i);
 
-            if (s % 2 == 0) { sign *= -1; }
+            if (s % 2 == 0) {
+                sign *= -1;
+            }
         }
     }
 
@@ -139,7 +142,9 @@ bool operator==(const Permutation &a, const Permutation &b)
     assert(a.size() == b.size());
 
     for (int i = 0; i < a.size(); i++) {
-        if (a(i) != b(i)) { return false; }
+        if (a(i) != b(i)) {
+            return false;
+        }
     }
 
     return true;

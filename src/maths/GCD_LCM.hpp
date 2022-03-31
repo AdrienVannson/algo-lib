@@ -56,6 +56,9 @@ std::array<long long, 3> getGCDBezout(long long a, long long b)
     return {a, u1, v1};
 }
 
-long long getLCM(long long a, long long b) { return std::abs(a * b) / getGCD(a, b); }
+long long getLCM(long long a, long long b)
+{
+    return std::abs(a * b) / getGCD(a, b);
+}
 
 #endif // GCD_LCM_HPP

@@ -8,8 +8,7 @@ class ToBipartite
 {
 public:
     ToBipartite(const G &g) :
-        m_states(g.verticeCount(), -1),
-        m_isBipartite(true)
+        m_states(g.verticeCount(), -1), m_isBipartite(true)
     {
         for (int v = 0; v < g.verticeCount(); v++) {
             if (m_states[v] == -1) {
@@ -18,10 +17,16 @@ public:
         }
     }
 
-    bool isBipartite() const { return m_isBipartite; }
+    bool isBipartite() const
+    {
+        return m_isBipartite;
+    }
 
     /// \brief Returns the component (0 or 1) in which the vertex v is in
-    int component(const int v) const { return m_states[v]; }
+    int component(const int v) const
+    {
+        return m_states[v];
+    }
 
 private:
     // States of a vertex:

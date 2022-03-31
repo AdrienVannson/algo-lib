@@ -12,7 +12,9 @@ class Dijkstra
 public:
     Dijkstra(const G &graph, const std::vector<int> startVertice)
     {
-        m_dists.resize(graph.verticeCount(), Constants<typename G::Weight>::infinity());
+        m_dists.resize(
+            graph.verticeCount(),
+            Constants<typename G::Weight>::infinity());
 
         std::priority_queue<
             std::pair<typename G::Weight, int>,
@@ -37,9 +39,11 @@ public:
             for (int i = 0; i < graph.neighbourCount(vertex); i++) {
                 const int neighbour = graph.neighbour(vertex, i);
 
-                if (m_dists[neighbour] == Constants<typename G::Weight>::infinity()) {
-                    pendingVertice.push(
-                        std::make_pair(dist + graph.weight(vertex, i), neighbour));
+                if (m_dists[neighbour]
+                    == Constants<typename G::Weight>::infinity()) {
+                    pendingVertice.push(std::make_pair(
+                        dist + graph.weight(vertex, i),
+                        neighbour));
                 }
             }
         }
@@ -47,10 +51,12 @@ public:
 
     Dijkstra(const G &graph, const int startVertex) :
         Dijkstra(graph, std::vector<int> {startVertex})
-    {
-    }
+    {}
 
-    inline typename G::Weight distTo(const int vertex) const { return m_dists[vertex]; }
+    inline typename G::Weight distTo(const int vertex) const
+    {
+        return m_dists[vertex];
+    }
 
 private:
     std::vector<typename G::Weight> m_dists;

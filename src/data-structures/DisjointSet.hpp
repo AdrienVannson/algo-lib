@@ -18,15 +18,23 @@ public:
     /// \brief The root of the tree containing the node
     int find(const int node) const
     {
-        if (nodes[node].parent == node) { return node; }
+        if (nodes[node].parent == node) {
+            return node;
+        }
         return nodes[node].parent = find(nodes[node].parent);
     }
 
     /// \brief Total number of nodes
-    int size() const { return nodes.size(); }
+    int size() const
+    {
+        return nodes.size();
+    }
 
     /// \brief Size of the subtree containing a node
-    int size(const int node) { return nodes[find(node)].size; }
+    int size(const int node)
+    {
+        return nodes[find(node)].size;
+    }
 
     /// \brief Merge two components
     void merge(int node1, int node2)
@@ -36,7 +44,9 @@ public:
 
         if (node1 == node2) return;
 
-        if (nodes[node2].size > nodes[node1].size) { std::swap(node1, node2); }
+        if (nodes[node2].size > nodes[node1].size) {
+            std::swap(node1, node2);
+        }
 
         nodes[node1].size += nodes[node2].size;
         nodes[node2].parent = node1;

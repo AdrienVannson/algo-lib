@@ -4,9 +4,9 @@
 #include "data-structures/DisjointSet.hpp" // ONLY_IF DisjointSet
 #include "data-structures/MaxHeap.hpp" // ONLY_IF MaxHeap
 
+#include "geometry/Vect2.hpp" // ONLY_IF Vect2
 #include "geometry/convex-hull.hpp" // ONLY_IF ConvexHull
 #include "geometry/primitives.hpp" // ONLY_IF getIntersection
-#include "geometry/Vect2.hpp" // ONLY_IF Vect2
 
 #include "graphs/algorithms/bellman-ford.hpp" // ONLY_IF BellmanFord
 #include "graphs/algorithms/bfs.hpp" // ONLY_IF BFS

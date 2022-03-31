@@ -39,10 +39,12 @@ public:
 
     BFS(const G &graph, const int startVertex) :
         BFS(graph, std::vector<int> {startVertex})
-    {
-    }
+    {}
 
-    int distTo(const int vertex) const { return m_dists[vertex]; }
+    int distTo(const int vertex) const
+    {
+        return m_dists[vertex];
+    }
 
 private:
     std::vector<int> m_dists;

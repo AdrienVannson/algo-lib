@@ -10,22 +10,36 @@ template<class T>
 class Fraction
 {
 public:
-    Fraction(const T num = Constants<T>::zero(), const T den = Constants<T>::one()) :
-        m_num(num), m_den(den)
+    Fraction(
+        const T num = Constants<T>::zero(), const T den = Constants<T>::one()) :
+        m_num(num),
+        m_den(den)
     {
         simplify();
     }
 
     /// \brief Numerator
-    inline T num() const { return m_num; }
+    inline T num() const
+    {
+        return m_num;
+    }
 
     /// \brief Denominator
-    inline T den() const { return m_den; }
+    inline T den() const
+    {
+        return m_den;
+    }
 
     /// \brief Numerical approximation
-    inline double approx() const { return (double)m_num / (double)m_den; }
+    inline double approx() const
+    {
+        return (double)m_num / (double)m_den;
+    }
 
-    inline Fraction inverse() const { return Fraction(m_den, m_num); }
+    inline Fraction inverse() const
+    {
+        return Fraction(m_den, m_num);
+    }
 
 private:
     T m_num, m_den;
@@ -54,13 +68,17 @@ private:
 template<class T>
 inline Fraction<T> operator+(const Fraction<T> &a, const Fraction<T> &b)
 {
-    return Fraction<T>(a.num() * b.den() + b.num() * a.den(), a.den() * b.den());
+    return Fraction<T>(
+        a.num() * b.den() + b.num() * a.den(),
+        a.den() * b.den());
 }
 
 template<class T>
 inline Fraction<T> operator-(const Fraction<T> &a, const Fraction<T> &b)
 {
-    return Fraction<T>(a.num() * b.den() - b.num() * a.den(), a.den() * b.den());
+    return Fraction<T>(
+        a.num() * b.den() - b.num() * a.den(),
+        a.den() * b.den());
 }
 
 template<class T>
@@ -120,17 +138,26 @@ inline bool operator>=(const Fraction<T> &a, const Fraction<T> &b)
 template<class T>
 inline std::ostream &operator<<(std::ostream &os, const Fraction<T> &fraction)
 {
-    return os << fraction.num() << "/" << fraction.den() << " (" << fraction.approx()
-              << ")";
+    return os << fraction.num() << "/" << fraction.den() << " ("
+              << fraction.approx() << ")";
 }
 
 template<class T>
 class Constants<Fraction<T>>
 {
 public:
-    static Fraction<T> zero() { return Fraction<T>(); }
-    static Fraction<T> one() { return Fraction<T>(Constants<T>::one()); }
-    static Fraction<T> infinity() { return Fraction<T>(Constants<T>::infinity()); }
+    static Fraction<T> zero()
+    {
+        return Fraction<T>();
+    }
+    static Fraction<T> one()
+    {
+        return Fraction<T>(Constants<T>::one());
+    }
+    static Fraction<T> infinity()
+    {
+        return Fraction<T>(Constants<T>::infinity());
+    }
 };
 
 #endif // FRACTION_HPP

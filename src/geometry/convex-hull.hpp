@@ -28,7 +28,8 @@ public:
             while (m_verticeIds.size() >= 2) {
                 const Vect2<T> v = points[ids[i]];
                 const Vect2<T> a = points[m_verticeIds.back()];
-                const Vect2<T> b = points[m_verticeIds[m_verticeIds.size() - 2]];
+                const Vect2<T> b =
+                    points[m_verticeIds[m_verticeIds.size() - 2]];
 
                 if (((a - b) ^ (v - b)) <= 0) {
                     m_verticeIds.pop_back();
@@ -50,7 +51,8 @@ public:
             while (m_verticeIds.size() > upperSize) {
                 const Vect2<T> v = points[ids[i]];
                 const Vect2<T> a = points[m_verticeIds.back()];
-                const Vect2<T> b = points[m_verticeIds[m_verticeIds.size() - 2]];
+                const Vect2<T> b =
+                    points[m_verticeIds[m_verticeIds.size() - 2]];
 
                 if (((a - b) ^ (v - b)) <= 0) {
                     m_verticeIds.pop_back();
@@ -66,7 +68,10 @@ public:
 
     /// \brief Returns the ids of the points belonging to the convex hull's
     /// boundary, ordered counterclockwise
-    const std::vector<int> &verticeIds() const { return m_verticeIds; }
+    const std::vector<int> &verticeIds() const
+    {
+        return m_verticeIds;
+    }
 
 private:
     // Ids of the points belonging to the convex hull's boundary, ordered

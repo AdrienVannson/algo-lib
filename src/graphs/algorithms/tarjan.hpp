@@ -16,24 +16,37 @@ public:
         m_ids.resize(graph.verticeCount(), -1);
 
         for (int v = 0; v < graph.verticeCount(); v++) {
-            if (m_states[v] == NOT_VISITED) { findSccs(graph, v); }
+            if (m_states[v] == NOT_VISITED) {
+                findSccs(graph, v);
+            }
         }
 
         m_ids.clear();
     }
 
     /// \brief Returns the number of strongly connected components of the graph
-    inline int sccCount() const { return m_sccs.size(); }
+    inline int sccCount() const
+    {
+        return m_sccs.size();
+    }
 
-    /// \brief Returns a vector containing the strongly connected components of the graph
-    inline const std::vector<std::vector<int>> &sccs() const { return m_sccs; }
+    /// \brief Returns a vector containing the strongly connected components of
+    /// the graph
+    inline const std::vector<std::vector<int>> &sccs() const
+    {
+        return m_sccs;
+    }
 
-    /// \brief Returns the ID of the strongly connected component containing a given
-    /// vertice
-    inline int scc(const int v) const { return m_states[v]; }
+    /// \brief Returns the ID of the strongly connected component containing a
+    /// given vertice
+    inline int scc(const int v) const
+    {
+        return m_states[v];
+    }
 
 private:
-    /// \brief Returns the lowest id of a vertice directly accessible from the subtree
+    /// \brief Returns the lowest id of a vertice directly accessible from the
+    /// subtree
     int findSccs(const G &g, const int vertex);
 
     const int NOT_VISITED = -2;

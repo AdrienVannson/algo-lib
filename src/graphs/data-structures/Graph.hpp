@@ -24,13 +24,25 @@ public:
         m_vertice.resize(verticeCount);
     }
 
-    inline bool isDirected() const { return m_isDirected; }
+    inline bool isDirected() const
+    {
+        return m_isDirected;
+    }
 
-    inline int verticeCount() const { return m_vertice.size(); }
+    inline int verticeCount() const
+    {
+        return m_vertice.size();
+    }
 
-    inline int neighbourCount(const int vertex) const { return m_vertice[vertex].size(); }
+    inline int neighbourCount(const int vertex) const
+    {
+        return m_vertice[vertex].size();
+    }
 
-    inline int edgeCount() const { return m_edgeCount; }
+    inline int edgeCount() const
+    {
+        return m_edgeCount;
+    }
 
     /// \brief Returns the id of the n-th neighbour of a vertex
     inline int neighbour(const int vertex, const int neighbourPos) const
@@ -76,8 +88,8 @@ public:
         return m_vertice[vertex][neighbourPos].edgeId;
     }
 
-    /// \brief Returns the id of the first edge from one vertex to another (-1 if it
-    /// doesn't exist)
+    /// \brief Returns the id of the first edge from one vertex to another (-1
+    /// if it doesn't exist)
     inline int edgeIdTo(const int vertex, const int neighbour)
     {
         for (int i = 0; i < neighbourCount(vertex); i++) {

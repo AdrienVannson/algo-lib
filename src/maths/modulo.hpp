@@ -5,15 +5,14 @@
 #ifndef MODULO_HPP
 #define MODULO_HPP
 
-#include <iostream>
 #include "constants.hpp"
+#include <iostream>
 
 template<class T>
 class Modulo
 {
 public:
-    Modulo(const T val = T()) :
-        m_val(val)
+    Modulo(const T val = T()) : m_val(val)
     {
         m_val %= s_mod;
         if (m_val < Constants<T>::zero()) m_val += s_mod;
@@ -56,7 +55,8 @@ private:
     static T s_mod;
 };
 
-template<class T> T Modulo<T>::s_mod;
+template<class T>
+T Modulo<T>::s_mod;
 
 template<class T>
 inline Modulo<T> operator+(const Modulo<T> a, const Modulo<T> b)
@@ -86,8 +86,14 @@ template<class T>
 class Constants<Modulo<T>>
 {
 public:
-    static int zero() { return Modulo<T>(Constants<T>::zero()); }
-    static int one() { return Modulo<T>(Constants<T>::one()); }
+    static int zero()
+    {
+        return Modulo<T>(Constants<T>::zero());
+    }
+    static int one()
+    {
+        return Modulo<T>(Constants<T>::one());
+    }
 };
 
 #endif // MODULO_HPP

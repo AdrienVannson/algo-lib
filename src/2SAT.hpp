@@ -7,9 +7,9 @@ class Resoudre2SAT
 {
 public:
     Resoudre2SAT(const int nbVariables) :
-        m_nbVariables(nbVariables), m_grapheContraintes(GRAPHE_ORIENTE, 2 * nbVariables)
-    {
-    }
+        m_nbVariables(nbVariables),
+        m_grapheContraintes(GRAPHE_ORIENTE, 2 * nbVariables)
+    {}
 
     inline int non(const int x) const
     {
@@ -28,7 +28,8 @@ public:
         }
     }
 
-    /// \brief Renvoie s'il existe une solution, et calcule une affectation possible
+    /// \brief Renvoie s'il existe une solution, et calcule une affectation
+    /// possible
     bool resoudre()
     {
         Kosaraju kosaraju(m_grapheContraintes); // Calcul des CFC
@@ -46,9 +47,12 @@ public:
         return true;
     }
 
-    /// \brief Renvoie l'état auquel la variable peut être affectée pour résoudre le
-    /// problème (resoudre doit avoir été appelée auparavant)
-    bool estVrai(const int x) const { return m_affectations[x]; }
+    /// \brief Renvoie l'état auquel la variable peut être affectée pour
+    /// résoudre le problème (resoudre doit avoir été appelée auparavant)
+    bool estVrai(const int x) const
+    {
+        return m_affectations[x];
+    }
 
 private:
     int m_nbVariables;

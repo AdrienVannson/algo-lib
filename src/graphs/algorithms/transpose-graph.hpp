@@ -8,7 +8,8 @@ G getTransposeGraph(const G &graph)
 
     for (int vertex = 0; vertex < graph.verticeCount(); vertex++) {
         for (int neighbourPos = 0; neighbourPos < graph.neighbourCount(vertex);
-             neighbourPos++) {
+             neighbourPos++)
+        {
             res.addEdge(graph.neighbour(vertex, neighbourPos), vertex);
         }
     }

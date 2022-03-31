@@ -14,8 +14,9 @@ public:
         m_source(source), m_sink(sink), m_flow(0)
     {
         assert(source != sink);
-        assert(graph.isDirected()); // If not, the same edge is represented twice with the
-                                    // same id
+
+        // If not, the same edge is represented twice with the same id
+        assert(graph.isDirected());
 
         // Build the residual graph
         m_residualGraph.resize(graph.verticeCount());
@@ -25,11 +26,13 @@ public:
 
         for (int v = 0; v < graph.verticeCount(); v++) {
             for (auto edgeTo : graph.edgesToNeighbours(v)) {
-                m_residualGraph[v].push_back(Edge {edgeTo.neighbour, edgeTo.edgeId});
+                m_residualGraph[v].push_back(
+                    Edge {edgeTo.neighbour, edgeTo.edgeId});
                 m_residualGraph[edgeTo.neighbour].push_back(
                     Edge {v, edgeTo.edgeId + edgeCount});
 
-                m_residualCapacities[edgeTo.edgeId] = graph.weight(edgeTo.edgeId);
+                m_residualCapacities[edgeTo.edgeId] =
+                    graph.weight(edgeTo.edgeId);
             }
         }
 
@@ -70,11 +73,14 @@ public:
                 const int dist = dists[vertex];
 
                 for (Edge edge : m_residualGraph[vertex]) {
-                    const int oppositeEdge = (edge.id + edgeCount) % (2 * edgeCount);
+                    const int oppositeEdge =
+                        (edge.id + edgeCount) % (2 * edgeCount);
 
                     if (dists[edge.neighbour] == dist - 1
-                        && m_residualCapacities[oppositeEdge] != 0) {
-                        if (vertex == sink || m_residualCapacities[oppositeEdge] < flow) {
+                        && m_residualCapacities[oppositeEdge] != 0)
+                    {
+                        if (vertex == sink
+                            || m_residualCapacities[oppositeEdge] < flow) {
                             flow = m_residualCapacities[oppositeEdge];
                         }
 
@@ -94,11 +100,20 @@ public:
         }
     }
 
-    inline int source() const { return m_source; }
+    inline int source() const
+    {
+        return m_source;
+    }
 
-    inline int sink() const { return m_sink; }
+    inline int sink() const
+    {
+        return m_sink;
+    }
 
-    inline typename G::Weight maxFlow() const { return m_flow; }
+    inline typename G::Weight maxFlow() const
+    {
+        return m_flow;
+    }
 
     inline typename G::Weight flowOnEdge(const int edge) const
     {

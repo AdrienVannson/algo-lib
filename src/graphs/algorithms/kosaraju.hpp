@@ -36,14 +36,24 @@ public:
     }
 
     /// \brief Returns the number of strongly connected components of the graph
-    inline int sccCount() const { return m_sccs.size(); }
+    inline int sccCount() const
+    {
+        return m_sccs.size();
+    }
 
-    /// \brief Returns a vector containing the strongly connected components of the graph
-    inline const std::vector<std::vector<int>> &sccs() const { return m_sccs; }
+    /// \brief Returns a vector containing the strongly connected components of
+    /// the graph
+    inline const std::vector<std::vector<int>> &sccs() const
+    {
+        return m_sccs;
+    }
 
-    /// \brief Returns the ID of the strongly connected component containing a given
-    /// vertice
-    inline int scc(const int v) const { return m_states[v]; }
+    /// \brief Returns the ID of the strongly connected component containing a
+    /// given vertice
+    inline int scc(const int v) const
+    {
+        return m_states[v];
+    }
 
 private:
     // DFS 1

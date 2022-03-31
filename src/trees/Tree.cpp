@@ -21,12 +21,15 @@ void Tree::setParent(const int vertex, const int newParent)
         p.children.erase(it);
     }
 
-    if (newParent != -1) { m_vertice[newParent].children.push_back(vertex); }
+    if (newParent != -1) {
+        m_vertice[newParent].children.push_back(vertex);
+    }
 
     m_vertice[vertex].parent = newParent;
 }
 
-void printSubtree(std::ostream &os, const Tree &tree, const int vertex, const int depth)
+void printSubtree(
+    std::ostream &os, const Tree &tree, const int vertex, const int depth)
 {
     for (int i = 0; i < depth; i++) {
         os << "| ";

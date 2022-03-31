@@ -1,8 +1,8 @@
 #include "algolib.hpp"
 
+#include "geometry/primitives.hpp"
 #include "maths/modulo.hpp"
 #include "maths/sieve-of-eratosthenes.hpp"
-#include "geometry/primitives.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -221,7 +221,11 @@ void testKosaraju()
     graph.addEdge(11, 0);
 
     const Kosaraju<Graph> kosaraju(graph);
-    const vector<vector<int>> ans {{1, 11, 10}, {4, 6, 5, 7, 9, 8}, {2, 3}, {0}};
+    const vector<vector<int>> ans {
+        {1, 11, 10},
+        {4, 6, 5, 7, 9, 8},
+        {2, 3},
+        {0}};
 
     assert(kosaraju.sccCount() == 4);
     assert(kosaraju.sccs() == ans);
@@ -239,11 +243,19 @@ void testKruskal()
 {
     WGraph<int> g(7, false);
 
-    vector<array<int, 3>> edges
-        = {{0, 1, 3}, {0, 2, 2}, {0, 3, 3}, {1, 2, 1}, {1, 3, 5}, {1, 4, 3},
-           {2, 3, 5}, {2, 5, 2}, {3, 5, 4}, {4, 5, 5}, {5, 6, 9}};
-    for (auto e : edges)
-        g.addEdge(e[0], e[1], e[2]);
+    vector<array<int, 3>> edges = {
+        {0, 1, 3},
+        {0, 2, 2},
+        {0, 3, 3},
+        {1, 2, 1},
+        {1, 3, 5},
+        {1, 4, 3},
+        {2, 3, 5},
+        {2, 5, 2},
+        {3, 5, 4},
+        {4, 5, 5},
+        {5, 6, 9}};
+    for (auto e : edges) g.addEdge(e[0], e[1], e[2]);
 
     Kruskal<WGraph<int>> kruskal(g);
     assert(kruskal.edgeCount() == 6);
@@ -290,11 +302,19 @@ void testPrim()
 {
     WGraph<int> g(7, false);
 
-    vector<array<int, 3>> edges
-        = {{0, 1, 3}, {0, 2, 2}, {0, 3, 3}, {1, 2, 1}, {1, 3, 5}, {1, 4, 3},
-           {2, 3, 5}, {2, 5, 2}, {3, 5, 4}, {4, 5, 5}, {5, 6, 9}};
-    for (auto e : edges)
-        g.addEdge(e[0], e[1], e[2]);
+    vector<array<int, 3>> edges = {
+        {0, 1, 3},
+        {0, 2, 2},
+        {0, 3, 3},
+        {1, 2, 1},
+        {1, 3, 5},
+        {1, 4, 3},
+        {2, 3, 5},
+        {2, 5, 2},
+        {3, 5, 4},
+        {4, 5, 5},
+        {5, 6, 9}};
+    for (auto e : edges) g.addEdge(e[0], e[1], e[2]);
 
     Prim<WGraph<int>> prim(g);
     assert(prim.edgeCount() == 6);
@@ -333,7 +353,11 @@ void testTarjan()
     graph.addEdge(11, 0);
 
     const Tarjan<Graph> tarjan(graph);
-    const vector<vector<int>> ans {{0}, {3, 2}, {9, 8, 7, 6, 5, 4}, {11, 10, 1}};
+    const vector<vector<int>> ans {
+        {0},
+        {3, 2},
+        {9, 8, 7, 6, 5, 4},
+        {11, 10, 1}};
 
     assert(tarjan.sccCount() == 4);
     assert(tarjan.sccs() == ans);
@@ -353,10 +377,17 @@ void testTopologicalSort()
     assert(ts.isPossible() && ts.topologicalSort().size() == 0);
 
     Graph g(10, true);
-    vector<array<int, 2>> edges
-        = {{1, 2}, {1, 8}, {2, 3}, {2, 8}, {3, 6}, {4, 3}, {4, 5}, {5, 6}, {9, 8}};
-    for (auto e : edges)
-        g.addEdge(e[0], e[1]);
+    vector<array<int, 2>> edges = {
+        {1, 2},
+        {1, 8},
+        {2, 3},
+        {2, 8},
+        {3, 6},
+        {4, 3},
+        {4, 5},
+        {5, 6},
+        {9, 8}};
+    for (auto e : edges) g.addEdge(e[0], e[1]);
 
     ts = TopologicalSort<Graph>(g);
     assert(ts.topologicalSort() == vector<int>({9, 7, 4, 5, 1, 2, 8, 3, 6, 0}));
@@ -481,7 +512,8 @@ void testPermutation()
 
     assert(orbits[0].size() == 4);
     assert(
-        orbits[0][0] == 0 && orbits[0][1] == 5 && orbits[0][2] == 2 && orbits[0][3] == 3);
+        orbits[0][0] == 0 && orbits[0][1] == 5 && orbits[0][2] == 2
+        && orbits[0][3] == 3);
 
     assert(orbits[1].size() == 1 && orbits[1][0] == 1);
     assert(orbits[2].size() == 1 && orbits[2][0] == 4);
@@ -490,8 +522,8 @@ void testPermutation()
     assert(orbits[3][0] == 6 && orbits[3][1] == 7);
 
     // Composition
-    const Permutation perm2
-        = Permutation(vector<int> {2, 0, 1}) * Permutation(vector<int> {1, 0, 2});
+    const Permutation perm2 =
+        Permutation(vector<int> {2, 0, 1}) * Permutation(vector<int> {1, 0, 2});
     assert(perm2(0) == 0 && perm2(1) == 2 && perm2(2) == 1);
 
     // Signature
@@ -521,7 +553,9 @@ void testPolynomial()
 
     // Lagrange polynomial
     std::vector<std::pair<Fraction<int>, Fraction<int>>> points {
-        make_pair(0, -2), make_pair(1, 2), make_pair(2, 8)};
+        make_pair(0, -2),
+        make_pair(1, 2),
+        make_pair(2, 8)};
     assert(lagrangePolynomial(points) == Polynomial<Fraction<int>>({-2, 3, 1}));
 
     cerr << "### Polynomial: OK" << endl;
@@ -541,10 +575,16 @@ void testVect2()
 
 void testConvexHull()
 {
-    const vector<Vect2<int>> points
-        = {Vect2<int>(0, 0), Vect2<int>(0, 1), Vect2<int>(0, 2),
-           Vect2<int>(1, 0), Vect2<int>(1, 1), Vect2<int>(1, 2),
-           Vect2<int>(2, 0), Vect2<int>(2, 1), Vect2<int>(2, 2)};
+    const vector<Vect2<int>> points = {
+        Vect2<int>(0, 0),
+        Vect2<int>(0, 1),
+        Vect2<int>(0, 2),
+        Vect2<int>(1, 0),
+        Vect2<int>(1, 1),
+        Vect2<int>(1, 2),
+        Vect2<int>(2, 0),
+        Vect2<int>(2, 1),
+        Vect2<int>(2, 2)};
 
     ConvexHull<int> convexHull(points);
     assert(convexHull.verticeIds().size() == 4);
@@ -580,18 +620,22 @@ void testAutomaton()
         assert(aut.isAccepted({'1', '3', '5', '4', '2'}));
 
         assert(aut.isComplete());
-        assert(!aut.isComplete({'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X'}));
+        assert(!aut.isComplete(
+            {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X'}));
     }
 
     // De Bruijn automaton
     {
         Reg *reg = Reg::concatenation(
-            Reg::kleenStar(Reg::alternation(Reg::character('0'), Reg::character('1'))),
+            Reg::kleenStar(
+                Reg::alternation(Reg::character('0'), Reg::character('1'))),
             Reg::concatenation(
                 Reg::character('1'),
                 Reg::concatenation(
                     Reg::alternation(Reg::character('0'), Reg::character('1')),
-                    Reg::alternation(Reg::character('0'), Reg::character('1')))));
+                    Reg::alternation(
+                        Reg::character('0'),
+                        Reg::character('1')))));
 
         Aut aut = Aut::fromRegex(reg);
 

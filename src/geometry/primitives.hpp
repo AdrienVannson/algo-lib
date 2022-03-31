@@ -6,7 +6,12 @@
 #include "Vect2.hpp"
 #include "constants.hpp"
 
-enum IntersectionType { POINT, EMPTY, LINE };
+enum IntersectionType
+{
+    POINT,
+    EMPTY,
+    LINE
+};
 
 /// \brief Computes the intersection of (AB) and (CD). The point of intersection
 /// is set to its default value if the lines are parallel

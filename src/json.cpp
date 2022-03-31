@@ -8,7 +8,8 @@ JSON::JSON(const double x) : m_type(FLOAT), m_float(x) {}
 JSON::JSON(const bool b) : m_type(BOOLEAN), m_bool(b) {}
 JSON::JSON(const std::string &s) : m_type(STRING), m_string(s) {}
 JSON::JSON(const std::vector<JSON *> &a) : m_type(ARRAY), m_array(a) {}
-JSON::JSON(const std::map<std::string, JSON *> &o) : m_type(OBJECT), m_object(o) {}
+JSON::JSON(const std::map<std::string, JSON *> &o) : m_type(OBJECT), m_object(o)
+{}
 
 JSON::JSON(const JSON &other)
 {
@@ -51,7 +52,10 @@ JSON::~JSON()
     }
 }
 
-JSON *JSON::operator[](const string &s) { return getObject()[s]; }
+JSON *JSON::operator[](const string &s)
+{
+    return getObject()[s];
+}
 
 string JSON::toString() const
 {
@@ -110,7 +114,10 @@ void JSON::addToString(string &s) const
     }
 }
 
-void JSON::fromString(const string &s) { fromString(s, 0); }
+void JSON::fromString(const string &s)
+{
+    fromString(s, 0);
+}
 
 int JSON::fromString(const string &s, int i)
 {
@@ -145,12 +152,16 @@ int JSON::fromString(const string &s, int i)
             m_type = FLOAT;
             m_float = stod(number);
 
-            if (isNegative) { m_float *= -1; }
+            if (isNegative) {
+                m_float *= -1;
+            }
         } else {
             m_type = INT;
             m_int = stoi(number);
 
-            if (isNegative) { m_int *= -1; }
+            if (isNegative) {
+                m_int *= -1;
+            }
         }
 
         return i;
@@ -221,7 +232,9 @@ int JSON::fromString(const string &s, int i)
 
             i = skipWhitespaces(s, i);
 
-            if (s[i] == ',') { i++; }
+            if (s[i] == ',') {
+                i++;
+            }
         }
 
         return i + 1;

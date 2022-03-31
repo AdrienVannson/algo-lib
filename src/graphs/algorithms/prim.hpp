@@ -18,7 +18,8 @@ public:
             return g.weight(a.edgeId) > g.weight(b.edgeId);
         };
         std::priority_queue<
-            typename G::Edge, std::vector<typename G::Edge>,
+            typename G::Edge,
+            std::vector<typename G::Edge>,
             decltype(cmp)>
             pending(cmp); // The first vertex is the one already visited
 
@@ -42,7 +43,9 @@ public:
                 for (const auto edgeTo : g.edgesToNeighbours(edge.vertex2)) {
                     if (!isVisited[edgeTo.neighbour]) {
                         pending.push(typename G::Edge {
-                            edge.vertex2, edgeTo.neighbour, edgeTo.edgeId});
+                            edge.vertex2,
+                            edgeTo.neighbour,
+                            edgeTo.edgeId});
                     }
                 }
             }
@@ -52,17 +55,29 @@ public:
     }
 
     /// \brief Edges of a minimum spanning forest
-    const std::vector<typename G::Edge> &edges() const { return m_edges; }
+    const std::vector<typename G::Edge> &edges() const
+    {
+        return m_edges;
+    }
 
     /// \brief Number of edges of a minimum spanning forest
-    int edgeCount() const { return m_edges.size(); }
+    int edgeCount() const
+    {
+        return m_edges.size();
+    }
 
     /// \brief Sum of the weights of the edges of a minimum spanning forest
-    typename G::Weight sum() const { return m_sum; }
+    typename G::Weight sum() const
+    {
+        return m_sum;
+    }
 
 private:
-    std::vector<typename G::Edge> m_edges; // Edges of the minimum spanning forest
-    typename G::Weight m_sum; // Sum of their weights
+    // Edges of the minimum spanning forest
+    std::vector<typename G::Edge> m_edges;
+
+    // Sum of their weights
+    typename G::Weight m_sum;
 
     int getNextVertice(const std::vector<bool> &isVisited)
     {

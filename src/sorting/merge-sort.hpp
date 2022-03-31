@@ -6,7 +6,9 @@
 template<class T>
 std::vector<T> mergeSort(const std::vector<T> &v)
 {
-    if (v.size() <= 1) { return v; }
+    if (v.size() <= 1) {
+        return v;
+    }
 
     std::vector<T> v1, v2;
     for (const T &a : v) {
@@ -26,7 +28,8 @@ std::vector<T> mergeSort(const std::vector<T> &v)
 
     while (i1 != (int)sorted1.size() || i2 != (int)sorted2.size()) {
         if (i2 == (int)sorted2.size()
-            || (i1 != (int)sorted1.size() && sorted1[i1] < sorted2[i2])) {
+            || (i1 != (int)sorted1.size() && sorted1[i1] < sorted2[i2]))
+        {
             sorted.push_back(sorted1[i1]);
             i1++;
         } else {

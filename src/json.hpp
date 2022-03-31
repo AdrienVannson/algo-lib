@@ -8,7 +8,16 @@
 class JSON
 {
 public:
-    enum Type { NULL_VALUE, INT, FLOAT, BOOLEAN, STRING, ARRAY, OBJECT };
+    enum Type
+    {
+        NULL_VALUE,
+        INT,
+        FLOAT,
+        BOOLEAN,
+        STRING,
+        ARRAY,
+        OBJECT
+    };
 
     JSON();
     JSON(const int n);
@@ -23,21 +32,60 @@ public:
 
     ~JSON();
 
-    Type type() const { return m_type; }
+    Type type() const
+    {
+        return m_type;
+    }
 
-    int &getInt() { return m_int; }
-    double &getFloat() { return m_float; }
-    bool &getBool() { return m_bool; }
-    std::string &getString() { return m_string; }
-    std::vector<JSON *> &getArray() { return m_array; }
-    std::map<std::string, JSON *> &getObject() { return m_object; }
+    int &getInt()
+    {
+        return m_int;
+    }
+    double &getFloat()
+    {
+        return m_float;
+    }
+    bool &getBool()
+    {
+        return m_bool;
+    }
+    std::string &getString()
+    {
+        return m_string;
+    }
+    std::vector<JSON *> &getArray()
+    {
+        return m_array;
+    }
+    std::map<std::string, JSON *> &getObject()
+    {
+        return m_object;
+    }
 
-    int getInt() const { return m_int; }
-    double getFloat() const { return m_float; }
-    bool getBool() const { return m_bool; }
-    const std::string &getString() const { return m_string; }
-    const std::vector<JSON *> &getArray() const { return m_array; }
-    const std::map<std::string, JSON *> &getObject() const { return m_object; }
+    int getInt() const
+    {
+        return m_int;
+    }
+    double getFloat() const
+    {
+        return m_float;
+    }
+    bool getBool() const
+    {
+        return m_bool;
+    }
+    const std::string &getString() const
+    {
+        return m_string;
+    }
+    const std::vector<JSON *> &getArray() const
+    {
+        return m_array;
+    }
+    const std::map<std::string, JSON *> &getObject() const
+    {
+        return m_object;
+    }
 
     JSON *operator[](const std::string &s);
 

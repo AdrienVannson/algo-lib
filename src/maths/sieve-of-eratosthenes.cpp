@@ -1,7 +1,6 @@
 #include "sieve-of-eratosthenes.hpp"
 
-SieveOfEratosthenes::SieveOfEratosthenes(const int n) :
-    m_isPrime(n, true)
+SieveOfEratosthenes::SieveOfEratosthenes(const int n) : m_isPrime(n, true)
 {
     if (n >= 1) {
         m_isPrime[0] = false;

@@ -11,11 +11,13 @@ public:
 
     WGraph(const int verticeCount, const bool isDirected) :
         Graph(verticeCount, isDirected)
-    {
-    }
+    {}
 
     /// \brief Returns the weight of the n-th edge
-    inline T weight(const int edgeId) const { return m_weights[edgeId]; }
+    inline T weight(const int edgeId) const
+    {
+        return m_weights[edgeId];
+    }
 
     /// \brief Returns the weight of the n-th out-edge of a vertex
     inline T weight(const int vertex, const int neighbourPos) const
@@ -24,7 +26,8 @@ public:
     }
 
     /// \brief Sets the weight of the n-th out-edge of a vertex
-    inline void setWeight(const int vertex, const int neighbourPos, const T weight)
+    inline void
+    setWeight(const int vertex, const int neighbourPos, const T weight)
     {
         m_weights[m_vertice[vertex][neighbourPos].edgeId] = weight;
     }

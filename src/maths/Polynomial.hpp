@@ -19,11 +19,16 @@ public:
     /// \brief Constant polynomial
     Polynomial(const T cst) : Polynomial(std::vector<T> {cst}) {}
 
-    inline int degree() const { return m_coefs.size() - 1; }
+    inline int degree() const
+    {
+        return m_coefs.size() - 1;
+    }
 
     inline T coef(const int i) const
     {
-        if (i >= (int)m_coefs.size()) { return Constants<T>::zero(); }
+        if (i >= (int)m_coefs.size()) {
+            return Constants<T>::zero();
+        }
         return m_coefs[i];
     }
 
@@ -33,10 +38,12 @@ public:
 
     // Arithmetical operations
     template<class T_>
-    friend Polynomial<T_> operator+(const Polynomial<T_> &P, const Polynomial<T_> &Q);
+    friend Polynomial<T_>
+    operator+(const Polynomial<T_> &P, const Polynomial<T_> &Q);
 
     template<class T_>
-    friend Polynomial<T_> operator*(const Polynomial<T_> &P, const Polynomial<T_> &Q);
+    friend Polynomial<T_>
+    operator*(const Polynomial<T_> &P, const Polynomial<T_> &Q);
 
     template<class T_>
     friend Polynomial<T_> operator*(const T_ lambda, const Polynomial<T_> &P);
@@ -75,11 +82,17 @@ U Polynomial<T>::operator()(const U &x) const
 template<class T>
 Polynomial<T> operator+(const Polynomial<T> &P, const Polynomial<T> &Q)
 {
-    std::vector<T> v(std::max(P.m_coefs.size(), Q.m_coefs.size()), Constants<T>::zero());
+    std::vector<T> v(
+        std::max(P.m_coefs.size(), Q.m_coefs.size()),
+        Constants<T>::zero());
 
     for (int i = 0; i < (int)v.size(); i++) {
-        if (i < (int)P.m_coefs.size()) { v[i] = v[i] + P.m_coefs[i]; }
-        if (i < (int)Q.m_coefs.size()) { v[i] = v[i] + Q.m_coefs[i]; }
+        if (i < (int)P.m_coefs.size()) {
+            v[i] = v[i] + P.m_coefs[i];
+        }
+        if (i < (int)Q.m_coefs.size()) {
+            v[i] = v[i] + Q.m_coefs[i];
+        }
     }
 
     Polynomial<T> S(v);
@@ -89,7 +102,9 @@ Polynomial<T> operator+(const Polynomial<T> &P, const Polynomial<T> &Q)
 template<class T>
 Polynomial<T> operator*(const Polynomial<T> &P, const Polynomial<T> &Q)
 {
-    std::vector<T> v(P.m_coefs.size() + Q.m_coefs.size() - 1, Constants<T>::zero());
+    std::vector<T> v(
+        P.m_coefs.size() + Q.m_coefs.size() - 1,
+        Constants<T>::zero());
 
     for (int i = 0; i < (int)v.size(); i++) {
         for (int k = 0; k <= i; k++) {
@@ -137,7 +152,9 @@ std::ostream &operator<<(std::ostream &os, const Polynomial<T> &P)
     for (int k = P.degree(); k >= 0; k--) {
         os << P.m_coefs[k] << " X^" << k;
 
-        if (k > 0) { os << " + "; }
+        if (k > 0) {
+            os << " + ";
+        }
     }
 
     os << ")";

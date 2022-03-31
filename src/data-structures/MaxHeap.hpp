@@ -22,7 +22,8 @@ public:
             while (leftChild(i) < (int)m_heap.size()) {
                 int maxChild = leftChild(i);
                 if (rightChild(i) < (int)m_heap.size()
-                    && m_heap[rightChild(i)] > m_heap[leftChild(i)]) {
+                    && m_heap[rightChild(i)] > m_heap[leftChild(i)])
+                {
                     maxChild = rightChild(i);
                 }
 
@@ -36,22 +37,40 @@ public:
         }
     }
 
-    inline int size() const { return m_heap.size(); }
+    inline int size() const
+    {
+        return m_heap.size();
+    }
 
-    inline bool isEmpty() const { return m_heap.empty(); }
+    inline bool isEmpty() const
+    {
+        return m_heap.empty();
+    }
 
-    inline const T &max() const { return m_heap[0]; }
+    inline const T &max() const
+    {
+        return m_heap[0];
+    }
 
     void insert(const T &);
 
     void removeMax();
 
 private:
-    inline int parent(const int n) const { return (n - 1) / 2; }
+    inline int parent(const int n) const
+    {
+        return (n - 1) / 2;
+    }
 
-    inline int leftChild(const int n) const { return n * 2 + 1; }
+    inline int leftChild(const int n) const
+    {
+        return n * 2 + 1;
+    }
 
-    inline int rightChild(const int n) const { return n * 2 + 2; }
+    inline int rightChild(const int n) const
+    {
+        return n * 2 + 2;
+    }
 
     std::vector<T> m_heap;
 };
@@ -79,7 +98,8 @@ void MaxHeap<T>::removeMax()
     while (leftChild(i) < (int)m_heap.size()) {
         int maxChild = leftChild(i);
         if (rightChild(i) < (int)m_heap.size()
-            && m_heap[rightChild(i)] > m_heap[leftChild(i)]) {
+            && m_heap[rightChild(i)] > m_heap[leftChild(i)])
+        {
             maxChild = rightChild(i);
         }
 

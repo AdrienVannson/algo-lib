@@ -15,7 +15,10 @@ public:
     /// \brief (a b) transposition of size n
     Permutation(const int n, const int a, const int b);
 
-    inline int size() const { return m_size; }
+    inline int size() const
+    {
+        return m_size;
+    }
 
     inline int operator()(const int v) const
     {
@@ -44,8 +47,8 @@ private:
     int m_size; // Size of the permutation
     bool m_isTransposition;
 
-    // If the permutation is a transposition, contains the two elements that are swapped
-    // If not, describes the permutation
+    // If the permutation is a transposition, contains the two elements that are
+    // swapped If not, describes the permutation
     std::vector<int> m_perm;
 };
 
