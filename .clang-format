@@ -52,7 +52,7 @@ BreakBeforeTernaryOperators: false
 BreakConstructorInitializers: AfterColon
 BreakInheritanceList: AfterColon
 BreakStringLiterals: true
-ColumnLimit: 90 # TODO change
+ColumnLimit: 80
 
 # PackConstructorInitializers: Never # With clang-format-14
 
