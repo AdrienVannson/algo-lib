@@ -35,23 +35,68 @@ public:
     }
 
     /// \brief Adds a vertex at the end of the list
-    void addVertex(const Vect2<T> vertex)
+    inline void addVertex(const Vect2<T> vertex)
     {
         m_vertices.push_back(vertex);
     }
 
-    /// \brief Tests if a vertex is inside the polyon
+    /// \brief Tests if a point is on the boundary of the polygon
+    bool isOnBoundary(const Vect2<T>) const;
+
+    /// \brief Tests if a point is inside the polyon
     bool isInside(const Vect2<T>) const;
 
-    /// \brief Tests if a vertex is strictly inside the polyon
+    /// \brief Tests if a point is strictly inside the polyon
     bool isStrictlyInside(const Vect2<T>) const;
 
 private:
+    /// \brief Tests if a point outside the boundary is inside the polygon
+    bool isInsideNotBoundary(const Vect2<T>) const;
+
     std::vector<Vect2<T>> m_vertices;
 };
 
 template<class T>
+bool Polygon<T>::isOnBoundary(const Vect2<T> M) const
+{
+    for (int i = 0; i < (int)m_vertices.size(); i++) {
+        const int j = i == (int)m_vertices.size() - 1 ? 0 : i + 1;
+
+        if ((m_vertices[i] - m_vertices[j]).manhattanNorm()
+            == Constants<T>::zero()) {
+            continue;
+        }
+
+        Segment<T> seg(m_vertices[i], m_vertices[j]);
+
+        if (seg.containsPoint(M)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+template<class T>
 bool Polygon<T>::isInside(const Vect2<T> M) const
+{
+    if (isOnBoundary(M)) {
+        return true;
+    }
+    return isInsideNotBoundary(M);
+}
+
+template<class T>
+bool Polygon<T>::isStrictlyInside(const Vect2<T> M) const
+{
+    if (isOnBoundary(M)) {
+        return false;
+    }
+    return isInsideNotBoundary(M);
+}
+
+template<class T>
+bool Polygon<T>::isInsideNotBoundary(const Vect2<T> M) const
 {
     // MN shouldn't intersect any vertex of the polygon (works if the
     // coordinates are integers)
@@ -66,18 +111,17 @@ bool Polygon<T>::isInside(const Vect2<T> M) const
     int intersectionCount = 0;
 
     for (int i = 0; i < (int)m_vertices.size(); i++) {
-        const int j = (i + 1) % m_vertices.size();
-        Segment<T> seg(m_vertices[i], m_vertices[j]);
-        if ((seg.A() - seg.B()).norm2() == Constants<T>::zero()) continue;
+        const int j = i == (int)m_vertices.size() - 1 ? 0 : i + 1;
 
-        Shape<T> inter = getIntersection(Line<T>(M, N), seg);
+        if ((m_vertices[i] - m_vertices[j]).manhattanNorm()
+            == Constants<T>::zero()) {
+            continue;
+        }
+
+        const Segment<T> seg(m_vertices[i], m_vertices[j]);
+        const Shape<T> inter = getIntersection(Line<T>(M, N), seg);
 
         if (inter.type() == Shape<T>::POINT) {
-            // Check if M is on the border
-            if (inter.point() == M) {
-                return true;
-            }
-
             if ((N - M) * (inter.point() - M) >= Constants<T>::zero()) {
                 intersectionCount++;
             }
@@ -85,13 +129,6 @@ bool Polygon<T>::isInside(const Vect2<T> M) const
     }
 
     return intersectionCount % 2;
-}
-
-// TODO
-template<class T>
-bool Polygon<T>::isStrictlyInside(const Vect2<T>) const
-{
-    return false;
 }
 
 #endif // POLYGON_HPP

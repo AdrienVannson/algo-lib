@@ -2,6 +2,7 @@
 #define CONVEXHULL_HPP
 
 #include "Vect2.hpp"
+#include "constants.hpp"
 
 #include <algorithm>
 #include <vector>

@@ -15,24 +15,30 @@ public:
         assert(A != B);
     }
 
-    Vect2<T> A() const
+    inline Vect2<T> A() const
     {
         return m_A;
     }
 
-    void setA(const Vect2<T> A)
+    inline void setA(const Vect2<T> A)
     {
         m_A = A;
     }
 
-    Vect2<T> B() const
+    inline Vect2<T> B() const
     {
         return m_B;
     }
 
-    void setB(const Vect2<T> B)
+    inline void setB(const Vect2<T> B)
     {
         m_B = B;
+    }
+
+    /// \brief Check if a point belongs to the line
+    bool containsPoint(const Vect2<T> M) const
+    {
+        return ((M - m_A) ^ (M - m_B)) == Constants<T>::zero();
     }
 
 private:
