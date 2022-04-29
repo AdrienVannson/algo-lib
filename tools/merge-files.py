@@ -47,7 +47,6 @@ def include(path, isRecursive):
 
         # Include
         elif re.match("^#include \"*\"", line):
-
             if ' // ONLY_IF ' in line:
                 line, motsRequis = line.split(' // ONLY_IF ')
                 motsRequis = motsRequis.split()
@@ -59,9 +58,9 @@ def include(path, isRecursive):
                 if not success:
                     continue
 
-            nouveauFichier = re.sub("^\\#include \"(.+)\"$", "\\1", line)
-
             if isRecursive:
+                nouveauFichier = re.sub("^\\#include \"(.+)\"$", "\\1", line)
+
                 succes = False
 
                 for dossierInclusion in dossiersInclusion:
