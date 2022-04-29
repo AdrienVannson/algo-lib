@@ -6,7 +6,11 @@
 
 #include "geometry/Vect2.hpp" // ONLY_IF Vect2
 #include "geometry/convex-hull.hpp" // ONLY_IF ConvexHull
-#include "geometry/primitives.hpp" // ONLY_IF getIntersection
+#include "geometry/intersections.hpp" // ONLY_IF getIntersection
+#include "geometry/line.hpp" // ONLY_IF Line
+#include "geometry/polygon.hpp" // ONLY_IF Polygon
+#include "geometry/segment.hpp" // ONLY_IF Segment
+#include "geometry/shape.hpp" // ONLY_IF Shape
 
 #include "graphs/algorithms/bellman-ford.hpp" // ONLY_IF BellmanFord
 #include "graphs/algorithms/bfs.hpp" // ONLY_IF BFS

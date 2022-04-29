@@ -11,7 +11,11 @@ HEADERS += \
         src/data-structures/MaxHeap.hpp \
         src/geometry/Vect2.hpp \
         src/geometry/convex-hull.hpp \
-        src/geometry/primitives.hpp \
+        src/geometry/intersections.hpp \
+        src/geometry/line.hpp \
+        src/geometry/polygon.hpp \
+        src/geometry/segment.hpp \
+        src/geometry/shape.hpp \
         src/graphs/algorithms/bellman-ford.hpp \
         src/graphs/algorithms/bfs.hpp \
         src/graphs/algorithms/dijkstra.hpp \
