@@ -12,6 +12,11 @@ public:
 
     inline explicit Vect2(const T x_, const T y_) : x(x_), y(y_) {}
 
+    inline bool isNull() const
+    {
+        return x == Constants<T>::zero() && y == Constants<T>::zero();
+    }
+
     inline T manhattanNorm() const
     {
         return abs(x) + abs(y);

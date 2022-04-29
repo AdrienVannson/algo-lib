@@ -10,38 +10,28 @@
 #include "line.hpp"
 #include "segment.hpp"
 #include "shape.hpp"
+#include "vect3.hpp"
 
 /// \brief Computes the intersection of two lines.
 template<class T>
 Shape<T> getIntersection(const Line<T> line1, const Line<T> line2)
 {
-    const Vect2<T> A = line1.A();
-    const Vect2<T> B = line1.B();
-    const Vect2<T> C = line2.A();
-    const Vect2<T> D = line2.B();
-
-    // TODO: assert(A != B && C != D);
-
-    const Vect2<T> AB = B - A;
-    const Vect2<T> CD = D - C;
-
-    const T c1 = A.x * B.y - A.y * B.x;
-    const T c2 = C.x * D.y - C.y * D.x;
-
-    const T det = AB ^ CD;
+    const T det = line1.b() * line2.a() - line1.a() * line2.b();
 
     if (det == Constants<T>::zero()) {
-        const Vect2<T> AC = C - A;
+        // Test if the two lines are the same
+        Vect3<T> v1(line1.a(), line1.b(), line1.c());
+        Vect3<T> v2(line2.a(), line2.b(), line2.c());
 
-        if ((AB ^ AC) == Constants<T>::zero()) {
+        if ((v1 ^ v2).isNull()) {
             return Shape<T>(line1);
         } else {
             return Shape<T>();
         }
     }
 
-    const T x = -CD.x * c1 + AB.x * c2;
-    const T y = -CD.y * c1 + AB.y * c2;
+    const T x = line2.b() * line1.c() - line1.b() * line2.c();
+    const T y = line1.a() * line2.c() - line2.a() * line1.c();
 
     return Shape<T>(Vect2<T>(x / det, y / det));
 }
