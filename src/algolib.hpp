@@ -11,6 +11,7 @@
 #include "geometry/polygon.hpp" // ONLY_IF Polygon
 #include "geometry/segment.hpp" // ONLY_IF Segment
 #include "geometry/shape.hpp" // ONLY_IF Shape
+#include "geometry/vect3.hpp" // ONLY_IF Vect3
 
 #include "graphs/algorithms/bellman-ford.hpp" // ONLY_IF BellmanFord
 #include "graphs/algorithms/bfs.hpp" // ONLY_IF BFS
