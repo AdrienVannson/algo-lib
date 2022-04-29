@@ -66,6 +66,12 @@ private:
 };
 
 template<class T>
+inline Fraction<T> abs(const Fraction<T> f)
+{
+    return Fraction<T>(abs(f.num()), f.den());
+}
+
+template<class T>
 inline Fraction<T> operator+(const Fraction<T> &a, const Fraction<T> &b)
 {
     return Fraction<T>(
