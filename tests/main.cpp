@@ -1,6 +1,6 @@
 #include "algolib.hpp"
 
-#include "geometry/primitives.hpp"
+#include "geometry/intersections.hpp"
 #include "maths/modulo.hpp"
 #include "maths/sieve-of-eratosthenes.hpp"
 

@@ -46,7 +46,7 @@ HEADERS += \
         src/strings/regex.hpp \
         src/trees/Tree.hpp \
         src/trees/graph-to-tree.hpp \
-        tests/geometry/primitives.hpp \
+        tests/geometry/intersections.hpp \
         tests/maths/modulo.hpp \
         tests/maths/sieve-of-eratosthenes.hpp \
         tests/test-done.hpp
@@ -56,7 +56,7 @@ SOURCES += \
     src/maths/Permutation.cpp \
     src/maths/sieve-of-eratosthenes.cpp \
     src/trees/Tree.cpp \
-    tests/geometry/primitives.cpp \
+    tests/geometry/intersections.cpp \
     tests/main.cpp \
     tests/maths/modulo.cpp \
     tests/maths/sieve-of-eratosthenes.cpp \
