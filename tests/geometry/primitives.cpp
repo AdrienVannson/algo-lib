@@ -1,5 +1,5 @@
 #include "primitives.hpp"
-#include "src/geometry/primitives.hpp"
+#include "src/geometry/intersections.hpp"
 
 #include <cassert>
 
