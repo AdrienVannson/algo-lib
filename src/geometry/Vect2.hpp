@@ -17,6 +17,12 @@ public:
         return abs(x) + abs(y);
     }
 
+    /// \brief Returns the norm of the vector, squared
+    inline T norm2() const
+    {
+        return x * x + y * y;
+    }
+
     inline double norm() const
     {
         return sqrt(x * x + y * y);
@@ -28,6 +34,12 @@ public:
 
         x /= currentNorm;
         y /= currentNorm;
+    }
+
+    template<class U>
+    operator Vect2<U>() const
+    {
+        return Vect2<U>(x, y);
     }
 
     inline Vect2<T> operator-() const
@@ -101,6 +113,25 @@ template<class T>
 inline Vect2<T> operator*(const Vect2<T> &v, const T k)
 {
     return Vect2<T>(k * v.x, k * v.y);
+}
+
+template<class T>
+inline bool operator==(const Vect2<T> &u, const Vect2<T> &v)
+{
+    return u.x == v.x && u.y == v.y;
+}
+
+template<class T>
+inline bool operator!=(const Vect2<T> &u, const Vect2<T> &v)
+{
+    return u.x != v.x || u.y != v.y;
+}
+
+template<class T>
+inline bool operator<(const Vect2<T> &u, const Vect2<T> &v)
+{
+    if (u.x != v.x) return u.x < v.x;
+    return u.y < v.y;
 }
 
 #endif // VECT2_HPP
