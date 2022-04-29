@@ -12,7 +12,7 @@ public:
     {
         assert(!g.isDirected());
 
-        std::vector<bool> isVisited(g.verticeCount(), false);
+        std::vector<bool> isVisited(g.vertexCount(), false);
 
         auto cmp = [&g](const typename G::Edge &a, const typename G::Edge &b) {
             return g.weight(a.edgeId) > g.weight(b.edgeId);

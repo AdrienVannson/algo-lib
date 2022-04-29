@@ -5,15 +5,15 @@
 
 Tree::Tree() : m_root(0) {}
 
-Tree::Tree(const int verticeCount, const int root) : m_root(root)
+Tree::Tree(const int vertexCount, const int root) : m_root(root)
 {
-    m_vertice.resize(verticeCount, Vertex {-1, std::vector<int>()});
+    m_vertices.resize(vertexCount, Vertex {-1, std::vector<int>()});
 }
 
 void Tree::setParent(const int vertex, const int newParent)
 {
-    if (m_vertice[vertex].parent != -1) {
-        Vertex &p = m_vertice[m_vertice[vertex].parent];
+    if (m_vertices[vertex].parent != -1) {
+        Vertex &p = m_vertices[m_vertices[vertex].parent];
 
         const auto it = std::find(p.children.begin(), p.children.end(), vertex);
         assert(it != p.children.end());
@@ -22,10 +22,10 @@ void Tree::setParent(const int vertex, const int newParent)
     }
 
     if (newParent != -1) {
-        m_vertice[newParent].children.push_back(vertex);
+        m_vertices[newParent].children.push_back(vertex);
     }
 
-    m_vertice[vertex].parent = newParent;
+    m_vertices[vertex].parent = newParent;
 }
 
 void printSubtree(

@@ -12,7 +12,7 @@ class BFS
 public:
     BFS(const G &graph, const std::vector<int> startVertice)
     {
-        m_dists.resize(graph.verticeCount(), Constants<int>::infinity());
+        m_dists.resize(graph.vertexCount(), Constants<int>::infinity());
 
         std::queue<std::pair<int, int>> pendingVertice; // {vertex, dist}
 

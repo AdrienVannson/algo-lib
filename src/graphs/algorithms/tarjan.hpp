@@ -12,10 +12,10 @@ class Tarjan
 public:
     Tarjan(const G &graph) : m_nextID(0)
     {
-        m_states.resize(graph.verticeCount(), NOT_VISITED);
-        m_ids.resize(graph.verticeCount(), -1);
+        m_states.resize(graph.vertexCount(), NOT_VISITED);
+        m_ids.resize(graph.vertexCount(), -1);
 
-        for (int v = 0; v < graph.verticeCount(); v++) {
+        for (int v = 0; v < graph.vertexCount(); v++) {
             if (m_states[v] == NOT_VISITED) {
                 findSccs(graph, v);
             }
@@ -38,14 +38,14 @@ public:
     }
 
     /// \brief Returns the ID of the strongly connected component containing a
-    /// given vertice
+    /// given vertex
     inline int scc(const int v) const
     {
         return m_states[v];
     }
 
 private:
-    /// \brief Returns the lowest id of a vertice directly accessible from the
+    /// \brief Returns the lowest id of a vertex directly accessible from the
     /// subtree
     int findSccs(const G &g, const int vertex);
 

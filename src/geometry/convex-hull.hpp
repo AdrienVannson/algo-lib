@@ -25,19 +25,19 @@ public:
         });
 
         for (int i = 0; i < (int)points.size(); i++) {
-            while (m_verticeIds.size() >= 2) {
+            while (m_verticesIds.size() >= 2) {
                 const Vect2<T> v = points[ids[i]];
-                const Vect2<T> a = points[m_verticeIds.back()];
+                const Vect2<T> a = points[m_verticesIds.back()];
                 const Vect2<T> b =
-                    points[m_verticeIds[m_verticeIds.size() - 2]];
+                    points[m_verticesIds[m_verticesIds.size() - 2]];
 
-                if (((a - b) ^ (v - b)) <= 0) {
-                    m_verticeIds.pop_back();
+                if (((a - b) ^ (v - b)) <= Constants<T>::zero()) {
+                    m_verticesIds.pop_back();
                 } else {
                     break;
                 }
             }
-            m_verticeIds.push_back(ids[i]);
+            m_verticesIds.push_back(ids[i]);
         }
 
         // Lower part
@@ -46,37 +46,37 @@ public:
             return points[a].y > points[b].y;
         });
 
-        const uint upperSize = m_verticeIds.size();
+        const uint upperSize = m_verticesIds.size();
         for (int i = 1; i < (int)points.size(); i++) {
-            while (m_verticeIds.size() > upperSize) {
+            while (m_verticesIds.size() > upperSize) {
                 const Vect2<T> v = points[ids[i]];
-                const Vect2<T> a = points[m_verticeIds.back()];
+                const Vect2<T> a = points[m_verticesIds.back()];
                 const Vect2<T> b =
-                    points[m_verticeIds[m_verticeIds.size() - 2]];
+                    points[m_verticesIds[m_verticesIds.size() - 2]];
 
-                if (((a - b) ^ (v - b)) <= 0) {
-                    m_verticeIds.pop_back();
+                if (((a - b) ^ (v - b)) <= Constants<T>::zero()) {
+                    m_verticesIds.pop_back();
                 } else {
                     break;
                 }
             }
-            m_verticeIds.push_back(ids[i]);
+            m_verticesIds.push_back(ids[i]);
         }
 
-        m_verticeIds.pop_back();
+        m_verticesIds.pop_back();
     }
 
     /// \brief Returns the ids of the points belonging to the convex hull's
     /// boundary, ordered counterclockwise
-    const std::vector<int> &verticeIds() const
+    const std::vector<int> &verticesIds() const
     {
-        return m_verticeIds;
+        return m_verticesIds;
     }
 
 private:
     // Ids of the points belonging to the convex hull's boundary, ordered
     // counterclockwise
-    std::vector<int> m_verticeIds;
+    std::vector<int> m_verticesIds;
 };
 
 #endif // CONVEXHULL_HPP

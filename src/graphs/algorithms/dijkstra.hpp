@@ -13,7 +13,7 @@ public:
     Dijkstra(const G &graph, const std::vector<int> startVertice)
     {
         m_dists.resize(
-            graph.verticeCount(),
+            graph.vertexCount(),
             Constants<typename G::Weight>::infinity());
 
         std::priority_queue<

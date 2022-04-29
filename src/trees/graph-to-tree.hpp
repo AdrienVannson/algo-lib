@@ -8,7 +8,7 @@
 template<class G>
 Tree graphToTree(const G &g, const int root = 0)
 {
-    Tree tree(g.verticeCount(), root);
+    Tree tree(g.vertexCount(), root);
 
     std::vector<std::pair<int, int>> pending; // (vertex, parent)
     pending.push_back(std::make_pair(root, -1));

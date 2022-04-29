@@ -8,11 +8,11 @@ class Tree
 {
 public:
     Tree();
-    Tree(const int verticeCount, const int root = 0);
+    Tree(const int vertexCount, const int root = 0);
 
-    inline int verticeCount() const
+    inline int vertexCount() const
     {
-        return m_vertice.size();
+        return m_vertices.size();
     }
 
     inline int root() const
@@ -22,12 +22,12 @@ public:
 
     inline int parent(const int vertex) const
     {
-        return m_vertice[vertex].parent;
+        return m_vertices[vertex].parent;
     }
 
     inline const std::vector<int> &children(const int vertex) const
     {
-        return m_vertice[vertex].children;
+        return m_vertices[vertex].children;
     }
 
     void setParent(const int vertex, const int newParent);
@@ -39,7 +39,7 @@ private:
     };
 
     int m_root;
-    std::vector<Vertex> m_vertice;
+    std::vector<Vertex> m_vertices;
 };
 
 std::ostream &operator<<(std::ostream &, const Tree &);

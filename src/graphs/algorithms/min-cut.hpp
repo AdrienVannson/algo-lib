@@ -13,7 +13,7 @@ class MinCut
 public:
     MinCut(const F &maxFlow, const G &graph) : m_minCut(maxFlow.maxFlow())
     {
-        Graph g(graph.verticeCount(), true);
+        Graph g(graph.vertexCount(), true);
 
         for (auto edge : graph.edges()) {
             const typename G::Weight capacity = graph.weight(edge.edgeId);

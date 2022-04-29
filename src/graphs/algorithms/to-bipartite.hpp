@@ -7,10 +7,9 @@ template<class G>
 class ToBipartite
 {
 public:
-    ToBipartite(const G &g) :
-        m_states(g.verticeCount(), -1), m_isBipartite(true)
+    ToBipartite(const G &g) : m_states(g.vertexCount(), -1), m_isBipartite(true)
     {
-        for (int v = 0; v < g.verticeCount(); v++) {
+        for (int v = 0; v < g.vertexCount(); v++) {
             if (m_states[v] == -1) {
                 explore(g, v, 0);
             }

@@ -14,11 +14,11 @@ public:
     {
         const auto oo = Constants<Weight>::infinity();
 
-        m_dists.resize(g.verticeCount());
-        for (int i = 0; i < g.verticeCount(); i++) {
-            m_dists[i].resize(g.verticeCount());
+        m_dists.resize(g.vertexCount());
+        for (int i = 0; i < g.vertexCount(); i++) {
+            m_dists[i].resize(g.vertexCount());
 
-            for (int j = 0; j < g.verticeCount(); j++) {
+            for (int j = 0; j < g.vertexCount(); j++) {
                 m_dists[i][j] = i == j ? 0 : +oo;
             }
         }
@@ -29,11 +29,11 @@ public:
             }
         }
 
-        for (int z = 0; z < g.verticeCount(); z++) {
-            for (int x = 0; x < g.verticeCount(); x++) {
+        for (int z = 0; z < g.vertexCount(); z++) {
+            for (int x = 0; x < g.vertexCount(); x++) {
                 if (m_dists[x][z] == +oo) continue;
 
-                for (int y = 0; y < g.verticeCount(); y++) {
+                for (int y = 0; y < g.vertexCount(); y++) {
                     if (m_dists[z][y] != +oo
                         && m_dists[x][z] + m_dists[z][y] < m_dists[x][y]) {
                         m_dists[x][y] = m_dists[x][z] + m_dists[z][y];

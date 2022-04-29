@@ -18,10 +18,10 @@ public:
         int edgeId;
     };
 
-    Graph(const int verticeCount, const bool isDirected) :
+    Graph(const int vertexCount, const bool isDirected) :
         m_isDirected(isDirected), m_edgeCount(0)
     {
-        m_vertice.resize(verticeCount);
+        m_vertices.resize(vertexCount);
     }
 
     inline bool isDirected() const
@@ -29,14 +29,14 @@ public:
         return m_isDirected;
     }
 
-    inline int verticeCount() const
+    inline int vertexCount() const
     {
-        return m_vertice.size();
+        return m_vertices.size();
     }
 
     inline int neighbourCount(const int vertex) const
     {
-        return m_vertice[vertex].size();
+        return m_vertices[vertex].size();
     }
 
     inline int edgeCount() const
@@ -47,13 +47,13 @@ public:
     /// \brief Returns the id of the n-th neighbour of a vertex
     inline int neighbour(const int vertex, const int neighbourPos) const
     {
-        return m_vertice[vertex][neighbourPos].neighbour;
+        return m_vertices[vertex][neighbourPos].neighbour;
     }
 
     /// \brief Returns the edges connected to a vertex
     const std::vector<EdgeTo> &edgesToNeighbours(const int vertex) const
     {
-        return m_vertice[vertex];
+        return m_vertices[vertex];
     }
 
     /// \brief Returns the neighbours of a vertex
@@ -61,7 +61,7 @@ public:
     {
         std::vector<int> nbs;
 
-        for (EdgeTo edge : m_vertice[vertex]) {
+        for (EdgeTo edge : m_vertices[vertex]) {
             nbs.push_back(edge.neighbour);
         }
 
@@ -85,7 +85,7 @@ public:
     /// \brief Returns the id of the n-th out-edge of a vertex
     inline int edgeId(const int vertex, const int neighbourPos) const
     {
-        return m_vertice[vertex][neighbourPos].edgeId;
+        return m_vertices[vertex][neighbourPos].edgeId;
     }
 
     /// \brief Returns the id of the first edge from one vertex to another (-1
@@ -93,8 +93,8 @@ public:
     inline int edgeIdTo(const int vertex, const int neighbour)
     {
         for (int i = 0; i < neighbourCount(vertex); i++) {
-            if (m_vertice[vertex][i].neighbour == neighbour) {
-                return m_vertice[vertex][i].edgeId;
+            if (m_vertices[vertex][i].neighbour == neighbour) {
+                return m_vertices[vertex][i].edgeId;
             }
         }
         return -1;
@@ -105,7 +105,7 @@ public:
     {
         std::vector<Edge> res;
 
-        for (int n = 0; n < verticeCount(); n++) {
+        for (int n = 0; n < vertexCount(); n++) {
             for (int m = 0; m < neighbourCount(n); m++) {
                 if (m_isDirected || n <= neighbour(n, m)) {
                     res.push_back(Edge {n, neighbour(n, m), edgeId(n, m)});
@@ -116,12 +116,12 @@ public:
         return res;
     }
 
-    /// \brief Creates a new edge between two vertice
+    /// \brief Creates a new edge between two vertices
     inline void addEdge(const int vertex1, const int vertex2)
     {
-        m_vertice[vertex1].push_back(EdgeTo {vertex2, m_edgeCount});
+        m_vertices[vertex1].push_back(EdgeTo {vertex2, m_edgeCount});
         if (!m_isDirected && vertex1 != vertex2) {
-            m_vertice[vertex2].push_back(EdgeTo {vertex1, m_edgeCount});
+            m_vertices[vertex2].push_back(EdgeTo {vertex1, m_edgeCount});
         }
 
         m_edgeCount++;
@@ -130,7 +130,7 @@ public:
 protected:
     bool m_isDirected;
     int m_edgeCount;
-    std::vector<std::vector<EdgeTo>> m_vertice; // [vertex][neighbourPos]
+    std::vector<std::vector<EdgeTo>> m_vertices; // [vertex][neighbourPos]
 };
 
 #endif // GRAPH_HPP

@@ -13,7 +13,7 @@ public:
     {
         assert(!g.isDirected());
 
-        DisjointSet ds(g.verticeCount());
+        DisjointSet ds(g.vertexCount());
 
         auto edges = g.edges();
         std::sort(

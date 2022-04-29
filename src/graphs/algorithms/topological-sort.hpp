@@ -10,13 +10,13 @@ class TopologicalSort
 public:
     TopologicalSort(const G &g) : m_isPossible(true)
     {
-        m_states.resize(g.verticeCount());
-        m_topologicalSort.reserve(g.verticeCount());
+        m_states.resize(g.vertexCount());
+        m_topologicalSort.reserve(g.vertexCount());
 
         std::vector<std::pair<int, int>> pending; // {vertex, posNeighbour}
-        pending.reserve(g.verticeCount() + 1);
+        pending.reserve(g.vertexCount() + 1);
 
-        for (int vertex = 0; vertex < g.verticeCount(); vertex++) {
+        for (int vertex = 0; vertex < g.vertexCount(); vertex++) {
             pending.push_back(std::make_pair(vertex, 0));
 
             while (pending.size()) {

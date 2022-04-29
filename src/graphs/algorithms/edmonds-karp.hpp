@@ -19,12 +19,12 @@ public:
         assert(graph.isDirected());
 
         // Build the residual graph
-        m_residualGraph.resize(graph.verticeCount());
+        m_residualGraph.resize(graph.vertexCount());
 
         const int edgeCount = graph.edgeCount();
         m_residualCapacities.resize(2 * edgeCount, 0);
 
-        for (int v = 0; v < graph.verticeCount(); v++) {
+        for (int v = 0; v < graph.vertexCount(); v++) {
             for (auto edgeTo : graph.edgesToNeighbours(v)) {
                 m_residualGraph[v].push_back(
                     Edge {edgeTo.neighbour, edgeTo.edgeId});
@@ -38,7 +38,7 @@ public:
 
         // Find augmenting paths
         while (true) {
-            std::vector<int> dists(graph.verticeCount(), INT_MAX);
+            std::vector<int> dists(graph.vertexCount(), INT_MAX);
 
             std::queue<int> pending;
             pending.push(source);

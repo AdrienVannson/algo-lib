@@ -14,14 +14,14 @@ public:
     {
         const auto oo = Constants<typename G::Weight>::infinity();
 
-        m_dists.resize(g.verticeCount(), +oo);
+        m_dists.resize(g.vertexCount(), +oo);
 
         for (int vertex : startVertice) {
             m_dists[vertex] = 0;
         }
 
         // Shortest paths
-        for (int i = 0; i < g.verticeCount() - 1; i++) {
+        for (int i = 0; i < g.vertexCount() - 1; i++) {
             for (const typename G::Edge e : g.edges()) {
                 typename G::Weight d = m_dists[e.vertex1] + g.weight(e.edgeId);
 

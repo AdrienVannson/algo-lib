@@ -12,10 +12,10 @@ public:
     Kosaraju(const G &graph)
     {
         m_graph = &graph;
-        m_states.resize(graph.verticeCount(), NOT_VISITED);
+        m_states.resize(graph.vertexCount(), NOT_VISITED);
 
         // First DFS: find a postordering
-        for (int v = 0; v < graph.verticeCount(); v++) {
+        for (int v = 0; v < graph.vertexCount(); v++) {
             findPostOrdering(v);
         }
 
@@ -23,7 +23,7 @@ public:
         m_graph = &transposeGraph;
 
         // Second DFS: find the SCCs
-        for (int i = graph.verticeCount() - 1; i >= 0; i--) {
+        for (int i = graph.vertexCount() - 1; i >= 0; i--) {
             const int v = m_postOrdering[i];
 
             if (m_states[v] < 0) { // Not visited during the second DFS
@@ -49,7 +49,7 @@ public:
     }
 
     /// \brief Returns the ID of the strongly connected component containing a
-    /// given vertice
+    /// given vertex
     inline int scc(const int v) const
     {
         return m_states[v];
