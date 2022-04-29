@@ -409,7 +409,7 @@ void testGraphToTree()
     g.addEdge(4, 5);
 
     Tree t = graphToTree(g, 1);
-    assert(t.verticeCount() == 6);
+    assert(t.vertexCount() == 6);
     assert(t.parent(0) == 1);
     assert(t.parent(1) == -1);
     assert(t.parent(2) == 1);
@@ -587,11 +587,11 @@ void testConvexHull()
         Vect2<int>(2, 2)};
 
     ConvexHull<int> convexHull(points);
-    assert(convexHull.verticeIds().size() == 4);
-    assert(convexHull.verticeIds()[0] == 6);
-    assert(convexHull.verticeIds()[1] == 8);
-    assert(convexHull.verticeIds()[2] == 2);
-    assert(convexHull.verticeIds()[3] == 0);
+    assert(convexHull.verticesIds().size() == 4);
+    assert(convexHull.verticesIds()[0] == 6);
+    assert(convexHull.verticesIds()[1] == 8);
+    assert(convexHull.verticesIds()[2] == 2);
+    assert(convexHull.verticesIds()[3] == 0);
 
     cerr << "### Convex hull: OK" << endl;
 }
