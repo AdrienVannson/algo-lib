@@ -3,9 +3,9 @@
 
 #include <cassert>
 
-#include "Vect2.hpp"
 #include "constants.hpp"
 #include "line.hpp"
+#include "vect2.hpp"
 
 /// \brief Segment defined by its two extremities: A and B
 template<class T>

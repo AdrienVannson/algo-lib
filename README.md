@@ -26,7 +26,7 @@
 - Geometry
     - Primitives:
         - Intersection of two lines
-    - Vector
+    - Vector (2D and 3D)
     - 2D Convex Hull
 - Maths
     - Exponentiation by squaring

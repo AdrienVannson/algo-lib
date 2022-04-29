@@ -3,9 +3,9 @@
 
 #include <cassert>
 
-#include "Vect2.hpp"
 #include "line.hpp"
 #include "segment.hpp"
+#include "vect2.hpp"
 
 struct Empty {};
 

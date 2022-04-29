@@ -5,11 +5,11 @@
 #include <utility>
 #include <vector>
 
-#include "Vect2.hpp"
 #include "constants.hpp"
 #include "line.hpp"
 #include "segment.hpp"
 #include "shape.hpp"
+#include "vect2.hpp"
 #include "vect3.hpp"
 
 /// \brief Computes the intersection of two lines.

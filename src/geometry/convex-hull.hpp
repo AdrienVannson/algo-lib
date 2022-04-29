@@ -1,8 +1,8 @@
 #ifndef CONVEXHULL_HPP
 #define CONVEXHULL_HPP
 
-#include "Vect2.hpp"
 #include "constants.hpp"
+#include "vect2.hpp"
 
 #include <algorithm>
 #include <vector>

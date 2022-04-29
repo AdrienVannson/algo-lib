@@ -4,13 +4,13 @@
 #include "data-structures/DisjointSet.hpp" // ONLY_IF DisjointSet
 #include "data-structures/MaxHeap.hpp" // ONLY_IF MaxHeap
 
-#include "geometry/Vect2.hpp" // ONLY_IF Vect2
 #include "geometry/convex-hull.hpp" // ONLY_IF ConvexHull
 #include "geometry/intersections.hpp" // ONLY_IF getIntersection
 #include "geometry/line.hpp" // ONLY_IF Line
 #include "geometry/polygon.hpp" // ONLY_IF Polygon
 #include "geometry/segment.hpp" // ONLY_IF Segment
 #include "geometry/shape.hpp" // ONLY_IF Shape
+#include "geometry/vect2.hpp" // ONLY_IF Vect2
 #include "geometry/vect3.hpp" // ONLY_IF Vect3
 
 #include "graphs/algorithms/bellman-ford.hpp" // ONLY_IF BellmanFord

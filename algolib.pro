@@ -9,13 +9,13 @@ HEADERS += \
         src/constants.hpp \
         src/data-structures/DisjointSet.hpp \
         src/data-structures/MaxHeap.hpp \
-        src/geometry/Vect2.hpp \
         src/geometry/convex-hull.hpp \
         src/geometry/intersections.hpp \
         src/geometry/line.hpp \
         src/geometry/polygon.hpp \
         src/geometry/segment.hpp \
         src/geometry/shape.hpp \
+        src/geometry/vect2.hpp \
         src/geometry/vect3.hpp \
         src/graphs/algorithms/bellman-ford.hpp \
         src/graphs/algorithms/bfs.hpp \

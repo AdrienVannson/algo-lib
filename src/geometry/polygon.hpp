@@ -3,10 +3,10 @@
 
 #include <vector>
 
-#include "Vect2.hpp"
 #include "constants.hpp"
 #include "intersections.hpp"
 #include "segment.hpp"
+#include "vect2.hpp"
 
 /// \brief A polygon represented by a list of its vertices
 template<class T>

@@ -3,7 +3,7 @@
 
 #include <cassert>
 
-#include "Vect2.hpp"
+#include "vect2.hpp"
 
 /// \brief Line defined by its cartesian equation ax + by + x = 0
 template<class T>
