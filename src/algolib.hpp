@@ -42,6 +42,7 @@
 #include "strings/automaton.hpp" // ONLY_IF Automaton Aut
 #include "strings/kmp.hpp" // ONLY_IF getKmp
 #include "strings/regex.hpp" // ONLY_IF Regex Reg
+#include "strings/utility/split.hpp" // ONLY_IF split
 
 #include "trees/Tree.hpp" // ONLY_IF Tree
 #include "trees/graph-to-tree.hpp" // ONLY_IF graphToTree

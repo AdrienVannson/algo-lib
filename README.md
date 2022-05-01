@@ -39,6 +39,8 @@
 - Sorting
     - Merge sort
 - Strings
+    - Utility
+        - Split
     - Automaton
     - Regex
     - Knuth–Morris–Pratt algorithm

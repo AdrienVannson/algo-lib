@@ -45,22 +45,26 @@ HEADERS += \
         src/strings/automaton.hpp \
         src/strings/kmp.hpp \
         src/strings/regex.hpp \
+        src/strings/utility/split.hpp \
         src/trees/Tree.hpp \
         src/trees/graph-to-tree.hpp \
         tests/geometry/intersections.hpp \
         tests/maths/modulo.hpp \
         tests/maths/sieve-of-eratosthenes.hpp \
+        tests/strings/utility.hpp \
         tests/test-done.hpp
 
 SOURCES += \
     src/json.cpp \
     src/maths/Permutation.cpp \
     src/maths/sieve-of-eratosthenes.cpp \
+    src/strings/utility/split.cpp \
     src/trees/Tree.cpp \
     tests/geometry/intersections.cpp \
     tests/main.cpp \
     tests/maths/modulo.cpp \
     tests/maths/sieve-of-eratosthenes.cpp \
+    tests/strings/utility.cpp \
     tests/test-done.cpp
 
 INCLUDEPATH += src

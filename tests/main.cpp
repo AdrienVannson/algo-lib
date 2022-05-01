@@ -3,6 +3,7 @@
 #include "geometry/intersections.hpp"
 #include "maths/modulo.hpp"
 #include "maths/sieve-of-eratosthenes.hpp"
+#include "strings/utility.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -782,6 +783,7 @@ int main()
     cerr << "Testing strings..." << endl;
     testAutomaton();
     testKmp();
+    testSplit();
     cerr << "\n";
 
     // Other
