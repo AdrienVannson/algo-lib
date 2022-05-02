@@ -125,6 +125,28 @@ public:
         return m_residualCapacities[edge];
     }
 
+    /// \brief Returns the total flow directly going from a to b (can be
+    /// negative if the flow is going from b to a)
+    inline typename G::Weight flowBetween(const int a, const int b) const
+    {
+        typename G::Weight flow = 0;
+
+        for (const Edge edge : m_residualGraph[a]) {
+            if (edge.neighbour == b && edge.id < (int)m_residualCapacities.size() / 2) {
+                flow += flowOnEdge(edge.id);
+            }
+        }
+
+        for (const Edge edge : m_residualGraph[b]) {
+            if (edge.neighbour == a && edge.id < (int)m_residualCapacities.size() / 2) {
+              cerr << "ERREUR" << endl;
+                flow -= flowOnEdge(edge.id);
+            }
+        }
+
+        return flow;
+    }
+
 private:
     int m_source, m_sink;
     typename G::Weight m_flow;

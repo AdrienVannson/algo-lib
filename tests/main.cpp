@@ -158,26 +158,43 @@ void testDijkstra()
 
 void testEdmondsKarp()
 {
-    WGraph<int> graph(6, true);
-    graph.addEdge(0, 1, 16);
-    graph.addEdge(0, 3, 13);
-    graph.addEdge(1, 3, 10);
-    graph.addEdge(3, 1, 4);
-    graph.addEdge(1, 2, 12);
-    graph.addEdge(2, 3, 9);
-    graph.addEdge(3, 4, 14);
-    graph.addEdge(4, 2, 7);
-    graph.addEdge(2, 5, 20);
-    graph.addEdge(4, 5, 4);
+    {
+        WGraph<int> graph(6, true);
+        graph.addEdge(0, 1, 16);
+        graph.addEdge(0, 3, 13);
+        graph.addEdge(1, 3, 10);
+        graph.addEdge(3, 1, 4);
+        graph.addEdge(1, 2, 12);
+        graph.addEdge(2, 3, 9);
+        graph.addEdge(3, 4, 14);
+        graph.addEdge(4, 2, 7);
+        graph.addEdge(2, 5, 20);
+        graph.addEdge(4, 5, 4);
 
-    EdmondsKarp<WGraph<int>> flow(graph, 0, 5);
+        EdmondsKarp<WGraph<int>> flow(graph, 0, 5);
 
-    assert(flow.maxFlow() == 23);
-    assert(flow.flowOnEdge(5) == 0);
-    assert(flow.flowOnEdge(0) == 12);
-    assert(flow.flowOnEdge(1) == 11);
-    assert(flow.flowOnEdge(9) == 4);
-    assert(flow.flowOnEdge(7) == 7);
+        assert(flow.maxFlow() == 23);
+        assert(flow.flowOnEdge(5) == 0);
+        assert(flow.flowOnEdge(0) == 12);
+        assert(flow.flowOnEdge(1) == 11);
+        assert(flow.flowOnEdge(9) == 4);
+        assert(flow.flowOnEdge(7) == 7);
+    }
+
+    {
+        WGraph<int> graph(3, true);
+        graph.addEdge(1, 2, 15);
+        graph.addEdge(0, 1, 10);
+        graph.addEdge(0, 1, 7);
+
+        EdmondsKarp<WGraph<int>> flow(graph, 0, 2);
+
+        assert(flow.maxFlow() == 15);
+        assert(flow.flowBetween(0, 1) == 15);
+        assert(flow.flowBetween(1, 0) == -15);
+        assert(flow.flowBetween(1, 2) == 15);
+        assert(flow.flowBetween(2, 1) == -15);
+    }
 
     cerr << "### Edmonds-Karp: OK" << endl;
 }
