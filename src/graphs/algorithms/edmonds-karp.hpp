@@ -132,14 +132,15 @@ public:
         typename G::Weight flow = 0;
 
         for (const Edge edge : m_residualGraph[a]) {
-            if (edge.neighbour == b && edge.id < (int)m_residualCapacities.size() / 2) {
+            if (edge.neighbour == b
+                && edge.id < (int)m_residualCapacities.size() / 2) {
                 flow += flowOnEdge(edge.id);
             }
         }
 
         for (const Edge edge : m_residualGraph[b]) {
-            if (edge.neighbour == a && edge.id < (int)m_residualCapacities.size() / 2) {
-              cerr << "ERREUR" << endl;
+            if (edge.neighbour == a
+                && edge.id < (int)m_residualCapacities.size() / 2) {
                 flow -= flowOnEdge(edge.id);
             }
         }
