@@ -5,7 +5,7 @@
 
 #include "vect2.hpp"
 
-/// \brief Line defined by its cartesian equation ax + by + x = 0
+/// \brief Line defined by its cartesian equation ax + by + c = 0
 template<class T>
 class Line
 {
