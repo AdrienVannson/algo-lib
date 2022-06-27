@@ -8,6 +8,7 @@
 #include "geometry/intersections.hpp" // ONLY_IF getIntersection
 #include "geometry/line.hpp" // ONLY_IF Line
 #include "geometry/polygon.hpp" // ONLY_IF Polygon
+#include "geometry/projections.hpp" // ONLY_IF getProjection
 #include "geometry/segment.hpp" // ONLY_IF Segment
 #include "geometry/shape.hpp" // ONLY_IF Shape
 #include "geometry/vect2.hpp" // ONLY_IF Vect2

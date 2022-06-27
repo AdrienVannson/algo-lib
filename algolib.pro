@@ -13,6 +13,7 @@ HEADERS += \
         src/geometry/intersections.hpp \
         src/geometry/line.hpp \
         src/geometry/polygon.hpp \
+        src/geometry/projections.hpp \
         src/geometry/segment.hpp \
         src/geometry/shape.hpp \
         src/geometry/vect2.hpp \
@@ -49,6 +50,7 @@ HEADERS += \
         src/trees/Tree.hpp \
         src/trees/graph-to-tree.hpp \
         tests/geometry/intersections.hpp \
+        tests/geometry/projections.hpp \
         tests/maths/modulo.hpp \
         tests/maths/sieve-of-eratosthenes.hpp \
         tests/strings/utility.hpp \
@@ -61,6 +63,7 @@ SOURCES += \
     src/strings/utility/split.cpp \
     src/trees/Tree.cpp \
     tests/geometry/intersections.cpp \
+    tests/geometry/projections.cpp \
     tests/main.cpp \
     tests/maths/modulo.cpp \
     tests/maths/sieve-of-eratosthenes.cpp \

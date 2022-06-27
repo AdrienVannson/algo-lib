@@ -24,10 +24,10 @@
 - Tree
     - Conversion from a graph
 - Geometry
-    - Primitives:
-        - Intersection of two lines
     - Vector (2D and 3D)
     - 2D Convex Hull
+    - Intersections
+    - Projections
 - Maths
     - Exponentiation by squaring
     - Fraction

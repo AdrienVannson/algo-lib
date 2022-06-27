@@ -1,6 +1,7 @@
 #include "algolib.hpp"
 
 #include "geometry/intersections.hpp"
+#include "geometry/projections.hpp"
 #include "maths/modulo.hpp"
 #include "maths/sieve-of-eratosthenes.hpp"
 #include "strings/utility.hpp"
@@ -794,6 +795,7 @@ int main()
     testVect2();
     testConvexHull();
     testIntersection();
+    testProjections();
     cerr << "\n";
 
     // Strings
