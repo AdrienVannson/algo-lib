@@ -1,11 +1,11 @@
-#ifndef TEST_PRIMITIVES_HPP
-#define TEST_PRIMITIVES_HPP
+#ifndef TEST_INTERSECTIONS_HPP
+#define TEST_INTERSECTIONS_HPP
 
 #include "geometry/intersections.hpp"
 #include "geometry/line.hpp"
 #include "maths/Fraction.hpp"
 #include "tests/test-done.hpp"
 
-void testIntersection();
+void testIntersections();
 
-#endif // TEST_PRIMITIVES_HPP
+#endif // TEST_INTERSECTIONS_HPP

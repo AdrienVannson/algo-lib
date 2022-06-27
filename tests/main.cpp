@@ -794,7 +794,7 @@ int main()
     cerr << "Testing geometry..." << endl;
     testVect2();
     testConvexHull();
-    testIntersection();
+    testIntersections();
     testProjections();
     cerr << "\n";
 

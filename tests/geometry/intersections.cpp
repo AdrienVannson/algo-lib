@@ -2,7 +2,7 @@
 
 #include <cassert>
 
-void testIntersection()
+void testIntersections()
 {
     using Fr = Fraction<long long>;
     using Vec = Vect2<Fr>;
