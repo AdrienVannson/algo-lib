@@ -67,6 +67,13 @@ public:
         m_verticesIds.pop_back();
     }
 
+    /// \brief Returns the number of points belonging to the convex hull's
+    /// boundary
+    int size() const
+    {
+        return m_verticesIds.size();
+    }
+
     /// \brief Returns the ids of the points belonging to the convex hull's
     /// boundary, ordered counterclockwise
     const std::vector<int> &verticesIds() const
