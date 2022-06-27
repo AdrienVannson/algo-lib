@@ -1,6 +1,8 @@
 #ifndef VECT2_HPP
 #define VECT2_HPP
 
+#include <iostream>
+
 #include "constants.hpp"
 
 template<class T>
@@ -137,6 +139,12 @@ inline bool operator<(const Vect2<T> &u, const Vect2<T> &v)
 {
     if (u.x != v.x) return u.x < v.x;
     return u.y < v.y;
+}
+
+template<class T>
+inline std::ostream &operator<<(std::ostream &os, const Vect2<T> &v)
+{
+    return os << "(" << v.x << ", " << v.y << ")";
 }
 
 #endif // VECT2_HPP
