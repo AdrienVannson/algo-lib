@@ -5,10 +5,15 @@
 
 #include <vector>
 
+/// \brief Converts a graph to a tree. Returns a pair containing:
+/// - the tree
+/// - the IDs of the edges in a vector: for each vertex v, the value contained
+///   at the index v is the ID of the edge
 template<class G>
-Tree graphToTree(const G &g, const int root = 0)
+std::pair<Tree, std::vector<int>> graphToTree(const G &g, const int root = 0)
 {
     Tree tree(g.vertexCount(), root);
+    std::vector<int> ids(g.vertexCount(), -1);
 
     std::vector<std::pair<int, int>> pending; // (vertex, parent)
     pending.push_back(std::make_pair(root, -1));
@@ -18,16 +23,19 @@ Tree graphToTree(const G &g, const int root = 0)
         const int parent = pending.back().second;
         pending.pop_back();
 
-        tree.setParent(vertex, parent);
+        for (auto edge : g.edgesToNeighbours(vertex)) {
+            const int neighbour = edge.neighbour;
 
-        for (int neighbour : g.neighbours(vertex)) {
             if (neighbour != parent) {
+                tree.setParent(neighbour, vertex);
+                ids[neighbour] = edge.edgeId;
+
                 pending.push_back(std::make_pair(neighbour, vertex));
             }
         }
     }
 
-    return tree;
+    return std::make_pair(tree, ids);
 }
 
 #endif // GRAPHTOTREE_HPP

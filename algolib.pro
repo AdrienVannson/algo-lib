@@ -48,6 +48,7 @@ HEADERS += \
         src/strings/regex.hpp \
         src/strings/utility/split.hpp \
         src/trees/Tree.hpp \
+        src/trees/graph-to-forest.hpp \
         src/trees/graph-to-tree.hpp \
         tests/geometry/intersections.hpp \
         tests/geometry/projections.hpp \

@@ -46,6 +46,7 @@
 #include "strings/utility/split.hpp" // ONLY_IF split
 
 #include "trees/Tree.hpp" // ONLY_IF Tree
+#include "trees/graph-to-forest.hpp" // ONLY_IF graphToForest
 #include "trees/graph-to-tree.hpp" // ONLY_IF graphToTree
 
 #include "constants.hpp" // ONLY_IF Constants

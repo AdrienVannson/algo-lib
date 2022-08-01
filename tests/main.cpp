@@ -421,13 +421,16 @@ void testTopologicalSort()
 void testGraphToTree()
 {
     Graph g(6, false);
+    g.addEdge(4, 5);
     g.addEdge(0, 1);
     g.addEdge(1, 2);
     g.addEdge(1, 3);
     g.addEdge(2, 4);
-    g.addEdge(4, 5);
 
-    Tree t = graphToTree(g, 1);
+    auto res = graphToTree(g, 1);
+    Tree t = res.first;
+    vector<int> ids = res.second;
+
     assert(t.vertexCount() == 6);
     assert(t.parent(0) == 1);
     assert(t.parent(1) == -1);
@@ -435,9 +438,43 @@ void testGraphToTree()
     assert(t.parent(3) == 1);
     assert(t.parent(4) == 2);
     assert(t.parent(5) == 4);
-    assert(t.children(1) == vector<int>({3, 2, 0}));
+    assert(t.children(1) == vector<int>({0, 2, 3}));
+
+    assert(ids == vector<int>({1, -1, 2, 3, 4, 0}));
 
     cerr << "### Graph to tree: OK" << endl;
+}
+
+void testGraphToForest()
+{
+    Graph g(8, false);
+    g.addEdge(0, 1);
+    g.addEdge(0, 2);
+    g.addEdge(0, 3);
+    g.addEdge(2, 4);
+    g.addEdge(4, 5);
+    g.addEdge(6, 7);
+
+    auto res = graphToForest(g);
+    Tree f = res.first;
+    vector<int> ids = res.second;
+
+    assert(f.treeCount() == 2);
+    assert(f.vertexCount() == 8);
+
+    assert(f.parent(0) == -1);
+    assert(f.parent(1) == 0);
+    assert(f.parent(2) == 0);
+    assert(f.parent(3) == 0);
+    assert(f.parent(4) == 2);
+    assert(f.parent(5) == 4);
+    assert(f.children(0) == vector<int>({1, 2, 3}));
+    assert(f.parent(6) == -1);
+    assert(f.parent(7) == 6);
+
+    assert(ids == vector<int>({-1, 0, 1, 2, 3, 4, -1, 5}));
+
+    cerr << "### Graph to forest: OK" << endl;
 }
 
 /*******************************************************************************
@@ -772,6 +809,7 @@ int main()
     // Trees
     cerr << "Testing trees..." << endl;
     testGraphToTree();
+    testGraphToForest();
     cerr << "\n";
 
     // Sorting algorithms

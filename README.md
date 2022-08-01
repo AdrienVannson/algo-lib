@@ -22,7 +22,7 @@
         - Topological sort
         - Transpose graph
 - Tree
-    - Conversion from a graph
+    - Convert a graph to a rooted tree or a forest
 - Geometry
     - Vector (2D and 3D)
     - 2D Convex Hull
