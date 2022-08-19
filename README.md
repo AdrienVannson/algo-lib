@@ -35,6 +35,7 @@
     - Modulo
     - Permutation
     - Polynomial
+    - Prime decomposition
     - Sieve of Eratosthenes
 - Sorting
     - Merge sort

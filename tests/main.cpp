@@ -3,6 +3,7 @@
 #include "geometry/intersections.hpp"
 #include "geometry/projections.hpp"
 #include "maths/modulo.hpp"
+#include "maths/prime-decomposition.hpp"
 #include "maths/sieve-of-eratosthenes.hpp"
 #include "strings/utility.hpp"
 
@@ -824,6 +825,7 @@ int main()
     checkGCD_LCM();
     testPermutation();
     testPolynomial();
+    testPrimeDecomposition();
     testModulo();
     testSieveOfEratosthenes();
     cerr << "\n";

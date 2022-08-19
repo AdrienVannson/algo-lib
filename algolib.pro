@@ -41,6 +41,7 @@ HEADERS += \
         src/maths/Polynomial.hpp \
         src/maths/exponentiation-by-squaring.hpp \
         src/maths/modulo.hpp \
+        src/maths/prime-decomposition.hpp \
         src/maths/sieve-of-eratosthenes.hpp \
         src/sorting/merge-sort.hpp \
         src/strings/automaton.hpp \
@@ -53,6 +54,7 @@ HEADERS += \
         tests/geometry/intersections.hpp \
         tests/geometry/projections.hpp \
         tests/maths/modulo.hpp \
+        tests/maths/prime-decomposition.hpp \
         tests/maths/sieve-of-eratosthenes.hpp \
         tests/strings/utility.hpp \
         tests/test-done.hpp
@@ -60,6 +62,7 @@ HEADERS += \
 SOURCES += \
     src/json.cpp \
     src/maths/Permutation.cpp \
+    src/maths/prime-decomposition.cpp \
     src/maths/sieve-of-eratosthenes.cpp \
     src/strings/utility/split.cpp \
     src/trees/Tree.cpp \
@@ -67,6 +70,7 @@ SOURCES += \
     tests/geometry/projections.cpp \
     tests/main.cpp \
     tests/maths/modulo.cpp \
+    tests/maths/prime-decomposition.cpp \
     tests/maths/sieve-of-eratosthenes.cpp \
     tests/strings/utility.cpp \
     tests/test-done.cpp

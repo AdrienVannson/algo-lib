@@ -35,7 +35,9 @@
 #include "maths/Permutation.hpp" // ONLY_IF Permutation
 #include "maths/Polynomial.hpp" // ONLY_IF Polynomial
 #include "maths/exponentiation-by-squaring.hpp" // ONLY_IF getPower
+#include "maths/matrix.hpp" // ONLY_IF Matrix
 #include "maths/modulo.hpp" // ONLY_IF Modulo
+#include "maths/prime-decomposition.hpp" // ONLY_IF getPrimeDecomposition
 #include "maths/sieve-of-eratosthenes.hpp" // ONLY_IF SieveOfEratosthenes
 
 #include "sorting/merge-sort.hpp" // ONLY_IF mergeSort
