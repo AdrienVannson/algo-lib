@@ -6,6 +6,8 @@
 #define MODULO_HPP
 
 #include "constants.hpp"
+#include "GCD_LCM.hpp"
+
 #include <iostream>
 
 template<class T>
@@ -36,6 +38,13 @@ public:
     inline static void setMod(const int mod)
     {
         s_mod = mod;
+    }
+
+    inline Modulo<T> inverse() const
+    {
+        assert(m_val != Constants<T>::zero());
+
+        return Modulo<T>(getGCDBezout(m_val, s_mod)[1]);
     }
 
     inline void operator+=(const Modulo<T> x)
@@ -74,6 +83,12 @@ template<class T>
 inline Modulo<T> operator*(const Modulo<T> a, const Modulo<T> b)
 {
     return Modulo<T>((T)a * (T)b);
+}
+
+template<class T>
+inline Modulo<T> operator/(const Modulo<T> a, const Modulo<T> b)
+{
+    return a * b.inverse();
 }
 
 template<class T>

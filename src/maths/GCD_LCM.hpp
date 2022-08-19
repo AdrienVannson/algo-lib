@@ -2,6 +2,7 @@
 #define GCD_LCM_HPP
 
 #include <array>
+#include <complex>
 
 long long getGCD(long long a, long long b)
 {

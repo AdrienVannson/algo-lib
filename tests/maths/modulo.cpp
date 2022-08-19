@@ -12,5 +12,10 @@ void testModulo()
     assert((a + b).val() == 2);
     assert((a * b).val() == 16);
 
+    for (int i = 1; i < 17; i++) {
+        assert((int)(Modulo<int>(i).inverse() * Modulo<int>(i)) == 1);
+        assert((int)(Modulo<int>(i) / Modulo<int>(i)) == 1);
+    }
+
     showTestDone("Modulo");
 }
