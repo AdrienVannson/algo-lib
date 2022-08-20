@@ -8,7 +8,8 @@ void testProjections()
     using Vec = Vect2<Fr>;
     using Lin = Line<Fr>;
 
-    assert(getProjection(Vec(8, 2), Lin(1, -3, 6)) == Vec(Fr(72, 10), Fr(44, 10)));
+    assert(
+        getProjection(Vec(8, 2), Lin(1, -3, 6)) == Vec(Fr(72, 10), Fr(44, 10)));
 
     showTestDone("Projection");
 }
