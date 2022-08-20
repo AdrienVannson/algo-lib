@@ -8,6 +8,7 @@
 #include "GCD_LCM.hpp"
 #include "constants.hpp"
 
+#include <cassert>
 #include <iostream>
 
 template<class T>
