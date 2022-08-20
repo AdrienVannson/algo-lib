@@ -1,11 +1,11 @@
 #include "algolib.hpp"
 
-#include "geometry/intersections.hpp"
-#include "geometry/projections.hpp"
-#include "maths/modulo.hpp"
-#include "maths/prime-decomposition.hpp"
-#include "maths/sieve-of-eratosthenes.hpp"
-#include "strings/utility.hpp"
+#include "geometry/test-intersections.hpp"
+#include "geometry/test-projections.hpp"
+#include "maths/test-modulo.hpp"
+#include "maths/test-prime-decomposition.hpp"
+#include "maths/test-sieve-of-eratosthenes.hpp"
+#include "strings/test-utility.hpp"
 
 #include <bits/stdc++.h>
 using namespace std;

@@ -50,12 +50,12 @@ HEADERS += \
         src/trees/Tree.hpp \
         src/trees/graph-to-forest.hpp \
         src/trees/graph-to-tree.hpp \
-        tests/geometry/intersections.hpp \
-        tests/geometry/projections.hpp \
-        tests/maths/modulo.hpp \
-        tests/maths/prime-decomposition.hpp \
-        tests/maths/sieve-of-eratosthenes.hpp \
-        tests/strings/utility.hpp \
+        tests/geometry/test-intersections.hpp \
+        tests/geometry/test-projections.hpp \
+        tests/maths/test-modulo.hpp \
+        tests/maths/test-prime-decomposition.hpp \
+        tests/maths/test-sieve-of-eratosthenes.hpp \
+        tests/strings/test-utility.hpp \
         tests/test-done.hpp
 
 SOURCES += \
@@ -65,13 +65,13 @@ SOURCES += \
     src/maths/sieve-of-eratosthenes.cpp \
     src/strings/utility/split.cpp \
     src/trees/Tree.cpp \
-    tests/geometry/intersections.cpp \
-    tests/geometry/projections.cpp \
+    tests/geometry/test-intersections.cpp \
+    tests/geometry/test-projections.cpp \
     tests/main.cpp \
-    tests/maths/modulo.cpp \
-    tests/maths/prime-decomposition.cpp \
-    tests/maths/sieve-of-eratosthenes.cpp \
-    tests/strings/utility.cpp \
+    tests/maths/test-modulo.cpp \
+    tests/maths/test-prime-decomposition.cpp \
+    tests/maths/test-sieve-of-eratosthenes.cpp \
+    tests/strings/test-utility.cpp \
     tests/test-done.cpp
 
 INCLUDEPATH += src
