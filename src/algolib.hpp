@@ -26,7 +26,6 @@
 #include "graphs/algorithms/tarjan.hpp" // ONLY_IF Tarjan
 #include "graphs/algorithms/to-bipartite.hpp" // ONLY_IF ToBipartite
 #include "graphs/algorithms/topological-sort.hpp" // ONLY_IF TopologicalSort
-#include "graphs/algorithms/transpose-graph.hpp" // ONLY_IF getTransposeGraph
 #include "graphs/data-structures/Graph.hpp" // ONLY_IF Graph
 #include "graphs/data-structures/WGraph.hpp" // ONLY_IF WGraph
 
