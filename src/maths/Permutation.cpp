@@ -5,7 +5,6 @@
 
 using namespace std;
 
-/// \brief Permutation
 Permutation::Permutation(const vector<int> &perm) :
     m_size(perm.size()), m_isTransposition(false), m_perm(perm)
 {
@@ -18,7 +17,6 @@ Permutation::Permutation(const vector<int> &perm) :
     }
 }
 
-/// \brief Identity
 Permutation::Permutation(const int n) :
     m_size(n), m_isTransposition(false), m_perm(n)
 {
@@ -27,7 +25,6 @@ Permutation::Permutation(const int n) :
     }
 }
 
-/// \brief (a b) transposition of size n
 Permutation::Permutation(const int n, const int a, const int b) :
     m_size(n), m_isTransposition(true), m_perm({a, b})
 {
@@ -114,7 +111,6 @@ int Permutation::signature() const
  * Decompositions
  */
 
-/// \brief Decomposition into composition of transpositions
 vector<Permutation> Permutation::transpositionsDecomposition() const
 {
     if (m_isTransposition) return {*this};
@@ -150,7 +146,6 @@ bool operator==(const Permutation &a, const Permutation &b)
     return true;
 }
 
-/// \brief Composition
 Permutation operator*(const Permutation &a, const Permutation &b)
 {
     assert(a.size() == b.size());
