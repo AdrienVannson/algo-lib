@@ -10,7 +10,7 @@ template<class G>
 class Dijkstra
 {
 public:
-    Dijkstra(const G &graph, const std::vector<int> startVertice)
+    Dijkstra(const G &graph, const std::vector<int> startVertices)
     {
         m_dists.resize(
             graph.vertexCount(),
@@ -20,16 +20,16 @@ public:
             std::pair<typename G::Weight, int>,
             std::vector<std::pair<typename G::Weight, int>>,
             std::greater<std::pair<typename G::Weight, int>>>
-            pendingVertice; // {dist, vertex}
+            pendingVertices; // {dist, vertex}
 
-        for (int vertex : startVertice) {
-            pendingVertice.push(std::make_pair(0, vertex));
+        for (int vertex : startVertices) {
+            pendingVertices.push(std::make_pair(0, vertex));
         }
 
-        while (pendingVertice.size()) {
-            const int vertex = pendingVertice.top().second;
-            const int dist = pendingVertice.top().first;
-            pendingVertice.pop();
+        while (pendingVertices.size()) {
+            const int vertex = pendingVertices.top().second;
+            const typename G::Weight dist = pendingVertices.top().first;
+            pendingVertices.pop();
 
             if (m_dists[vertex] != Constants<typename G::Weight>::infinity()) {
                 continue;
@@ -41,7 +41,7 @@ public:
 
                 if (m_dists[neighbour]
                     == Constants<typename G::Weight>::infinity()) {
-                    pendingVertice.push(std::make_pair(
+                    pendingVertices.push(std::make_pair(
                         dist + graph.weight(vertex, i),
                         neighbour));
                 }
