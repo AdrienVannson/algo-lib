@@ -1,3 +1,6 @@
+// Necessary to compile with algolib (TODO remove)
+// Modulo SieveOfEratosthenes getPrimeDecomposition
+
 #include "algolib.hpp"
 
 #include "geometry/test-intersections.hpp"
