@@ -5,8 +5,8 @@
 #ifndef MODULO_HPP
 #define MODULO_HPP
 
-#include "GCD_LCM.hpp"
 #include "constants.hpp"
+#include "gcd-lcm.hpp"
 
 #include <cassert>
 #include <iostream>

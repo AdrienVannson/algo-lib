@@ -1,4 +1,4 @@
-#include "modulo.hpp"
+#include "test-modulo.hpp"
 #include "maths/modulo.hpp"
 
 #include <cassert>

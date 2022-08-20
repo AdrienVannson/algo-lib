@@ -1,4 +1,4 @@
-#include "projections.hpp"
+#include "test-projections.hpp"
 
 #include <cassert>
 

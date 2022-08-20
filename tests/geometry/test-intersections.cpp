@@ -1,4 +1,4 @@
-#include "intersections.hpp"
+#include "test-intersections.hpp"
 
 #include <cassert>
 

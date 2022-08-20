@@ -1,7 +1,7 @@
 #include <cassert>
 
 #include "maths/prime-decomposition.hpp"
-#include "prime-decomposition.hpp"
+#include "test-prime-decomposition.hpp"
 
 void testPrimeDecomposition()
 {

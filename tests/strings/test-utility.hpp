@@ -1,5 +1,5 @@
-#ifndef UTILITY_HPP
-#define UTILITY_HPP
+#ifndef TEST_UTILITY_HPP
+#define TEST_UTILITY_HPP
 
 #include "tests/test-done.hpp"
 
@@ -7,4 +7,4 @@
 
 void testSplit();
 
-#endif // UTILITY_HPP
+#endif // TEST_UTILITY_HPP
