@@ -65,7 +65,7 @@ private:
 };
 
 template<class T>
-T Modulo<T>::s_mod;
+T Modulo<T>::s_mod = 1;
 
 template<class T>
 inline Modulo<T> operator+(const Modulo<T> a, const Modulo<T> b)
