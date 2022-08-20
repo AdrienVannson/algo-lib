@@ -3,8 +3,6 @@
 
 #include <vector>
 
-#include "transpose-graph.hpp"
-
 template<class G>
 class Kosaraju
 {
@@ -19,7 +17,7 @@ public:
             findPostOrdering(v);
         }
 
-        const G transposeGraph = getTransposeGraph(graph);
+        const G transposeGraph = graph.transposeGraph();
         m_graph = &transposeGraph;
 
         // Second DFS: find the SCCs

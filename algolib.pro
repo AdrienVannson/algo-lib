@@ -30,7 +30,6 @@ HEADERS += \
         src/graphs/algorithms/tarjan.hpp \
         src/graphs/algorithms/to-bipartite.hpp \
         src/graphs/algorithms/topological-sort.hpp \
-        src/graphs/algorithms/transpose-graph.hpp \
         src/graphs/data-structures/Graph.hpp \
         src/graphs/data-structures/WGraph.hpp \
         src/json.hpp \

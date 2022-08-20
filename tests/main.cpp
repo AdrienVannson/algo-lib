@@ -415,6 +415,32 @@ void testTopologicalSort()
     cerr << "### Topological sort: OK" << endl;
 }
 
+void testTransposeGraph()
+{
+    {
+        Graph g(2, true);
+        g.addEdge(0, 1);
+
+        Graph gt = g.transposeGraph();
+        assert(gt.neighbourCount(0) == 0);
+        assert(gt.neighbourCount(1) == 1);
+        assert(gt.neighbour(1, 0) == 0);
+    }
+
+    {
+        WGraph<int> g(2, true);
+        g.addEdge(0, 1, 12);
+
+        WGraph<int> gt = g.transposeGraph();
+        assert(gt.neighbourCount(0) == 0);
+        assert(gt.neighbourCount(1) == 1);
+        assert(gt.neighbour(1, 0) == 0);
+        assert(gt.weight(0) == 12);
+    }
+
+    showTestDone("Transpose graph");
+}
+
 /*******************************************************************************
  *** Trees *********************************************************************
  ******************************************************************************/
@@ -805,6 +831,7 @@ int main()
     testPrim();
     testTarjan();
     testTopologicalSort();
+    testTransposeGraph();
     cerr << "\n";
 
     // Trees

@@ -1,6 +1,7 @@
 #ifndef GRAPH_HPP
 #define GRAPH_HPP
 
+#include <cassert>
 #include <vector>
 
 class Graph
@@ -125,6 +126,24 @@ public:
         }
 
         m_edgeCount++;
+    }
+
+    /// \brief Returns the graph obtained after changing the direction of the
+    /// edges
+    inline Graph transposeGraph() const
+    {
+        assert(m_isDirected);
+
+        Graph g(vertexCount(), m_isDirected);
+        g.m_edgeCount = m_edgeCount;
+
+        for (int v = 0; v < vertexCount(); v++) {
+            for (const EdgeTo edge : m_vertices[v]) {
+                g.m_vertices[edge.neighbour].push_back(EdgeTo {v, edge.edgeId});
+            }
+        }
+
+        return g;
     }
 
 protected:
