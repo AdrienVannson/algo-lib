@@ -53,9 +53,17 @@ public:
         Dijkstra(graph, std::vector<int> {startVertex})
     {}
 
+    /// \brief Returns the shortest distance from one of the start vertices to a
+    /// vertex
     inline typename G::Weight distTo(const int vertex) const
     {
         return m_dists[vertex];
+    }
+
+    /// \brief Returns if a vertex is accessible from one of the start vertices
+    inline bool isAccessible(const int vertex) const
+    {
+        return m_dists[vertex] != Constants<typename G::Weight>::infinity();
     }
 
 private:
