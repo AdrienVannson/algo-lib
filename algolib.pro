@@ -33,12 +33,12 @@ HEADERS += \
         src/graphs/data-structures/Graph.hpp \
         src/graphs/data-structures/WGraph.hpp \
         src/json.hpp \
-        src/maths/GCD_LCM.hpp \
         src/maths/Permutation.hpp \
         src/maths/Fraction.hpp \
         src/global.hpp \
         src/maths/Polynomial.hpp \
         src/maths/exponentiation-by-squaring.hpp \
+        src/maths/gcd-lcm.hpp \
         src/maths/modulo.hpp \
         src/maths/prime-decomposition.hpp \
         src/maths/sieve-of-eratosthenes.hpp \
@@ -61,6 +61,7 @@ HEADERS += \
 SOURCES += \
     src/json.cpp \
     src/maths/Permutation.cpp \
+    src/maths/gcd-lcm.cpp \
     src/maths/prime-decomposition.cpp \
     src/maths/sieve-of-eratosthenes.cpp \
     src/strings/utility/split.cpp \

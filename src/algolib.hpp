@@ -30,7 +30,7 @@
 #include "graphs/data-structures/WGraph.hpp" // ONLY_IF WGraph
 
 #include "maths/Fraction.hpp" // ONLY_IF Fraction
-#include "maths/GCD_LCM.hpp" // ONLY_IF getGCD getLCM getGCDBezout
+#include "maths/gcd-lcm.hpp" // ONLY_IF getGCD getLCM getGCDBezout
 #include "maths/Permutation.hpp" // ONLY_IF Permutation
 #include "maths/Polynomial.hpp" // ONLY_IF Polynomial
 #include "maths/exponentiation-by-squaring.hpp" // ONLY_IF getPower
