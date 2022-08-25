@@ -1,7 +1,8 @@
-#include "test-modulo.hpp"
-#include "maths/modulo.hpp"
-
 #include <cassert>
+
+#include "maths/modulo.hpp"
+#include "test-done.hpp"
+#include "test-modulo.hpp"
 
 void testModulo()
 {

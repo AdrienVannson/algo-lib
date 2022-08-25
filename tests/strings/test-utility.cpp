@@ -1,5 +1,6 @@
 #include <cassert>
 
+#include "test-done.hpp"
 #include "test-utility.hpp"
 
 void testSplit()

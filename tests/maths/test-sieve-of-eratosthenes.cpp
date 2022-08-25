@@ -1,6 +1,7 @@
 #include <cassert>
 
 #include "maths/sieve-of-eratosthenes.hpp"
+#include "test-done.hpp"
 #include "test-sieve-of-eratosthenes.hpp"
 
 void testSieveOfEratosthenes()

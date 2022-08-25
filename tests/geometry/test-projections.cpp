@@ -1,6 +1,7 @@
-#include "test-projections.hpp"
-
 #include <cassert>
+
+#include "test-done.hpp"
+#include "test-projections.hpp"
 
 void testProjections()
 {

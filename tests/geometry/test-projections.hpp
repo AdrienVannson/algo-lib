@@ -3,7 +3,6 @@
 
 #include "geometry/projections.hpp"
 #include "maths/Fraction.hpp"
-#include "tests/test-done.hpp"
 
 void testProjections();
 

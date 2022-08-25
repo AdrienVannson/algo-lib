@@ -1,6 +1,7 @@
-#include "test-intersections.hpp"
-
 #include <cassert>
+
+#include "test-done.hpp"
+#include "test-intersections.hpp"
 
 void testIntersections()
 {
