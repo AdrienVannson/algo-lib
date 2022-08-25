@@ -12,6 +12,15 @@ path_folders = [os.getcwd(), '']
 for i in range(int(input())):
     path_folders.append(os.path.abspath(input()))
 
+def get_full_path(relative_path):
+    for include_folder in path_folders:
+        folder = os.path.realpath(include_folder + '/' + os.path.dirname(relative_path))
+        file = folder + '/' + os.path.basename(relative_path)
+
+        if os.path.exists(file):
+            return folder, file
+    return '', ''
+
 # Contains the remaining lines to parse. The last line is the next one to be parsed
 pending = list(reversed(lines_of_file('main.cpp')))
 
@@ -27,40 +36,27 @@ while len(pending):
             line = line.split(' // ONLY_IF ')[0]
 
         relative_path = re.sub("^\\#include \"(.+)\"$", "\\1", line)
+        folder, file = get_full_path(relative_path)
 
-        file_exists = False
-
-        for include_folder in path_folders:
-            folder = os.path.realpath(include_folder + '/' + os.path.dirname(relative_path))
-            file = folder + '/' + os.path.basename(relative_path)
-
-            if os.path.exists(file):
-                # Check if the file has already been included
-                if file in included_files:
-                    file_exists = True
-                    break
-                included_files.append(file)
-
-                # Add the folder to the path to find the next included files
-                if not folder in path_folders:
-                    path_folders.append(folder)
-
-                # Add the .cpp if needed
-                if file[-4:] == '.hpp':
-                    source_file = file[:-4] + '.cpp'
-                    if os.path.exists(source_file):
-                        pending.append('#include "' + source_file + '"')
-
-                # Add the content of the file
-                for l in reversed(lines_of_file(file)):
-                    pending.append(l)
-
-                file_exists = True
-                break
-
-        if not file_exists:
+        if file == '':
             print("Can't find file", relative_path)
-            print(line)
+        # Check if the file has already been included
+        elif not file in included_files:
+            included_files.append(file)
+
+            # Add the folder to the path to find the next included files
+            if not folder in path_folders:
+                path_folders.append(folder)
+
+            # Add the .cpp if needed
+            if file[-4:] == '.hpp':
+                source_file = file[:-4] + '.cpp'
+                if os.path.exists(source_file):
+                    pending.append('#include "' + source_file + '"')
+
+            # Add the content of the file
+            for l in reversed(lines_of_file(file)):
+                pending.append(l)
 
     else:
         output.append(line)
