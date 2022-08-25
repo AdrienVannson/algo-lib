@@ -117,8 +117,16 @@ while len(pending):
         output.append(line)
 
 
+""" Remove header guards """
+new_output = []
+for l in output:
+    if not re.match("^#ifndef .*_HPP$", l) and not re.match("^#define .*_HPP$", l) and not re.match("^#endif .*_HPP", l):
+        new_output.append(l)
+output = new_output
+
+
 """ Remove consecutive empty lines """
-is_last_line_empty = False
+is_last_line_empty = True
 new_output = []
 for l in output:
     if len(l) > 0 or not is_last_line_empty:
