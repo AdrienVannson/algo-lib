@@ -78,10 +78,11 @@ for f in set(files_to_include):
         files_to_include.add(f[:-4] + '.cpp')
 
 
+""" Generate the output file """
+output = []
+
 # Contains the remaining lines to parse. The last line is the next one to be parsed
 pending = list(reversed(lines_of_file(FIRST_FILE)))
-
-output = []
 
 while len(pending):
     line = pending[-1]
@@ -114,7 +115,8 @@ while len(pending):
     else:
         output.append(line)
 
-# Write output.cpp
+
+""" Write output.cpp """
 with open('output.cpp', 'w') as output_file:
     for l in output:
         output_file.write(l + '\n')
