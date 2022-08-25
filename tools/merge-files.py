@@ -1,5 +1,7 @@
 import re, os.path
 
+FIRST_FILE = 'main.cpp'
+
 def lines_of_file(fn):
     try:
         with open(fn, 'r') as f:
@@ -21,8 +23,58 @@ def get_full_path(relative_path):
             return folder, file
     return '', ''
 
+
+""" Compute the files that will be included in the final file """
+files_to_include = set()
+words = set()
+
+# A list of (file to include, words needed). If words needed is None, no word is needed
+pending_includes = [(get_full_path(FIRST_FILE)[1], None)]
+
+while len(pending_includes):
+    success = False
+
+    for i in range(len(pending_includes)):
+        if pending_includes[i][1] is None:
+            success = True
+        else:
+            for w in pending_includes[i][1]:
+                if w in words:
+                    success = True
+
+        if success:
+            file = pending_includes.pop(i)[0]
+
+            if not file in files_to_include:
+                files_to_include.add(file)
+
+                for line in lines_of_file(file):
+                    if re.match("^#include \"*\"", line): # Add the include to the list
+                        words_needed = None
+                        if ' // ONLY_IF ' in line:
+                            line, words_needed = line.split(' // ONLY_IF ')
+                            words_needed = words_needed.split()
+
+                        folder, path = get_full_path(re.sub("^\\#include \"(.+)\"$", "\\1", line))
+                        if not folder in path_folders:
+                            path_folders.append(folder)
+
+                        if not path in files_to_include:
+                            pending_includes.append((path, words_needed))
+
+                    else: # Add the words to the dictionnary
+                        for w in re.split('\W', line):
+                            if len(w):
+                                words.add(w)
+
+            break
+
+    if not success:
+        break
+
+
 # Contains the remaining lines to parse. The last line is the next one to be parsed
-pending = list(reversed(lines_of_file('main.cpp')))
+pending = list(reversed(lines_of_file(FIRST_FILE)))
 
 output = []
 included_files = []
