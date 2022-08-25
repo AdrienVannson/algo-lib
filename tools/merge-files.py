@@ -72,12 +72,16 @@ while len(pending_includes):
     if not success:
         break
 
+# Also allow .cpp files
+for f in set(files_to_include):
+    if f[-4:] == '.hpp':
+        files_to_include.add(f[:-4] + '.cpp')
+
 
 # Contains the remaining lines to parse. The last line is the next one to be parsed
 pending = list(reversed(lines_of_file(FIRST_FILE)))
 
 output = []
-included_files = []
 
 while len(pending):
     line = pending[-1]
@@ -92,13 +96,10 @@ while len(pending):
 
         if file == '':
             print("Can't find file", relative_path)
-        # Check if the file has already been included
-        elif not file in included_files:
-            included_files.append(file)
 
-            # Add the folder to the path to find the next included files
-            if not folder in path_folders:
-                path_folders.append(folder)
+        # Check if the file must be included
+        elif file in files_to_include:
+            files_to_include.remove(file)
 
             # Add the .cpp if needed
             if file[-4:] == '.hpp':
