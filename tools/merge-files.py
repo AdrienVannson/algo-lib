@@ -48,6 +48,12 @@ while len(pending_includes):
             if not file in files_to_include:
                 files_to_include.add(file)
 
+                # Add the .cpp if needed
+                if file[-4:] == '.hpp':
+                    source_file = file[:-4] + '.cpp'
+                    if os.path.exists(source_file):
+                        pending_includes.append((source_file, None))
+
                 for line in lines_of_file(file):
                     if re.match("^#include \"*\"", line): # Add the include to the list
                         words_needed = None
@@ -71,11 +77,6 @@ while len(pending_includes):
 
     if not success:
         break
-
-# Also allow .cpp files
-for f in set(files_to_include):
-    if f[-4:] == '.hpp':
-        files_to_include.add(f[:-4] + '.cpp')
 
 
 """ Generate the output file """
