@@ -117,6 +117,16 @@ while len(pending):
         output.append(line)
 
 
+""" Remove consecutive empty lines """
+is_last_line_empty = False
+new_output = []
+for l in output:
+    if len(l) > 0 or not is_last_line_empty:
+        new_output.append(l)
+    is_last_line_empty = len(l) == 0
+output = new_output
+
+
 """ Write output.cpp """
 with open('output.cpp', 'w') as output_file:
     for l in output:
