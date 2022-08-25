@@ -75,4 +75,4 @@ SOURCES += \
     tests/strings/test-utility.cpp \
     tests/test-done.cpp
 
-INCLUDEPATH += src
+INCLUDEPATH += src tests
