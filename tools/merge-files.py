@@ -125,6 +125,17 @@ for l in output:
 output = new_output
 
 
+""" Move includes and "using namesace" to the begin of the file """
+new_output = []
+begin = set()
+for l in output:
+    if re.match("^#include <", l) or l == "using namespace std;":
+        begin.add(l)
+    else:
+        new_output.append(l)
+output = sorted(list(begin)) + new_output
+
+
 """ Remove consecutive empty lines """
 is_last_line_empty = True
 new_output = []
