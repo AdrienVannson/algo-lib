@@ -3,6 +3,8 @@
 
 #include <vector>
 
+/// \brief Computes the strongly connected components of a directed graph.
+/// If there is a path from a vertex u to a vertex v, then scc(u) <= scc(v).
 template<class G>
 class Kosaraju
 {

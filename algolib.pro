@@ -4,7 +4,6 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 HEADERS += \
-        #src/2SAT.hpp \
         src/algolib.hpp \
         src/constants.hpp \
         src/data-structures/DisjointSet.hpp \
@@ -50,11 +49,13 @@ HEADERS += \
         src/trees/Tree.hpp \
         src/trees/graph-to-forest.hpp \
         src/trees/graph-to-tree.hpp \
+        src/two-sat.hpp \
         tests/geometry/test-intersections.hpp \
         tests/geometry/test-projections.hpp \
         tests/maths/test-modulo.hpp \
         tests/maths/test-prime-decomposition.hpp \
         tests/maths/test-sieve-of-eratosthenes.hpp \
+        tests/other/test-two-sat.hpp \
         tests/strings/test-utility.hpp \
         tests/test-done.hpp
 
@@ -72,6 +73,7 @@ SOURCES += \
     tests/maths/test-modulo.cpp \
     tests/maths/test-prime-decomposition.cpp \
     tests/maths/test-sieve-of-eratosthenes.cpp \
+    tests/other/test-two-sat.cpp \
     tests/strings/test-utility.cpp \
     tests/test-done.cpp
 

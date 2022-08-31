@@ -5,6 +5,7 @@
 #include "maths/test-modulo.hpp"
 #include "maths/test-prime-decomposition.hpp"
 #include "maths/test-sieve-of-eratosthenes.hpp"
+#include "other/test-two-sat.hpp"
 #include "strings/test-utility.hpp"
 #include "test-done.hpp"
 
@@ -876,5 +877,6 @@ int main()
     // Other
     cerr << "Testing other functionalities..." << endl;
     testInfinity();
+    testTwoSat();
     cerr << "\n";
 }

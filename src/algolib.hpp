@@ -52,5 +52,6 @@
 
 #include "constants.hpp" // ONLY_IF Constants
 #include "json.hpp" // ONLY_IF JSON
+#include "two-sat.hpp" // ONLY_IF TwoSat
 
 #endif // ALGOLIB_HPP
