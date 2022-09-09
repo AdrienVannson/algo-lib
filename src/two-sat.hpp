@@ -1,68 +1,87 @@
-#ifndef _2SAT_HPP
-#define _2SAT_HPP
+#ifndef TWO_SAT_HPP
+#define TWO_SAT_HPP
 
-#include "graphes/Kosaraju.hpp"
+#include <vector>
 
-class Resoudre2SAT
+#include "graphs/algorithms/kosaraju.hpp"
+#include "graphs/data-structures/Graph.hpp"
+
+class TwoSat
 {
 public:
-    Resoudre2SAT(const int nbVariables) :
-        m_nbVariables(nbVariables),
-        m_grapheContraintes(GRAPHE_ORIENTE, 2 * nbVariables)
+    TwoSat(const int variableCount) :
+        m_variableCount(variableCount),
+        m_constraintGraph(2 * variableCount, true)
     {}
 
-    inline int non(const int x) const
+    /// \brief Returns the negation of a variable.
+    inline int negation(const int x) const
     {
-        if (x < m_nbVariables) return x + m_nbVariables;
-        return x - m_nbVariables;
+        if (x < m_variableCount) return x + m_variableCount;
+        return x - m_variableCount;
     }
 
-    /// \brief Ajoute une contrainte de la forme a v b
-    void ajouterContrainte(const int a, const int b)
+    /// \brief Alias for negation
+    inline int neg(const int x) const
     {
-        if (a % m_nbVariables != b % m_nbVariables) {
-            m_grapheContraintes.ajouterArc(non(a), b);
-            m_grapheContraintes.ajouterArc(non(b), a);
-        } else if (a == b) {
-            m_grapheContraintes.ajouterArc(non(a), a);
+        return negation(x);
+    }
+
+    /// \brief Add the constraint (x v y)
+    void addConstraint(const int x, const int y)
+    {
+        if (x % m_variableCount != y % m_variableCount) {
+            m_constraintGraph.addEdge(neg(x), y);
+            m_constraintGraph.addEdge(neg(y), x);
+        } else if (x == y) {
+            m_constraintGraph.addEdge(neg(x), x);
         }
     }
 
-    /// \brief Renvoie s'il existe une solution, et calcule une affectation
-    /// possible
-    bool resoudre()
+    /// \brief Add the constraint (x)
+    void addConstraint(const int x)
     {
-        Kosaraju kosaraju(m_grapheContraintes); // Calcul des CFC
+        addConstraint(x, x);
+    }
 
-        m_affectations.clear();
+    /// \brief Tries to solve the 2-SAT instance, and returns if a solution
+    /// exists.
+    bool solve()
+    {
+        assert(m_affectations.empty());
 
-        for (int i = 0; i < m_nbVariables; i++) {
-            if (kosaraju.CFC(i) == kosaraju.CFC(non(i))) {
+        // Strongly connected components
+        Kosaraju<Graph> kosaraju(m_constraintGraph);
+
+        for (int x = 0; x < m_variableCount; x++) {
+            if (kosaraju.scc(x) == kosaraju.scc(neg(x))) {
                 m_affectations.clear();
                 return false;
             }
-            m_affectations.push_back(kosaraju.CFC(i) > kosaraju.CFC(non(i)));
+
+            m_affectations.push_back(kosaraju.scc(x) > kosaraju.scc(neg(x)));
         }
 
         return true;
     }
 
-    /// \brief Renvoie l'état auquel la variable peut être affectée pour
-    /// résoudre le problème (resoudre doit avoir été appelée auparavant)
-    bool estVrai(const int x) const
+    /// \brief If a solution exists, returns a possible value for the variable
+    /// (the solve function must have been called beforehand).
+    bool isTrue(const int x) const
     {
+        assert(m_affectations.size());
         return m_affectations[x];
     }
 
 private:
-    int m_nbVariables;
+    int m_variableCount;
 
-    // Représentation d'une variable par un noeud x
-    //  - si x < nbVariables : représente x
-    //  - si x >= nbVariables : représente non x
-    Graphe m_grapheContraintes;
+    // The vertex s represents:
+    //  - the litteral s                       if s < m_variableCount
+    //  - the litteral (not s-m_variableCount) otherwise
+    Graph m_constraintGraph;
 
-    vector<bool> m_affectations;
+    std::vector<bool> m_affectations;
 };
 
-#endif // _2SAT_HPP
+#endif // TWO_SAT_HPP
