@@ -2,3 +2,4 @@ tools/config
 *.pro.user
 tests/prog
 tests/output.cpp
+build
