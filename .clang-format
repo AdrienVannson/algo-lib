@@ -1,8 +1,8 @@
 ---
 Language: Cpp
 AccessModifierOffset: -4
-AlignAfterOpenBracket: AlwaysBreak # TODO: BlockIndent
-# AlignArrayOfStructures: None # Left ?
+AlignAfterOpenBracket: BlockIndent
+AlignArrayOfStructures: Left
 AlignConsecutiveAssignments: None
 AlignConsecutiveBitFields: None
 AlignConsecutiveDeclarations: None
@@ -17,7 +17,7 @@ AllowShortBlocksOnASingleLine: Empty
 AllowShortCaseLabelsOnASingleLine: false
 AllowShortEnumsOnASingleLine: true
 AllowShortFunctionsOnASingleLine: Inline
-AllowShortIfStatementsOnASingleLine: WithoutElse
+AllowShortIfStatementsOnASingleLine: AllIfsAndElse
 AllowShortLambdasOnASingleLine: Empty
 AllowShortLoopsOnASingleLine: true
 AlwaysBreakAfterReturnType: None
@@ -111,9 +111,10 @@ PenaltyBreakString: 1000
 PenaltyBreakTemplateDeclaration: 10
 PenaltyExcessCharacter: 1000000
 PenaltyReturnTypeOnItsOwnLine: 60
+QualifierAlignment: Left
 PointerAlignment: Right
 ReflowComments: true
-SortIncludes: true
+SortIncludes: CaseSensitive
 SortUsingDeclarations: true
 SpaceAfterCStyleCast: false
 SpaceAfterLogicalNot: false
