@@ -29,7 +29,7 @@ public:
 
     /// \brief Returns a vector containing all the prime numbers
     /// lower than n, in ascending order
-    inline std::vector<int> const &primes() const
+    inline const std::vector<int> &primes() const
     {
         return m_primes;
     }

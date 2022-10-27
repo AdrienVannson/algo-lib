@@ -247,7 +247,8 @@ void testKosaraju()
         {1, 11, 10},
         {4, 6, 5, 7, 9, 8},
         {2, 3},
-        {0}};
+        {0}
+    };
 
     assert(kosaraju.sccCount() == 4);
     assert(kosaraju.sccs() == ans);
@@ -276,7 +277,8 @@ void testKruskal()
         {2, 5, 2},
         {3, 5, 4},
         {4, 5, 5},
-        {5, 6, 9}};
+        {5, 6, 9}
+    };
     for (auto e : edges) g.addEdge(e[0], e[1], e[2]);
 
     Kruskal<WGraph<int>> kruskal(g);
@@ -335,7 +337,8 @@ void testPrim()
         {2, 5, 2},
         {3, 5, 4},
         {4, 5, 5},
-        {5, 6, 9}};
+        {5, 6, 9}
+    };
     for (auto e : edges) g.addEdge(e[0], e[1], e[2]);
 
     Prim<WGraph<int>> prim(g);
@@ -379,7 +382,8 @@ void testTarjan()
         {0},
         {3, 2},
         {9, 8, 7, 6, 5, 4},
-        {11, 10, 1}};
+        {11, 10, 1}
+    };
 
     assert(tarjan.sccCount() == 4);
     assert(tarjan.sccs() == ans);
@@ -408,7 +412,8 @@ void testTopologicalSort()
         {4, 3},
         {4, 5},
         {5, 6},
-        {9, 8}};
+        {9, 8}
+    };
     for (auto e : edges) g.addEdge(e[0], e[1]);
 
     ts = TopologicalSort<Graph>(g);
@@ -598,7 +603,8 @@ void testPermutation()
     assert(orbits[0].size() == 4);
     assert(
         orbits[0][0] == 0 && orbits[0][1] == 5 && orbits[0][2] == 2
-        && orbits[0][3] == 3);
+        && orbits[0][3] == 3
+    );
 
     assert(orbits[1].size() == 1 && orbits[1][0] == 1);
     assert(orbits[2].size() == 1 && orbits[2][0] == 4);
@@ -706,21 +712,24 @@ void testAutomaton()
 
         assert(aut.isComplete());
         assert(!aut.isComplete(
-            {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X'}));
+            {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X'}
+        ));
     }
 
     // De Bruijn automaton
     {
         Reg *reg = Reg::concatenation(
             Reg::kleenStar(
-                Reg::alternation(Reg::character('0'), Reg::character('1'))),
+                Reg::alternation(Reg::character('0'), Reg::character('1'))
+            ),
             Reg::concatenation(
                 Reg::character('1'),
                 Reg::concatenation(
                     Reg::alternation(Reg::character('0'), Reg::character('1')),
-                    Reg::alternation(
-                        Reg::character('0'),
-                        Reg::character('1')))));
+                    Reg::alternation(Reg::character('0'), Reg::character('1'))
+                )
+            )
+        );
 
         Aut aut = Aut::fromRegex(reg);
 

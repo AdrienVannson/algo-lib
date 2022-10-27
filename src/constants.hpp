@@ -10,7 +10,6 @@ class Constants
 public:
     static T zero() = delete;
     static T one() = delete;
-
     static T infinity() = delete;
 };
 

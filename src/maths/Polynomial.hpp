@@ -84,7 +84,8 @@ Polynomial<T> operator+(const Polynomial<T> &P, const Polynomial<T> &Q)
 {
     std::vector<T> v(
         std::max(P.m_coefs.size(), Q.m_coefs.size()),
-        Constants<T>::zero());
+        Constants<T>::zero()
+    );
 
     for (int i = 0; i < (int)v.size(); i++) {
         if (i < (int)P.m_coefs.size()) {
@@ -104,7 +105,8 @@ Polynomial<T> operator*(const Polynomial<T> &P, const Polynomial<T> &Q)
 {
     std::vector<T> v(
         P.m_coefs.size() + Q.m_coefs.size() - 1,
-        Constants<T>::zero());
+        Constants<T>::zero()
+    );
 
     for (int i = 0; i < (int)v.size(); i++) {
         for (int k = 0; k <= i; k++) {

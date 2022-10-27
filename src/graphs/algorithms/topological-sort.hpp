@@ -38,7 +38,8 @@ public:
                 if (posNeighbour < g.neighbourCount(vertex)) {
                     pending.push_back(std::make_pair(vertex, posNeighbour + 1));
                     pending.push_back(
-                        std::make_pair(g.neighbour(vertex, posNeighbour), 0));
+                        std::make_pair(g.neighbour(vertex, posNeighbour), 0)
+                    );
                 } else {
                     m_states[vertex] = 1;
                     m_topologicalSort.push_back(vertex);

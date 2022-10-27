@@ -27,9 +27,11 @@ public:
         for (int v = 0; v < graph.vertexCount(); v++) {
             for (auto edgeTo : graph.edgesToNeighbours(v)) {
                 m_residualGraph[v].push_back(
-                    Edge {edgeTo.neighbour, edgeTo.edgeId});
+                    Edge {edgeTo.neighbour, edgeTo.edgeId}
+                );
                 m_residualGraph[edgeTo.neighbour].push_back(
-                    Edge {v, edgeTo.edgeId + edgeCount});
+                    Edge {v, edgeTo.edgeId + edgeCount}
+                );
 
                 m_residualCapacities[edgeTo.edgeId] =
                     graph.weight(edgeTo.edgeId);

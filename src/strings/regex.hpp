@@ -104,7 +104,8 @@ public:
     {
         assert(
             m_type == CONCATENATION || m_type == ALTERNATION
-            || m_type == KLEEN_STAR);
+            || m_type == KLEEN_STAR
+        );
         return m_regex1;
     }
 
@@ -123,7 +124,7 @@ public:
     template<class U>
     friend class Regex;
     friend bool operator==<T>(const Regex<T> &, const Regex<T> &);
-    friend std::ostream &operator<<<T>(std::ostream &, const Regex<T> &);
+    friend std::ostream &operator<< <T>(std::ostream &, const Regex<T> &);
 
 private:
     std::pair<Regex<std::pair<T, int>> *, int> linearised(const int i) const;

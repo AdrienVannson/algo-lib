@@ -106,10 +106,11 @@ void Automaton<T>::addEpsilonTransition(const int state1, const int state2)
 
 template<class T>
 void Automaton<T>::addTransition(
-    const int state1, const T letter, const int state2)
+    const int state1, const T letter, const int state2
+)
 {
-    m_transitions.insert(
-        std::make_pair(std::make_pair(state1, letter), state2));
+    m_transitions.insert(std::make_pair(std::make_pair(state1, letter), state2)
+    );
 }
 
 template<class T>
@@ -247,7 +248,8 @@ void Automaton<T>::removeEpsilonTransitions()
             if (isReachable[trans.first.first] && trans.first.first != s) {
                 m_transitions.insert(std::make_pair(
                     std::make_pair(s, trans.first.second),
-                    trans.second));
+                    trans.second
+                ));
             }
         }
     }
@@ -296,7 +298,8 @@ void Automaton<T>::makeComplete(const std::vector<T> &newAlphabet)
                 }
 
                 m_transitions.insert(
-                    std::make_pair(std::make_pair(s, l), stateCount() - 1));
+                    std::make_pair(std::make_pair(s, l), stateCount() - 1)
+                );
             }
         }
     }
@@ -348,7 +351,8 @@ void Automaton<T>::determinize()
 
                 transitions.insert(std::make_pair(
                     std::make_pair(ids[isInState], c),
-                    ids[nextState]));
+                    ids[nextState]
+                ));
             }
         }
     }
@@ -564,7 +568,8 @@ void Automaton<T>::minimize()
 
                     transitions.insert(std::make_pair(
                         std::make_pair(subsetOf[subset[0]], l),
-                        subsetOf[nextState]));
+                        subsetOf[nextState]
+                    ));
                 }
             }
         }
@@ -632,7 +637,8 @@ void Automaton<T>::operator+=(const Automaton<T> &other)
         addTransition(
             n + trans.first.first,
             trans.first.second,
-            n + trans.second);
+            n + trans.second
+        );
     }
 
     // Add epsilon-transitions
@@ -659,7 +665,8 @@ void Automaton<T>::operator*=(const Automaton<T> &other)
         addTransition(
             n + trans.first.first,
             trans.first.second,
-            n + trans.second);
+            n + trans.second
+        );
     }
 
     // Add epsilon-transitions

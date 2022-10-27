@@ -11,7 +11,8 @@ class Fraction
 {
 public:
     Fraction(
-        const T num = Constants<T>::zero(), const T den = Constants<T>::one()) :
+        const T num = Constants<T>::zero(), const T den = Constants<T>::one()
+    ) :
         m_num(num),
         m_den(den)
     {
@@ -76,7 +77,8 @@ inline Fraction<T> operator+(const Fraction<T> &a, const Fraction<T> &b)
 {
     return Fraction<T>(
         a.num() * b.den() + b.num() * a.den(),
-        a.den() * b.den());
+        a.den() * b.den()
+    );
 }
 
 template<class T>
@@ -84,7 +86,8 @@ inline Fraction<T> operator-(const Fraction<T> &a, const Fraction<T> &b)
 {
     return Fraction<T>(
         a.num() * b.den() - b.num() * a.den(),
-        a.den() * b.den());
+        a.den() * b.den()
+    );
 }
 
 template<class T>

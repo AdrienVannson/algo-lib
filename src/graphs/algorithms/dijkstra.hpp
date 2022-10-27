@@ -14,7 +14,8 @@ public:
     {
         m_dists.resize(
             graph.vertexCount(),
-            Constants<typename G::Weight>::infinity());
+            Constants<typename G::Weight>::infinity()
+        );
 
         std::priority_queue<
             std::pair<typename G::Weight, int>,
@@ -43,7 +44,8 @@ public:
                     == Constants<typename G::Weight>::infinity()) {
                     pendingVertices.push(std::make_pair(
                         dist + graph.weight(vertex, i),
-                        neighbour));
+                        neighbour
+                    ));
                 }
             }
         }

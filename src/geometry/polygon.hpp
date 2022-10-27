@@ -29,7 +29,7 @@ public:
         return m_vertices[i];
     }
 
-    std::vector<Vect2<T>> const &vertices() const
+    const std::vector<Vect2<T>> &vertices() const
     {
         return m_vertices;
     }

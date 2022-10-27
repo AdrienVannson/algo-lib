@@ -14,7 +14,8 @@ Vect2<T> getProjection(const Vect2<T> M, const Line<T> L)
 
     return Vect2<T>(
         (b * b * x - a * b * y - a * c) / den,
-        (-a * b * x + a * a * y - b * c) / den);
+        (-a * b * x + a * a * y - b * c) / den
+    );
 }
 
 #endif // PROJECTIONS_HPP

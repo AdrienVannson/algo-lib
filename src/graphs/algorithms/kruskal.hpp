@@ -21,7 +21,8 @@ public:
             edges.end(),
             [&g](const typename G::Edge &e1, const typename G::Edge &e2) {
                 return g.weight(e1.edgeId) < g.weight(e2.edgeId);
-            });
+            }
+        );
 
         for (auto e : edges) {
             if (ds.find(e.vertex1) != ds.find(e.vertex2)) {

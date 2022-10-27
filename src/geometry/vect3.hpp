@@ -119,7 +119,8 @@ operator^(const Vect3<T> &a, const Vect3<T> &b) // Cross product on z
     return Vect3<T>(
         a.y * b.z - b.y * a.z,
         a.z * b.x - b.z * a.x,
-        a.x * b.y - b.x * a.y);
+        a.x * b.y - b.x * a.y
+    );
 }
 
 template<class T>

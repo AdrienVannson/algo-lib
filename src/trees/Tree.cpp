@@ -43,7 +43,8 @@ void Tree::updateRoots()
 }
 
 void printSubtree(
-    std::ostream &os, const Tree &tree, const int vertex, const int depth)
+    std::ostream &os, const Tree &tree, const int vertex, const int depth
+)
 {
     for (int i = 0; i < depth; i++) {
         os << "| ";
