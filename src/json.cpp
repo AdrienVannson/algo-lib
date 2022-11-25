@@ -2,7 +2,28 @@
 
 using namespace std;
 
+JSON* JSON::createOfType(JSON::Type type)
+{
+    switch(type) {
+    case JSON::INT:
+        return new JSON(0);
+    case JSON::FLOAT:
+        return new JSON(0.);
+    case JSON::BOOLEAN:
+        return new JSON(false);
+    case JSON::STRING:
+        return new JSON("");
+    case JSON::ARRAY:
+        return new JSON(std::vector<JSON *>());
+    case JSON::OBJECT:
+        return new JSON(std::map<std::string, JSON *>());
+    default:
+        assert(false);
+    }
+}
+
 JSON::JSON() : m_type(NULL_VALUE) {}
+
 JSON::JSON(const int n) : m_type(INT), m_int(n) {}
 JSON::JSON(const double x) : m_type(FLOAT), m_float(x) {}
 JSON::JSON(const bool b) : m_type(BOOLEAN), m_bool(b) {}
@@ -50,11 +71,6 @@ JSON::~JSON()
             delete child.second;
         }
     }
-}
-
-JSON *JSON::operator[](const string &s)
-{
-    return getObject()[s];
 }
 
 string JSON::toString() const
