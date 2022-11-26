@@ -41,6 +41,7 @@ HEADERS += \
         src/maths/modulo.hpp \
         src/maths/prime-decomposition.hpp \
         src/maths/sieve-of-eratosthenes.hpp \
+        src/simplex.hpp \
         src/sorting/merge-sort.hpp \
         src/strings/automaton.hpp \
         src/strings/kmp.hpp \
@@ -65,6 +66,7 @@ SOURCES += \
     src/maths/gcd-lcm.cpp \
     src/maths/prime-decomposition.cpp \
     src/maths/sieve-of-eratosthenes.cpp \
+    src/simplex.cpp \
     src/strings/utility/split.cpp \
     src/trees/Tree.cpp \
     tests/geometry/test-intersections.cpp \
