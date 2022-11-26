@@ -56,6 +56,7 @@ HEADERS += \
         tests/maths/test-modulo.hpp \
         tests/maths/test-prime-decomposition.hpp \
         tests/maths/test-sieve-of-eratosthenes.hpp \
+        tests/other/test-simplex.hpp \
         tests/other/test-two-sat.hpp \
         tests/strings/test-utility.hpp \
         tests/test-done.hpp
@@ -75,6 +76,7 @@ SOURCES += \
     tests/maths/test-modulo.cpp \
     tests/maths/test-prime-decomposition.cpp \
     tests/maths/test-sieve-of-eratosthenes.cpp \
+    tests/other/test-simplex.cpp \
     tests/other/test-two-sat.cpp \
     tests/strings/test-utility.cpp \
     tests/test-done.cpp
