@@ -2,9 +2,9 @@
 
 using namespace std;
 
-JSON* JSON::createOfType(JSON::Type type)
+JSON *JSON::createOfType(JSON::Type type)
 {
-    switch(type) {
+    switch (type) {
     case JSON::INT:
         return new JSON(0);
     case JSON::FLOAT:

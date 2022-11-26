@@ -21,7 +21,7 @@ public:
     };
 
     /// \brief Returns an empty JSON object of a given type
-    static JSON* createOfType(Type);
+    static JSON *createOfType(Type);
 
     JSON();
     JSON(Type type);
@@ -98,7 +98,7 @@ public:
         return m_array;
     }
 
-    JSON* get(const int index)
+    JSON *get(const int index)
     {
         return m_array[index];
     }
@@ -114,7 +114,7 @@ public:
         return m_object;
     }
 
-    JSON* get(const std::string &key)
+    JSON *get(const std::string &key)
     {
         return m_object[key];
     }
