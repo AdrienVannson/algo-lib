@@ -42,6 +42,34 @@ public:
         return Fraction(m_den, m_num);
     }
 
+    inline void operator+=(const Fraction other)
+    {
+        m_num = m_num * other.m_den + other.m_num * m_den;
+        m_den = m_den * other.m_den;
+        simplify();
+    }
+
+    inline void operator-=(const Fraction other)
+    {
+        m_num = m_num * other.m_den - other.m_num * m_den;
+        m_den = m_den * other.m_den;
+        simplify();
+    }
+
+    inline void operator*=(const Fraction other)
+    {
+        m_num *= other.m_num;
+        m_den *= other.m_den;
+        simplify();
+    }
+
+    inline void operator/=(const Fraction other)
+    {
+        m_num *= other.m_den;
+        m_den *= other.m_num;
+        simplify();
+    }
+
 private:
     T m_num, m_den;
 
@@ -147,7 +175,7 @@ inline bool operator>=(const Fraction<T> &a, const Fraction<T> &b)
 template<class T>
 inline std::ostream &operator<<(std::ostream &os, const Fraction<T> &fraction)
 {
-    return os << fraction.num() << "/" << fraction.den() << " ("
+    return os << "(" << fraction.num() << "/" << fraction.den() << " ≈ "
               << fraction.approx() << ")";
 }
 
