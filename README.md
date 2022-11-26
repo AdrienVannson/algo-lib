@@ -46,4 +46,5 @@
     - Regex
     - Knuth–Morris–Pratt algorithm
 - 2-SAT
+- Simplex
 - JSON parser
