@@ -1,3 +1,10 @@
+/**
+ * To get correct test coverage results, template functions and classes should
+ * be explicitely instanciated. For instance:
+ *  - template int identite2(int);
+ *  - template class Vect2<int>;
+ **/
+
 #include "algolib.hpp"
 
 #include "geometry/test-intersections.hpp"
@@ -5,8 +12,8 @@
 #include "maths/test-modulo.hpp"
 #include "maths/test-prime-decomposition.hpp"
 #include "maths/test-sieve-of-eratosthenes.hpp"
-#include "other/test-two-sat.hpp"
 #include "other/test-simplex.hpp"
+#include "other/test-two-sat.hpp"
 #include "strings/test-utility.hpp"
 #include "test-done.hpp"
 
@@ -651,6 +658,8 @@ void testPolynomial()
 /*******************************************************************************
  *** Geometry ******************************************************************
  ******************************************************************************/
+
+template class Vect2<int>;
 
 void testVect2()
 {
