@@ -84,9 +84,21 @@ typename Simplex<T>::Outcome Simplex<T>::outcome() const
 }
 
 template<class T>
-T Simplex<T>::optimal() const
+T Simplex<T>::optimal_value() const
 {
     return m_to_optimize.cst;
+}
+
+template<class T>
+T Simplex<T>::solution_value(const int var) const
+{
+    for (Constraint constr : m_constraints) {
+        if (constr.var_index == var) {
+            return constr.cst;
+        }
+    }
+
+    return Constants<T>::zero();
 }
 
 template<class T>

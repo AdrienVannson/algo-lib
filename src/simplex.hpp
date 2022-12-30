@@ -43,7 +43,10 @@ public:
     Outcome outcome() const;
 
     /// \brief Returns the optimal value computed by the simplex.
-    T optimal() const;
+    T optimal_value() const;
+
+    /// \brief Returns the value of a variable in the optimal solution that was found
+    T solution_value(const int var) const;
 
 private:
     // Internal representation of a constraint of equality:
