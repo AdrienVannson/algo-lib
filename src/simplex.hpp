@@ -82,6 +82,9 @@ private:
     /// @param entering The entering variable choosen before
     int choose_leaving_variable(const int entering) const;
 
+    /// \brief Executes a transformation of the problem
+    void make_exchange(const int entering, const int leaving);
+
     /// \brief Executes one step of the simplex algorithm
     Outcome one_step();
 

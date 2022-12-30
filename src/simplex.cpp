@@ -135,18 +135,8 @@ int Simplex<T>::choose_leaving_variable(const int entering) const
 }
 
 template<class T>
-typename Simplex<T>::Outcome Simplex<T>::one_step()
+void Simplex<T>::make_exchange(const int entering, const int leaving)
 {
-    const int entering = choose_entering_variable();
-    if (entering == -1) {
-        return OPTIMAL_SOLUTION;
-    }
-
-    const int leaving = choose_leaving_variable(entering);
-    if (leaving == -1) {
-        return UNBOUNDED;
-    }
-
     // Update the constraints
     int constraint_entering = -1;
 
@@ -194,6 +184,22 @@ typename Simplex<T>::Outcome Simplex<T>::one_step()
             * m_constraints[constraint_entering].coefs[i];
     }
     m_to_optimize.coefs[entering] = Constants<T>::zero();
+}
+
+template<class T>
+typename Simplex<T>::Outcome Simplex<T>::one_step()
+{
+    const int entering = choose_entering_variable();
+    if (entering == -1) {
+        return OPTIMAL_SOLUTION;
+    }
+
+    const int leaving = choose_leaving_variable(entering);
+    if (leaving == -1) {
+        return UNBOUNDED;
+    }
+
+    make_exchange(entering, leaving);
 
 #ifdef SIMPLEX_VERBOSE
     // Display the choices made and the resulting system
