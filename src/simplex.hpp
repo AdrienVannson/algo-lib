@@ -75,6 +75,13 @@ private:
     // The function to optimize (var_index = -1)
     Constraint m_to_optimize;
 
+    /// \brief Returns the next entering variable (-1 if the solution is optimal)
+    int choose_entering_variable() const;
+
+    /// \brief Returns the next leaving variable (-1 if the problem is unbounded).
+    /// @param entering The entering variable choosen before
+    int choose_leaving_variable(const int entering) const;
+
     /// \brief Executes one step of the simplex algorithm
     Outcome one_step();
 

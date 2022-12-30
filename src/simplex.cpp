@@ -102,23 +102,20 @@ T Simplex<T>::solution_value(const int var) const
 }
 
 template<class T>
-typename Simplex<T>::Outcome Simplex<T>::one_step()
+int Simplex<T>::choose_entering_variable() const
 {
-    // Choose an entering variable
-    int entering = -1;
-
     for (int i = 0; i < m_variables_count; i++) {
         if (m_to_optimize.coefs[i] > Constants<T>::zero()) {
-            entering = i;
-            break;
+            return i;
         }
     }
 
-    if (entering == -1) {
-        return OPTIMAL_SOLUTION;
-    }
+    return -1;
+}
 
-    // Choose a leaving variable
+template<class T>
+int Simplex<T>::choose_leaving_variable(const int entering) const
+{
     int leaving = -1;
     T val_min = Constants<T>::zero();
 
@@ -134,6 +131,18 @@ typename Simplex<T>::Outcome Simplex<T>::one_step()
         }
     }
 
+    return leaving;
+}
+
+template<class T>
+typename Simplex<T>::Outcome Simplex<T>::one_step()
+{
+    const int entering = choose_entering_variable();
+    if (entering == -1) {
+        return OPTIMAL_SOLUTION;
+    }
+
+    const int leaving = choose_leaving_variable(entering);
     if (leaving == -1) {
         return UNBOUNDED;
     }
@@ -152,9 +161,7 @@ typename Simplex<T>::Outcome Simplex<T>::one_step()
 
             constr.var_index = entering;
 
-            assert(constr.cst / divider == val_min);
-
-            constr.cst = val_min;
+            constr.cst = constr.cst / divider;
             for (int j = 0; j < m_variables_count; j++) {
                 constr.coefs[j] /= divider;
             }
