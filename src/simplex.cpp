@@ -57,13 +57,10 @@ void Simplex<T>::maximize(const std::vector<T> &coefs)
     cerr << "\n";
 #endif
 
-    Outcome outcome = NOT_FINISHED;
-
-    while (outcome == NOT_FINISHED) {
-        outcome = one_step();
+    m_outcome = NOT_FINISHED;
+    while (m_outcome == NOT_FINISHED) {
+        m_outcome = one_step();
     }
-
-    m_outcome = outcome;
 }
 
 template<class T>
