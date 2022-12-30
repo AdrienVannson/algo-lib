@@ -9,6 +9,12 @@ Simplex<T>::Simplex(const int variables_count) :
     m_outcome(NOT_FINISHED), m_variables_count(variables_count)
 {}
 
+template<class T>
+int Simplex<T>::variables_count() const
+{
+    return m_variables_count - m_constraints.size();
+}
+
 // Σ a_j x_j >= b
 template<class T>
 void Simplex<T>::add_greater_than(std::vector<T> coefs, T cst)

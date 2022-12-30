@@ -24,6 +24,9 @@ public:
     /// given number of variables.
     Simplex(const int variables_count);
 
+    /// \brief Returns the number of variables that the problem contains
+    int variables_count() const;
+
     /// \brief Adds the contraint: Σ a_j x_j >= b
     void add_greater_than(std::vector<T> coefs, T cst);
 

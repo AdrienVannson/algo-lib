@@ -10,9 +10,13 @@ void test_simplex()
     // Optimal solution (maximize)
     {
         Simplex<Fr> simplex(3);
+        assert(simplex.variables_count() == 3);
+
         simplex.add_lower_than({2, 3, 1}, 5);
         simplex.add_lower_than({4, 1, 2}, 11);
         simplex.add_lower_than({3, 4, 2}, 8);
+
+        assert(simplex.variables_count() == 3);
 
         assert(simplex.outcome() == simplex.NOT_FINISHED);
         simplex.maximize({5, 4, 3});
@@ -36,10 +40,13 @@ void test_simplex()
     // Optimal solution (maximize)
     {
         Simplex<Fr> simplex(2);
+        assert(simplex.variables_count() == 2);
+
         simplex.add_lower_than({1, -1}, 1);
         simplex.add_greater_than({1, -2}, -2);
         simplex.maximize({1, 1});
 
+        assert(simplex.variables_count() == 2);
         assert(simplex.outcome() == simplex.OPTIMAL_SOLUTION);
         assert(simplex.optimal_value() == Fr(7));
         assert(simplex.solution_value(0) == Fr(4));
