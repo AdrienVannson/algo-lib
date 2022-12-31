@@ -53,5 +53,19 @@ void test_simplex()
         assert(simplex.solution_value(1) == Fr(3));
     }
 
+    // Optimal solution with first phase
+    {
+        Simplex<Fr> simplex(2);
+        simplex.add_lower_than({-2, 1}, -2);
+        simplex.add_lower_than({1, -2}, -2);
+        simplex.add_lower_than({1, 1}, 7);
+        simplex.maximize({2, 1});
+
+        assert(simplex.outcome() == simplex.OPTIMAL_SOLUTION);
+        assert(simplex.optimal_value() == Fr(11));
+        assert(simplex.solution_value(0) == Fr(4));
+        assert(simplex.solution_value(1) == Fr(3));
+    }
+
     showTestDone("Simplex");
 }
