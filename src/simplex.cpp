@@ -47,15 +47,115 @@ void Simplex<T>::maximize(const std::vector<T> &coefs)
 {
     assert(m_outcome == NOT_FINISHED);
 
-    // Initialize the function to optimize
-    m_to_optimize.var_index = -1;
-    m_to_optimize.coefs = coefs;
-    m_to_optimize.cst = Constants<T>::zero();
+    // Test if a first phase is needed to find an admissible solution
+    bool first_phase = false;
+    for (Constraint constr : m_constraints) {
+        if (constr.cst < Constants<T>::zero()) {
+            first_phase = true;
+            break;
+        }
+    }
 
-    // Add zeros for the new variables to the constraints and the funcction to
-    // optimize
-    resize_constraints();
-    m_to_optimize.coefs.resize(m_variables_count, Constants<T>::zero());
+    if (first_phase) {
+        Simplex<T> first_phase(m_variables_count + 1);
+        const int new_var = m_variables_count;
+
+        first_phase.m_constraints = m_constraints;
+        first_phase.resize_constraints();
+
+        for (Constraint &constr : first_phase.m_constraints) {
+            constr.coefs[new_var] = Constants<T>::one();
+        }
+
+        first_phase.m_to_optimize.var_index = -1;
+        first_phase.m_to_optimize.cst = Constants<T>::zero();
+        first_phase.m_to_optimize.coefs.resize(m_variables_count + 1, Constants<T>::zero());
+        first_phase.m_to_optimize.coefs[new_var] = -Constants<T>::one();
+
+#ifdef SIMPLEX_VERBOSE
+        cerr << "=== First phase needed\n\n";
+        first_phase.print_constraints();
+        cerr << "\n";
+#endif
+
+        // First step to obtain an admissible solution
+        int leaving = -1;
+        T val_min;
+        for (const Constraint &constr : first_phase.m_constraints) {
+            if (leaving == -1 || constr.cst < val_min) {
+                val_min = constr.cst;
+                leaving = constr.var_index;
+            }
+        }
+
+        // Execute the first phase of simplex
+        first_phase.make_exchange(new_var, leaving);
+
+        Outcome outcome;
+        do {
+            outcome = first_phase.one_step();
+        } while (outcome == NOT_FINISHED);
+
+        // Interpret the results
+        assert(outcome == OPTIMAL_SOLUTION);
+
+        if (first_phase.optimal_value() != Constants<T>::zero()) {
+            m_outcome = NO_SOLUTION;
+            return;
+        }
+
+        // Transform the constraints
+        m_constraints = first_phase.m_constraints;
+        for (Constraint &constr : m_constraints) {
+            assert(constr.var_index != new_var); // TODO: it can probably append
+
+            constr.coefs.pop_back();
+        }
+
+        // Fill the function to optimize
+        m_to_optimize.var_index = -1;
+
+        m_to_optimize.cst = Constants<T>::zero();
+        m_to_optimize.coefs.resize(m_variables_count, Constants<T>::zero());
+
+        for (int var = 0; var < (int)coefs.size(); var++) {
+            const T coef = coefs[var];
+
+            bool has_constraint = false;
+
+            // Find the corresponding constraint if it exists
+            for (const Constraint &constr : m_constraints) {
+                if (constr.var_index == var) {
+                    m_to_optimize.cst += coef * constr.cst;
+                    for (int var2 = 0; var2 < (int)constr.coefs.size(); var2++) {
+                        m_to_optimize.coefs[var2] += coef * constr.coefs[var2];
+                    }
+
+                    has_constraint = true;
+                    break;
+                }
+            }
+
+            if (!has_constraint) {
+                m_to_optimize.coefs[var] += coef;
+            }
+        }
+
+#ifdef SIMPLEX_VERBOSE
+        cerr << "=== End of the first phase\n\n";
+#endif
+    } else {
+        // Initialize the function to optimize
+        m_to_optimize.var_index = -1;
+        m_to_optimize.coefs = coefs;
+        m_to_optimize.cst = Constants<T>::zero();
+
+        // Add zeros for the new variables to the constraints and the function to
+        // optimize
+        resize_constraints();
+        m_to_optimize.coefs.resize(m_variables_count, Constants<T>::zero());
+    }
+
 
 #ifdef SIMPLEX_VERBOSE
     cerr << "Starting simplex\n\n";
@@ -186,6 +286,13 @@ void Simplex<T>::make_exchange(const int entering, const int leaving)
             * m_constraints[constraint_entering].coefs[i];
     }
     m_to_optimize.coefs[entering] = Constants<T>::zero();
+
+#ifdef SIMPLEX_VERBOSE
+    // Display the choices made and the resulting system
+    cerr << "Entering: x_" << entering << "\tLeaving: x_" << leaving << "\n\n";
+    print_constraints();
+    cerr << "\n";
+#endif
 }
 
 template<class T>
@@ -202,13 +309,6 @@ typename Simplex<T>::Outcome Simplex<T>::one_step()
     }
 
     make_exchange(entering, leaving);
-
-#ifdef SIMPLEX_VERBOSE
-    // Display the choices made and the resulting system
-    cerr << "Entering: x_" << entering << "\tLeaving: x_" << leaving << "\n\n";
-    print_constraints();
-    cerr << "\n";
-#endif
 
     return NOT_FINISHED;
 }
