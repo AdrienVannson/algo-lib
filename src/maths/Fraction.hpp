@@ -175,6 +175,10 @@ inline bool operator>=(const Fraction<T> &a, const Fraction<T> &b)
 template<class T>
 inline std::ostream &operator<<(std::ostream &os, const Fraction<T> &fraction)
 {
+    if (fraction.den() == Constants<T>::one()) {
+        return os << fraction.num();
+    }
+
     return os << "(" << fraction.num() << "/" << fraction.den() << " ≈ "
               << fraction.approx() << ")";
 }
