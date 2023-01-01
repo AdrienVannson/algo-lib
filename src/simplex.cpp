@@ -104,11 +104,27 @@ void Simplex<T>::maximize(const std::vector<T> &coefs)
             return;
         }
 
+        // The new variable must be non-basic
+        for (const Constraint &constr : first_phase.m_constraints) {
+            if (constr.var_index == new_var) {
+                for (int entering = 0; entering < (int)constr.coefs.size(); entering++) {
+                    // We will find such a coefficient
+                    if (constr.coefs[entering] != Constants<T>::zero()) {
+
+                        // We can do this exchange as all the variables in the coefficients have a value of zero
+                        first_phase.make_exchange(entering, new_var);
+                        break;
+                    }
+                }
+
+                break;
+            }
+        }
+
         // Transform the constraints
         m_constraints = first_phase.m_constraints;
-        for (Constraint &constr : m_constraints) {
-            assert(constr.var_index != new_var); // TODO: it can probably append
 
+        for (Constraint &constr : m_constraints) {
             constr.coefs.pop_back();
         }
 

@@ -67,5 +67,13 @@ void test_simplex()
         assert(simplex.solution_value(1) == Fr(3));
     }
 
+    // Edge case during the first phase
+    {
+        Simplex<Fr> simplex(2);
+        simplex.add_lower_than({1, 0}, 0);
+        simplex.add_greater_than({0, 1}, 1);
+        simplex.maximize({1, 1});
+    }
+
     showTestDone("Simplex");
 }
