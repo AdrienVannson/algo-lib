@@ -77,6 +77,21 @@ void test_simplex()
         assert(simplex.outcome() == simplex.UNBOUNDED);
     }
 
+    // Optimal solution, other edge case during the first phase
+    {
+        Simplex<Fr> simplex(4);
+        simplex.add_greater_than({1, 0, 0, 0}, 1);
+        simplex.add_lower_than({1, 1, 1, 1}, 5);
+        simplex.maximize({1, 1, 1, 2});
+
+        assert(simplex.outcome() == simplex.OPTIMAL_SOLUTION);
+        assert(simplex.optimal_value() == Fr(9));
+        assert(simplex.solution_value(0) == Fr(1));
+        assert(simplex.solution_value(1) == Fr(0));
+        assert(simplex.solution_value(2) == Fr(0));
+        assert(simplex.solution_value(3) == Fr(4));
+    }
+
     // Solution is a single point
     {
         Simplex<Fr> simplex(2);
