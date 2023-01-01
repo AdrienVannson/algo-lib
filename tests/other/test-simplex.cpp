@@ -67,12 +67,39 @@ void test_simplex()
         assert(simplex.solution_value(1) == Fr(3));
     }
 
-    // Edge case during the first phase
+    // Unbouned, edge case during the first phase
     {
         Simplex<Fr> simplex(2);
         simplex.add_lower_than({1, 0}, 0);
         simplex.add_greater_than({0, 1}, 1);
         simplex.maximize({1, 1});
+
+        assert(simplex.outcome() == simplex.UNBOUNDED);
+    }
+
+    // Solution is a single point
+    {
+        Simplex<Fr> simplex(2);
+        simplex.add_lower_than({1, 1}, 2);
+        simplex.add_greater_than({1, 0}, 1);
+        simplex.add_greater_than({0, 1}, 1);
+        simplex.maximize({-12, 3});
+
+        assert(simplex.outcome() == simplex.OPTIMAL_SOLUTION);
+        assert(simplex.optimal_value() == Fr(-9));
+        assert(simplex.solution_value(0) == Fr(1));
+        assert(simplex.solution_value(1) == Fr(1));
+    }
+
+    // No solution
+    {
+        Simplex<Fr> simplex(2);
+        simplex.add_lower_than({1, 1}, 2);
+        simplex.add_greater_than({1, 0}, 1);
+        simplex.add_greater_than({0, 1}, 2);
+        simplex.maximize({-12, 3});
+
+        assert(simplex.outcome() == simplex.NO_SOLUTION);
     }
 
     showTestDone("Simplex");
