@@ -54,5 +54,6 @@
 #include "json.hpp" // ONLY_IF JSON
 #include "simplex.hpp" // ONLY_IF Simplex
 #include "two-sat.hpp" // ONLY_IF TwoSat
+#include "utility.hpp" // ONLY_IF sum apply_fct range
 
 #endif // ALGOLIB_HPP

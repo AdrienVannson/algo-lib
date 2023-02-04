@@ -15,6 +15,7 @@
 #include "maths/test-sieve-of-eratosthenes.hpp"
 #include "other/test-simplex.hpp"
 #include "other/test-two-sat.hpp"
+#include "other/test-utility.hpp"
 #include "strings/test-utility.hpp"
 #include "test-done.hpp"
 
@@ -897,4 +898,5 @@ int main()
     testInfinity();
     test_simplex();
     testTwoSat();
+    test_utility();
 }

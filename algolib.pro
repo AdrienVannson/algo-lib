@@ -52,6 +52,7 @@ HEADERS += \
         src/trees/graph-to-forest.hpp \
         src/trees/graph-to-tree.hpp \
         src/two-sat.hpp \
+        src/utility.hpp \
         tests/geometry/test-intersections.hpp \
         tests/geometry/test-projections.hpp \
         tests/maths/test-matrix.hpp \
@@ -60,6 +61,7 @@ HEADERS += \
         tests/maths/test-sieve-of-eratosthenes.hpp \
         tests/other/test-simplex.hpp \
         tests/other/test-two-sat.hpp \
+        tests/other/test-utility.hpp \
         tests/strings/test-utility.hpp \
         tests/test-done.hpp
 
@@ -72,6 +74,7 @@ SOURCES += \
     src/simplex.cpp \
     src/strings/utility/split.cpp \
     src/trees/Tree.cpp \
+    src/utility.cpp \
     tests/geometry/test-intersections.cpp \
     tests/geometry/test-projections.cpp \
     tests/main.cpp \
@@ -81,6 +84,7 @@ SOURCES += \
     tests/maths/test-sieve-of-eratosthenes.cpp \
     tests/other/test-simplex.cpp \
     tests/other/test-two-sat.cpp \
+    tests/other/test-utility.cpp \
     tests/strings/test-utility.cpp \
     tests/test-done.cpp
 
