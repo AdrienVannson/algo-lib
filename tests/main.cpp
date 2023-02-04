@@ -9,6 +9,7 @@
 
 #include "geometry/test-intersections.hpp"
 #include "geometry/test-projections.hpp"
+#include "maths/test-matrix.hpp"
 #include "maths/test-modulo.hpp"
 #include "maths/test-prime-decomposition.hpp"
 #include "maths/test-sieve-of-eratosthenes.hpp"
@@ -866,6 +867,7 @@ int main()
     testExponentiationBySquaring();
     testerFraction();
     checkGCD_LCM();
+    test_matrix();
     testPermutation();
     testPolynomial();
     testPrimeDecomposition();

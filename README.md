@@ -32,6 +32,7 @@
     - Exponentiation by squaring
     - Fraction
     - GCD, LCM, Extended Euclidean algorithm
+    - Matrix
     - Modulo
     - Permutation
     - Polynomial

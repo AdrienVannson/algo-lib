@@ -38,6 +38,7 @@ HEADERS += \
         src/maths/Polynomial.hpp \
         src/maths/exponentiation-by-squaring.hpp \
         src/maths/gcd-lcm.hpp \
+        src/maths/matrix.hpp \
         src/maths/modulo.hpp \
         src/maths/prime-decomposition.hpp \
         src/maths/sieve-of-eratosthenes.hpp \
@@ -53,6 +54,7 @@ HEADERS += \
         src/two-sat.hpp \
         tests/geometry/test-intersections.hpp \
         tests/geometry/test-projections.hpp \
+        tests/maths/test-matrix.hpp \
         tests/maths/test-modulo.hpp \
         tests/maths/test-prime-decomposition.hpp \
         tests/maths/test-sieve-of-eratosthenes.hpp \
@@ -73,6 +75,7 @@ SOURCES += \
     tests/geometry/test-intersections.cpp \
     tests/geometry/test-projections.cpp \
     tests/main.cpp \
+    tests/maths/test-matrix.cpp \
     tests/maths/test-modulo.cpp \
     tests/maths/test-prime-decomposition.cpp \
     tests/maths/test-sieve-of-eratosthenes.cpp \
