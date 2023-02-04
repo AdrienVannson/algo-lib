@@ -1,7 +1,7 @@
 #ifndef GRAPHTOFOREST_HPP
 #define GRAPHTOFOREST_HPP
 
-#include "Tree.hpp"
+#include "tree.hpp"
 
 #include <vector>
 

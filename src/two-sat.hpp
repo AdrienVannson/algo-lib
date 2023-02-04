@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "graphs/algorithms/kosaraju.hpp"
-#include "graphs/data-structures/Graph.hpp"
+#include "graphs/data-structures/graph.hpp"
 
 class TwoSat
 {

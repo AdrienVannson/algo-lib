@@ -1,8 +1,8 @@
 #ifndef ALGOLIB_HPP
 #define ALGOLIB_HPP
 
-#include "data-structures/DisjointSet.hpp" // ONLY_IF DisjointSet
-#include "data-structures/MaxHeap.hpp" // ONLY_IF MaxHeap
+#include "data-structures/disjoint-set.hpp" // ONLY_IF DisjointSet
+#include "data-structures/max-heap.hpp" // ONLY_IF MaxHeap
 
 #include "geometry/convex-hull.hpp" // ONLY_IF ConvexHull
 #include "geometry/intersections.hpp" // ONLY_IF getIntersection
@@ -26,12 +26,12 @@
 #include "graphs/algorithms/tarjan.hpp" // ONLY_IF Tarjan
 #include "graphs/algorithms/to-bipartite.hpp" // ONLY_IF ToBipartite
 #include "graphs/algorithms/topological-sort.hpp" // ONLY_IF TopologicalSort
-#include "graphs/data-structures/Graph.hpp" // ONLY_IF Graph
-#include "graphs/data-structures/WGraph.hpp" // ONLY_IF WGraph
+#include "graphs/data-structures/graph.hpp" // ONLY_IF Graph
+#include "graphs/data-structures/wgraph.hpp" // ONLY_IF WGraph
 
-#include "maths/Fraction.hpp" // ONLY_IF Fraction
-#include "maths/Permutation.hpp" // ONLY_IF Permutation
-#include "maths/Polynomial.hpp" // ONLY_IF Polynomial
+#include "maths/fraction.hpp" // ONLY_IF Fraction
+#include "maths/permutation.hpp" // ONLY_IF Permutation
+#include "maths/polynomial.hpp" // ONLY_IF Polynomial
 #include "maths/exponentiation-by-squaring.hpp" // ONLY_IF getPower
 #include "maths/gcd-lcm.hpp" // ONLY_IF getGCD getLCM getGCDBezout
 #include "maths/matrix.hpp" // ONLY_IF Matrix
@@ -46,7 +46,7 @@
 #include "strings/regex.hpp" // ONLY_IF Regex Reg
 #include "strings/utility/split.hpp" // ONLY_IF split
 
-#include "trees/Tree.hpp" // ONLY_IF Tree
+#include "trees/tree.hpp" // ONLY_IF Tree
 #include "trees/graph-to-forest.hpp" // ONLY_IF graphToForest
 #include "trees/graph-to-tree.hpp" // ONLY_IF graphToTree
 

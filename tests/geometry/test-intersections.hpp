@@ -3,7 +3,7 @@
 
 #include "geometry/intersections.hpp"
 #include "geometry/line.hpp"
-#include "maths/Fraction.hpp"
+#include "maths/fraction.hpp"
 
 void testIntersections();
 

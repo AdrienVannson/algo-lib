@@ -2,7 +2,7 @@
 #define TEST_PROJECTIONS_HPP
 
 #include "geometry/projections.hpp"
-#include "maths/Fraction.hpp"
+#include "maths/fraction.hpp"
 
 void testProjections();
 

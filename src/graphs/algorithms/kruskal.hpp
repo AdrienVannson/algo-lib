@@ -1,7 +1,7 @@
 #ifndef KRUSKAL_HPP
 #define KRUSKAL_HPP
 
-#include "data-structures/DisjointSet.hpp"
+#include "data-structures/disjoint-set.hpp"
 
 #include <algorithm>
 

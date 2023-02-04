@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "graphs/algorithms/bfs.hpp"
-#include "graphs/data-structures/Graph.hpp"
+#include "graphs/data-structures/graph.hpp"
 
 // F: max-flow algorithm; G: graph type
 template<class F, class G>

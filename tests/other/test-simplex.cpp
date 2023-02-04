@@ -1,5 +1,5 @@
 #include "test-simplex.hpp"
-#include "maths/Fraction.hpp"
+#include "maths/fraction.hpp"
 #include "simplex.hpp"
 #include "test-done.hpp"
 

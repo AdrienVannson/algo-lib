@@ -6,8 +6,8 @@ CONFIG -= qt
 HEADERS += \
         src/algolib.hpp \
         src/constants.hpp \
-        src/data-structures/DisjointSet.hpp \
-        src/data-structures/MaxHeap.hpp \
+        src/data-structures/disjoint-set.hpp \
+        src/data-structures/max-heap.hpp \
         src/geometry/convex-hull.hpp \
         src/geometry/intersections.hpp \
         src/geometry/line.hpp \
@@ -29,17 +29,17 @@ HEADERS += \
         src/graphs/algorithms/tarjan.hpp \
         src/graphs/algorithms/to-bipartite.hpp \
         src/graphs/algorithms/topological-sort.hpp \
-        src/graphs/data-structures/Graph.hpp \
-        src/graphs/data-structures/WGraph.hpp \
+        src/graphs/data-structures/graph.hpp \
+        src/graphs/data-structures/wgraph.hpp \
         src/json.hpp \
-        src/maths/Permutation.hpp \
-        src/maths/Fraction.hpp \
         src/global.hpp \
-        src/maths/Polynomial.hpp \
         src/maths/exponentiation-by-squaring.hpp \
+        src/maths/fraction.hpp \
         src/maths/gcd-lcm.hpp \
         src/maths/matrix.hpp \
         src/maths/modulo.hpp \
+        src/maths/permutation.hpp \
+        src/maths/polynomial.hpp \
         src/maths/prime-decomposition.hpp \
         src/maths/sieve-of-eratosthenes.hpp \
         src/simplex.hpp \
@@ -48,9 +48,9 @@ HEADERS += \
         src/strings/kmp.hpp \
         src/strings/regex.hpp \
         src/strings/utility/split.hpp \
-        src/trees/Tree.hpp \
         src/trees/graph-to-forest.hpp \
         src/trees/graph-to-tree.hpp \
+        src/trees/tree.hpp \
         src/two-sat.hpp \
         src/utility.hpp \
         tests/geometry/test-intersections.hpp \
@@ -67,13 +67,13 @@ HEADERS += \
 
 SOURCES += \
     src/json.cpp \
-    src/maths/Permutation.cpp \
     src/maths/gcd-lcm.cpp \
+    src/maths/permutation.cpp \
     src/maths/prime-decomposition.cpp \
     src/maths/sieve-of-eratosthenes.cpp \
     src/simplex.cpp \
     src/strings/utility/split.cpp \
-    src/trees/Tree.cpp \
+    src/trees/tree.cpp \
     src/utility.cpp \
     tests/geometry/test-intersections.cpp \
     tests/geometry/test-projections.cpp \
