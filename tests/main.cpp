@@ -39,7 +39,7 @@ void testDisjointSet()
     assert(ds.size(0) == 3);
     assert(ds.find(0) == ds.find(1));
 
-    cerr << "### Disjoint set: OK" << endl;
+    show_test_done("Disjoint set");
 }
 
 void testMaxHeap()
@@ -87,7 +87,7 @@ void testMaxHeap()
         pqueue.pop();
     }
 
-    cerr << "### Max heap: OK" << endl;
+    show_test_done("Max heap");
 }
 
 /*******************************************************************************
@@ -131,7 +131,7 @@ void testBellmanFord()
         assert(bellmanFord.distTo(6) == -Constants<int>::infinity());
     }
 
-    cerr << "### Bellman-Ford: OK" << endl;
+    show_test_done("Bellman-Ford");
 }
 
 void testBFS()
@@ -148,7 +148,7 @@ void testBFS()
     assert(bfs.distTo(2) == 1);
     assert(bfs.distTo(3) == 2);
 
-    cerr << "### BFS: OK" << endl;
+    show_test_done("BFS");
 }
 
 void testDijkstra()
@@ -166,7 +166,7 @@ void testDijkstra()
     assert(dijkstra.distTo(2) == 1);
     assert(dijkstra.distTo(3) == 4);
 
-    cerr << "### Dijkstra: OK" << endl;
+    show_test_done("Dijkstra");
 }
 
 void testEdmondsKarp()
@@ -209,7 +209,7 @@ void testEdmondsKarp()
         assert(flow.flowBetween(2, 1) == -15);
     }
 
-    cerr << "### Edmonds-Karp: OK" << endl;
+    show_test_done("Edmonds-Karp");
 }
 
 void testFloydWarshall()
@@ -227,7 +227,7 @@ void testFloydWarshall()
     assert(fw.dist(0, 2) == 1);
     assert(fw.dist(0, 3) == 4);
 
-    cerr << "### Floyd-Warshall: OK" << endl;
+    show_test_done("Floyd-Warshall");
 }
 
 void testKosaraju()
@@ -267,7 +267,7 @@ void testKosaraju()
         }
     }
 
-    cerr << "### Kosaraju: OK" << endl;
+    show_test_done("Kosaraju");
 }
 
 void testKruskal()
@@ -300,7 +300,7 @@ void testKruskal()
 
     assert(spanningForest == (vector<int> {1, 2, 3, 5, 7, 10}));
 
-    cerr << "### Kruskal: OK" << endl;
+    show_test_done("Kruskal");
 }
 
 void testMinCut()
@@ -326,7 +326,7 @@ void testMinCut()
     assert(minCut.cutEdges()[1].edgeId == 7);
     assert(minCut.cutEdges()[2].edgeId == 9);
 
-    cerr << "### Min-Cut: OK" << endl;
+    show_test_done("Min-Cut");
 }
 
 void testPrim()
@@ -359,7 +359,7 @@ void testPrim()
 
     assert(spanningForest == (vector<int> {1, 2, 3, 5, 7, 10}));
 
-    cerr << "### Prim: OK" << endl;
+    show_test_done("Prim");
 }
 
 void testTarjan()
@@ -399,7 +399,7 @@ void testTarjan()
         }
     }
 
-    cerr << "### Tarjan: OK" << endl;
+    show_test_done("Tarjan");
 }
 
 void testTopologicalSort()
@@ -423,7 +423,7 @@ void testTopologicalSort()
     ts = TopologicalSort<Graph>(g);
     assert(ts.topologicalSort() == vector<int>({9, 7, 4, 5, 1, 2, 8, 3, 6, 0}));
 
-    cerr << "### Topological sort: OK" << endl;
+    show_test_done("Topological sort");
 }
 
 void testTransposeGraph()
@@ -449,7 +449,7 @@ void testTransposeGraph()
         assert(gt.weight(0) == 12);
     }
 
-    showTestDone("Transpose graph");
+    show_test_done("Transpose graph");
 }
 
 /*******************************************************************************
@@ -480,7 +480,7 @@ void testGraphToTree()
 
     assert(ids == vector<int>({1, -1, 2, 3, 4, 0}));
 
-    cerr << "### Graph to tree: OK" << endl;
+    show_test_done("Graph to tree");
 }
 
 void testGraphToForest()
@@ -512,7 +512,7 @@ void testGraphToForest()
 
     assert(ids == vector<int>({-1, 0, 1, 2, 3, 4, -1, 5}));
 
-    cerr << "### Graph to forest: OK" << endl;
+    show_test_done("Graph to forest");
 }
 
 /*******************************************************************************
@@ -534,7 +534,8 @@ void testSorting()
     vs = original;
     vs = mergeSort(vs);
     assert(vs == sorted);
-    cerr << "### Merge sort: OK" << endl;
+
+    show_test_done("Merge sort");
 }
 
 /*******************************************************************************
@@ -547,7 +548,7 @@ void testExponentiationBySquaring()
         assert(getPower(2, p) == (1 << p));
     }
 
-    cerr << "### Exponentiation by squaring: OK" << endl;
+    show_test_done("Exponentiation by squaring");
 }
 
 void testerFraction()
@@ -581,7 +582,8 @@ void checkGCD_LCM()
 
     assert(getLCM(2 * 7, 2 * 13) == 2 * 7 * 13);
     assert(getLCM(2 * 7, -2 * 13) == 2 * 7 * 13);
-    cerr << "GCD / LCM checked" << endl;
+
+    show_test_done("GCD, LCM");
 }
 
 void testPermutation()
@@ -634,7 +636,7 @@ void testPermutation()
     }
     assert(res == perm);
 
-    cerr << "### Permutation: OK" << endl;
+    show_test_done("Permutation");
 }
 
 void testPolynomial()
@@ -653,7 +655,7 @@ void testPolynomial()
         make_pair(2, 8)};
     assert(lagrangePolynomial(points) == Polynomial<Fraction<int>>({-2, 3, 1}));
 
-    cerr << "### Polynomial: OK" << endl;
+    show_test_done("Polynomial");
 }
 
 /*******************************************************************************
@@ -667,7 +669,7 @@ void testVect2()
     Vect2<int> u(1, 2), v(3, 4);
     assert((u ^ v) == -2);
 
-    cerr << "### Vect2: OK" << endl;
+    show_test_done("Vect2");
 }
 
 void testConvexHull()
@@ -690,7 +692,7 @@ void testConvexHull()
     assert(convexHull.verticesIds()[2] == 2);
     assert(convexHull.verticesIds()[3] == 0);
 
-    cerr << "### Convex hull: OK" << endl;
+    show_test_done("Convex hull");
 }
 
 /*******************************************************************************
@@ -799,7 +801,7 @@ void testAutomaton()
         assert(aut.stateCount() == 2);
     }
 
-    cerr << "### Automaton: OK" << endl;
+    show_test_done("Automaton");
 }
 
 void testKmp()
@@ -807,7 +809,7 @@ void testKmp()
     const vector<int> kmp = getKmp("ababc#abababcd");
     assert(kmp == vector<int>({-1, 0, 0, 1, 2, 0, 0, 1, 2, 3, 4, 3, 4, 5, 0}));
 
-    cerr << "### KMP: OK" << endl;
+    show_test_done("KMP");
 }
 
 /*******************************************************************************
@@ -818,7 +820,7 @@ void testInfinity()
 {
     assert(Constants<int>::infinity() == 2147483647);
 
-    cerr << "### Infinity: OK" << endl;
+    show_test_done("Infinity");
 }
 
 /*******************************************************************************
@@ -830,13 +832,13 @@ int main()
     srand(42);
 
     // Data structures
-    cerr << "Testing data structures..." << endl;
+    cerr << "├── Data structures" << endl;
     testDisjointSet();
     testMaxHeap();
-    cerr << "\n";
+    cerr << "│   \n";
 
     // Graphs
-    cerr << "Testing graphs..." << endl;
+    cerr << "├── Graphs" << endl;
     testBellmanFord();
     testBFS();
     testDijkstra();
@@ -849,21 +851,21 @@ int main()
     testTarjan();
     testTopologicalSort();
     testTransposeGraph();
-    cerr << "\n";
+    cerr << "│   \n";
 
     // Trees
-    cerr << "Testing trees..." << endl;
+    cerr << "├── Trees" << endl;
     testGraphToTree();
     testGraphToForest();
-    cerr << "\n";
+    cerr << "│   \n";
 
     // Sorting algorithms
-    cerr << "Testing sorting algorithms..." << endl;
+    cerr << "├── Sorting algorthms" << endl;
     testSorting();
-    cerr << "\n";
+    cerr << "│   \n";
 
     // Maths
-    cerr << "Testing maths..." << endl;
+    cerr << "├── Maths" << endl;
     testExponentiationBySquaring();
     testerFraction();
     checkGCD_LCM();
@@ -873,27 +875,26 @@ int main()
     testPrimeDecomposition();
     testModulo();
     testSieveOfEratosthenes();
-    cerr << "\n";
+    cerr << "│   \n";
 
     // Geometry
-    cerr << "Testing geometry..." << endl;
+    cerr << "├── Geometry" << endl;
     testVect2();
     testConvexHull();
     testIntersections();
     testProjections();
-    cerr << "\n";
+    cerr << "│   \n";
 
     // Strings
-    cerr << "Testing strings..." << endl;
+    cerr << "├── Strings" << endl;
     testAutomaton();
     testKmp();
     testSplit();
-    cerr << "\n";
+    cerr << "│   \n";
 
     // Other
-    cerr << "Testing other functionalities..." << endl;
+    cerr << "├── Other functionalities" << endl;
     testInfinity();
     test_simplex();
     testTwoSat();
-    cerr << "\n";
 }

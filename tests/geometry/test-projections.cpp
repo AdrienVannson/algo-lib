@@ -13,5 +13,5 @@ void testProjections()
         getProjection(Vec(8, 2), Lin(1, -3, 6)) == Vec(Fr(72, 10), Fr(44, 10))
     );
 
-    showTestDone("Projection");
+    show_test_done("Projection");
 }

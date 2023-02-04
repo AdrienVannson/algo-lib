@@ -21,5 +21,5 @@ void testSieveOfEratosthenes()
     assert(s.nthPrime(6) == 17);
     assert(s.nthPrime(7) == 19);
 
-    showTestDone("Sieve of Eratosthenes");
+    show_test_done("Sieve of Eratosthenes");
 }

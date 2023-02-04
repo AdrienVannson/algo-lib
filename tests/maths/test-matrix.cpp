@@ -14,5 +14,5 @@ void test_matrix()
 
     assert(A + B == C);
 
-    showTestDone("Matrix");
+    show_test_done("Matrix");
 }

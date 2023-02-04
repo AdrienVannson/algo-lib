@@ -21,5 +21,5 @@ void testSplit()
         assert(res[2] == "hij");
     }
 
-    showTestDone("Split");
+    show_test_done("Split");
 }

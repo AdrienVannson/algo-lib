@@ -30,5 +30,5 @@ void testTwoSat()
         assert(!inst.solve());
     }
 
-    showTestDone("2-SAT");
+    show_test_done("2-SAT");
 }

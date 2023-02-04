@@ -1,7 +1,8 @@
 #include "test-done.hpp"
+
 #include <iostream>
 
-void showTestDone(const std::string &name)
+void show_test_done(const std::string &name)
 {
-    std::cout << "### " << name << ": OK" << std::endl;
+    std::cout << "│   ├── " << name << ": ✓" << std::endl;
 }

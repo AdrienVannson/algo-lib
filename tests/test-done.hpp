@@ -3,6 +3,6 @@
 
 #include <string>
 
-void showTestDone(const std::string &name);
+void show_test_done(const std::string &name);
 
 #endif // TEST_DONE_HPP

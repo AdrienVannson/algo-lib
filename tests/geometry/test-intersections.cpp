@@ -22,5 +22,5 @@ void testIntersections()
     assert(inter3.type() == Shape<Fr>::POINT);
     assert(inter3.point() == Vec(Fr(19, 5), Fr(12, 5)));
 
-    showTestDone("Intersection");
+    show_test_done("Intersection");
 }

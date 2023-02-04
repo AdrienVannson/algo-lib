@@ -117,5 +117,5 @@ void test_simplex()
         assert(simplex.outcome() == simplex.NO_SOLUTION);
     }
 
-    showTestDone("Simplex");
+    show_test_done("Simplex");
 }

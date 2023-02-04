@@ -13,5 +13,5 @@ void testPrimeDecomposition()
         == (std::vector<int> {3, 1, 2, 0, 0, 1})
     );
 
-    showTestDone("Prime decomposition");
+    show_test_done("Prime decomposition");
 }

@@ -18,5 +18,5 @@ void testModulo()
         assert((int)(Modulo<int>(i) / Modulo<int>(i)) == 1);
     }
 
-    showTestDone("Modulo");
+    show_test_done("Modulo");
 }
