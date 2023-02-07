@@ -18,7 +18,7 @@ test-coverage:
 
 docs:
 	doxygen docs/Doxyfile
-	cd build/latex && make
+	sphinx-build -b html -Dbreathe_projects.algolib=../build/xml docs build/docs
 
 clean:
 	rm -r build
