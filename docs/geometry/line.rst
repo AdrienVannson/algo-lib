@@ -1,0 +1,4 @@
+Line
+====
+
+.. doxygenfile:: line.hpp

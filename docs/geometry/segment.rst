@@ -1,0 +1,4 @@
+Segment
+=======
+
+.. doxygenfile:: segment.hpp

@@ -1,0 +1,4 @@
+Shape
+=====
+
+.. doxygenfile:: shape.hpp

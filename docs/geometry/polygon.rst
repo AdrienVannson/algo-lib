@@ -1,0 +1,4 @@
+Polygon
+=======
+
+.. doxygenfile:: polygon.hpp

@@ -1,0 +1,4 @@
+Projections
+===========
+
+.. doxygenfile:: projections.hpp

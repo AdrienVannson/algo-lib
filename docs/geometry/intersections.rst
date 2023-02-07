@@ -1,0 +1,4 @@
+Intersections
+=============
+
+.. doxygenfile:: intersections.hpp

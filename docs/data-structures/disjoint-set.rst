@@ -1,0 +1,4 @@
+Disjoint Set
+============
+
+.. doxygenclass:: DisjointSet

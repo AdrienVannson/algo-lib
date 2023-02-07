@@ -6,3 +6,4 @@ html_theme = "sphinx_rtd_theme"
 
 # Breathe configuration
 breathe_default_project = "algolib"
+breathe_default_members = ('members', 'undoc-members')
