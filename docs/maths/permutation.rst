@@ -1,0 +1,4 @@
+Permutation
+===========
+
+.. doxygenfile:: permutation.hpp

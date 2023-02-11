@@ -1,0 +1,4 @@
+Fraction
+========
+
+.. doxygenfile:: fraction.hpp

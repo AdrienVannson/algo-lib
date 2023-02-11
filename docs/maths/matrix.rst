@@ -1,0 +1,4 @@
+Matrix
+======
+
+.. doxygenfile:: matrix.hpp

@@ -1,0 +1,4 @@
+Polynomial
+==========
+
+.. doxygenfile:: polynomial.hpp
