@@ -1,0 +1,4 @@
+Dijkstra
+========
+
+.. doxygenfile:: dijkstra.hpp

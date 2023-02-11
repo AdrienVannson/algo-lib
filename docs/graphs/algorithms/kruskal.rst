@@ -1,0 +1,4 @@
+Kruskal
+=======
+
+.. doxygenfile:: kruskal.hpp

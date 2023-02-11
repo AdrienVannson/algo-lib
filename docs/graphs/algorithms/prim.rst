@@ -1,0 +1,4 @@
+Prim
+====
+
+.. doxygenfile:: prim.hpp
