@@ -1,0 +1,4 @@
+Tree
+====
+
+.. doxygenfile:: tree.hpp

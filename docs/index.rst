@@ -12,3 +12,4 @@ Welcome to the Algolib documentation! All the documented entities are listed in 
     maths
     sorting
     strings
+    trees
