@@ -1,0 +1,4 @@
+Simplex
+=======
+
+.. doxygenfile:: simplex.hpp

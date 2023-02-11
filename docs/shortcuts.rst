@@ -1,0 +1,4 @@
+Shortcuts
+=========
+
+.. doxygenfile:: shortcuts.hpp

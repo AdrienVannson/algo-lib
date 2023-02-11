@@ -4,7 +4,7 @@ Algolib Documentation
 Welcome to the Algolib documentation! All the documented entities are listed in :ref:`genindex`.
 
 .. toctree::
-    :maxdepth: 3
+    :maxdepth: 5
 
     data-structures
     graphs
@@ -13,3 +13,11 @@ Welcome to the Algolib documentation! All the documented entities are listed in 
     sorting
     strings
     trees
+
+    simplex
+    two-sat
+    json
+
+    constants
+    shortcuts
+    utility
