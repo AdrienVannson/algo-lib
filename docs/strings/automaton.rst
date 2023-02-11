@@ -1,0 +1,4 @@
+Automaton
+=========
+
+.. doxygenfile:: automaton.hpp

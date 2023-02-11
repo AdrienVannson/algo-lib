@@ -11,3 +11,4 @@ Welcome to the Algolib documentation! All the documented entities are listed in 
     geometry
     maths
     sorting
+    strings

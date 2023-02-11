@@ -1,0 +1,4 @@
+KMP
+===
+
+.. doxygenfile:: kmp.hpp

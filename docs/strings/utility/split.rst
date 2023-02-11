@@ -1,0 +1,4 @@
+Split
+=====
+
+.. doxygenfile:: split.hpp
