@@ -1,4 +1,4 @@
-#include "Permutation.hpp"
+#include "permutation.hpp"
 
 #include <algorithm>
 #include <cassert>

@@ -1,7 +1,7 @@
 #ifndef WGRAPH_HPP
 #define WGRAPH_HPP
 
-#include "Graph.hpp"
+#include "graph.hpp"
 
 template<class T>
 class WGraph : public Graph

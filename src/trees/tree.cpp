@@ -1,4 +1,4 @@
-#include "Tree.hpp"
+#include "tree.hpp"
 
 #include <algorithm>
 #include <cassert>

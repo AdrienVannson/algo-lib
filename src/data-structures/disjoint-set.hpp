@@ -1,5 +1,5 @@
-#ifndef DISJOINTSET_HPP
-#define DISJOINTSET_HPP
+#ifndef DISJOINT_SET_HPP
+#define DISJOINT_SET_HPP
 
 #include <cassert>
 #include <vector>
@@ -60,4 +60,4 @@ private:
     mutable std::vector<Node> nodes;
 };
 
-#endif // DISJOINTSET_HPP
+#endif // DISJOINT_SET_HPP
