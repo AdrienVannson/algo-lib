@@ -127,7 +127,7 @@ public:
     std::string toFormattedString() const; */
 
     /// \brief Parse a JSON string
-    void fromString(const std::string); // The string must be valid JSON
+    void fromString(const std::string &s); // The string must be valid JSON
 
 private:
     void addToString(std::string &s) const;
