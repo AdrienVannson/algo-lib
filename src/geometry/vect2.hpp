@@ -1,6 +1,7 @@
 #ifndef VECT2_HPP
 #define VECT2_HPP
 
+#include <cmath>
 #include <iostream>
 
 #include "constants.hpp"
