@@ -25,7 +25,7 @@ public:
     }
 
     /// \brief Returns the norm of the vector, squared
-    inline T norm2() const
+    inline T squared_norm() const
     {
         return x * x + y * y;
     }
