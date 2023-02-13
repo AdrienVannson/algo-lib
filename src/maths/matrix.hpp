@@ -1,9 +1,10 @@
 #ifndef MATRIX_HPP
 #define MATRIX_HPP
 
-#include "constants.hpp"
 #include <iostream>
 #include <vector>
+
+#include "constants.hpp"
 
 template<class T>
 class Matrix
@@ -149,7 +150,7 @@ inline std::ostream &operator<<(std::ostream &os, const Matrix<T> &M)
 {
     for (int i = 0; i < M.lines_count(); i++) {
         for (int j = 0; j < M.columns_count(); j++) {
-            os << M.coef(i, j);
+            os << M(i, j);
             if (j != M.columns_count() - 1) {
                 os << " ";
             }
