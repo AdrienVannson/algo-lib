@@ -40,6 +40,9 @@
 #include "maths/sieve-of-eratosthenes.hpp" // ONLY_IF SieveOfEratosthenes
 #include "maths/vect.hpp" // ONLY_IF Vect
 
+#include "optimization/gradient.hpp" // ONLY_IF Gradient
+#include "optimization/gradient-descent.hpp" // ONLY_IF GradientDescent
+
 #include "sorting/merge-sort.hpp" // ONLY_IF mergeSort
 
 #include "strings/automaton.hpp" // ONLY_IF Automaton Aut
