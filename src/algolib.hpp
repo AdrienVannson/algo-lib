@@ -38,6 +38,7 @@
 #include "maths/modulo.hpp" // ONLY_IF Modulo
 #include "maths/prime-decomposition.hpp" // ONLY_IF getPrimeDecomposition
 #include "maths/sieve-of-eratosthenes.hpp" // ONLY_IF SieveOfEratosthenes
+#include "maths/vect.hpp" // ONLY_IF Vect
 
 #include "sorting/merge-sort.hpp" // ONLY_IF mergeSort
 

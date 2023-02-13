@@ -1,0 +1,4 @@
+Vector
+======
+
+.. doxygenfile:: vect.hpp
