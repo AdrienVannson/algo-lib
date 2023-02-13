@@ -10,6 +10,7 @@ Welcome to the Algolib documentation! All the documented entities are listed in 
     graphs
     geometry
     maths
+    optimization
     sorting
     strings
     trees

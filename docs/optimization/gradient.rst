@@ -1,0 +1,4 @@
+Gradient
+========
+
+.. doxygenfile:: gradient.hpp
