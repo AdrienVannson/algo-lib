@@ -13,6 +13,7 @@
 #include "maths/test-modulo.hpp"
 #include "maths/test-prime-decomposition.hpp"
 #include "maths/test-sieve-of-eratosthenes.hpp"
+#include "optimization/test-gradient.hpp"
 #include "other/test-simplex.hpp"
 #include "other/test-two-sat.hpp"
 #include "other/test-utility.hpp"
@@ -884,6 +885,11 @@ int main()
     testConvexHull();
     testIntersections();
     testProjections();
+    cerr << "│   \n";
+
+    // Optimization
+    cerr << "├── Optimization" << endl;
+    test_gradient();
     cerr << "│   \n";
 
     // Strings
