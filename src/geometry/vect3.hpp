@@ -35,7 +35,7 @@ public:
 
     inline double norm() const
     {
-        return sqrt(norm2());
+        return sqrt(squared_norm());
     }
 
     inline void normalize()
