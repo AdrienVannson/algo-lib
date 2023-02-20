@@ -23,11 +23,15 @@ public:
     }
 
     /// \brief Starts the optimization
-    /// @param max_iterations_count
-    /// @param armijo_coef is the value of c in the Armijo's inequality.
-    /// @param update_factor the value by which the step length is multiplied
+    /// @param max_iterations_count The maximal number of iterations that the
+    /// algorithm can perform
+    /// @param tolerance Once the norm of the gradient is lower than this value,
+    /// the gradient descent stops.
+    /// @param armijo_coef The value of c in the Armijo's inequality.
+    /// @param update_factor The value by which the step length is multiplied
     /// or divided
-    void optimize(const int max_iterations_count, const double armijo_coef = 1e-4, const double update_factor = 1.3);
+    void optimize(const int max_iterations_count, const double tolerance,
+                  const double armijo_coef = 1e-4, const double update_factor = 1.3);
 
     /// \brief Returns the current value of f
     double value() const
@@ -49,7 +53,7 @@ private:
 
 template<typename F, typename G>
 void GradientDescent<F, G>::optimize(const int max_iterations_count,
-    const double armijo_coef, const double update_factor)
+    const double tolerance, const double armijo_coef, const double update_factor)
 {
     const double update_factor_inv = 1. / update_factor;
 
@@ -58,7 +62,7 @@ void GradientDescent<F, G>::optimize(const int max_iterations_count,
     for (int it = 0; it < max_iterations_count; it++) {
         const Vect<double> grad = m_grad(m_x);
 
-        if (grad.norm() < 1e-6) break;
+        if (grad.norm() < tolerance) break;
 
         // Update the step length
         if (m_f(m_x - alpha * grad) <= m_f(m_x) - armijo_coef * alpha * grad.squared_norm()) {

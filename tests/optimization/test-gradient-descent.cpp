@@ -32,7 +32,7 @@ void test_gradient_descent()
     GradientDescent<decltype(rosenbrock), decltype(grad)> gradient_descent(n, rosenbrock, grad);
 
     // Optimize
-    gradient_descent.optimize(20000);
+    gradient_descent.optimize(20000, 1e-6);
 
     // Check the results
     assert(gradient_descent.value() <= 1e-8);
