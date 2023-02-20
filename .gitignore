@@ -4,3 +4,4 @@ tools/config
 tests/prog
 tests/output.cpp
 build
+c_cpp_properties.json
