@@ -15,7 +15,7 @@ class Polygon
 public:
     Polygon() {}
 
-    Polygon(std::vector<Vect2<T>> &vertices) : m_vertices(vertices) {}
+    Polygon(const std::vector<Vect2<T>> &vertices) : m_vertices(vertices) {}
 
     /// \brief Returns the number of vertices in the polygon
     inline int vertexCount() const
