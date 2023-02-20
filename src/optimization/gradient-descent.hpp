@@ -35,6 +35,12 @@ public:
         return m_f(m_x);
     }
 
+    /// \brief Returns the current value of x (the position of the minimum)
+    const Vect<double>& x() const
+    {
+        return m_x;
+    }
+
 private:
     F m_f;
     G m_grad; // Gradient of f
