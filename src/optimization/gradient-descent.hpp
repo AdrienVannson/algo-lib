@@ -3,7 +3,6 @@
 
 #include "maths/vect.hpp"
 
-// TODO: template to change type of double
 // F: type of f
 // G: type of grad(f)
 template<typename F, typename G>
