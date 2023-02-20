@@ -29,7 +29,7 @@ void test_gradient_descent()
     const auto grad = ForwardGradient<decltype(rosenbrock)>(rosenbrock, 1e-7);
 
     // Create a gradient descent
-    GradientDescent<decltype(rosenbrock), decltype(grad)> gradient_descent(n, rosenbrock, grad);
+    GradientDescent<decltype(rosenbrock), decltype(grad)> gradient_descent(rosenbrock, grad, Vect<double>(n));
 
     // Optimize
     gradient_descent.optimize(20000, 1e-6);

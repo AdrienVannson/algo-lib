@@ -9,10 +9,10 @@ template<typename F, typename G>
 class GradientDescent
 {
 public:
-    GradientDescent(const int dimensions_count, F f, G grad) :
+    GradientDescent(F f, G grad, const Vect<double> &starting_point) :
         m_f(f),
         m_grad(grad),
-        m_x(dimensions_count)
+        m_x(starting_point)
     {}
 
     /// \brief Sets the point at which the gradient descent will start
