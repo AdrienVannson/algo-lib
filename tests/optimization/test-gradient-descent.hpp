@@ -1,6 +1,6 @@
-#ifndef RTEG_HPP
-#define RTEG_HPP
+#ifndef TEST_GRADIENT_DESCENT_HPP
+#define TEST_GRADIENT_DESCENT_HPP
 
 void test_gradient_descent();
 
-#endif // RTEG_HPP
+#endif // TEST_GRADIENT_DESCENT_HPP
