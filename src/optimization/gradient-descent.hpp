@@ -59,16 +59,18 @@ void GradientDescent<F, G>::optimize(const int max_iterations_count,
     double alpha = 1; // Step length
 
     for (int it = 0; it < max_iterations_count; it++) {
+        const double f_x = m_f(m_x);
         const Vect<double> grad = m_grad(m_x);
+        const double grad_squared_norm = grad.squared_norm();
 
-        if (grad.norm() < tolerance) break;
+        if (grad_squared_norm < tolerance * tolerance) break;
 
         // Update the step length
-        if (m_f(m_x - alpha * grad) <= m_f(m_x) - armijo_coef * alpha * grad.squared_norm()) {
+        if (m_f(m_x - alpha * grad) <= f_x - armijo_coef * alpha * grad_squared_norm) {
             alpha *= update_factor;
 
             // While Armijo's condition is verified, go further
-            while (m_f(m_x - alpha * grad) <= m_f(m_x) - armijo_coef * alpha * grad.squared_norm()) {
+            while (m_f(m_x - alpha * grad) <= f_x - armijo_coef * alpha * grad_squared_norm) {
                 alpha *= update_factor;
             }
 
@@ -77,7 +79,7 @@ void GradientDescent<F, G>::optimize(const int max_iterations_count,
             alpha *= update_factor_inv;
 
             // Go nearer until Armijo's condition is verified
-            while (m_f(m_x - alpha * grad) > m_f(m_x) - armijo_coef * alpha * grad.squared_norm()) {
+            while (m_f(m_x - alpha * grad) > f_x - armijo_coef * alpha * grad_squared_norm) {
                 alpha *= update_factor_inv;
             }
         }
