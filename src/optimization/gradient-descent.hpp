@@ -17,7 +17,7 @@ public:
     {}
 
     /// \brief Sets the point at which the gradient descent will start
-    inline void set_starting_point(const Vect<double> x)
+    inline void set_starting_point(const Vect<double> &x)
     {
         m_x = x;
     }
