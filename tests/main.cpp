@@ -18,7 +18,7 @@
 #include "other/test-simplex.hpp"
 #include "other/test-two-sat.hpp"
 #include "other/test-utility.hpp"
-#include "strings/test-utility.hpp"
+#include "strings/utility/test-split.hpp"
 #include "test-done.hpp"
 
 #include <bits/stdc++.h>
