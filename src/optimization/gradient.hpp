@@ -1,5 +1,4 @@
-#ifndef GRADIENT_HPP
-#define GRADIENT_HPP
+#pragma once
 
 #include "maths/vect.hpp"
 
@@ -114,5 +113,3 @@ private:
     F m_f;
     double m_eps;
 };
-
-#endif // GRADIENT_HPP

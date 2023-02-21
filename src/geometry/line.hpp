@@ -1,5 +1,4 @@
-#ifndef LINE_HPP
-#define LINE_HPP
+#pragma once
 
 #include <cassert>
 
@@ -42,5 +41,3 @@ public:
 private:
     T m_a, m_b, m_c;
 };
-
-#endif // LINE_HPP

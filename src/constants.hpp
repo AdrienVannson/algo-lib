@@ -1,5 +1,4 @@
-#ifndef CONSTANTS_HPP
-#define CONSTANTS_HPP
+#pragma once
 
 #include <cstdlib>
 #include <limits>
@@ -120,5 +119,3 @@ public:
         return std::numeric_limits<unsigned long long>::infinity();
     }
 };
-
-#endif // CONSTANTS_HPP

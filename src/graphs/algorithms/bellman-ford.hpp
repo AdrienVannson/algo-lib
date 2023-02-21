@@ -1,5 +1,4 @@
-#ifndef BELLMAN_FORD_HPP
-#define BELLMAN_FORD_HPP
+#pragma once
 
 #include "constants.hpp"
 
@@ -71,5 +70,3 @@ private:
     std::vector<typename G::Weight> m_dists;
     bool m_hasNegativeCycle;
 };
-
-#endif // BELLMAN_FORD_HPP

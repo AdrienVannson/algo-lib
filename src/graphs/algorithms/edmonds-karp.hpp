@@ -1,5 +1,4 @@
-#ifndef EDMONDSKARP_HPP
-#define EDMONDSKARP_HPP
+#pragma once
 
 #include <cassert>
 #include <climits>
@@ -163,5 +162,3 @@ private:
     // oppositeEdge = (edge + edgeCount) % (2*edgeCount)
     std::vector<typename G::Weight> m_residualCapacities;
 };
-
-#endif // EDMONDSKARP_HPP

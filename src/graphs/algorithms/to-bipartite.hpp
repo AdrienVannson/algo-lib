@@ -1,5 +1,4 @@
-#ifndef TOBIPARTITE_HPP
-#define TOBIPARTITE_HPP
+#pragma once
 
 #include <vector>
 
@@ -51,5 +50,3 @@ private:
         }
     }
 };
-
-#endif // TOBIPARTITE_HPP

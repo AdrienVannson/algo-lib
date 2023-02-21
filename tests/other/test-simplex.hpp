@@ -1,6 +1,3 @@
-#ifndef TESTSIMPLEX_HPP
-#define TESTSIMPLEX_HPP
+#pragma once
 
 void test_simplex();
-
-#endif // TESTSIMPLEX_HPP

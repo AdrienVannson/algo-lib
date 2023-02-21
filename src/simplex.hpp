@@ -1,5 +1,4 @@
-#ifndef SIMPLEX_HPP
-#define SIMPLEX_HPP
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -456,6 +455,3 @@ void Simplex<T>::resize_constraints()
         constr.coefs.resize(m_variables_count, Constants<T>::zero());
     }
 }
-
-
-#endif // SIMPLEX_HPP

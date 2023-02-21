@@ -1,6 +1,3 @@
-#ifndef TESTMATRIX_HPP
-#define TESTMATRIX_HPP
+#pragma once
 
 void test_matrix();
-
-#endif // TESTMATRIX_HPP

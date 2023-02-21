@@ -1,6 +1,3 @@
-#ifndef TEST_PRIME_DECOMPOSITION_HPP
-#define TEST_PRIME_DECOMPOSITION_HPP
+#pragma once
 
 void testPrimeDecomposition();
-
-#endif // TEST_PRIME_DECOMPOSITION_HPP

@@ -1,5 +1,4 @@
-#ifndef KMP_HPP
-#define KMP_HPP
+#pragma once
 
 #include <algorithm>
 #include <string>
@@ -28,5 +27,3 @@ std::vector<int> getKmp(const std::string &s)
     std::copy(s.begin(), s.end(), v.begin());
     return getKmp(v);
 }
-
-#endif // KMP_HPP

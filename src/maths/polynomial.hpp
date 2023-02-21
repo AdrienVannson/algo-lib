@@ -1,5 +1,4 @@
-#ifndef POLYNOMIAL_HPP
-#define POLYNOMIAL_HPP
+#pragma once
 
 #include <ostream>
 #include <vector>
@@ -189,5 +188,3 @@ Polynomial<T> lagrangePolynomial(const std::vector<std::pair<T, T>> &points)
 
     return P;
 }
-
-#endif // POLYNOMIAL_HPP

@@ -1,5 +1,4 @@
-#ifndef TREE_HPP
-#define TREE_HPP
+#pragma once
 
 #include <cassert>
 #include <ostream>
@@ -72,5 +71,3 @@ private:
 };
 
 std::ostream &operator<<(std::ostream &, const Tree &);
-
-#endif // TREE_HPP

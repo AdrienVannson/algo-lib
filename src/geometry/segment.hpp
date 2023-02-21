@@ -1,5 +1,4 @@
-#ifndef SEGMENT_HPP
-#define SEGMENT_HPP
+#pragma once
 
 #include <cassert>
 
@@ -60,5 +59,3 @@ public:
 private:
     Vect2<T> m_A, m_B;
 };
-
-#endif // SEGMENT_HPP

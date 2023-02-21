@@ -1,5 +1,4 @@
-#ifndef CONVEXHULL_HPP
-#define CONVEXHULL_HPP
+#pragma once
 
 #include "constants.hpp"
 #include "vect2.hpp"

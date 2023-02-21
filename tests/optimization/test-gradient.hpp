@@ -1,6 +1,3 @@
-#ifndef TESTGRADIENT_HPP
-#define TESTGRADIENT_HPP
+#pragma once
 
 void test_gradient();
-
-#endif // TESTGRADIENT_HPP

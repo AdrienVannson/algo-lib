@@ -1,5 +1,4 @@
-#ifndef DIJKSTRA_HPP
-#define DIJKSTRA_HPP
+#pragma once
 
 #include "constants.hpp"
 
@@ -71,5 +70,3 @@ public:
 private:
     std::vector<typename G::Weight> m_dists;
 };
-
-#endif // DIJKSTRA_HPP

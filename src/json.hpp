@@ -1,5 +1,4 @@
-#ifndef JSON_HPP
-#define JSON_HPP
+#pragma once
 
 #include <cassert>
 #include <map>
@@ -147,5 +146,3 @@ private:
         std::map<std::string, JSON *> m_object;
     };
 };
-
-#endif // JSON_HPP

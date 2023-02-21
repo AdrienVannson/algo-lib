@@ -1,5 +1,4 @@
-#ifndef FLOYDWARSHALL_HPP
-#define FLOYDWARSHALL_HPP
+#pragma once
 
 #include "constants.hpp"
 #include <vector>
@@ -51,5 +50,3 @@ public:
 private:
     std::vector<std::vector<Weight>> m_dists;
 };
-
-#endif // FLOYDWARSHALL_HPP

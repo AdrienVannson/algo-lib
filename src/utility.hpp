@@ -1,5 +1,4 @@
-#ifndef UTILITY_HPP
-#define UTILITY_HPP
+#pragma once
 
 #include <functional>
 #include <vector>
@@ -61,5 +60,3 @@ std::vector<U> apply_fct(const std::vector<T> &vect, F f)
 
     return res;
 }
-
-#endif // UTILITY_HPP

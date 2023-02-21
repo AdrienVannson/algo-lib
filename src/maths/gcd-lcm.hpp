@@ -1,5 +1,4 @@
-#ifndef GCD_LCM_HPP
-#define GCD_LCM_HPP
+#pragma once
 
 #include <array>
 
@@ -9,5 +8,3 @@ long long getGCD(long long a, long long b);
 std::array<long long, 3> getGCDBezout(long long a, long long b);
 
 long long getLCM(long long a, long long b);
-
-#endif // GCD_LCM_HPP

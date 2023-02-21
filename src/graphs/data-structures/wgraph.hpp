@@ -1,5 +1,4 @@
-#ifndef WGRAPH_HPP
-#define WGRAPH_HPP
+#pragma once
 
 #include "graph.hpp"
 
@@ -75,5 +74,3 @@ protected:
 private:
     inline void addEdge(const int vertex1, const int vertex2) = delete;
 };
-
-#endif // WGRAPH_HPP

@@ -1,5 +1,4 @@
-#ifndef SIEVEOFERATOSTHENES_HPP
-#define SIEVEOFERATOSTHENES_HPP
+#pragma once
 
 #include <vector>
 
@@ -38,5 +37,3 @@ private:
     std::vector<bool> m_isPrime;
     std::vector<int> m_primes;
 };
-
-#endif // SIEVEOFERATOSTHENES_HPP

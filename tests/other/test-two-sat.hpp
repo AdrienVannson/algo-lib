@@ -1,6 +1,3 @@
-#ifndef TES_HPP
-#define TES_HPP
+#pragma once
 
 void testTwoSat();
-
-#endif // TES_HPP

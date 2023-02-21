@@ -1,5 +1,4 @@
-#ifndef POLYGON_HPP
-#define POLYGON_HPP
+#pragma once
 
 #include <vector>
 
@@ -130,5 +129,3 @@ bool Polygon<T>::isInsideNotBoundary(const Vect2<T> M) const
 
     return intersectionCount % 2;
 }
-
-#endif // POLYGON_HPP

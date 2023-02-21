@@ -1,5 +1,4 @@
-#ifndef MATRIX_HPP
-#define MATRIX_HPP
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -160,5 +159,3 @@ inline std::ostream &operator<<(std::ostream &os, const Matrix<T> &M)
 
     return os;
 }
-
-#endif // MATRIX_HPP

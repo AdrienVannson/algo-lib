@@ -1,5 +1,4 @@
-#ifndef SHAPE_HPP
-#define SHAPE_HPP
+#pragma once
 
 #include <cassert>
 
@@ -71,5 +70,3 @@ private:
     ShapeType m_type;
     ShapeContent<T> m_content;
 };
-
-#endif // SHAPE_HPP

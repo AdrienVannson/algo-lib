@@ -125,6 +125,14 @@ for l in output:
 output = new_output
 
 
+""" Remove #pragma once """
+new_output = []
+for l in output:
+    if l != "#pragma once":
+        new_output.append(l)
+output = new_output
+
+
 """ Move includes and "using namesace" to the begin of the file """
 new_output = []
 begin = set()

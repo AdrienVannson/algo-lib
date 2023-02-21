@@ -1,5 +1,4 @@
-#ifndef MINCUT_HPP
-#define MINCUT_HPP
+#pragma once
 
 #include <vector>
 
@@ -51,5 +50,3 @@ private:
     const typename G::Weight m_minCut;
     std::vector<typename G::Edge> m_cut;
 };
-
-#endif // MINCUT_HPP

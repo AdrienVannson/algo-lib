@@ -1,5 +1,4 @@
-#ifndef BFS_HPP
-#define BFS_HPP
+#pragma once
 
 #include "constants.hpp"
 
@@ -49,5 +48,3 @@ public:
 private:
     std::vector<int> m_dists;
 };
-
-#endif // BFS_HPP

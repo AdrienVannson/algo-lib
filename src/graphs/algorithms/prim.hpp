@@ -1,5 +1,4 @@
-#ifndef PRIM_HPP
-#define PRIM_HPP
+#pragma once
 
 #include <queue>
 #include <vector>
@@ -87,5 +86,3 @@ private:
         return -1;
     }
 };
-
-#endif // PRIM_HPP

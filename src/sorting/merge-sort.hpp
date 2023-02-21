@@ -1,5 +1,4 @@
-#ifndef MERGESORT_HPP
-#define MERGESORT_HPP
+#pragma once
 
 #include <vector>
 
@@ -40,5 +39,3 @@ std::vector<T> mergeSort(const std::vector<T> &v)
 
     return sorted;
 }
-
-#endif // MERGESORT_HPP

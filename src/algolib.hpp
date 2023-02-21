@@ -1,5 +1,4 @@
-#ifndef ALGOLIB_HPP
-#define ALGOLIB_HPP
+#pragma once
 
 #include "data-structures/disjoint-set.hpp" // ONLY_IF DisjointSet
 #include "data-structures/max-heap.hpp" // ONLY_IF MaxHeap
@@ -59,5 +58,3 @@
 #include "simplex.hpp" // ONLY_IF Simplex
 #include "two-sat.hpp" // ONLY_IF TwoSat
 #include "utility.hpp" // ONLY_IF sum apply_fct range
-
-#endif // ALGOLIB_HPP

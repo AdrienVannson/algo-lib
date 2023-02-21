@@ -1,5 +1,4 @@
-#ifndef GRADIENTDESCENT_HPP
-#define GRADIENTDESCENT_HPP
+#pragma once
 
 #include "maths/vect.hpp"
 
@@ -87,5 +86,3 @@ void GradientDescent<F, G>::optimize(const int max_iterations_count,
         m_x -= alpha * grad;
     }
 }
-
-#endif // GRADIENTDESCENT_HPP

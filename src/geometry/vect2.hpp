@@ -1,5 +1,4 @@
-#ifndef VECT2_HPP
-#define VECT2_HPP
+#pragma once
 
 #include <cmath>
 #include <iostream>
@@ -147,5 +146,3 @@ inline std::ostream &operator<<(std::ostream &os, const Vect2<T> &v)
 {
     return os << "(" << v.x << ", " << v.y << ")";
 }
-
-#endif // VECT2_HPP

@@ -1,5 +1,4 @@
-#ifndef MAX_HEAP_HPP
-#define MAX_HEAP_HPP
+#pragma once
 
 #include <vector>
 
@@ -111,5 +110,3 @@ void MaxHeap<T>::removeMax()
         }
     }
 }
-
-#endif // MAX_HEAP_HPP

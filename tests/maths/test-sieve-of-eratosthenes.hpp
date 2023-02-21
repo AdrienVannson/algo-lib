@@ -1,6 +1,3 @@
-#ifndef TEST_SIEVE_OF_ERATOSTHENES_HPP
-#define TEST_SIEVE_OF_ERATOSTHENES_HPP
+#pragma once
 
 void testSieveOfEratosthenes();
-
-#endif // TEST_SIEVE_OF_ERATOSTHENES_HPP

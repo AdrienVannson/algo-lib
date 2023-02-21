@@ -1,5 +1,4 @@
-#ifndef INTERSECTIONS_HPP
-#define INTERSECTIONS_HPP
+#pragma once
 
 #include <cassert>
 #include <utility>
@@ -49,5 +48,3 @@ Shape<T> getIntersection(const Line<T> line, const Segment<T> seg)
     }
     return Shape<T>(inter);
 }
-
-#endif // INTERSECTIONS_HPP

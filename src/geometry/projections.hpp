@@ -1,5 +1,4 @@
-#ifndef PROJECTIONS_HPP
-#define PROJECTIONS_HPP
+#pragma once
 
 #include "line.hpp"
 #include "vect2.hpp"
@@ -17,5 +16,3 @@ Vect2<T> getProjection(const Vect2<T> M, const Line<T> L)
         (-a * b * x + a * a * y - b * c) / den
     );
 }
-
-#endif // PROJECTIONS_HPP

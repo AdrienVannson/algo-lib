@@ -1,5 +1,4 @@
-#ifndef AUTOMATON_HPP
-#define AUTOMATON_HPP
+#pragma once
 
 #include <algorithm>
 #include <map>
@@ -780,5 +779,3 @@ std::ostream &operator<<(std::ostream &os, const Automaton<T> &aut)
 
     return os;
 }
-
-#endif // AUTOMATON_HPP

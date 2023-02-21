@@ -1,5 +1,4 @@
-#ifndef PERMUTATION_HPP
-#define PERMUTATION_HPP
+#pragma once
 
 #include <vector>
 
@@ -56,5 +55,3 @@ bool operator==(const Permutation &, const Permutation &);
 
 /// \brief Composition
 Permutation operator*(const Permutation &a, const Permutation &b);
-
-#endif // PERMUTATION_HPP

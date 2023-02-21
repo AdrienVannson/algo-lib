@@ -1,5 +1,4 @@
-#ifndef EXPONENTIATION_BY_SQUARING_HPP
-#define EXPONENTIATION_BY_SQUARING_HPP
+#pragma once
 
 #include <cassert>
 
@@ -13,5 +12,3 @@ T getPower(const T &x, const int p)
     if (p % 2 == 1) return x * getPower(x * x, p / 2);
     return getPower(x * x, p / 2);
 }
-
-#endif // EXPONENTIATION_BY_SQUARING_HPP

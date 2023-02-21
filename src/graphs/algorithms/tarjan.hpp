@@ -1,5 +1,4 @@
-#ifndef TARJAN_HPP
-#define TARJAN_HPP
+#pragma once
 
 #include "constants.hpp"
 
@@ -106,5 +105,3 @@ int Tarjan<G>::findSccs(const G &graph, const int vertex)
 
     return minID;
 }
-
-#endif // TARJAN_HPP

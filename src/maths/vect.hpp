@@ -1,5 +1,4 @@
-#ifndef VECT_HPP
-#define VECT_HPP
+#pragma once
 
 #include <cmath>
 #include <iostream>
@@ -155,5 +154,3 @@ inline std::ostream &operator<<(std::ostream &os, const Vect<T> &u)
 
     return os;
 }
-
-#endif // VECT_HPP

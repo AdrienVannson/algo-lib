@@ -1,5 +1,4 @@
-#ifndef GRAPHTOFOREST_HPP
-#define GRAPHTOFOREST_HPP
+#pragma once
 
 #include "tree.hpp"
 
@@ -47,5 +46,3 @@ std::pair<Tree, std::vector<int>> graphToForest(const G &g)
 
     return std::make_pair(forest, ids);
 }
-
-#endif // GRAPHTOFOREST_HPP

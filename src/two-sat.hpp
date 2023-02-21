@@ -1,5 +1,4 @@
-#ifndef TWO_SAT_HPP
-#define TWO_SAT_HPP
+#pragma once
 
 #include <vector>
 
@@ -83,5 +82,3 @@ private:
 
     std::vector<bool> m_affectations;
 };
-
-#endif // TWO_SAT_HPP

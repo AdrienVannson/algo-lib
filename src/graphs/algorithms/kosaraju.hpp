@@ -1,5 +1,4 @@
-#ifndef KOSARAJU_HPP
-#define KOSARAJU_HPP
+#pragma once
 
 #include <vector>
 
@@ -94,5 +93,3 @@ private:
     // Strongly Connected Components
     std::vector<std::vector<int>> m_sccs;
 };
-
-#endif // KOSARAJU_HPP

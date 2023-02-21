@@ -1,5 +1,4 @@
-#ifndef GRAPH_HPP
-#define GRAPH_HPP
+#pragma once
 
 #include <cassert>
 #include <vector>
@@ -151,5 +150,3 @@ protected:
     int m_edgeCount;
     std::vector<std::vector<EdgeTo>> m_vertices; // [vertex][neighbourPos]
 };
-
-#endif // GRAPH_HPP

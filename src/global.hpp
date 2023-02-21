@@ -1,5 +1,4 @@
-#ifndef GLOBAL_HPP
-#define GLOBAL_HPP
+#pragma once
 
 #define for_n(i, n) for (int i = 0; i < (int)(n); i++)
 
@@ -16,5 +15,3 @@ inline int readInt()
     cin >> v;
     return v;
 }
-
-#endif // GLOBAL_HPP

@@ -1,5 +1,4 @@
-#ifndef FRACTION_HPP
-#define FRACTION_HPP
+#pragma once
 
 #include <cassert>
 #include <iostream>
@@ -200,5 +199,3 @@ public:
         return Fraction<T>(Constants<T>::infinity());
     }
 };
-
-#endif // FRACTION_HPP

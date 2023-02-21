@@ -2,8 +2,7 @@
 // The modulo is stored in a static variable: setMod must be
 // called before using the class.
 
-#ifndef MODULO_HPP
-#define MODULO_HPP
+#pragma once
 
 #include "constants.hpp"
 #include "gcd-lcm.hpp"
@@ -111,5 +110,3 @@ public:
         return Modulo<T>(Constants<T>::one());
     }
 };
-
-#endif // MODULO_HPP

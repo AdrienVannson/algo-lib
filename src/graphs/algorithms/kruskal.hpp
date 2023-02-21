@@ -1,5 +1,4 @@
-#ifndef KRUSKAL_HPP
-#define KRUSKAL_HPP
+#pragma once
 
 #include "data-structures/disjoint-set.hpp"
 
@@ -58,5 +57,3 @@ private:
     // Sum of their weights
     typename G::Weight m_sum;
 };
-
-#endif // KRUSKAL_HPP

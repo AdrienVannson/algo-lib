@@ -1,5 +1,4 @@
-#ifndef VECT3_HPP
-#define VECT3_HPP
+#pragma once
 
 #include "constants.hpp"
 
@@ -154,5 +153,3 @@ inline bool operator<(const Vect3<T> &u, const Vect3<T> &v)
     if (u.y != v.y) return u.y < v.y;
     return u.z < v.z;
 }
-
-#endif // VECT3_HPP

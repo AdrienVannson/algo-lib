@@ -1,5 +1,4 @@
-#ifndef PRIMEDECOMPOSITION_HPP
-#define PRIMEDECOMPOSITION_HPP
+#pragma once
 
 #include <vector>
 
@@ -9,5 +8,3 @@
 /// (the first value if the power of 2 in the decomposition).
 std::vector<int>
 getPrimeDecomposition(const int n, const SieveOfEratosthenes &sieve);
-
-#endif // PRIMEDECOMPOSITION_HPP
