@@ -1,5 +1,8 @@
 # Algolib
 
+The documentation of Algolib is accessible at https://www.adrienvannson.fr/algolib/ .
+
+These algorithms and data structures are implemented in Algolib:
 - Data structures
     - Disjoint set
     - Max Heap
