@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "graphs/data-structures/graph.hpp"
+#include "graphs/data-structures/wgraph.hpp"
 #include "test-scanner.hpp"
 #include "scanner.hpp"
 #include "test-done.hpp"
@@ -21,6 +22,8 @@ void test_scanner()
         "1 2 5\n"
         "3 2\n"
         "1 2 2 3\n"
+        "3 2\n"
+        "1 2 10 2 3 7\n"
     );
 
     long long x;
@@ -54,6 +57,13 @@ void test_scanner()
     assert(graph.isDirected());
     assert(graph.vertexCount() == 3 && graph.edgeCount() == 2);
     assert(graph.neighbours(0) == vector<int>{1});
+
+    WGraph<int> wgraph;
+    read(wgraph, true, true, buff);
+    assert(wgraph.isDirected());
+    assert(wgraph.vertexCount() == 3 && wgraph.edgeCount() == 2);
+    assert(wgraph.weight(wgraph.edgeIdTo(0, 1)) == 10);
+    assert(wgraph.weight(wgraph.edgeIdTo(1, 2)) == 7);
 
     show_test_done("Scanner");
 }
