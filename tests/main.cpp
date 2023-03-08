@@ -15,6 +15,7 @@
 #include "maths/test-sieve-of-eratosthenes.hpp"
 #include "optimization/test-gradient-descent.hpp"
 #include "optimization/test-gradient.hpp"
+#include "other/test-scanner.hpp"
 #include "other/test-simplex.hpp"
 #include "other/test-two-sat.hpp"
 #include "other/test-utility.hpp"
@@ -904,6 +905,7 @@ int main()
     // Other
     cerr << "├── Other functionalities" << endl;
     testInfinity();
+    test_scanner();
     test_simplex();
     testTwoSat();
     test_utility();

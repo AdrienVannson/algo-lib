@@ -55,6 +55,7 @@
 
 #include "constants.hpp" // ONLY_IF Constants
 #include "json.hpp" // ONLY_IF JSON
+#include "scanner.hpp" // ONLY_IF read
 #include "simplex.hpp" // ONLY_IF Simplex
 #include "two-sat.hpp" // ONLY_IF TwoSat
 #include "utility.hpp" // ONLY_IF sum apply_fct range
