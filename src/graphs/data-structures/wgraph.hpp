@@ -8,9 +8,20 @@ class WGraph : public Graph
 public:
     typedef T Weight;
 
+    WGraph() :
+        WGraph(0, false)
+    {}
+
     WGraph(const int vertexCount, const bool isDirected) :
         Graph(vertexCount, isDirected)
     {}
+
+    /// \brief Reset the graph
+    inline void reset(const int vertexCount, const bool isDirected)
+    {
+        m_weights.clear();
+        Graph::reset(vertexCount, isDirected);
+    }
 
     /// \brief Returns the weight of the n-th edge
     inline T weight(const int edgeId) const
