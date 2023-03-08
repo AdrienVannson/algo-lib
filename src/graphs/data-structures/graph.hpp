@@ -28,6 +28,14 @@ public:
         m_vertices.resize(vertexCount);
     }
 
+    inline void reset(const int vertexCount, const bool isDirected)
+    {
+        m_isDirected = isDirected;
+        m_edgeCount = 0;
+        m_vertices.clear();
+        m_vertices.resize(vertexCount);
+    }
+
     inline bool isDirected() const
     {
         return m_isDirected;
