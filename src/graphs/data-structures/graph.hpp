@@ -18,6 +18,10 @@ public:
         int edgeId;
     };
 
+    Graph() :
+        Graph(0, false)
+    {}
+
     Graph(const int vertexCount, const bool isDirected) :
         m_isDirected(isDirected), m_edgeCount(0)
     {
