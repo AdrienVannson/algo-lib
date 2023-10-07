@@ -5,7 +5,7 @@ FIRST_FILE = 'main.cpp'
 def lines_of_file(fn):
     try:
         with open(fn, 'r') as f:
-            return [l[:-1] for l in f.readlines()] # Remove \n at the end of each line
+            return [l.rstrip('\n') for l in f.readlines()] # Remove \n at the end of each line
     except:
         return []
 
