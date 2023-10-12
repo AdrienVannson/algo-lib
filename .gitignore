@@ -1,6 +1,7 @@
 tools/config
 *.pro
 *.pro.user
+.idea
 tests/prog
 tests/output.cpp
 build
