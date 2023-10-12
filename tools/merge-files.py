@@ -89,7 +89,7 @@ while len(pending):
     line = pending[-1]
     pending.pop()
 
-    if re.match("^#include \"*\"", line):
+    if re.match("^#include \"*\"", line) and ' // IGNORE' not in line:
         if ' // ONLY_IF ' in line:
             line = line.split(' // ONLY_IF ')[0]
 
