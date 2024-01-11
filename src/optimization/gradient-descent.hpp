@@ -8,28 +8,28 @@ template<typename F, typename G>
 class GradientDescent
 {
 public:
-    GradientDescent(F f, G grad, const Vect<double> &starting_point) :
+    GradientDescent(F f, G grad, const Vect<double> &startingPoint) :
         m_f(f),
         m_grad(grad),
-        m_x(starting_point)
+        m_x(startingPoint)
     {}
 
     /// \brief Sets the point at which the gradient descent will start
-    inline void set_starting_point(const Vect<double> &x)
+    inline void setStartingPoint(const Vect<double> &x)
     {
         m_x = x;
     }
 
     /// \brief Starts the optimization
-    /// @param max_iterations_count The maximal number of iterations that the
+    /// @param maxIterationsCount The maximal number of iterations that the
     /// algorithm can perform
     /// @param tolerance Once the norm of the gradient is lower than this value,
     /// the gradient descent stops.
-    /// @param armijo_coef The value of c in the Armijo's inequality.
-    /// @param update_factor The value by which the step length is multiplied
+    /// @param armijoCoef The value of c in the Armijo's inequality.
+    /// @param updateFactor The value by which the step length is multiplied
     /// or divided
-    void optimize(const int max_iterations_count, const double tolerance,
-                  const double armijo_coef = 1e-4, const double update_factor = 1.3);
+    void optimize(const int maxIterationsCount, const double tolerance,
+                  const double armijoCoef = 1e-4, const double updateFactor = 1.3);
 
     /// \brief Returns the current value of f
     double value() const
@@ -50,36 +50,36 @@ private:
 };
 
 template<typename F, typename G>
-void GradientDescent<F, G>::optimize(const int max_iterations_count,
-    const double tolerance, const double armijo_coef, const double update_factor)
+void GradientDescent<F, G>::optimize(const int maxIterationsCount,
+    const double tolerance, const double armijoCoef, const double updateFactor)
 {
-    const double update_factor_inv = 1. / update_factor;
+    const double updateFactorInv = 1. / updateFactor;
 
     double alpha = 1; // Step length
 
-    for (int it = 0; it < max_iterations_count; it++) {
+    for (int it = 0; it < maxIterationsCount; it++) {
         const double f_x = m_f(m_x);
         const Vect<double> grad = m_grad(m_x);
-        const double grad_squared_norm = grad.squared_norm();
+        const double gradSquaredNorm = grad.squared_norm();
 
-        if (grad_squared_norm < tolerance * tolerance) break;
+        if (gradSquaredNorm < tolerance * tolerance) break;
 
         // Update the step length
-        if (m_f(m_x - alpha * grad) <= f_x - armijo_coef * alpha * grad_squared_norm) {
-            alpha *= update_factor;
+        if (m_f(m_x - alpha * grad) <= f_x - armijoCoef * alpha * gradSquaredNorm) {
+            alpha *= updateFactor;
 
             // While Armijo's condition is verified, go further
-            while (m_f(m_x - alpha * grad) <= f_x - armijo_coef * alpha * grad_squared_norm) {
-                alpha *= update_factor;
+            while (m_f(m_x - alpha * grad) <= f_x - armijoCoef * alpha * gradSquaredNorm) {
+                alpha *= updateFactor;
             }
 
-            alpha *= update_factor_inv;
+            alpha *= updateFactorInv;
         } else {
-            alpha *= update_factor_inv;
+            alpha *= updateFactorInv;
 
             // Go nearer until Armijo's condition is verified
-            while (m_f(m_x - alpha * grad) > f_x - armijo_coef * alpha * grad_squared_norm) {
-                alpha *= update_factor_inv;
+            while (m_f(m_x - alpha * grad) > f_x - armijoCoef * alpha * gradSquaredNorm) {
+                alpha *= updateFactorInv;
             }
         }
 
