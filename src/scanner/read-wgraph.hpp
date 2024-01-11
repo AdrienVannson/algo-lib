@@ -1,6 +1,13 @@
-#include "graph.hpp"
+#pragma once
 
-void read(Graph& graph, const bool is_directed, const bool indices_start_at_one,
+#include <iostream>
+
+#include "scanner/read.hpp"
+#include "graphs/data-structures/wgraph.hpp"
+
+// Read a weighted graph from a istream
+template<class T>
+void read(WGraph<T>& graph, const bool is_directed, const bool indices_start_at_one,
     const int vertex_count, const int edges_count, std::istream& stream)
 {
     graph.reset(vertex_count, is_directed);
@@ -9,15 +16,19 @@ void read(Graph& graph, const bool is_directed, const bool indices_start_at_one,
         int x, y;
         stream >> x >> y;
 
+        T weight;
+        read(weight, stream);
+
         if (indices_start_at_one) {
             x--, y--;
         }
 
-        graph.addEdge(x, y);
+        graph.addEdge(x, y, weight);
     }
 }
 
-void read(Graph& graph, const bool is_directed, const bool indices_start_at_one,
+template<class T>
+void read(WGraph<T>& graph, const bool is_directed, const bool indices_start_at_one,
     std::istream& stream)
 {
     int vertex_count, edges_count;

@@ -1,12 +1,11 @@
 #include <cassert>
 #include <sstream>
-#include <utility>
 #include <vector>
 
-#include "graphs/data-structures/graph.hpp"
-#include "graphs/data-structures/wgraph.hpp"
 #include "test-scanner.hpp"
-#include "scanner.hpp"
+#include "scanner/read.hpp"
+#include "scanner/read-graph.hpp"
+#include "scanner/read-wgraph.hpp"
 #include "test-done.hpp"
 
 using namespace std;

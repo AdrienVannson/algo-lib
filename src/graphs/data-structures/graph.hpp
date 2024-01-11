@@ -1,7 +1,6 @@
 #pragma once
 
 #include <cassert>
-#include <iostream>
 #include <vector>
 
 class Graph
@@ -163,9 +162,3 @@ protected:
     int m_edgeCount;
     std::vector<std::vector<EdgeTo>> m_vertices; // [vertex][neighbourPos]
 };
-
-// Read a graph from a istream
-void read(Graph& graph, const bool is_directed, const bool indices_start_at_one,
-    const int vertex_count, const int edges_count, std::istream& stream);
-void read(Graph& graph, const bool is_directed, const bool indices_start_at_one,
-    std::istream& stream);

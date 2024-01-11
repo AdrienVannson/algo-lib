@@ -42,6 +42,11 @@
 #include "optimization/gradient.hpp" // ONLY_IF BackwardGradient ForwardGradient SymetricGradient
 #include "optimization/gradient-descent.hpp" // ONLY_IF GradientDescent
 
+#include "scanner/read.hpp" // ONLY_IF read
+// TODO include if Graph *and* read
+#include "read-graph.hpp" // ONLY_IF Graph
+#include "read-wgraph.hpp" // ONLY_IF WGraph
+
 #include "sorting/merge-sort.hpp" // ONLY_IF mergeSort
 
 #include "strings/automaton.hpp" // ONLY_IF Automaton Aut
@@ -55,7 +60,6 @@
 
 #include "constants.hpp" // ONLY_IF Constants
 #include "json.hpp" // ONLY_IF JSON
-#include "scanner.hpp" // ONLY_IF read
 #include "simplex.hpp" // ONLY_IF Simplex
 #include "two-sat.hpp" // ONLY_IF TwoSat
 #include "utility.hpp" // ONLY_IF sum apply_fct range
