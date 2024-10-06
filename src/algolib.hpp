@@ -43,7 +43,7 @@
 #include "optimization/gradient-descent.hpp" // ONLY_IF GradientDescent
 
 #include "scanner/read.hpp" // ONLY_IF read
-// TODO include if Graph *and* read
+// TODO include if Graph_ *and* read_
 #include "read-graph.hpp" // ONLY_IF Graph
 #include "read-wgraph.hpp" // ONLY_IF WGraph
 
