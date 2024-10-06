@@ -2,7 +2,7 @@
 
 ![](https://github.com/AdrienVannson/algo-lib/actions/workflows/run-tests.yml/badge.svg)
 
-The documentation of Algolib is accessible at [here](adrienvannson.github.io/algo-lib/) .
+The documentation of Algolib is accessible at [here](https://adrienvannson.github.io/algo-lib/) .
 
 These algorithms and data structures are implemented in Algolib:
 - Data structures
