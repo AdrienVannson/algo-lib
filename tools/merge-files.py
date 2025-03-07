@@ -1,4 +1,5 @@
-import re, os.path
+import re
+import os.path
 
 FIRST_FILE = 'main.cpp'
 
@@ -45,7 +46,7 @@ while len(pending_includes):
         if success:
             file = pending_includes.pop(i)[0]
 
-            if not file in files_to_include:
+            if file not in files_to_include:
                 files_to_include.add(file)
 
                 # Add the .cpp if needed
@@ -62,14 +63,14 @@ while len(pending_includes):
                             words_needed = words_needed.split()
 
                         folder, path = get_full_path(re.sub("^\\#include \"(.+)\"$", "\\1", line))
-                        if not folder in path_folders:
+                        if folder not in path_folders:
                             path_folders.append(folder)
 
-                        if not path in files_to_include:
+                        if path not in files_to_include:
                             pending_includes.append((path, words_needed))
 
                     else: # Add the words to the dictionnary
-                        for w in re.split('\W', line):
+                        for w in re.split(r"\W", line):
                             if len(w):
                                 words.add(w)
 
