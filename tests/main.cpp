@@ -15,6 +15,7 @@
 #include "maths/test-sieve-of-eratosthenes.hpp"
 #include "optimization/test-gradient-descent.hpp"
 #include "optimization/test-gradient.hpp"
+#include "optimization/test-simulated-annealing.hpp"
 #include "other/test-scanner.hpp"
 #include "other/test-simplex.hpp"
 #include "other/test-two-sat.hpp"
@@ -893,6 +894,7 @@ int main()
     cerr << "├── Optimization" << endl;
     test_gradient();
     test_gradient_descent();
+    testSimulatedAnnealing();
     cerr << "│   \n";
 
     // Strings
