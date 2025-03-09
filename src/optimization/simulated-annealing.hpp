@@ -7,7 +7,7 @@ public:
         m_startTemperature(startTemperature)
     {}
 
-    void optimize(const S startState, const int nbIterations) {
+    void minimize(const S startState, const int nbIterations) {
         m_state = startState;
         m_bestState = startState;
         m_score = m_state.score();

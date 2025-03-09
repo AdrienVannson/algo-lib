@@ -57,7 +57,7 @@ void testSimulatedAnnealing() {
 
     // Improve the solution
     SimulatedAnnealing<Solution> sa(1);
-    sa.optimize(sol, 100000);
+    sa.minimize(sol, 100000);
 
     // Make sure the solution is good enough
     assert(sa.m_bestScore < 15);

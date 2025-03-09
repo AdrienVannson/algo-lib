@@ -33,7 +33,7 @@ method to minimize the function.
     Solution sol;
 
     SimulatedAnnealing<Solution> sa(1);
-    sa.optimize(sol, 100000);
+    sa.minimize(sol, 100000);
 
     cout << sa.m_bestScore << endl;>>
 
