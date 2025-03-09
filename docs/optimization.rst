@@ -6,3 +6,4 @@ Optimization
 
     optimization/gradient
     optimization/gradient-descent
+    optimization/simulated-annealing
