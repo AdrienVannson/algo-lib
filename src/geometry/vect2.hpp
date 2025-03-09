@@ -146,3 +146,6 @@ inline std::ostream &operator<<(std::ostream &os, const Vect2<T> &v)
 {
     return os << "(" << v.x << ", " << v.y << ")";
 }
+
+using Vect2f = Vect2<float>;
+using Vect2d = Vect2<double>;
