@@ -60,8 +60,21 @@ public:
         return sqrt(squared_norm());
     }
 
+    /// \brief Return the sum of the coefficients
+    inline T sum() const
+    {
+        T sum = Constants<T>::zero();
+
+        for (const T coef : m_coefs) {
+            sum += coef;
+        }
+
+        return sum;
+    }
+
     void operator+=(const Vect &other);
     void operator-=(const Vect &other);
+    void operator*=(const T c);
 
 private:
     std::vector<T> m_coefs;
@@ -84,6 +97,14 @@ void Vect<T>::operator-=(const Vect &other)
 
     for (int i = 0; i < size(); i++) {
         m_coefs[i] -= other.m_coefs[i];
+    }
+}
+
+template<class T>
+void Vect<T>::operator*=(const T c)
+{
+    for (int i = 0; i < size(); i++) {
+        m_coefs[i] *= c;
     }
 }
 
